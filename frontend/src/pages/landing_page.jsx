@@ -101,6 +101,7 @@ const LandingPage = () => {
       {/* Main Content */}
       <AnimatePresence>
         {showContent && (
+          <>
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
@@ -141,8 +142,9 @@ const LandingPage = () => {
                 {whyByteCode.map((item, i) => (
                   <motion.div
                     key={i}
-                    whileHover={{ scale: 1.05, y: -5 }}
-                    className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
+                    whileHover={{ scale: 1.08, y: -8, rotate: 2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                    className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-white/20"
                   >
                     <div className="text-3xl mb-4">{item.icon}</div>
                     <h4 className="text-xl font-semibold text-white mb-3">{item.title}</h4>
@@ -161,8 +163,9 @@ const LandingPage = () => {
                 {languages.map((item, i) => (
                   <motion.div
                     key={i}
-                    whileHover={{ scale: 1.05, y: -5 }}
-                    className={`p-6 bg-gradient-to-br ${item.color} rounded-2xl shadow-2xl text-white group cursor-pointer hover:shadow-xl transition-all duration-100`}
+                    whileHover={{ scale: 1.08, y: -8, rotate: 2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                    className={`p-6 bg-gradient-to-br ${item.color} rounded-2xl shadow-2xl text-white group cursor-pointer hover:shadow-xl`}
                   >
                     <h4 className="text-3xl font-bold mb-3">{item.title}</h4>
                     <p>{item.description}</p>
@@ -180,8 +183,9 @@ const LandingPage = () => {
                 {features.map((item, i) => (
                   <motion.div
                     key={i}
-                    whileHover={{ scale: 1.05, y: -5 }}
-                    className={`p-6 bg-gradient-to-br ${item.gradient} backdrop-blur-sm rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300`}
+                    whileHover={{ scale: 1.08, y: -8, rotate: 2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                    className={`p-6 bg-gradient-to-br ${item.gradient} backdrop-blur-sm rounded-2xl border border-white/10 hover:border-white/20`}
                   >
                     <h4 className="text-xl font-semibold text-white mb-3">{item.title}</h4>
                     <p className="text-gray-200 leading-relaxed">{item.description}</p>
@@ -189,8 +193,9 @@ const LandingPage = () => {
                 ))}
               </div>
             </div>
-            <Footer/>
           </motion.div>
+        <Footer/>
+        </>
         )}
       </AnimatePresence>
     </div>
