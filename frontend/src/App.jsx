@@ -10,10 +10,12 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import LandingPage from "./pages/landing_page";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import OTPVerification from "./components/OTPVerification";
 import Dashboard from "./profile/Dashboard";
 import NotFound from "./pages/NotFound";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
+
 function App() {
   return (
     <AuthProvider>
@@ -24,6 +26,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/verify-email" element={<OTPVerification />} />
 
             {/* Protected Routes */}
             <Route
@@ -55,6 +58,32 @@ function App() {
       </Router>
       <Toaster
         position="top-right"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#1f2937',
+            color: 'white',
+            border: '1px solid #374151',
+          },
+          success: {
+            style: {
+              background: '#059669',
+              color: 'white',
+            },
+          },
+          error: {
+            style: {
+              background: '#dc2626',
+              color: 'white',
+            },
+          },
+          loading: {
+            style: {
+              background: '#1f2937',
+              color: 'white',
+            },
+          },
+        }}
       />
     </AuthProvider>
   );

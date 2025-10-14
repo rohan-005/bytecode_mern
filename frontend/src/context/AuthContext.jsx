@@ -58,23 +58,22 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async (name, email, password) => {
-    try {
-      const response = await api.post('/auth/register', { name, email, password });
-      const { token, ...userData } = response.data;
-
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(userData));
-      setUser(userData);
-
-      return { success: true, user: userData };
-    } catch (error) {
-      return {
-        success: false,
-        message: error.response?.data?.message || 'Registration failed'
-      };
-    }
-  };
+ // In your AuthContext, update the register function:
+const register = async (name, email, password) => {
+  try {
+    const response = await api.post('/auth/register', { name, email, password });
+    
+    return { 
+      success: true, 
+      isExistingUnverified: response.data.isExistingUnverified 
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: error.response?.data?.message || 'Registration failed'
+    };
+  }
+};
 
   const logout = () => {
     localStorage.removeItem('token');

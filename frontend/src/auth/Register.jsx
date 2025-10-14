@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import logo from "../assets/logo.png";
+
 const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -36,6 +37,11 @@ const Register = () => {
       return false;
     }
 
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      toast.error('Please enter a valid email address');
+      return false;
+    }
+
     if (password !== confirmPassword) {
       toast.error('Passwords do not match');
       return false;
@@ -64,14 +70,15 @@ const Register = () => {
 
     if (result.success) {
       toast.dismiss(loadingToast);
-      toast.success('Account created successfully! Welcome to CodeHub! 🎉', {
-        duration: 3000,
+      toast.success('Account created successfully! Please verify your email. 📧', {
+        duration: 4000,
         icon: '🚀'
       });
       
-      // Small delay to show success message
+      // Store email for OTP verification and navigate to OTP page
+      localStorage.setItem('pendingVerificationEmail', email);
       setTimeout(() => {
-        navigate('/dashboard');
+        navigate('/verify-email', { state: { email } });
       }, 2000);
     } else {
       toast.dismiss(loadingToast);
@@ -102,7 +109,7 @@ const Register = () => {
   // Show toast when password meets requirements
   React.useEffect(() => {
     if (password.length >= 6 && password === confirmPassword && confirmPassword) {
-      toast.success('Passwords match!', { duration: 2000 });
+      toast.success('Passwords match!', { duration: 2000, icon: '✅' });
     }
   }, [password, confirmPassword]);
 
@@ -123,13 +130,10 @@ const Register = () => {
                 src={logo}
                 alt="ByteCode Logo"
                 className="w-24 h-24 md:w-28 md:h-28 lg:w-40 lg:h-40 drop-shadow-2xl"
-                initial={{ y: 30, opacity: 0, rotate: -180 }}
-                animate={{ y: 0, opacity: 1, rotate: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
               />
             </div>
-            <h2 className="text-3xl font-bold text-white mb-2 font-transformer">Join ByteCode</h2>
+            <h2 className="text-3xl font-bold text-white mb-2">Join ByteCode</h2>
+            <p className="text-gray-400">Start your coding journey today</p>
           </div>
 
           {/* Error Message */}

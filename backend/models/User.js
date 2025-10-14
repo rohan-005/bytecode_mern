@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -28,7 +29,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['user', 'admin'],
     default: 'user'
-  }
+  },
+  isVerified: {
+    type: Boolean,
+    default: false
+  },
+  emailVerificationOTP: String,
+  emailVerificationOTPExpire: Date,
+  passwordResetToken: String,
+  passwordResetExpire: Date
 }, {
   timestamps: true
 });
@@ -46,6 +55,39 @@ userSchema.pre('save', async function(next) {
 // Match user entered password to hashed password in database
 userSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
+};
+
+// Generate email verification OTP
+userSchema.methods.generateEmailVerificationOTP = function() {
+  // Generate 6-digit OTP
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  
+  this.emailVerificationOTP = crypto
+    .createHash('sha256')
+    .update(otp)
+    .digest('hex');
+  
+  // OTP expires in 10 minutes
+  this.emailVerificationOTPExpire = Date.now() + 10 * 60 * 1000;
+  
+  return otp;
+};
+
+// Generate password reset token
+userSchema.methods.generatePasswordResetToken = function() {
+  // Generate token
+  const resetToken = crypto.randomBytes(32).toString('hex');
+  
+  // Hash token and set to resetPasswordToken field
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+  
+  // Set expire time to 1 hour
+  this.passwordResetExpire = Date.now() + 60 * 60 * 1000;
+  
+  return resetToken;
 };
 
 module.exports = mongoose.model('User', userSchema);

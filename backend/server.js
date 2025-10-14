@@ -3,21 +3,17 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-// Load env vars FIRST - this is crucial
+// Load env vars
 dotenv.config();
 
-// Debug: Check if env vars are loaded
-console.log('🔍 Environment Check:');
-console.log('MONGO_URI:', process.env.MONGO_URI ? '✅ Loaded' : '❌ NOT LOADED');
-console.log('PORT:', process.env.PORT);
-console.log('NODE_ENV:', process.env.NODE_ENV);
+const app = express();
 
-const app = express();  
-
-// Import connectdb AFTER dotenv.config()
-const connectdb = require('./config/connectdb'); // Adjust path as needed
+// Import routes
+const authRoutes = require('./routes/auth');
+const otpRoutes = require('./routes/otp');
 
 // Connect to database
+const connectdb = require('./config/connectdb');
 connectdb();
 
 // Middleware
@@ -25,7 +21,8 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use('/api/auth', require('./routes/auth'));
+app.use('/api/auth', authRoutes);
+app.use('/api/otp', otpRoutes);
 
 // Test route
 app.get('/api/health', (req, res) => {
@@ -39,5 +36,5 @@ app.get('/api/health', (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
