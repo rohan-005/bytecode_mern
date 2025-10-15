@@ -124,12 +124,12 @@ const Register = () => {
 
         <div className="relative bg-gray-800/50 backdrop-blur-lg rounded-2xl shadow-2xl border border-gray-700 p-8 hover:bg-gray-800/60 transition-all duration-300">
           {/* Header */}
-          <div className="text-center mb-8">
-            <div className="flex justify-center mb-4">
+          <div className="text-center mb-">
+            <div className="flex justify-center ">
               <img
                 src={logo}
                 alt="ByteCode Logo"
-                className="w-24 h-24 md:w-28 md:h-28 lg:w-40 lg:h-40 drop-shadow-2xl"
+                className="w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 drop-shadow-2xl"
               />
             </div>
             <h2 className="text-3xl font-bold text-white mb-2">Join ByteCode</h2>

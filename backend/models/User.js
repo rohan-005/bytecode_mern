@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Encrypt password using bcrypt
+// password
 userSchema.pre('save', async function(next) {
   if (!this.isModified('password')) {
     next();
@@ -52,12 +52,11 @@ userSchema.pre('save', async function(next) {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-// Match user entered password to hashed password in database
 userSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-// Generate email verification OTP
+// otp
 userSchema.methods.generateEmailVerificationOTP = function() {
   // Generate 6-digit OTP
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
@@ -73,7 +72,7 @@ userSchema.methods.generateEmailVerificationOTP = function() {
   return otp;
 };
 
-// Generate password reset token
+// pass reset token
 userSchema.methods.generatePasswordResetToken = function() {
   // Generate token
   const resetToken = crypto.randomBytes(32).toString('hex');
