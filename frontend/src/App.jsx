@@ -15,6 +15,7 @@ import Dashboard from "./profile/Dashboard";
 import NotFound from "./pages/NotFound";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
+import Courses from "./pages/Courses"; // Add this import
 
 function App() {
   return (
@@ -34,6 +35,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/courses"
+              element={
+                <ProtectedRoute>
+                  <Courses />
                 </ProtectedRoute>
               }
             />
@@ -61,26 +70,26 @@ function App() {
         toastOptions={{
           duration: 4000,
           style: {
-            background: '#1f2937',
-            color: 'white',
-            border: '1px solid #374151',
+            background: "#1f2937",
+            color: "white",
+            border: "1px solid #374151",
           },
           success: {
             style: {
-              background: '#059669',
-              color: 'white',
+              background: "#059669",
+              color: "white",
             },
           },
           error: {
             style: {
-              background: '#dc2626',
-              color: 'white',
+              background: "#dc2626",
+              color: "white",
             },
           },
           loading: {
             style: {
-              background: '#1f2937',
-              color: 'white',
+              background: "#1f2937",
+              color: "white",
             },
           },
         }}

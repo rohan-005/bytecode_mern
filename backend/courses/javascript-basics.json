@@ -1,0 +1,61 @@
+{
+  "id": "javascript-basics",
+  "name": "JavaScript Fundamentals",
+  "description": "Master the basics of JavaScript programming language from scratch. Learn variables, functions, loops, and more.",
+  "instructor": "Sarah Johnson",
+  "duration": "6 weeks",
+  "level": "Beginner",
+  "price": 0,
+  "image": "/images/js-course.jpg",
+  "category": "Programming",
+  "rating": 4.5,
+  "students": 1250,
+  "tags": ["javascript", "programming", "beginner"],
+  "whatYouLearn": [
+    "Variables and Data Types",
+    "Functions and Scope",
+    "Loops and Conditionals",
+    "DOM Manipulation",
+    "Event Handling"
+  ],
+  "prerequisites": ["Basic computer knowledge"],
+  "exercises": [
+    {
+      "id": "ex1",
+      "title": "Variables and Data Types",
+      "description": "Practice declaring variables and working with different data types",
+      "duration": "30 min",
+      "difficulty": "Easy"
+    },
+    {
+      "id": "ex2",
+      "title": "Functions and Scope",
+      "description": "Learn how to create and use functions with different scopes",
+      "duration": "45 min",
+      "difficulty": "Medium"
+    },
+    {
+      "id": "ex3",
+      "title": "DOM Manipulation",
+      "description": "Practice selecting and modifying HTML elements",
+      "duration": "60 min",
+      "difficulty": "Medium"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "lesson1",
+      "title": "Introduction to JavaScript",
+      "duration": "15 min",
+      "videoUrl": "/videos/js-intro.mp4",
+      "description": "What is JavaScript and why it's important"
+    },
+    {
+      "id": "lesson2",
+      "title": "Variables and Constants",
+      "duration": "25 min",
+      "videoUrl": "/videos/js-variables.mp4",
+      "description": "Learn about let, const, and var"
+    }
+  ]
+}
