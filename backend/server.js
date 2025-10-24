@@ -2,8 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const fs = require('fs').promises;
-const path = require('path');
 
 // Load env vars
 dotenv.config();
@@ -13,9 +11,9 @@ const app = express();
 // Import routes
 const authRoutes = require('./routes/auth');
 const otpRoutes = require('./routes/otp');
-const courseRoutes = require('./routes/courses'); // Add this
+const courseRoutes = require('./routes/courses');
 
-// Connect to database (for user data only)
+// Connect to database
 const connectdb = require('./config/connectdb');
 connectdb();
 
@@ -26,7 +24,7 @@ app.use(express.json());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/otp', otpRoutes);
-app.use('/api/courses', courseRoutes); // Add this
+app.use('/api/courses', courseRoutes);
 
 // Test route
 app.get('/api/health', (req, res) => {

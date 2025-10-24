@@ -12,76 +12,96 @@ const Courses = () => {
   // eslint-disable-next-line no-unused-vars
   const { user } = useAuth();
 
+  // Use absolute URL for development
+  const API_BASE = 'http://localhost:5000/api';
+
   useEffect(() => {
     fetchCourses();
     fetchEnrolledCourses();
   }, []);
 
-  // Update the fetchCourses function in Courses.jsx
-const fetchCourses = async () => {
-  try {
-    const response = await fetch('http://localhost:5000/api/courses');
-    if (response.ok) {
-      const data = await response.json();
-      setCourses(data);
-    } else {
-      console.error('Failed to fetch courses:', response.status);
-    }
-  } catch (error) {
-    console.error('Error fetching courses:', error);
-  } finally {
-    setLoading(false);
-  }
-};
-
-// Update the fetchEnrolledCourses function in Courses.jsx
-const fetchEnrolledCourses = async () => {
-  try {
-    const token = localStorage.getItem('token');
-    const response = await fetch('http://localhost:5000/api/courses/user/enrolled', {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+  const fetchCourses = async () => {
+    try {
+      console.log('🔄 Fetching courses from backend...');
+      const response = await fetch(`${API_BASE}/courses`);
+      
+      console.log('📡 Response status:', response.status);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('✅ Courses loaded:', data.length);
+        setCourses(data);
+      } else {
+        console.error('❌ Failed to fetch courses:', response.status);
+        // Try with relative URL as fallback
+        try {
+          const fallbackResponse = await fetch('/api/courses');
+          if (fallbackResponse.ok) {
+            const fallbackData = await fallbackResponse.json();
+            setCourses(fallbackData);
+          }
+        } catch (fallbackError) {
+          console.error('❌ Fallback also failed:', fallbackError);
+        }
       }
-    });
-    
-    if (response.ok) {
-      const data = await response.json();
-      setEnrolledCourses(data);
-    } else {
-      console.error('Failed to fetch enrolled courses:', response.status);
+    } catch (error) {
+      console.error('❌ Network error fetching courses:', error);
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error('Error fetching enrolled courses:', error);
-  }
-};
+  };
 
-// Update the enrollInCourse function in Courses.jsx
-const enrollInCourse = async (courseId) => {
-  try {
-    const token = localStorage.getItem('token');
-    const response = await fetch(`http://localhost:5000/api/courses/${courseId}/enroll`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+  const fetchEnrolledCourses = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.log('ℹ️ No token found, user might not be logged in');
+        return;
       }
-    });
 
-    if (response.ok) {
-      // eslint-disable-next-line no-unused-vars
-      const result = await response.json();
-      alert('Successfully enrolled in course!');
-      fetchEnrolledCourses(); // Refresh enrolled courses
-    } else {
-      const error = await response.json();
-      alert(error.message);
+      console.log('🔄 Fetching enrolled courses...');
+      const response = await fetch(`${API_BASE}/courses/user/enrolled`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('✅ Enrolled courses loaded:', data.length);
+        setEnrolledCourses(data);
+      } else {
+        console.error('❌ Failed to fetch enrolled courses:', response.status);
+      }
+    } catch (error) {
+      console.error('❌ Network error fetching enrolled courses:', error);
     }
-  } catch (error) {
-    console.error('Error enrolling in course:', error);
-    alert('Error enrolling in course');
-  }
-};
+  };
+
+  const enrollInCourse = async (courseId) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE}/courses/${courseId}/enroll`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        alert('Successfully enrolled in course!');
+        fetchEnrolledCourses();
+      } else {
+        const error = await response.json();
+        alert(error.message);
+      }
+    } catch (error) {
+      console.error('Error enrolling in course:', error);
+      alert('Error enrolling in course');
+    }
+  };
 
   const isEnrolled = (courseId) => {
     return enrolledCourses.some(ec => ec.enrollment.courseId === courseId);
@@ -96,7 +116,7 @@ const enrollInCourse = async (courseId) => {
     const matchesFilter = filter === 'all' || course.level === filter;
     const matchesSearch = course.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          course.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         course.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+                         (course.tags && course.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())));
     return matchesFilter && matchesSearch;
   });
 
@@ -116,6 +136,16 @@ const enrollInCourse = async (courseId) => {
           <p className="text-gray-400">Enroll in courses and start your learning journey</p>
         </div>
 
+        {/* Debug Info */}
+        <div className="mb-4 p-4 bg-blue-900 border border-blue-600 rounded">
+          <p className="text-blue-200 text-sm">
+            <strong>Courses Loaded:</strong> {courses.length} | 
+            <strong> Enrolled Courses:</strong> {enrolledCourses.length} |
+            <strong> Backend:</strong> {API_BASE}
+          </p>
+        </div>
+
+        {/* Rest of your component remains the same */}
         {/* Search and Filters */}
         <div className="mb-6 flex flex-col sm:flex-row gap-4">
           <div className="flex-1">
@@ -167,8 +197,8 @@ const enrollInCourse = async (courseId) => {
 
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center space-x-2">
-                    <span className="text-yellow-400">⭐ {course.rating}</span>
-                    <span className="text-gray-400">👥 {course.students}</span>
+                    <span className="text-yellow-400">⭐ {course.rating || '4.5'}</span>
+                    <span className="text-gray-400">👥 {course.students || '0'}</span>
                   </div>
                   <span className={`px-2 py-1 rounded text-xs ${
                     course.price === 0 ? 'bg-green-900 text-green-300' : 'bg-blue-900 text-blue-300'
@@ -213,7 +243,7 @@ const enrollInCourse = async (courseId) => {
           })}
         </div>
 
-        {filteredCourses.length === 0 && (
+        {filteredCourses.length === 0 && !loading && (
           <div className="text-center py-12">
             <div className="text-6xl mb-4">🔍</div>
             <h3 className="text-xl font-semibold text-white mb-2">No courses found</h3>

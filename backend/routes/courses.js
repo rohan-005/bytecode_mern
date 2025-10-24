@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs').promises;
 const path = require('path');
 const UserCourse = require('../models/UserCourse');
-const { protect } = require('../middleware/auth'); // Use your existing protect middleware
+const { protect } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -23,7 +23,6 @@ const getAllCourses = async () => {
   try {
     const coursesDir = path.join(__dirname, '..', 'courses');
     
-    // Check if courses directory exists
     try {
       await fs.access(coursesDir);
     } catch (error) {
@@ -92,7 +91,6 @@ router.post('/:id/enroll', protect, async (req, res) => {
       return res.status(404).json({ message: 'Course not found' });
     }
 
-    // Check if already enrolled
     const existingEnrollment = await UserCourse.findOne({
       user: req.user.id,
       courseId: courseId
@@ -102,7 +100,6 @@ router.post('/:id/enroll', protect, async (req, res) => {
       return res.status(400).json({ message: 'Already enrolled in this course' });
     }
 
-    // Create enrollment
     const userCourse = await UserCourse.create({
       user: req.user.id,
       courseId: courseId
@@ -119,21 +116,38 @@ router.post('/:id/enroll', protect, async (req, res) => {
   }
 });
 
-// @desc    Get user's enrolled courses with course details
+// @desc    Get user's enrolled courses with course details - FIXED VERSION
 // @route   GET /api/courses/user/enrolled
 // @access  Private
 router.get('/user/enrolled', protect, async (req, res) => {
   try {
     const userCourses = await UserCourse.find({ user: req.user.id }).sort({ enrolledAt: -1 });
     
-    // Get course details for each enrollment
     const enrolledCoursesWithDetails = [];
     for (const enrollment of userCourses) {
       const course = await getCourseFromFile(enrollment.courseId);
       if (course) {
         enrolledCoursesWithDetails.push({
-          enrollment,
-          course
+          enrollment: {
+            _id: enrollment._id.toString(),
+            courseId: enrollment.courseId,
+            progress: enrollment.progress,
+            enrolledAt: enrollment.enrolledAt,
+            completed: enrollment.completed,
+            completedExercises: enrollment.completedExercises || [],
+            completedLessons: enrollment.completedLessons || [],
+            lastAccessed: enrollment.lastAccessed
+          },
+          course: {
+            id: course.id,
+            name: course.name,
+            description: course.description,
+            level: course.level,
+            duration: course.duration,
+            instructor: course.instructor,
+            image: course.image,
+            category: course.category
+          }
         });
       }
     }
@@ -162,13 +176,11 @@ router.put('/:id/progress', protect, async (req, res) => {
       return res.status(404).json({ message: 'Not enrolled in this course' });
     }
 
-    // Get course to calculate total items
     const course = await getCourseFromFile(courseId);
     if (!course) {
       return res.status(404).json({ message: 'Course not found' });
     }
 
-    // Update progress based on completed exercises/lessons
     if (exerciseId && completed) {
       const exerciseExists = userCourse.completedExercises.find(
         ex => ex.exerciseId === exerciseId
@@ -193,14 +205,11 @@ router.put('/:id/progress', protect, async (req, res) => {
       }
     }
 
-    // Calculate overall progress
     const totalItems = course.exercises.length + course.lessons.length;
     const completedItems = userCourse.completedExercises.length + userCourse.completedLessons.length;
     userCourse.progress = totalItems > 0 ? (completedItems / totalItems) * 100 : 0;
     
-    // Update last accessed
     userCourse.lastAccessed = new Date();
-
     await userCourse.save();
 
     res.json({
@@ -210,6 +219,45 @@ router.put('/:id/progress', protect, async (req, res) => {
     });
   } catch (error) {
     console.error('Error updating progress:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// @desc    Get user stats
+// @route   GET /api/courses/user/stats
+// @access  Private
+router.get('/user/stats', protect, async (req, res) => {
+  try {
+    const userCourses = await UserCourse.find({ user: req.user.id });
+    
+    const totalCourses = userCourses.length;
+    const completedCourses = userCourses.filter(course => course.completed).length;
+    const totalProgress = userCourses.reduce((sum, course) => sum + course.progress, 0);
+    const averageProgress = totalCourses > 0 ? totalProgress / totalCourses : 0;
+    
+    // Calculate total hours (estimate based on progress and course duration)
+    let totalHours = 0;
+    for (const enrollment of userCourses) {
+      const course = await getCourseFromFile(enrollment.courseId);
+      if (course && course.duration) {
+        const weeksMatch = course.duration.match(/(\d+)\s*weeks?/);
+        if (weeksMatch) {
+          const weeks = parseInt(weeksMatch[1]);
+          // Estimate 5 hours per week
+          totalHours += weeks * 5 * (enrollment.progress / 100);
+        }
+      }
+    }
+
+    res.json({
+      totalCourses,
+      completedCourses,
+      averageProgress: Math.round(averageProgress),
+      totalHours: Math.round(totalHours),
+      enrolledCourses: totalCourses
+    });
+  } catch (error) {
+    console.error('Error fetching user stats:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });

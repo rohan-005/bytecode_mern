@@ -1,63 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Footer from "../components/Footer";
-
-// Mock data for stats (you can update these with real data later)
-const USER_STATS = [
-  {
-    label: "Courses Completed",
-    value: 12,
-    unit: "",
-    emoji: "📚",
-    color: "bg-blue-500",
-  },
-  {
-    label: "Current Streak",
-    value: 7,
-    unit: "days",
-    emoji: "🔥",
-    color: "bg-orange-500",
-  },
-  {
-    label: "Total Points",
-    value: 1450,
-    unit: "",
-    emoji: "⭐",
-    color: "bg-yellow-500",
-  },
-  {
-    label: "Hours Coded",
-    value: 48,
-    unit: "h",
-    emoji: "⏰",
-    color: "bg-green-500",
-  },
-];
-
-const RECENT_ACTIVITY = [
-  {
-    id: 1,
-    action: "Completed",
-    course: "React Fundamentals",
-    time: "2 hours ago",
-  },
-  {
-    id: 2,
-    action: "Earned badge",
-    badge: "Project Builder",
-    time: "1 day ago",
-  },
-  { id: 3, action: "Started", course: "Advanced CSS", time: "2 days ago" },
-];
-
-const QUICK_ACTIONS = [
-  { icon: "🏃", label: "Practice Coding", path: "/practice" },
-  { icon: "🛠️", label: "Work on Projects", path: "/projects" },
-  { icon: "👥", label: "Join Community", path: "/community" },
-  { icon: "⚙️", label: "Settings", path: "/settings" },
-];
 
 // Reusable Components
 const StatCard = React.memo(({ stat }) => (
@@ -74,7 +19,7 @@ const StatCard = React.memo(({ stat }) => (
       <div className="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
         <div
           className={`h-full ${stat.color} transition-all duration-500`}
-          style={{ width: `${Math.min((stat.value / 20) * 100, 100)}%` }}
+          style={{ width: `${Math.min(stat.value, 100)}%` }}
         />
       </div>
     </div>
@@ -200,46 +145,145 @@ const CoursesSection = React.memo(({ enrolledCourses }) => (
 const Dashboard = () => {
   const { user, logout } = useAuth();
   const [enrolledCourses, setEnrolledCourses] = useState([]);
+  const [userStats, setUserStats] = useState({
+    totalCourses: 0,
+    completedCourses: 0,
+    averageProgress: 0,
+    totalHours: 0
+  });
+  const [recentActivity, setRecentActivity] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const QUICK_ACTIONS = [
+    { icon: "🏃", label: "Practice Coding", path: "/practice" },
+    { icon: "🛠️", label: "Work on Projects", path: "/projects" },
+    { icon: "👥", label: "Join Community", path: "/community" },
+    { icon: "⚙️", label: "Settings", path: "/settings" },
+  ];
+
   // Fetch enrolled courses
-  React.useEffect(() => {
-    const fetchEnrolledCourses = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await fetch('/api/courses/user/enrolled', {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        });
-        
-        if (response.ok) {
-          const data = await response.json();
-          setEnrolledCourses(data);
+  const fetchEnrolledCourses = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('/api/courses/user/enrolled', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
         }
-      } catch (error) {
-        console.error('Error fetching enrolled courses:', error);
-      } finally {
-        setLoading(false);
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setEnrolledCourses(data);
       }
+    } catch (error) {
+      console.error('Error fetching enrolled courses:', error);
+    }
+  };
+
+  // Fetch user stats
+  const fetchUserStats = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('/api/courses/user/stats', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setUserStats(data);
+      }
+    } catch (error) {
+      console.error('Error fetching user stats:', error);
+    }
+  };
+
+  // Generate recent activity from enrolled courses
+  const generateRecentActivity = (courses) => {
+    const activities = [];
+    
+    courses.forEach(enrollment => {
+      if (enrollment.enrollment.progress > 0) {
+        activities.push({
+          id: enrollment.enrollment._id,
+          action: "Progress",
+          course: enrollment.course.name,
+          progress: enrollment.enrollment.progress,
+          time: "Recently"
+        });
+      }
+      
+      if (enrollment.enrollment.completedExercises.length > 0) {
+        activities.push({
+          id: `${enrollment.enrollment._id}-exercise`,
+          action: "Completed exercise",
+          course: enrollment.course.name,
+          time: "Recently"
+        });
+      }
+    });
+
+    // Sort by most recent and take top 3
+    return activities.slice(0, 3);
+  };
+
+  useEffect(() => {
+    const loadDashboardData = async () => {
+      setLoading(true);
+      await Promise.all([
+        fetchEnrolledCourses(),
+        fetchUserStats()
+      ]);
+      setLoading(false);
     };
 
-    fetchEnrolledCourses();
+    loadDashboardData();
   }, []);
 
-  // Memoized user info
-  const userInfo = useMemo(
-    () => ({
-      joinDate: new Date(user?.createdAt || Date.now()).toLocaleDateString(),
-    }),
-    [user?.createdAt]
-  );
+  useEffect(() => {
+    if (enrolledCourses.length > 0) {
+      setRecentActivity(generateRecentActivity(enrolledCourses));
+    }
+  }, [enrolledCourses]);
+
+  const USER_STATS = [
+    {
+      label: "Courses Enrolled",
+      value: userStats.totalCourses,
+      unit: "",
+      emoji: "📚",
+      color: "bg-blue-500",
+    },
+    {
+      label: "Average Progress",
+      value: userStats.averageProgress,
+      unit: "%",
+      emoji: "📈",
+      color: "bg-orange-500",
+    },
+    {
+      label: "Courses Completed",
+      value: userStats.completedCourses,
+      unit: "",
+      emoji: "✅",
+      color: "bg-yellow-500",
+    },
+    {
+      label: "Hours Learned",
+      value: userStats.totalHours,
+      unit: "h",
+      emoji: "⏰",
+      color: "bg-green-500",
+    },
+  ];
 
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
+        <div className="text-white text-xl">Loading your dashboard...</div>
       </div>
     );
   }
@@ -279,11 +323,11 @@ const Dashboard = () => {
             </div>
             <div>
               <p className="font-semibold text-gray-300">Member Since</p>
-              <p className="text-purple-200">{userInfo.joinDate}</p>
+              <p className="text-purple-200">{new Date(user?.createdAt).toLocaleDateString()}</p>
             </div>
             <div>
               <p className="font-semibold text-gray-300">Enrolled Courses</p>
-              <p className="text-purple-200">{enrolledCourses.length} courses</p>
+              <p className="text-purple-200">{userStats.totalCourses} courses</p>
             </div>
           </div>
 
@@ -318,9 +362,16 @@ const Dashboard = () => {
           {/* Recent Activity */}
           <DashboardCard title="Recent Activity">
             <div className="space-y-4">
-              {RECENT_ACTIVITY.map((activity) => (
-                <ActivityItem key={activity.id} activity={activity} />
-              ))}
+              {recentActivity.length === 0 ? (
+                <div className="text-center py-8">
+                  <p className="text-gray-400">No recent activity</p>
+                  <p className="text-gray-500 text-sm mt-2">Start learning to see your activity here!</p>
+                </div>
+              ) : (
+                recentActivity.map((activity) => (
+                  <ActivityItem key={activity.id} activity={activity} />
+                ))
+              )}
             </div>
           </DashboardCard>
 
