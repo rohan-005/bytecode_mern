@@ -59,22 +59,91 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
- // In your AuthContext, update the register function:
-const register = async (name, email, password) => {
-  try {
-    const response = await api.post('/auth/register', { name, email, password });
-    
-    return { 
-      success: true, 
-      isExistingUnverified: response.data.isExistingUnverified 
-    };
-  } catch (error) {
-    return {
-      success: false,
-      message: error.response?.data?.message || 'Registration failed'
-    };
-  }
-};
+  const register = async (name, email, password) => {
+    try {
+      const response = await api.post('/auth/register', { name, email, password });
+      
+      return { 
+        success: true, 
+        isExistingUnverified: response.data.isExistingUnverified 
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.response?.data?.message || 'Registration failed'
+      };
+    }
+  };
+
+  // Forgot Password Functions
+  const forgotPassword = async (email) => {
+    try {
+      const response = await api.post('/otp/forgot-password', { email });
+      
+      return {
+        success: true,
+        message: response.data.message || 'Password reset OTP sent successfully',
+        email: response.data.email
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.response?.data?.message || 'Failed to send password reset OTP'
+      };
+    }
+  };
+
+  const verifyPasswordResetOTP = async (email, otp) => {
+    try {
+      const response = await api.post('/otp/verify-password-reset', { email, otp });
+      
+      return {
+        success: true,
+        message: response.data.message || 'OTP verified successfully',
+        resetToken: response.data.resetToken,
+        email: response.data.email
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.response?.data?.message || 'Failed to verify OTP'
+      };
+    }
+  };
+
+  const resetPassword = async (resetToken, password) => {
+    try {
+      const response = await api.put('/otp/reset-password', { resetToken, password });
+      
+      return {
+        success: true,
+        message: response.data.message || 'Password reset successfully',
+        email: response.data.email
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.response?.data?.message || 'Failed to reset password'
+      };
+    }
+  };
+
+  const resendPasswordResetOTP = async (email) => {
+    try {
+      const response = await api.post('/otp/resend-password-reset', { email });
+      
+      return {
+        success: true,
+        message: response.data.message || 'OTP resent successfully',
+        email: response.data.email
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.response?.data?.message || 'Failed to resend OTP'
+      };
+    }
+  };
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -93,7 +162,12 @@ const register = async (name, email, password) => {
     register,
     logout,
     updateUser,
-    loading
+    loading,
+    // Forgot password functions
+    forgotPassword,
+    verifyPasswordResetOTP,
+    resetPassword,
+    resendPasswordResetOTP
   };
 
   return (

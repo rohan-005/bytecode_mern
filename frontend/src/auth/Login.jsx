@@ -83,7 +83,9 @@ const Login = () => {
                 whileHover={{ scale: 1.1, rotate: 5 }}
               />
             </div>
-            <h2 className="text-3xl font-bold text-white mb-2 font-transformer">Welcome Bytes</h2>
+            <h2 className="text-3xl font-bold text-white mb-2 font-transformer">
+              Welcome Bytes
+            </h2>
             <p className="text-gray-400">Sign in to continue learning</p>
           </div>
 
@@ -234,6 +236,15 @@ const Login = () => {
               )}
             </button>
           </form>
+          {/* Forgot Password Link */}
+          <div className="text-center mt-4">
+            <Link
+              to="/forgot-password"
+              className="text-cyan-400 hover:text-cyan-300 font-medium transition-colors duration-200 hover:underline text-sm"
+            >
+              Forgot your password?
+            </Link>
+          </div>
 
           {/* Footer */}
           <div className="mt-8 text-center">

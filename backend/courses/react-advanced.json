@@ -5,7 +5,7 @@
   "instructor": "Mike Chen",
   "duration": "8 weeks",
   "level": "Advanced",
-  "price": 49.99,
+  "price": 0,
   "image": "/images/react-course.jpg",
   "category": "Web Development",
   "rating": 4.8,

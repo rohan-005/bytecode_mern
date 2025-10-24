@@ -1,11 +1,16 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
-const { sendOTPEmail, sendPasswordResetEmail } = require('../utils/emailService');
+const { sendOTPEmail, sendPasswordResetOTPEmail, sendPasswordResetEmail } = require('../utils/emailService');
 const generateToken = require('../utils/generateToken');
 const crypto = require('crypto');
 
 const router = express.Router();
+
+// Debug route
+router.get('/test', (req, res) => {
+  res.json({ message: 'OTP routes are working!' });
+});
 
 // @desc    Send OTP for email verification
 // @route   POST /api/otp/send-verification
@@ -21,7 +26,6 @@ router.post('/send-verification', [
 
     const { email } = req.body;
 
-    // Check if user exists
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -31,11 +35,9 @@ router.post('/send-verification', [
       return res.status(400).json({ message: 'Email is already verified' });
     }
 
-    // Generate OTP
     const otp = user.generateEmailVerificationOTP();
     await user.save();
 
-    // Send OTP email
     const emailSent = await sendOTPEmail(user.email, otp, user.name);
 
     if (!emailSent) {
@@ -68,13 +70,11 @@ router.post('/verify-email', [
 
     const { email, otp } = req.body;
 
-    // Find user by email
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Check if OTP matches and is not expired
     const hashedOTP = crypto.createHash('sha256').update(otp).digest('hex');
     
     if (user.emailVerificationOTP !== hashedOTP) {
@@ -85,7 +85,6 @@ router.post('/verify-email', [
       return res.status(400).json({ message: 'OTP has expired' });
     }
 
-    // Mark user as verified and clear OTP fields
     user.isVerified = true;
     user.emailVerificationOTP = undefined;
     user.emailVerificationOTPExpire = undefined;
@@ -107,7 +106,7 @@ router.post('/verify-email', [
   }
 });
 
-// @desc    Forgot password - send reset email
+// @desc    Forgot password - send OTP
 // @route   POST /api/otp/forgot-password
 // @access  Public
 router.post('/forgot-password', [
@@ -123,22 +122,25 @@ router.post('/forgot-password', [
 
     const user = await User.findOne({ email });
     if (!user) {
-      // Don't reveal if email exists or not
-      return res.json({ message: 'If email exists, password reset link will be sent' });
+      return res.json({ 
+        message: 'If an account with this email exists, a password reset OTP has been sent',
+        email: email
+      });
     }
 
-    // Generate reset token
-    const resetToken = user.generatePasswordResetToken();
+    const otp = user.generatePasswordResetOTP();
     await user.save();
 
-    // Send reset email
-    const emailSent = await sendPasswordResetEmail(user.email, resetToken, user.name);
+    const emailSent = await sendPasswordResetOTPEmail(user.email, otp, user.name);
 
     if (!emailSent) {
-      return res.status(500).json({ message: 'Failed to send reset email' });
+      return res.status(500).json({ message: 'Failed to send password reset OTP' });
     }
 
-    res.json({ message: 'Password reset email sent' });
+    res.json({ 
+      message: 'Password reset OTP sent successfully',
+      email: user.email 
+    });
 
   } catch (error) {
     console.error('Forgot password error:', error);
@@ -146,10 +148,62 @@ router.post('/forgot-password', [
   }
 });
 
-// @desc    Reset password
-// @route   PUT /api/otp/reset-password/:resetToken
+// @desc    Verify password reset OTP
+// @route   POST /api/otp/verify-password-reset
 // @access  Public
-router.put('/reset-password/:resetToken', [
+router.post('/verify-password-reset', [
+  body('email').isEmail().withMessage('Please include a valid email'),
+  body('otp').isLength({ min: 6, max: 6 }).withMessage('OTP must be 6 digits')
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { email, otp } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (!user.passwordResetOTP || !user.passwordResetOTPExpire) {
+      return res.status(400).json({ message: 'No active password reset request found' });
+    }
+
+    const hashedOTP = crypto.createHash('sha256').update(otp).digest('hex');
+    
+    if (user.passwordResetOTP !== hashedOTP) {
+      return res.status(400).json({ message: 'Invalid OTP' });
+    }
+
+    if (user.passwordResetOTPExpire < Date.now()) {
+      return res.status(400).json({ message: 'OTP has expired' });
+    }
+
+    const resetToken = generateToken(user._id, '15m');
+
+    user.clearPasswordResetOTP();
+    await user.save();
+
+    res.json({ 
+      message: 'OTP verified successfully',
+      resetToken,
+      email: user.email
+    });
+
+  } catch (error) {
+    console.error('Verify password reset OTP error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// @desc    Reset password with token (after OTP verification)
+// @route   PUT /api/otp/reset-password
+// @access  Public
+router.put('/reset-password', [
+  body('resetToken').notEmpty().withMessage('Reset token is required'),
   body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
 ], async (req, res) => {
   try {
@@ -158,32 +212,29 @@ router.put('/reset-password/:resetToken', [
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { resetToken } = req.params;
-    const { password } = req.body;
+    const { resetToken, password } = req.body;
 
-    // Hash token to compare with stored token
-    const hashedToken = crypto
-      .createHash('sha256')
-      .update(resetToken)
-      .digest('hex');
-
-    // Find user by reset token and check expiration
-    const user = await User.findOne({
-      passwordResetToken: hashedToken,
-      passwordResetExpire: { $gt: Date.now() }
-    });
-
-    if (!user) {
+    const jwt = require('jsonwebtoken');
+    let decoded;
+    
+    try {
+      decoded = jwt.verify(resetToken, process.env.JWT_SECRET);
+    } catch (error) {
       return res.status(400).json({ message: 'Invalid or expired reset token' });
     }
 
-    // Set new password and clear reset token fields
+    const user = await User.findById(decoded.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
     user.password = password;
-    user.passwordResetToken = undefined;
-    user.passwordResetExpire = undefined;
     await user.save();
 
-    res.json({ message: 'Password reset successful' });
+    res.json({ 
+      message: 'Password reset successful',
+      email: user.email
+    });
 
   } catch (error) {
     console.error('Reset password error:', error);
@@ -191,7 +242,49 @@ router.put('/reset-password/:resetToken', [
   }
 });
 
-// @desc    Resend OTP
+// @desc    Resend password reset OTP
+// @route   POST /api/otp/resend-password-reset
+// @access  Public
+router.post('/resend-password-reset', [
+  body('email').isEmail().withMessage('Please include a valid email')
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { email } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.json({ 
+        message: 'If an account with this email exists, a password reset OTP has been sent',
+        email: email
+      });
+    }
+
+    const otp = user.generatePasswordResetOTP();
+    await user.save();
+
+    const emailSent = await sendPasswordResetOTPEmail(user.email, otp, user.name);
+
+    if (!emailSent) {
+      return res.status(500).json({ message: 'Failed to send password reset OTP' });
+    }
+
+    res.json({ 
+      message: 'Password reset OTP resent successfully',
+      email: user.email 
+    });
+
+  } catch (error) {
+    console.error('Resend password reset OTP error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// @desc    Resend OTP for email verification
 // @route   POST /api/otp/resend-otp
 // @access  Public
 router.post('/resend-otp', [
@@ -214,11 +307,9 @@ router.post('/resend-otp', [
       return res.status(400).json({ message: 'Email is already verified' });
     }
 
-    // Generate new OTP
     const otp = user.generateEmailVerificationOTP();
     await user.save();
 
-    // Send OTP email
     const emailSent = await sendOTPEmail(user.email, otp, user.name);
 
     if (!emailSent) {
@@ -236,4 +327,5 @@ router.post('/resend-otp', [
   }
 });
 
+// Fix the export - this was the main issue
 module.exports = router;

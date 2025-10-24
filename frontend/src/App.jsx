@@ -16,6 +16,8 @@ import NotFound from "./pages/NotFound";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
 import Courses from "./pages/Courses"; // Add this import
+import ForgotPassword from "./auth/ForgotPassword";
+
 
 function App() {
   return (
@@ -59,6 +61,9 @@ function App() {
 
             {/* 404 Page */}
             <Route path="/404" element={<NotFound />} />
+
+            {/* forgot-password */}
+            <Route path="/forgot-password" element={<ForgotPassword />} />
 
             {/* Redirect unknown routes to 404 */}
             <Route path="*" element={<Navigate to="/404" replace />} />

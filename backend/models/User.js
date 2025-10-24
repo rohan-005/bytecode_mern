@@ -36,13 +36,15 @@ const userSchema = new mongoose.Schema({
   },
   emailVerificationOTP: String,
   emailVerificationOTPExpire: Date,
+  passwordResetOTP: String, // New field for password reset OTP
+  passwordResetOTPExpire: Date, // New field for password reset OTP expiration
   passwordResetToken: String,
   passwordResetExpire: Date
 }, {
   timestamps: true
 });
 
-// password
+// Password middleware
 userSchema.pre('save', async function(next) {
   if (!this.isModified('password')) {
     next();
@@ -56,9 +58,8 @@ userSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-// otp
+// Email verification OTP
 userSchema.methods.generateEmailVerificationOTP = function() {
-  // Generate 6-digit OTP
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
   
   this.emailVerificationOTP = crypto
@@ -66,25 +67,41 @@ userSchema.methods.generateEmailVerificationOTP = function() {
     .update(otp)
     .digest('hex');
   
-  // OTP expires in 10 minutes
-  this.emailVerificationOTPExpire = Date.now() + 10 * 60 * 1000;
+  this.emailVerificationOTPExpire = Date.now() + 10 * 60 * 1000; // 10 minutes
   
   return otp;
 };
 
-// pass reset token
+// Password reset OTP method
+userSchema.methods.generatePasswordResetOTP = function() {
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  
+  this.passwordResetOTP = crypto
+    .createHash('sha256')
+    .update(otp)
+    .digest('hex');
+  
+  this.passwordResetOTPExpire = Date.now() + 10 * 60 * 1000; // 10 minutes
+  
+  return otp;
+};
+
+// Clear password reset OTP
+userSchema.methods.clearPasswordResetOTP = function() {
+  this.passwordResetOTP = undefined;
+  this.passwordResetOTPExpire = undefined;
+};
+
+// Password reset token (for link-based reset)
 userSchema.methods.generatePasswordResetToken = function() {
-  // Generate token
   const resetToken = crypto.randomBytes(32).toString('hex');
   
-  // Hash token and set to resetPasswordToken field
   this.passwordResetToken = crypto
     .createHash('sha256')
     .update(resetToken)
     .digest('hex');
   
-  // Set expire time to 1 hour
-  this.passwordResetExpire = Date.now() + 60 * 60 * 1000;
+  this.passwordResetExpire = Date.now() + 60 * 60 * 1000; // 1 hour
   
   return resetToken;
 };
