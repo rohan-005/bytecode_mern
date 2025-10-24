@@ -165,19 +165,42 @@ const Dashboard = () => {
   const fetchEnrolledCourses = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/courses/user/enrolled', {
+      console.log('🔄 Fetching enrolled courses for dashboard...');
+      // setDebugInfo('Fetching enrolled courses...');
+      
+      if (!token) {
+        console.error('❌ No token found in localStorage');
+        // setDebugInfo('No authentication token found');
+        return;
+      }
+
+      const response = await fetch(`http://localhost:5000/api/courses/user/enrolled`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       });
+
+      console.log('📡 Response status:', response.status);
       
-      if (response.ok) {
-        const data = await response.json();
-        setEnrolledCourses(data);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      const data = await response.json();
+      console.log('✅ Enrolled courses data received:', data);
+      console.log('📊 Number of enrolled courses:', data.length);
+      
+      if (data.length > 0) {
+        console.log('🔍 Sample enrollment data:', data[0]);
+      }
+
+      setEnrolledCourses(data);
+      // setDebugInfo(`✅ Loaded ${data.length} enrolled courses`);
+      
     } catch (error) {
-      console.error('Error fetching enrolled courses:', error);
+      console.error('❌ Error fetching enrolled courses:', error);
+      // setDebugInfo(`❌ Error: ${error.message}`);
     }
   };
 
@@ -321,14 +344,14 @@ const Dashboard = () => {
               <p className="font-semibold text-gray-300">Email</p>
               <p className="text-purple-200 truncate">{user?.email}</p>
             </div>
-            <div>
+            {/* <div>
               <p className="font-semibold text-gray-300">Member Since</p>
               <p className="text-purple-200">{new Date(user?.createdAt).toLocaleDateString()}</p>
             </div>
             <div>
               <p className="font-semibold text-gray-300">Enrolled Courses</p>
               <p className="text-purple-200">{userStats.totalCourses} courses</p>
-            </div>
+            </div> */}
           </div>
 
           <div className="flex flex-wrap gap-4">
