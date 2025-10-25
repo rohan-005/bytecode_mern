@@ -18,6 +18,7 @@ import { Toaster } from "react-hot-toast";
 import Courses from "./pages/Courses"; // Add this import
 import ForgotPassword from "./auth/ForgotPassword";
 import Profile from './profile/Profile';
+import CodeEditor from "./pages/CodeEditor";
 
 
 function App() {
@@ -68,6 +69,9 @@ function App() {
 
             {/* profile update */}
             <Route path="/profile" element={<Profile />} />
+
+            {/* editor */}
+            <Route path="/editor" element={<CodeEditor />} />
 
             {/* Redirect unknown routes to 404 */}
             <Route path="*" element={<Navigate to="/404" replace />} />

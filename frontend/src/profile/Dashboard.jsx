@@ -404,7 +404,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   const QUICK_ACTIONS = [
-    { icon: "🚀", label: "Online Compiler", path: "/compiler" },
+    { icon: "🚀", label: "Online Compiler", path: "/editor" },
     { icon: "🤖", label: "Byte-AI", path: "/byteai" },
     { icon: "👥", label: "Dev-Den", path: "/devden" },
     { icon: "⚙️", label: "Edit Profile", path: "/profile" },
