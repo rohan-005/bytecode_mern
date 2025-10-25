@@ -17,6 +17,7 @@ import "./App.css";
 import { Toaster } from "react-hot-toast";
 import Courses from "./pages/Courses"; // Add this import
 import ForgotPassword from "./auth/ForgotPassword";
+import Profile from './profile/Profile';
 
 
 function App() {
@@ -64,6 +65,9 @@ function App() {
 
             {/* forgot-password */}
             <Route path="/forgot-password" element={<ForgotPassword />} />
+
+            {/* profile update */}
+            <Route path="/profile" element={<Profile />} />
 
             {/* Redirect unknown routes to 404 */}
             <Route path="*" element={<Navigate to="/404" replace />} />

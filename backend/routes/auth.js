@@ -3,6 +3,8 @@ const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
 const generateToken = require('../utils/generateToken');
 const { sendOTPEmail } = require('../utils/emailService');
+const { protect } = require('../middleware/auth'); // Add this import
+const crypto = require('crypto'); // Add this import
 
 const router = express.Router();
 
@@ -220,17 +222,9 @@ router.post('/resend-otp', [
 // @desc    Get current user
 // @route   GET /api/auth/me
 // @access  Private
-router.get('/me', async (req, res) => {
+router.get('/me', protect, async (req, res) => { // Add protect middleware here
   try {
-    const token = req.headers.authorization?.split(' ')[1];
-    if (!token) {
-      return res.status(401).json({ message: 'Not authorized' });
-    }
-
-    const jwt = require('jsonwebtoken');
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    
-    const user = await User.findById(decoded.id);
+    const user = await User.findById(req.user._id);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -243,8 +237,120 @@ router.get('/me', async (req, res) => {
       isVerified: user.isVerified,
     });
   } catch (error) {
-    console.error(error);
+    console.error('Get user profile error:', error);
     res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// @desc    Update user profile
+// @route   PUT /api/auth/profile
+// @access  Private
+router.put('/profile', [
+  protect, // Add protect middleware here
+  body('name').notEmpty().withMessage('Name is required').trim()
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { name } = req.body;
+    
+    console.log('Updating profile for user:', req.user._id, 'New name:', name);
+
+    const user = await User.findByIdAndUpdate(
+      req.user._id,
+      { name },
+      { new: true, runValidators: true }
+    ).select('-password');
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    console.log('Profile updated successfully:', user.name);
+
+    res.json({
+      message: 'Profile updated successfully',
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        isVerified: user.isVerified,
+      }
+    });
+
+  } catch (error) {
+    console.error('Profile update error:', error);
+    
+    // Handle duplicate key errors
+    if (error.code === 11000) {
+      return res.status(400).json({ message: 'User with this email already exists' });
+    }
+    
+    // Handle validation errors
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors).map(err => err.message);
+      return res.status(400).json({ message: messages.join(', ') });
+    }
+    
+    res.status(500).json({ message: 'Server error during profile update' });
+  }
+});
+
+// @desc    Change user password
+// @route   PUT /api/auth/change-password
+// @access  Private
+router.put('/change-password', [
+  protect, // Add protect middleware here
+  body('currentPassword').notEmpty().withMessage('Current password is required'),
+  body('newPassword').isLength({ min: 6 }).withMessage('New password must be at least 6 characters')
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { currentPassword, newPassword } = req.body;
+    
+    console.log('Changing password for user:', req.user._id);
+
+    // Get user with password
+    const user = await User.findById(req.user._id).select('+password');
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Verify current password
+    const isCurrentPasswordValid = await user.matchPassword(currentPassword);
+    if (!isCurrentPasswordValid) {
+      return res.status(400).json({ message: 'Current password is incorrect' });
+    }
+
+    // Update password
+    user.password = newPassword;
+    await user.save();
+
+    console.log('Password changed successfully for user:', req.user._id);
+
+    res.json({ 
+      message: 'Password changed successfully' 
+    });
+
+  } catch (error) {
+    console.error('Change password error:', error);
+    
+    // Handle validation errors
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors).map(err => err.message);
+      return res.status(400).json({ message: messages.join(', ') });
+    }
+    
+    res.status(500).json({ message: 'Server error during password change' });
   }
 });
 
