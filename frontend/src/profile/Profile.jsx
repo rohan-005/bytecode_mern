@@ -370,7 +370,9 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="w-full absolute bottom-0">
+        <Footer />
+      </div>
     </div>
   );
 };

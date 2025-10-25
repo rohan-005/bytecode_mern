@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="w-full py-6 px-4 backdrop-blur-md border-t border-white/10 text-white">
+    <footer className="w-full py-6 px-4 backdrop-blur-md border-t  bottom-0 border-white/10 text-white">
       <div className="flex flex-col md:flex-row items-center justify-between w-full gap-4">
         <div className="flex items-center gap-2 text-lg font-bold">
           <span className="text-blue-200 font-transformer text-2xl">ByteCode</span>

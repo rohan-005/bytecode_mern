@@ -337,7 +337,7 @@ const DeveloperCornerCard = React.memo(() => {
         </div>
         
         <div className="relative">
-          <div className={`bg-gradient-to-r ${item.gradient} p-8 rounded-2xl backdrop-blur-sm border border-gray-700/50 transform hover:scale-105 transition-all duration-500`}>
+          <div className={`bg-gradient-to-r ${item.gradient} p-8 rounded-2xl backdrop-blur-sm border border-gray-700/50 transform hover:scale-102 transition-all duration-500`}>
             <p className="text-xl text-white font-light italic mb-4 leading-relaxed">
               "{item.content}"
             </p>
@@ -404,10 +404,10 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   const QUICK_ACTIONS = [
-    { icon: "🚀", label: "Practice Coding", path: "/practice" },
-    { icon: "🛠️", label: "Work on Projects", path: "/projects" },
-    { icon: "👥", label: "Join Community", path: "/community" },
-    { icon: "⚙️", label: "Settings", path: "/settings" },
+    { icon: "🚀", label: "Online Compiler", path: "/compiler" },
+    { icon: "🤖", label: "Byte-AI", path: "/byteai" },
+    { icon: "👥", label: "Dev-Den", path: "/devden" },
+    { icon: "⚙️", label: "Edit Profile", path: "/profile" },
   ];
 
   // Fetch enrolled courses
