@@ -2,8 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Footer from "../components/Footer";
-import PillNav from "../components/PillNav";
-import logo from "../assets/logo.png";
+// import PillNav from "../components/FloatingNavbar";
+// import logo from "../assets/logo.png";
+import { FloatingNavbar } from "../components/FloatingNavbar";
+import {
+  IconHome,
+  IconBooks,
+  IconCode,
+  IconCpu,
+  IconTools,
+  IconBrandGithub,
+} from "@tabler/icons-react";
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
@@ -73,9 +82,9 @@ const Courses = () => {
         // Show success animation
         const button = document.getElementById(`enroll-btn-${courseId}`);
         if (button) {
-          button.innerHTML = '✅ Enrolled!';
-          button.classList.remove('bg-purple-600', 'hover:bg-purple-700');
-          button.classList.add('bg-green-600', 'cursor-default');
+          button.innerHTML = "✅ Enrolled!";
+          button.classList.remove("bg-purple-600", "hover:bg-purple-700");
+          button.classList.add("bg-green-600", "cursor-default");
           setTimeout(() => {
             fetchEnrolledCourses();
           }, 1500);
@@ -102,12 +111,16 @@ const Courses = () => {
   };
 
   // Get unique categories from courses
-  const categories = ["all", ...new Set(courses.map(course => course.category).filter(Boolean))];
+  const categories = [
+    "all",
+    ...new Set(courses.map((course) => course.category).filter(Boolean)),
+  ];
 
   const filteredCourses = courses
     .filter((course) => {
       const matchesFilter = filter === "all" || course.level === filter;
-      const matchesCategory = activeCategory === "all" || course.category === activeCategory;
+      const matchesCategory =
+        activeCategory === "all" || course.category === activeCategory;
       const matchesSearch =
         course.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         course.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -145,32 +158,28 @@ const Courses = () => {
       <div className="h-10 bg-gray-700 rounded w-full"></div>
     </div>
   );
+  const navItems = [
+  { title: "Dashboard", href: "/dashboard", icon: <IconHome /> },
+  { title: "Courses", href: "/courses", icon: <IconBooks /> },
+  { title: "Dev Den", href: "/code", icon: <IconCode /> },
+  { title: "AI", href: "/ai", icon: <IconCpu /> },
+  // { title: "Tools", href: "/tools", icon: <IconTools /> },
+  // { title: "GitHub", href: "https://github.com", icon: <IconBrandGithub /> },
+];
 
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
-        <PillNav
-          logo={logo}
-          logoAlt="Company Logo"
-          items={[
-            { label: "Dashboard", href: "/dashboard" },
-            { label: "Pathways", href: "/courses" },
-            { label: "Discussion Room", href: "/discussion" },
-            { label: "Bytecode-AI", href: "/ai" },
-          ]}
-          activeHref="/courses"
-          className="custom-nav"
-          ease="power2.easeOut"
-          baseColor="#000000"
-          pillColor="#ffffff"
-          hoveredPillTextColor="#ffffff"
-          pillTextColor="#000000"
-        />
+        <FloatingNavbar items={navItems} />
         <div className="container mx-auto px-4 py-8">
           <div className="text-center py-12">
             <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <h2 className="text-2xl font-bold text-white mb-2">Loading Pathways</h2>
-            <p className="text-gray-400">Discovering amazing learning opportunities...</p>
+            <h2 className="text-2xl font-bold text-white mb-2">
+              Loading Pathways
+            </h2>
+            <p className="text-gray-400">
+              Discovering amazing learning opportunities...
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
@@ -185,23 +194,7 @@ const Courses = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
       {/* Navigation */}
-      <PillNav
-        logo={logo}
-        logoAlt="ByteCode Logo"
-        items={[
-          { label: "Dashboard", href: "/dashboard" },
-          { label: "Pathways", href: "/courses" },
-          { label: "Discussion Room", href: "/discussion" },
-          { label: "Bytecode-AI", href: "/ai" },
-        ]}
-        activeHref="/courses"
-        className="custom-nav font-transformer"
-        ease="power2.easeOut"
-        baseColor="#000000"
-        pillColor="#19007d"
-        hoveredPillTextColor="#ffffff"
-        pillTextColor="white"
-      />
+      <FloatingNavbar items={navItems} />
 
       {/* Hero Section */}
       <div className="relative overflow-hidden">
@@ -212,9 +205,10 @@ const Courses = () => {
               Learning Pathways
             </h1>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Embark on your coding journey with curated pathways designed to transform beginners into skilled developers
+              Embark on your coding journey with curated pathways designed to
+              transform beginners into skilled developers
             </p>
-            
+
             {/* Search Bar */}
             <div className="relative max-w-2xl mx-auto mb-8">
               <input
@@ -226,8 +220,18 @@ const Courses = () => {
               />
               <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
                 <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
-                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  <svg
+                    className="w-3 h-3 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
                   </svg>
                 </div>
               </div>
@@ -287,7 +291,11 @@ const Courses = () => {
         {/* Results Count */}
         <div className="flex justify-between items-center mb-6">
           <p className="text-gray-400">
-            Showing <span className="text-white font-semibold">{filteredCourses.length}</span> pathways
+            Showing{" "}
+            <span className="text-white font-semibold">
+              {filteredCourses.length}
+            </span>{" "}
+            pathways
           </p>
           <div className="flex items-center gap-2 text-sm text-gray-400">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
@@ -354,11 +362,15 @@ const Courses = () => {
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1">
                       <span className="text-yellow-400">⭐</span>
-                      <span className="text-white font-semibold">{course.rating || "4.5"}</span>
+                      <span className="text-white font-semibold">
+                        {course.rating || "4.5"}
+                      </span>
                     </div>
                     <div className="flex items-center gap-1">
                       <span className="text-gray-400">👥</span>
-                      <span className="text-white font-semibold">{course.students || "0"}</span>
+                      <span className="text-white font-semibold">
+                        {course.students || "0"}
+                      </span>
                     </div>
                   </div>
                   <span
@@ -377,7 +389,9 @@ const Courses = () => {
                   <div className="mb-4">
                     <div className="flex justify-between text-sm text-gray-300 mb-2">
                       <span>Your Progress</span>
-                      <span className="font-semibold">{Math.round(progress)}%</span>
+                      <span className="font-semibold">
+                        {Math.round(progress)}%
+                      </span>
                     </div>
                     <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
                       <div
@@ -394,9 +408,23 @@ const Courses = () => {
                     to={`/course/${course.id}`}
                     className="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-green-500/25 hover:shadow-green-500/40 flex items-center justify-center gap-2 group/btn"
                   >
-                    <span>{progress === 100 ? "🎉 Completed" : "🚀 Continue Learning"}</span>
-                    <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    <span>
+                      {progress === 100
+                        ? "🎉 Completed"
+                        : "🚀 Continue Learning"}
+                    </span>
+                    <svg
+                      className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                      />
                     </svg>
                   </Link>
                 ) : (
@@ -406,8 +434,18 @@ const Courses = () => {
                     className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 flex items-center justify-center gap-2 group/btn"
                   >
                     <span>Start Learning</span>
-                    <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    <svg
+                      className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                      />
                     </svg>
                   </button>
                 )}
@@ -422,9 +460,12 @@ const Courses = () => {
             <div className="w-24 h-24 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
               <div className="text-4xl">🔍</div>
             </div>
-            <h3 className="text-2xl font-bold text-white mb-3">No pathways found</h3>
+            <h3 className="text-2xl font-bold text-white mb-3">
+              No pathways found
+            </h3>
             <p className="text-gray-400 mb-6 max-w-md mx-auto">
-              We couldn't find any pathways matching your criteria. Try adjusting your search or filters.
+              We couldn't find any pathways matching your criteria. Try
+              adjusting your search or filters.
             </p>
             <button
               onClick={() => {
