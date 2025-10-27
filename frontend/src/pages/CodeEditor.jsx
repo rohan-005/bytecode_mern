@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect } from "react";
 import Editor from "@monaco-editor/react";
 import axios from "axios";
@@ -7,11 +8,14 @@ import {
   IconBooks,
   IconCode,
   IconCpu,
+  IconEdit,
 } from "@tabler/icons-react";
+import logo from "../assets/logo.png"
 
 const navItems = [
   { title: "Dashboard", href: "/dashboard", icon: <IconHome size={20} /> },
   { title: "Courses", href: "/courses", icon: <IconBooks size={20} /> },
+  { title: "Byte-Compiler", href: "/editor", icon: <IconEdit size={20} /> },
   { title: "Dev Den", href: "/code", icon: <IconCode size={20} /> },
   { title: "AI", href: "/ai", icon: <IconCpu size={20} /> },
 ];
@@ -158,173 +162,59 @@ body {
 }`,
 
   python: `# ByteCode Python Playground
-# Note: Python execution happens on the server side
-
 def fibonacci(n):
-    """Calculate Fibonacci sequence"""
     if n <= 1:
         return n
     else:
         return fibonacci(n-1) + fibonacci(n-2)
 
 def factorial(n):
-    """Calculate factorial"""
     if n == 0:
         return 1
     else:
         return n * factorial(n-1)
 
-def is_prime(num):
-    """Check if a number is prime"""
-    if num < 2:
-        return False
-    for i in range(2, int(num**0.5) + 1):
-        if num % i == 0:
-            return False
-    return True
-
-# Main execution
-print("🔢 Mathematical Functions Demo")
-print("=" * 40)
-
-print("\\n📈 Fibonacci Sequence (first 10 numbers):")
-for i in range(10):
-    print(f"F({i}) = {fibonacci(i)}")
-
-print("\\n🧮 Factorials (1-8):")
-for i in range(1, 9):
-    print(f"{i}! = {factorial(i)}")
-
-print("\\n🔍 Prime Numbers (1-30):")
-primes = [str(i) for i in range(2, 31) if is_prime(i)]
-print(", ".join(primes))
-
-print("\\n🎯 List Comprehensions:")
-squares = [x**2 for x in range(1, 11)]
-print(f"Squares of 1-10: {squares}")
-
-even_numbers = [x for x in range(1, 21) if x % 2 == 0]
-print(f"Even numbers 1-20: {even_numbers}")`,
+print("Python Code Executed Successfully!")
+print("Fibonacci of 5:", fibonacci(5))
+print("Factorial of 5:", factorial(5))`,
 
   java: `// ByteCode Java Playground
-// Note: Java execution requires server-side compilation
-
 public class ByteCodePlayground {
-    
-    // Fibonacci sequence calculation
     public static int fibonacci(int n) {
         if (n <= 1) return n;
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
     
-    // Factorial calculation
     public static long factorial(int n) {
         if (n == 0) return 1;
         return n * factorial(n - 1);
     }
     
-    // Check if number is prime
-    public static boolean isPrime(int num) {
-        if (num < 2) return false;
-        for (int i = 2; i <= Math.sqrt(num); i++) {
-            if (num % i == 0) return false;
-        }
-        return true;
-    }
-    
     public static void main(String[] args) {
-        System.out.println("🚀 ByteCode Java Playground");
-        System.out.println("=================================");
-        
-        System.out.println("\\n📈 Fibonacci Sequence (first 10 numbers):");
-        for (int i = 0; i < 10; i++) {
-            System.out.println("F(" + i + ") = " + fibonacci(i));
-        }
-        
-        System.out.println("\\n🧮 Factorials (1-8):");
-        for (int i = 1; i <= 8; i++) {
-            System.out.println(i + "! = " + factorial(i));
-        }
-        
-        System.out.println("\\n🔍 Prime Numbers (1-30):");
-        for (int i = 2; i <= 30; i++) {
-            if (isPrime(i)) {
-                System.out.print(i + " ");
-            }
-        }
-        System.out.println();
-        
-        System.out.println("\\n✨ Array Operations:");
-        int[] numbers = {1, 2, 3, 4, 5};
-        int sum = 0;
-        for (int num : numbers) {
-            sum += num;
-        }
-        System.out.println("Sum of array: " + sum);
+        System.out.println("Java Code Executed Successfully!");
+        System.out.println("Fibonacci of 5: " + fibonacci(5));
+        System.out.println("Factorial of 5: " + factorial(5));
     }
 }`,
 
   cpp: `// ByteCode C++ Playground
-// Note: C++ execution requires server-side compilation
-
 #include <iostream>
-#include <vector>
-#include <cmath>
-#include <algorithm>
-
 using namespace std;
 
-// Fibonacci sequence calculation
 int fibonacci(int n) {
     if (n <= 1) return n;
     return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-// Factorial calculation
 long long factorial(int n) {
     if (n == 0) return 1;
     return n * factorial(n - 1);
 }
 
-// Check if number is prime
-bool isPrime(int num) {
-    if (num < 2) return false;
-    for (int i = 2; i * i <= num; i++) {
-        if (num % i == 0) return false;
-    }
-    return true;
-}
-
 int main() {
-    cout << "🚀 ByteCode C++ Playground" << endl;
-    cout << "===============================" << endl;
-    
-    cout << "\\n📈 Fibonacci Sequence (first 10 numbers):" << endl;
-    for (int i = 0; i < 10; i++) {
-        cout << "F(" << i << ") = " << fibonacci(i) << endl;
-    }
-    
-    cout << "\\n🧮 Factorials (1-8):" << endl;
-    for (int i = 1; i <= 8; i++) {
-        cout << i << "! = " << factorial(i) << endl;
-    }
-    
-    cout << "\\n🔍 Prime Numbers (1-30):" << endl;
-    for (int i = 2; i <= 30; i++) {
-        if (isPrime(i)) {
-            cout << i << " ";
-        }
-    }
-    cout << endl;
-    
-    cout << "\\n✨ Vector Operations:" << endl;
-    vector<int> numbers = {1, 2, 3, 4, 5};
-    int sum = 0;
-    for (int num : numbers) {
-        sum += num;
-    }
-    cout << "Sum of vector: " << sum << endl;
-    
+    cout << "C++ Code Executed Successfully!" << endl;
+    cout << "Fibonacci of 5: " << fibonacci(5) << endl;
+    cout << "Factorial of 5: " << factorial(5) << endl;
     return 0;
 }`
 };
@@ -385,69 +275,52 @@ export default function CodeEditor() {
     monaco.editor.setTheme('bytecode-elegant');
   };
 
-  // Save to DB
-  const handleSave = async () => {
-    if (!code.trim()) {
-      addNotification("Cannot save empty code", "error");
-      return;
-    }
-
-    setIsLoading(true);
-    try {
-      const res = await axios.post(`${API_BASE}/code/save`, { 
-        content: code, 
-        language,
-        title: `Code_${Date.now()}`
-      });
-      setSavedId(res.data.id);
-      addNotification(`Code saved with ID: ${res.data.id}`, "success");
-    } catch (err) {
-      console.error("Save error:", err);
-      // Fallback: Save to localStorage if API fails
-      const localId = `local_${Date.now()}`;
-      const savedItems = JSON.parse(localStorage.getItem('bytecode_saved') || '{}');
-      savedItems[localId] = { content: code, language, timestamp: Date.now() };
-      localStorage.setItem('bytecode_saved', JSON.stringify(savedItems));
-      setSavedId(localId);
-      addNotification(`Code saved locally with ID: ${localId}`, "success");
-    } finally {
-      setIsLoading(false);
-    }
+  // Download code as file
+  const downloadCode = () => {
+    const extension = getFileExtension(language);
+    const filename = `bytecode.${extension}`;
+    const blob = new Blob([code], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    addNotification(`Code downloaded as ${filename}`, "success");
   };
 
-  // Load from DB
-  const handleLoad = async () => {
-    if (!savedId.trim()) {
-      addNotification("Please enter a saved code ID", "warning");
-      return;
+  // Mock execution for server-side languages
+  const mockServerExecution = (lang, code) => {
+    // Simple mock execution that extracts basic info from the code
+    const lines = code.split('\n').filter(line => line.trim().length > 0);
+    const functions = lines.filter(line => 
+      line.includes('def ') || line.includes('function') || 
+      line.includes('public static') || line.includes('int ') || 
+      line.includes('void ') || line.includes('class ')
+    );
+    
+    let mockOutput = `🔧 ${lang.toUpperCase()} Code Analysis (Mock Execution)\\n`;
+    mockOutput += "=".repeat(40) + "\\n\\n";
+    mockOutput += `📊 Code Statistics:\\n`;
+    mockOutput += `   • Lines of code: ${lines.length}\\n`;
+    mockOutput += `   • Functions/Classes found: ${functions.length}\\n\\n`;
+    
+    if (functions.length > 0) {
+      mockOutput += `📝 Detected Functions/Classes:\\n`;
+      functions.slice(0, 5).forEach((func, index) => {
+        mockOutput += `   ${index + 1}. ${func.trim().substring(0, 50)}${func.trim().length > 50 ? '...' : ''}\\n`;
+      });
     }
-
-    setIsLoading(true);
-    try {
-      // First try API
-      const res = await axios.get(`${API_BASE}/code/${savedId}`);
-      setCode(res.data.content);
-      setLanguage(res.data.language || 'javascript');
-      addNotification("Code loaded successfully", "success");
-    } catch (err) {
-      console.error("Load error:", err);
-      // Fallback: Load from localStorage
-      try {
-        const savedItems = JSON.parse(localStorage.getItem('bytecode_saved') || '{}');
-        const savedCode = savedItems[savedId];
-        if (savedCode) {
-          setCode(savedCode.content);
-          setLanguage(savedCode.language || 'javascript');
-          addNotification("Code loaded from local storage", "success");
-        } else {
-          addNotification("No code found with this ID", "error");
-        }
-      } catch (localErr) {
-        addNotification("Failed to load code", "error");
-      }
-    } finally {
-      setIsLoading(false);
-    }
+    
+    mockOutput += `\\n💡 Note: To execute ${lang.toUpperCase()} code, you need:\\n`;
+    mockOutput += `   • A backend server with ${lang.toUpperCase()} runtime\\n`;
+    mockOutput += `   • Proper compilation environment\\n`;
+    mockOutput += `   • Security measures for code execution\\n\\n`;
+    mockOutput += `🚀 Try JavaScript for immediate browser execution!`;
+    
+    return mockOutput;
   };
 
   // Run Code based on language
@@ -578,19 +451,21 @@ export default function CodeEditor() {
   // Run server-side code (Python, Java, C++)
   const runServerCode = async () => {
     try {
+      // First try the actual API
       const res = await axios.post(`${API_BASE}/code/execute`, {
         language,
         code
+      }, {
+        timeout: 5000 // 5 second timeout
       });
       
       setOutput(res.data.output || "Code executed successfully");
       setActiveTab("console");
     } catch (err) {
-      if (err.response?.data?.error) {
-        setOutput(`Server Error: ${err.response.data.error}`);
-      } else {
-        setOutput(`Server connection failed. This would execute ${language.toUpperCase()} code on the server.`);
-      }
+      // If API fails, use mock execution
+      console.log("API failed, using mock execution:", err.message);
+      const mockOutput = mockServerExecution(language, code);
+      setOutput(mockOutput);
       setActiveTab("console");
     }
   };
@@ -619,7 +494,7 @@ export default function CodeEditor() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-br from-gray-900 via-black to-purple-900/20 text-slate-100 overflow-hidden">
+    <div className="flex flex-col h-screen bg-black text-slate-100 overflow-hidden">
       {/* Floating Navbar */}
       <FloatingNavbar items={navItems} />
 
@@ -642,13 +517,13 @@ export default function CodeEditor() {
       </div>
 
       {/* Header */}
-      <div className="flex-shrink-0 px-6 py-4 border-b border-gray-800 bg-black/30 backdrop-blur-sm mt-16">
+      <div className="flex-shrink-0 px-6 py-4 border-b border-gray-800 bg-black mt-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <img src="../assets/logo.png" alt="ByteCode Logo" className="w-8 h-8" />
-            <h1 className="text-xl font-semibold bg-gradient-to-r from-slate-100 to-purple-200 bg-clip-text text-transparent">
-              ByteCode
+            <img src={logo} alt="ByteCode Logo" className="w-15 h-15" />
+            <h1 className="text-blue-400 text-5xl font-semibold bg-gradient-to-r from-slate-100 to-purple-200 bg-clip-text font-transformer">
+              Byte Compiler
             </h1>
           </div>
 
@@ -700,10 +575,19 @@ export default function CodeEditor() {
             >
               Clear
             </button>
+
+            {/* Download Button */}
+            <button
+              onClick={downloadCode}
+              className="bg-green-600 hover:bg-green-500 px-3 py-2 rounded font-medium text-white transition-colors text-sm flex items-center gap-2"
+            >
+              <span>📥</span>
+              Download
+            </button>
           </div>
 
           {/* Right Side Controls */}
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <input
               type="text"
               placeholder="Code ID"
@@ -725,7 +609,7 @@ export default function CodeEditor() {
             >
               {isLoading ? "..." : "Load"}
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -758,7 +642,7 @@ export default function CodeEditor() {
               onChange={setCode}
               onMount={handleEditorDidMount}
               options={{
-                fontSize: 14,
+                fontSize: 16,
                 fontFamily: "'JetBrains Mono', monospace",
                 minimap: { enabled: false },
                 scrollBeyondLastLine: false,
@@ -858,9 +742,9 @@ function getLanguageStatus(lang) {
     javascript: '🟢 Browser Execution',
     html: '🟢 Live Preview',
     css: '🟢 Live Preview', 
-    python: '🟡 Server Execution',
-    java: '🟡 Server Execution',
-    cpp: '🟡 Server Execution'
+    python: '🟡 Mock Execution',
+    java: '🟡 Mock Execution',
+    cpp: '🟡 Mock Execution'
   };
   return status[lang] || '⚪ Unknown';
 }
@@ -870,9 +754,9 @@ function getConsoleMessage(lang) {
     javascript: 'JavaScript code runs directly in your browser',
     html: 'HTML renders in the preview tab',
     css: 'CSS styles render in the preview tab',
-    python: 'Python code requires server-side execution',
-    java: 'Java code requires server-side compilation and execution',
-    cpp: 'C++ code requires server-side compilation and execution'
+    python: 'Python code analysis (mock execution)',
+    java: 'Java code analysis (mock execution)',
+    cpp: 'C++ code analysis (mock execution)'
   };
   return messages[lang] || 'Ready to code!';
 }

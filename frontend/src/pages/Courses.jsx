@@ -10,8 +10,7 @@ import {
   IconBooks,
   IconCode,
   IconCpu,
-  IconTools,
-  IconBrandGithub,
+  IconEdit,
 } from "@tabler/icons-react";
 
 const Courses = () => {
@@ -161,8 +160,10 @@ const Courses = () => {
   const navItems = [
   { title: "Dashboard", href: "/dashboard", icon: <IconHome /> },
   { title: "Courses", href: "/courses", icon: <IconBooks /> },
+  { title: "Byte-Compiler", href: "/editor", icon: <IconEdit size={20} /> },
   { title: "Dev Den", href: "/code", icon: <IconCode /> },
   { title: "AI", href: "/ai", icon: <IconCpu /> },
+
   // { title: "Tools", href: "/tools", icon: <IconTools /> },
   // { title: "GitHub", href: "https://github.com", icon: <IconBrandGithub /> },
 ];

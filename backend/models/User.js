@@ -36,8 +36,8 @@ const userSchema = new mongoose.Schema({
   },
   emailVerificationOTP: String,
   emailVerificationOTPExpire: Date,
-  passwordResetOTP: String, // New field for password reset OTP
-  passwordResetOTPExpire: Date, // New field for password reset OTP expiration
+  passwordResetOTP: String, 
+  passwordResetOTPExpire: Date,
   passwordResetToken: String,
   passwordResetExpire: Date
 }, {

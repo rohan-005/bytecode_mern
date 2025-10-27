@@ -12,6 +12,7 @@ const app = express();
 const authRoutes = require('./routes/auth');
 const otpRoutes = require('./routes/otp');
 const courseRoutes = require('./routes/courses');
+const codeRoutes = require('./routes/code');
 
 // Connect to database
 const connectdb = require('./config/connectdb');
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/otp', otpRoutes);
 app.use('/api/courses', courseRoutes);
+app.use('/api/code', codeRoutes);
 
 // Test route
 app.get('/api/health', (req, res) => {
