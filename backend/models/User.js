@@ -49,6 +49,11 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 1,
     },
+    courseRatings: {
+      type: Map,
+      of: Number,
+      default: {},
+    },
     completedExercises: [
       {
         courseId: String,
@@ -64,6 +69,7 @@ const userSchema = new mongoose.Schema(
         completedAt: { type: Date, default: Date.now },
       },
     ],
+    
   },
   {
     timestamps: true,

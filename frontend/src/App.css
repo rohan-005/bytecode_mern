@@ -40,4 +40,19 @@ body {
   
 }
 
- 
+ /* Add to your global CSS */
+.resize-horizontal {
+  resize: horizontal;
+  overflow: auto;
+}
+
+.resize-vertical {
+  resize: vertical;
+  overflow: auto;
+}
+
+/* For the split layout */
+.split-panel {
+  min-width: 300px;
+  min-height: 200px;
+}

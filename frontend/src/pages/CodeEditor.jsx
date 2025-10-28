@@ -24,6 +24,7 @@ const navItems = [
   { title: "AI", href: "/ai", icon: <IconCpu size={20} /> },
 ];
 
+
 // Default code templates for different languages
 const defaultCode = {
   javascript: `// Welcome to ByteCode JavaScript Editor
@@ -226,7 +227,34 @@ export default function CodeEditor() {
   const editorRef = useRef(null);
 
   const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+  // course
+  // Add this function to CodeEditor.jsx
+const initializeExerciseMode = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const exerciseId = urlParams.get('exercise');
+  const courseId = urlParams.get('course');
+  
+  if (exerciseId && courseId && window.history.state?.exercise) {
+    const exercise = window.history.state.exercise;
+    setTabs([{
+      id: 1,
+      name: `exercise-${exerciseId}.js`,
+      language: "javascript",
+      code: exercise.initialCode || '',
+      targetCode: exercise.targetCode,
+      output: "",
+      activeView: "output",
+      isDirty: false,
+      exerciseMode: true,
+      exerciseData: exercise
+    }]);
+  }
+};
 
+// Call this in useEffect
+useEffect(() => {
+  initializeExerciseMode();
+}, []);
   // Show disclaimer on first load
   useEffect(() => {
     const disclaimerSeen = localStorage.getItem('bytecode-disclaimer-seen');

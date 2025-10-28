@@ -20,6 +20,7 @@ import ForgotPassword from "./auth/ForgotPassword";
 import Profile from './profile/Profile';
 import CodeEditor from "./pages/CodeEditor";
 import CourseDetail from "./pages/CourseDetail";
+import ExerciseDetail from "./components/ExerciseDetail";
 
 
 function App() {
@@ -76,6 +77,9 @@ function App() {
 
             {/* courses-individuals */}
             <Route path="/course/:courseId" element={<CourseDetail />} />
+
+            // Add this route to your App.jsx
+            <Route path="/courses/:courseId/exercises/:exerciseId" element={<ExerciseDetail />} />
 
 
             {/* Redirect unknown routes to 404 */}

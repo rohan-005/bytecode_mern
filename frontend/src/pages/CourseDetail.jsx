@@ -11,7 +11,7 @@ import {
   IconEdit,
   IconCheck,
   IconPlayerPlay,
-  IconVideo,
+  IconExternalLink,
   IconStar,
   IconTrophy,
   IconClock,
@@ -36,11 +36,15 @@ const CourseDetail = () => {
   const [userStats, setUserStats] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
   const [loading, setLoading] = useState(true);
+  const [userRating, setUserRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [ratingLoading, setRatingLoading] = useState(false);
 
   useEffect(() => {
     fetchCourseData();
     if (user) {
       fetchUserStats();
+      fetchUserRating();
     }
   }, [courseId, user]);
 
@@ -53,9 +57,7 @@ const CourseDetail = () => {
         try {
           const progressRes = await axios.get(`/progress/${courseId}/progress`);
           setProgress(progressRes.data);
-        // eslint-disable-next-line no-unused-vars
         } catch (error) {
-          // If no progress found, that's okay - user isn't enrolled yet
           setProgress(null);
         }
       }
@@ -77,6 +79,38 @@ const CourseDetail = () => {
     }
   };
 
+  const fetchUserRating = async () => {
+    if (!user) return;
+    
+    try {
+      const response = await axios.get(`/courses/${courseId}/rating`);
+      setUserRating(response.data.rating || 0);
+    } catch (error) {
+      console.error('Error fetching user rating:', error);
+      setUserRating(0);
+    }
+  };
+
+  const submitRating = async (rating) => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+
+    setRatingLoading(true);
+    try {
+      await axios.post(`/courses/${courseId}/rate`, { rating });
+      setUserRating(rating);
+      // Refresh course data to get updated average rating
+      await fetchCourseData();
+    } catch (error) {
+      console.error('Error submitting rating:', error);
+      alert('Error submitting rating. Please try again.');
+    } finally {
+      setRatingLoading(false);
+    }
+  };
+
   const enrollInCourse = async () => {
     if (!user) {
       navigate('/login');
@@ -85,7 +119,6 @@ const CourseDetail = () => {
 
     try {
       await axios.post(`/courses/${courseId}/enroll`);
-      // Refresh progress data after enrollment
       fetchCourseData();
     } catch (error) {
       console.error('Error enrolling in course:', error);
@@ -99,7 +132,6 @@ const CourseDetail = () => {
     }
 
     try {
-      // First, ensure user is enrolled in the course
       if (!progress) {
         await enrollInCourse();
       }
@@ -108,7 +140,6 @@ const CourseDetail = () => {
       await fetchCourseData();
       await fetchUserStats();
       
-      // Show success notification
       if (response.data.xpEarned) {
         alert(`🎉 Exercise completed! +${response.data.xpEarned} XP earned!`);
       }
@@ -122,33 +153,8 @@ const CourseDetail = () => {
     }
   };
 
-  const markLessonComplete = async (lessonId) => {
-    if (!user) {
-      navigate('/login');
-      return;
-    }
-
-    try {
-      // First, ensure user is enrolled in the course
-      if (!progress) {
-        await enrollInCourse();
-      }
-
-      await axios.post(`/progress/${courseId}/lessons/${lessonId}/complete`);
-      await fetchCourseData();
-      alert('✅ Lesson marked as completed!');
-    } catch (error) {
-      console.error('Error completing lesson:', error);
-      alert('Error completing lesson. Please try again.');
-    }
-  };
-
   const isExerciseCompleted = (exerciseId) => {
     return progress?.completedExercises?.some(ex => ex.exerciseId === exerciseId);
-  };
-
-  const isLessonCompleted = (lessonId) => {
-    return progress?.completedLessons?.some(lesson => lesson.lessonId === lessonId);
   };
 
   const getExerciseXP = (difficulty) => {
@@ -167,6 +173,10 @@ const CourseDetail = () => {
       case 'hard': return 'bg-red-500/20 text-red-300 border-red-500/30';
       default: return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
     }
+  };
+
+  const openExerciseInEditor = (exercise) => {
+    navigate(`/courses/${courseId}/exercises/${exercise.id}`);
   };
 
   if (loading) {
@@ -226,10 +236,33 @@ const CourseDetail = () => {
                     <span className="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm font-semibold border border-green-500/30">
                       {course.level}
                     </span>
-                    <span className="text-yellow-400 flex items-center gap-1">
-                      <IconStar size={16} />
-                      {course.rating}
-                    </span>
+                    <div className="flex items-center gap-1">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          onClick={() => !ratingLoading && submitRating(star)}
+                          onMouseEnter={() => setHoverRating(star)}
+                          onMouseLeave={() => setHoverRating(0)}
+                          disabled={ratingLoading}
+                          className={`${
+                            star <= (hoverRating || userRating)
+                              ? 'text-yellow-400'
+                              : 'text-gray-400'
+                          } transition-colors ${user && !ratingLoading ? 'cursor-pointer hover:scale-110' : 'cursor-default'} ${
+                            ratingLoading ? 'opacity-50' : ''
+                          }`}
+                        >
+                          <IconStar 
+                            size={20} 
+                            fill={star <= (hoverRating || userRating) ? 'currentColor' : 'none'}
+                          />
+                        </button>
+                      ))}
+                      <span className="text-gray-300 ml-2 text-sm">
+                        ({course.rating || 0}/5 from {course.ratingCount || course.students || 0} ratings)
+                        {ratingLoading && ' Saving...'}
+                      </span>
+                    </div>
                   </div>
                   
                   <h1 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent mb-4">
@@ -242,7 +275,7 @@ const CourseDetail = () => {
                 </div>
 
                 {/* Course Meta */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
                       <IconUser size={20} className="text-blue-400" />
@@ -258,8 +291,8 @@ const CourseDetail = () => {
                       <IconClock size={20} className="text-purple-400" />
                     </div>
                     <div>
-                      <div className="text-sm text-gray-400">Duration</div>
-                      <div className="font-semibold">{course.duration}</div>
+                      <div className="text-sm text-gray-400">Exercises</div>
+                      <div className="font-semibold">{course.exercises?.length || 0}</div>
                     </div>
                   </div>
                   
@@ -270,16 +303,6 @@ const CourseDetail = () => {
                     <div>
                       <div className="text-sm text-gray-400">Level</div>
                       <div className="font-semibold">{course.level}</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-yellow-500/20 rounded-lg flex items-center justify-center">
-                      <IconStar size={20} className="text-yellow-400" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-gray-400">Rating</div>
-                      <div className="font-semibold">{course.rating}/5</div>
                     </div>
                   </div>
                 </div>
@@ -346,7 +369,7 @@ const CourseDetail = () => {
       <div className="bg-gray-900/80 backdrop-blur-sm border-b border-white/10 sticky top-0 z-10">
         <div className="container mx-auto px-4">
           <div className="flex space-x-8">
-            {['overview', 'exercises', 'lessons'].map((tab) => (
+            {['overview', 'exercises', 'references'].map((tab) => (
               <button
                 key={tab}
                 className={`py-4 px-1 font-semibold text-sm border-b-2 transition-all duration-300 ${
@@ -358,7 +381,7 @@ const CourseDetail = () => {
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)} 
                 {tab === 'exercises' && ` (${course.exercises?.length || 0})`}
-                {tab === 'lessons' && ` (${course.lessons?.length || 0})`}
+                {tab === 'references' && ` (${course.references?.length || 0})`}
               </button>
             ))}
           </div>
@@ -453,6 +476,9 @@ const CourseDetail = () => {
                           <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${getDifficultyColor(exercise.difficulty)}`}>
                             {exercise.difficulty}
                           </span>
+                          <span className="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-xs font-semibold border border-blue-500/30">
+                            {exercise.language?.toUpperCase() || 'JS'}
+                          </span>
                           <span className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-xs font-semibold border border-gray-600">
                             {exercise.duration}
                           </span>
@@ -472,30 +498,34 @@ const CourseDetail = () => {
                         <div className="space-y-4">
                           <div>
                             <h4 className="font-semibold mb-2 flex items-center gap-2">
-                              <span className="text-lg">📚</span> Theory
+                              <span className="text-lg">📚</span> Objective
                             </h4>
-                            <p className="text-gray-400 text-sm leading-relaxed">{exercise.theory}</p>
+                            <p className="text-gray-400 text-sm leading-relaxed">{exercise.objective || exercise.theory}</p>
                           </div>
                           
-                          <div>
-                            <h4 className="font-semibold mb-2 flex items-center gap-2">
-                              <span className="text-lg">💻</span> Code Example
-                            </h4>
-                            <pre className="bg-black/50 rounded-lg p-4 overflow-x-auto text-sm border border-gray-700">
-                              <code className="text-gray-300">{exercise.codeExample}</code>
-                            </pre>
-                          </div>
+                          {exercise.hints && exercise.hints.length > 0 && (
+                            <div>
+                              <h4 className="font-semibold mb-2 flex items-center gap-2">
+                                <span className="text-lg">💡</span> Hints
+                              </h4>
+                              <ul className="text-gray-400 text-sm space-y-1">
+                                {exercise.hints.slice(0, 2).map((hint, idx) => (
+                                  <li key={idx}>• {hint}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
                     
                     <div className="flex gap-3 flex-wrap">
                       <button 
-                        onClick={() => navigate(`/editor?course=${courseId}&exercise=${exercise.id}`)}
+                        onClick={() => openExerciseInEditor(exercise)}
                         className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2"
                       >
                         <IconPlayerPlay size={18} />
-                        Open in Editor
+                        Start Exercise
                       </button>
                       
                       {user && !completed ? (
@@ -522,74 +552,45 @@ const CourseDetail = () => {
           </div>
         )}
 
-        {activeTab === 'lessons' && (
+        {activeTab === 'references' && (
           <div>
-            <h2 className="text-3xl font-bold mb-8">Video Lessons</h2>
-            {!user && (
-              <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-2xl p-6 mb-6">
-                <p className="text-yellow-200 text-center">
-                  Please log in to track your lesson progress.
-                </p>
-              </div>
-            )}
+            <h2 className="text-3xl font-bold mb-8">Study Resources & References</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {course.lessons?.map((lesson, index) => {
-                const completed = isLessonCompleted(lesson.id);
-                
-                return (
-                  <div 
-                    key={lesson.id}
-                    className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700 hover:border-purple-500/50 transition-all duration-300"
-                  >
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg flex-shrink-0">
-                        {index + 1}
-                      </div>
-                      
-                      <div className="flex-1">
-                        <div className="flex flex-wrap items-center gap-3 mb-2">
-                          <h3 className="text-xl font-semibold">{lesson.title}</h3>
-                          <span className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-xs font-semibold border border-gray-600">
-                            {lesson.duration}
-                          </span>
-                          {completed && (
-                            <span className="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-xs font-semibold border border-green-500/30 flex items-center gap-1">
-                              <IconCheck size={14} />
-                              Watched
-                            </span>
-                          )}
-                        </div>
-                        
-                        <p className="text-gray-300">{lesson.description}</p>
-                      </div>
+              {course.references?.map((reference, index) => (
+                <div 
+                  key={index}
+                  className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700 hover:border-purple-500/50 transition-all duration-300"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg flex-shrink-0">
+                      {index + 1}
                     </div>
                     
-                    <div className="flex gap-3 flex-wrap">
-                      <button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2">
-                        <IconVideo size={18} />
-                        Watch Video
-                      </button>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold mb-2">{reference.title}</h3>
+                      <p className="text-gray-300 mb-4">{reference.description}</p>
                       
-                      {user && !completed ? (
-                        <button 
-                          onClick={() => markLessonComplete(lesson.id)}
-                          className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                      <div className="flex gap-3 flex-wrap">
+                        <a 
+                          href={reference.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2"
                         >
-                          Mark as Watched
-                        </button>
-                      ) : user && completed ? (
-                        <button 
-                          disabled
-                          className="bg-green-600 text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 opacity-50 cursor-not-allowed"
-                        >
-                          <IconCheck size={18} />
-                          Watched
-                        </button>
-                      ) : null}
+                          <IconExternalLink size={18} />
+                          Visit Resource
+                        </a>
+                        
+                        {reference.type && (
+                          <span className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-xs font-semibold border border-gray-600 self-center">
+                            {reference.type}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
         )}

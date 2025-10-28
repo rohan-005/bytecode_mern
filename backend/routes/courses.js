@@ -3,7 +3,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const UserCourse = require('../models/UserCourse');
 const { protect } = require('../middleware/auth');
-
+const User = require('../models/User');
 const router = express.Router();
 
 // Helper function to read course from JSON file
@@ -281,6 +281,56 @@ router.get('/search/:query', async (req, res) => {
   } catch (error) {
     console.error('Error searching courses:', error);
     res.status(500).json({ message: 'Server error' });
+  }
+});
+router.post('/:id/rate', protect, async (req, res) => {
+  try {
+    const { rating } = req.body;
+    const courseId = req.params.id;
+    
+    if (!rating || rating < 1 || rating > 5) {
+      return res.status(400).json({ message: 'Rating must be between 1 and 5' });
+    }
+
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Initialize if doesn't exist
+    if (!user.courseRatings) {
+      user.courseRatings = new Map();
+    }
+    
+    user.courseRatings.set(courseId, rating);
+    await user.save();
+
+    res.json({ 
+      message: 'Rating submitted successfully', 
+      rating,
+      courseId 
+    });
+  } catch (error) {
+    console.error('Error submitting rating:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+// @desc    Get user's rating for a course
+// @route   GET /api/courses/:id/rating
+// @access  Private
+router.get('/:id/rating', protect, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const rating = user.courseRatings?.get(req.params.id) || 0;
+    res.json({ rating });
+  } catch (error) {
+    console.error('Error fetching user rating:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
 
