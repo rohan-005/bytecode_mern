@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Footer from "../components/Footer";
 
-
 // Enhanced GitHub Profile Card Component
 // Compact GitHub Profile Card Component - ID Card Style
 const GitHubProfileCard = React.memo(() => {
@@ -124,7 +123,9 @@ const GitHubProfileCard = React.memo(() => {
             onClick={handleReset}
             className="text-white hover:text-gray-600 p-2 transition-colors duration-300 flex-shrink-0 absolute right-2 top-1"
             title="Disconnect GitHub"
-          >X</button>
+          >
+            X
+          </button>
           <img
             src={githubData.avatar_url}
             alt={`${githubData.login}'s avatar`}
@@ -142,7 +143,6 @@ const GitHubProfileCard = React.memo(() => {
             </svg>
             @{githubData.login}
           </p>
-          
         </div>
 
         {/* Stats Grid - Clean */}
@@ -214,7 +214,7 @@ const StatCard = React.memo(({ stat }) => (
 
 // Enhanced CourseItem with modern design
 const CourseItem = React.memo(({ enrollment }) => (
-  <div className="group relative bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl p-5 hover:from-purple-900/20 hover:to-blue-900/20 transition-all duration-500 border border-gray-700 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10">
+  <div className="group relative bg-gradient-to-r from-gray-500 to-gray-900 rounded-xl p-5 hover:from-purple-900/20 hover:to-blue-900/20 transition-all duration-500 border border-gray-700 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10">
     <div className="flex items-center justify-between">
       <div className="flex-1">
         <h4 className="font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-blue-400 group-hover:bg-clip-text">
@@ -258,32 +258,6 @@ const CourseItem = React.memo(({ enrollment }) => (
         </div>
         <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse group-hover:scale-150 transition-transform duration-300" />
       </div>
-    </div>
-  </div>
-));
-
-const ActivityItem = React.memo(({ activity }) => (
-  <div className="group flex items-start space-x-4 p-4 hover:bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg">
-    <div className="relative">
-      <div className="w-3 h-3 bg-purple-500 rounded-full mt-2 flex-shrink-0 group-hover:animate-ping absolute" />
-      <div className="w-3 h-3 bg-purple-500 rounded-full mt-2 flex-shrink-0 relative" />
-    </div>
-    <div className="flex-1">
-      <p className="text-white">
-        <span className="font-semibold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-          {activity.action}
-        </span>{" "}
-        {activity.course && (
-          <span className="text-gray-300">{activity.course}</span>
-        )}
-        {activity.badge && (
-          <span className="text-yellow-400">"{activity.badge}" badge</span>
-        )}
-      </p>
-      <p className="text-sm text-gray-400 mt-1 flex items-center gap-2">
-        <span>🕒</span>
-        {activity.time}
-      </p>
     </div>
   </div>
 ));
@@ -755,17 +729,14 @@ const Dashboard = () => {
   }
 
   return (
-    
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-purple-900/20 text-white">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 pt-10">
         {/* Enhanced Welcome Section */}
-         
+
         <div className=" w-full bg-gradient-to-r from-purple-900 via-gray-800 to-gray-900 rounded-2xl p-8 text-white mb-8 shadow-2xl border border-gray-800">
-        
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-6">
             <div className="flex-1">
               <div className="flex items-center gap-4 mb-4">
-                
                 <img
                   src={logo}
                   alt="ByteCode Logo"
@@ -827,8 +798,15 @@ const Dashboard = () => {
         </div>
 
         {/* Enhanced Dashboard Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-          <CoursesSection enrolledCourses={enrolledCourses} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10 h-100">
+          <div
+            className="overflow-y-scroll 
+  [&::-webkit-scrollbar]:hidden 
+  [-ms-overflow-style:none] 
+  [scrollbar-width:none]"
+          >
+            <CoursesSection enrolledCourses={enrolledCourses} />
+          </div>
 
           {/* Enhanced Quick Actions */}
           <DashboardCard title="Quick Actions">

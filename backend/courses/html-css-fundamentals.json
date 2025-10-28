@@ -1,0 +1,113 @@
+{
+  "id": "html-css-fundamentals",
+  "name": "HTML & CSS Fundamentals",
+  "description": "Learn the essential building blocks of web development by mastering HTML and CSS. Build beautiful, responsive websites from scratch.",
+  "instructor": "Emily Carter",
+  "duration": "8 weeks",
+  "level": "Beginner",
+  "price": 0,
+  "image": "/images/html-css-course.jpg",
+  "category": "Web Development",
+  "rating": 4.7,
+  "students": 1980,
+  "tags": ["html", "css", "web development", "frontend", "beginner"],
+  "whatYouLearn": [
+    "Structure web pages using HTML",
+    "Style websites using CSS",
+    "Understand the Box Model and layout techniques",
+    "Use Flexbox and Grid for responsive design",
+    "Build a complete web page from scratch"
+  ],
+  "prerequisites": ["Basic computer knowledge", "Interest in web design"],
+  "exercises": [
+    {
+      "id": "ex1",
+      "title": "Basic HTML Structure",
+      "description": "Create a simple HTML document with headings, paragraphs, and links.",
+      "duration": "30 min",
+      "difficulty": "Easy",
+      "theory": "HTML stands for HyperText Markup Language. It defines the structure of a web page using elements such as headings (<h1> to <h6>), paragraphs (<p>), and anchors (<a>). Every HTML document starts with <!DOCTYPE html> and contains <html>, <head>, and <body> tags.",
+      "codeExample": "<!DOCTYPE html>\n<html>\n<head>\n  <title>My First Page</title>\n</head>\n<body>\n  <h1>Welcome to My Web Page</h1>\n  <p>This is my first paragraph in HTML.</p>\n  <a href='https://example.com'>Visit Example</a>\n</body>\n</html>"
+    },
+    {
+      "id": "ex2",
+      "title": "Adding Images and Lists",
+      "description": "Learn how to add images, ordered lists, and unordered lists to your web page.",
+      "duration": "40 min",
+      "difficulty": "Easy",
+      "theory": "Images are added using the <img> tag with 'src' and 'alt' attributes. Lists help organize information — use <ul> for unordered (bulleted) lists and <ol> for ordered (numbered) lists.",
+      "codeExample": "<h2>My Favorite Foods</h2>\n<ul>\n  <li>Pizza</li>\n  <li>Burgers</li>\n  <li>Pasta</li>\n</ul>\n<img src='food.jpg' alt='Delicious food'>"
+    },
+    {
+      "id": "ex3",
+      "title": "Styling with CSS",
+      "description": "Use CSS to change colors, fonts, and spacing of your web elements.",
+      "duration": "45 min",
+      "difficulty": "Medium",
+      "theory": "CSS (Cascading Style Sheets) controls the appearance of HTML elements. You can add CSS inline, internally using <style>, or externally through a .css file. The syntax uses selectors and property-value pairs.",
+      "codeExample": "h1 {\n  color: blue;\n  text-align: center;\n}\np {\n  font-size: 16px;\n  line-height: 1.5;\n}"
+    },
+    {
+      "id": "ex4",
+      "title": "Understanding the Box Model",
+      "description": "Explore how padding, border, and margin affect the layout of elements.",
+      "duration": "50 min",
+      "difficulty": "Medium",
+      "theory": "The CSS Box Model consists of content, padding, border, and margin. It defines how much space an element occupies. Use 'padding' for inner space, 'border' for edge thickness, and 'margin' for outer spacing.",
+      "codeExample": "div {\n  width: 200px;\n  padding: 10px;\n  border: 2px solid black;\n  margin: 20px;\n  background-color: lightgray;\n}"
+    },
+    {
+      "id": "ex5",
+      "title": "Building a Simple Web Page",
+      "description": "Combine HTML and CSS to create a complete, styled webpage.",
+      "duration": "1 hr",
+      "difficulty": "Medium",
+      "theory": "A web page typically combines HTML structure with external CSS for consistent styling. The goal is to create a visually appealing, well-structured page.",
+      "codeExample": "<!DOCTYPE html>\n<html>\n<head>\n  <title>My Portfolio</title>\n  <link rel='stylesheet' href='style.css'>\n</head>\n<body>\n  <header>\n    <h1>John Doe</h1>\n    <p>Web Developer</p>\n  </header>\n  <section>\n    <h2>About Me</h2>\n    <p>I love creating beautiful websites using HTML and CSS.</p>\n  </section>\n  <footer>\n    <p>Contact: john@example.com</p>\n  </footer>\n</body>\n</html>"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "lesson1",
+      "title": "Introduction to Web Development",
+      "duration": "20 min",
+      "videoUrl": "/videos/html-css-intro.mp4",
+      "description": "Understand how websites work, what HTML and CSS do, and how browsers render web pages."
+    },
+    {
+      "id": "lesson2",
+      "title": "HTML Basics and Structure",
+      "duration": "25 min",
+      "videoUrl": "/videos/html-structure.mp4",
+      "description": "Learn about HTML syntax, elements, attributes, and the structure of a web document."
+    },
+    {
+      "id": "lesson3",
+      "title": "Text Formatting and Media in HTML",
+      "duration": "30 min",
+      "videoUrl": "/videos/html-formatting.mp4",
+      "description": "Explore text tags, lists, images, links, and multimedia embedding."
+    },
+    {
+      "id": "lesson4",
+      "title": "CSS Fundamentals",
+      "duration": "30 min",
+      "videoUrl": "/videos/css-basics.mp4",
+      "description": "Get introduced to CSS syntax, selectors, and applying styles to HTML elements."
+    },
+    {
+      "id": "lesson5",
+      "title": "Box Model, Flexbox, and Grid",
+      "duration": "40 min",
+      "videoUrl": "/videos/css-layouts.mp4",
+      "description": "Master layout techniques to design responsive, structured web pages using Flexbox and Grid."
+    },
+    {
+      "id": "lesson6",
+      "title": "Building and Styling a Complete Page",
+      "duration": "50 min",
+      "videoUrl": "/videos/build-webpage.mp4",
+      "description": "Apply your knowledge to build a complete webpage with a clean and modern layout."
+    }
+  ]
+}

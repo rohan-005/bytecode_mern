@@ -19,6 +19,7 @@ import Courses from "./pages/Courses"; // Add this import
 import ForgotPassword from "./auth/ForgotPassword";
 import Profile from './profile/Profile';
 import CodeEditor from "./pages/CodeEditor";
+import CourseDetail from "./pages/CourseDetail";
 
 
 function App() {
@@ -72,6 +73,10 @@ function App() {
 
             {/* editor */}
             <Route path="/editor" element={<CodeEditor />} />
+
+            {/* courses-individuals */}
+            <Route path="/course/:courseId" element={<CourseDetail />} />
+
 
             {/* Redirect unknown routes to 404 */}
             <Route path="*" element={<Navigate to="/404" replace />} />

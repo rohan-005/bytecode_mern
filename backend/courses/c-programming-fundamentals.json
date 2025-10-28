@@ -1,0 +1,130 @@
+{
+  "id": "c-programming-fundamentals",
+  "name": "C Programming Fundamentals",
+  "description": "Learn the foundation of programming through the C language — variables, data types, loops, arrays, and functions. Build strong problem-solving skills and prepare for advanced languages.",
+  "instructor": "David Miller",
+  "duration": "8 weeks",
+  "level": "Beginner",
+  "price": 0,
+  "image": "/images/c-course.jpg",
+  "category": "Programming",
+  "rating": 4.8,
+  "students": 2150,
+  "tags": ["c", "programming", "beginner", "fundamentals"],
+  "whatYouLearn": [
+    "Understand how C programs work and compile",
+    "Work with variables, data types, and operators",
+    "Use loops and conditional statements for logic",
+    "Create and use functions effectively",
+    "Handle arrays and strings",
+    "Understand pointers and memory basics"
+  ],
+  "prerequisites": ["Basic computer knowledge", "Interest in problem-solving"],
+  "exercises": [
+    {
+      "id": "ex1",
+      "title": "Hello World Program",
+      "description": "Write and run your first C program that prints 'Hello, World!' to the screen.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "theory": "Every C program starts with a main() function. The printf() function is used to display output. C programs must include the header file <stdio.h> for input/output functions.",
+      "codeExample": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "id": "ex2",
+      "title": "Variables and Data Types",
+      "description": "Practice declaring and initializing variables of different data types in C.",
+      "duration": "30 min",
+      "difficulty": "Easy",
+      "theory": "C supports several data types such as int, float, char, and double. Variables are containers that hold data values. Each type requires a specific format specifier in printf().",
+      "codeExample": "#include <stdio.h>\n\nint main() {\n    int age = 20;\n    float height = 5.9;\n    char grade = 'A';\n    printf(\"Age: %d\\n\", age);\n    printf(\"Height: %.1f\\n\", height);\n    printf(\"Grade: %c\\n\", grade);\n    return 0;\n}"
+    },
+    {
+      "id": "ex3",
+      "title": "Conditional Statements",
+      "description": "Use if-else statements to make decisions in your C program.",
+      "duration": "40 min",
+      "difficulty": "Medium",
+      "theory": "The if-else statement in C is used to perform conditional execution. It checks whether a condition is true or false and executes different blocks of code accordingly.",
+      "codeExample": "#include <stdio.h>\n\nint main() {\n    int marks;\n    printf(\"Enter marks: \");\n    scanf(\"%d\", &marks);\n\n    if (marks >= 50) {\n        printf(\"You passed!\\n\");\n    } else {\n        printf(\"You failed.\\n\");\n    }\n    return 0;\n}"
+    },
+    {
+      "id": "ex4",
+      "title": "Loops in C",
+      "description": "Learn to use for, while, and do-while loops for repetitive tasks.",
+      "duration": "45 min",
+      "difficulty": "Medium",
+      "theory": "Loops allow repeating a block of code multiple times. The 'for' loop is used when the number of iterations is known. The 'while' and 'do-while' loops are used for conditional repetition.",
+      "codeExample": "#include <stdio.h>\n\nint main() {\n    int i;\n    for (i = 1; i <= 5; i++) {\n        printf(\"Iteration %d\\n\", i);\n    }\n    return 0;\n}"
+    },
+    {
+      "id": "ex5",
+      "title": "Functions and Scope",
+      "description": "Understand how to define and call functions in C, and explore variable scope.",
+      "duration": "1 hr",
+      "difficulty": "Medium",
+      "theory": "A function in C is a block of code that performs a specific task. Functions help in code reusability. Variables declared inside a function are local to it, while global variables are accessible throughout the program.",
+      "codeExample": "#include <stdio.h>\n\nvoid greet() {\n    printf(\"Hello from a function!\\n\");\n}\n\nint main() {\n    greet();\n    return 0;\n}"
+    },
+    {
+      "id": "ex6",
+      "title": "Arrays and Strings",
+      "description": "Work with arrays to store multiple values and learn basic string handling.",
+      "duration": "1 hr 15 min",
+      "difficulty": "Medium",
+      "theory": "An array in C stores multiple values of the same type in continuous memory. Strings are arrays of characters ending with a null character ('\\0'). The string.h library provides string functions like strcpy(), strlen(), and strcat().",
+      "codeExample": "#include <stdio.h>\n#include <string.h>\n\nint main() {\n    int numbers[5] = {1, 2, 3, 4, 5};\n    char name[20] = \"Alice\";\n\n    printf(\"First element: %d\\n\", numbers[0]);\n    printf(\"Name: %s\\n\", name);\n    printf(\"Length of name: %lu\\n\", strlen(name));\n    return 0;\n}"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "lesson1",
+      "title": "Introduction to C Language",
+      "duration": "20 min",
+      "videoUrl": "/videos/c-intro.mp4",
+      "description": "Learn about the history of C, its uses, and why it's still a powerful language for system programming."
+    },
+    {
+      "id": "lesson2",
+      "title": "Setting Up and Writing Your First Program",
+      "duration": "25 min",
+      "videoUrl": "/videos/c-setup.mp4",
+      "description": "Set up your development environment, write your first C program, and understand compilation and execution."
+    },
+    {
+      "id": "lesson3",
+      "title": "Variables, Data Types, and Operators",
+      "duration": "30 min",
+      "videoUrl": "/videos/c-variables.mp4",
+      "description": "Understand variable declaration, initialization, and different data types in C. Learn about operators and expressions."
+    },
+    {
+      "id": "lesson4",
+      "title": "Control Statements and Loops",
+      "duration": "35 min",
+      "videoUrl": "/videos/c-loops.mp4",
+      "description": "Explore decision-making structures like if-else, switch, and looping constructs like for, while, and do-while."
+    },
+    {
+      "id": "lesson5",
+      "title": "Functions, Scope, and Recursion",
+      "duration": "40 min",
+      "videoUrl": "/videos/c-functions.mp4",
+      "description": "Learn how to organize your code into reusable functions and understand recursion with examples."
+    },
+    {
+      "id": "lesson6",
+      "title": "Arrays, Strings, and Memory",
+      "duration": "45 min",
+      "videoUrl": "/videos/c-arrays.mp4",
+      "description": "Dive into arrays and strings in C, understand memory layout, and learn how pointers work."
+    },
+    {
+      "id": "lesson7",
+      "title": "Mini Project: Simple Calculator",
+      "duration": "1 hr",
+      "videoUrl": "/videos/c-project-calculator.mp4",
+      "description": "Build a console-based calculator using user input, switch statements, and basic functions."
+    }
+  ]
+}

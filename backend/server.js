@@ -13,6 +13,7 @@ const authRoutes = require('./routes/auth');
 const otpRoutes = require('./routes/otp');
 const courseRoutes = require('./routes/courses');
 const codeRoutes = require('./routes/code');
+const courseProgressRoutes = require('./routes/courseProgress');
 
 // Connect to database
 const connectdb = require('./config/connectdb');
@@ -27,6 +28,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/otp', otpRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/code', codeRoutes);
+app.use('/api/progress', courseProgressRoutes);
 
 // Test route
 app.get('/api/health', (req, res) => {
