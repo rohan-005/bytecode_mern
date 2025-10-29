@@ -1,0 +1,66 @@
+{
+  "id": "javascript-fundamentals",
+  "name": "JavaScript Fundamentals",
+  "description": "Learn the core concepts of JavaScript and start creating dynamic, interactive web pages. Understand variables, functions, events, and loops.",
+  "instructor": "Sarah Johnson",
+  "duration": "6 weeks",
+  "level": "Beginner",
+  "price": 0,
+  "image": "/images/js-course.jpg",
+  "category": "Programming",
+  "rating": 4.7,
+  "ratingCount": 1920,
+  "students": 1920,
+  "tags": ["javascript", "web development", "frontend", "beginner", "programming"],
+  "whatYouLearn": [
+    "Understand JavaScript syntax and structure",
+    "Use variables, data types, and operators",
+    "Write conditional statements and loops",
+    "Define and call functions",
+    "Handle user interactions with events",
+    "Manipulate HTML elements using the DOM"
+  ],
+  "prerequisites": ["Basic HTML and CSS knowledge", "Interest in web interactivity"],
+  "exercises": [
+    {
+      "id": "ex1",
+      "title": "Print Message with JavaScript",
+      "description": "Learn how to display text using JavaScript in the browser console.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "The console.log() function prints output to the browser console. It is a useful tool for debugging and testing JavaScript code.",
+      "objective": "Print 'Hello, JavaScript!' to the console.",
+      "initialCode": "// Write your code below\n\n",
+      "solutionCode": "console.log('Hello, JavaScript!');",
+      "requirements": ["Use console.log()", "Display the correct message"],
+      "hints": ["Use single or double quotes for strings"]
+    },
+    {
+      "id": "ex2",
+      "title": "Functions and Variables",
+      "description": "Understand variables and functions by writing a simple addition program.",
+      "duration": "25 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "JavaScript uses 'let' and 'const' for declaring variables. Functions are defined using the function keyword and can return values.",
+      "objective": "Create a function that adds two numbers and prints the result.",
+      "initialCode": "// Declare variables and write your function here\n\n// Call your function to test it",
+      "solutionCode": "function add(a, b) {\n  return a + b;\n}\nconsole.log('Sum:', add(5, 3));",
+      "requirements": ["Declare a function", "Return the sum of two numbers", "Use console.log() to display output"],
+      "hints": ["Use return to send the result back", "Functions are defined using 'function name()' syntax"]
+    }
+  ],
+  "references": [
+    {
+      "title": "MDN Web Docs - JavaScript",
+      "description": "Complete guide to JavaScript by Mozilla.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    },
+    {
+      "title": "W3Schools - JavaScript Tutorial",
+      "description": "Interactive tutorials for learning JavaScript basics.",
+      "url": "https://www.w3schools.com/js/"
+    }
+  ]
+}

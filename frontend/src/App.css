@@ -56,3 +56,8 @@ body {
   min-width: 300px;
   min-height: 200px;
 }
+
+.code-editor-bg {
+  background: linear-gradient(45deg, #1a1a1a 25%, #1f1f1f 25%, #1f1f1f 50%, #1a1a1a 50%, #1a1a1a 75%, #1f1f1f 75%, #1f1f1f);
+  background-size: 20px 20px;
+}

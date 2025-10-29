@@ -1,0 +1,91 @@
+{
+  "id": "cpp-fundamentals",
+  "name": "C++ Programming Fundamentals",
+  "description": "Learn the fundamentals of C++ programming from scratch. Understand variables, control structures, functions, arrays, and object-oriented programming to build efficient and reliable programs.",
+  "instructor": "Daniel Roberts",
+  "duration": "10 weeks",
+  "level": "Beginner",
+  "price": 0,
+  "image": "/images/cpp-course.jpg",
+  "category": "Programming",
+  "rating": 4.8,
+  "ratingCount": 2540,
+  "students": 2540,
+  "tags": ["cpp", "programming", "beginner", "OOP", "coding"],
+  "whatYouLearn": [
+    "Understand the structure and syntax of a C++ program",
+    "Work with variables, data types, and operators",
+    "Use control structures like loops and conditionals",
+    "Implement functions and arrays effectively",
+    "Understand the basics of object-oriented programming (classes, objects, and constructors)"
+  ],
+  "prerequisites": ["Basic computer knowledge", "Logical thinking and problem-solving skills"],
+  "exercises": [
+    {
+      "id": "ex1",
+      "title": "Hello World in C++",
+      "description": "Create your first C++ program that prints 'Hello, World!' to the console. Learn the structure of a basic C++ program.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "A simple C++ program consists of preprocessor directives, a main() function, and output statements. The main function is the entry point of every C++ program.\n\nKey concepts:\n• #include <iostream> is used for input/output operations.\n• std::cout prints output to the console.\n• Every statement ends with a semicolon (;).",
+      "objective": "Write a complete C++ program that prints 'Hello, World!' to the screen.",
+      "initialCode": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Write your code here\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Hello, World!\" << endl;\n    return 0;\n}",
+      "requirements": [
+        "Include the iostream header",
+        "Use the main() function as the entry point",
+        "Print 'Hello, World!' to the console using cout"
+      ],
+      "hints": [
+        "Remember to include <iostream> for input/output functions",
+        "Use std::cout to print text to the screen",
+        "Every statement should end with a semicolon"
+      ],
+      "references": [
+        {
+          "title": "C++ Basics - GeeksforGeeks",
+          "description": "Introduction to basic syntax and structure of C++ programs.",
+          "url": "https://www.geeksforgeeks.org/c-plus-plus/",
+          "type": "Tutorial"
+        }
+      ]
+    },
+    {
+      "id": "ex2",
+      "title": "C++ Functions and Variables",
+      "description": "Learn how to declare and use variables and functions in C++. Create a function that adds two numbers and displays the result.",
+      "duration": "30 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Variables are used to store data values. Functions are reusable blocks of code that perform specific tasks.\n\nSyntax:\n• Variable declaration: int x = 5;\n• Function declaration: int add(int a, int b) { return a + b; }",
+      "objective": "Write a C++ program with variables and a user-defined function that adds two numbers and prints the result.",
+      "initialCode": "#include <iostream>\nusing namespace std;\n\n// Declare your function here\n\nint main() {\n    // Declare two integers\n    // Call the function and display the result\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\nusing namespace std;\n\nint add(int a, int b) {\n    return a + b;\n}\n\nint main() {\n    int num1 = 5, num2 = 3;\n    cout << \"Sum: \" << add(num1, num2) << endl;\n    return 0;\n}",
+      "requirements": [
+        "Declare a function named add() that takes two integers",
+        "Return the sum of the two integers",
+        "Call the function from main() and display the result"
+      ],
+      "hints": [
+        "Define the function before main() or use a function prototype",
+        "Use cout to display the result",
+        "Remember to return an integer from main()"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "title": "C++ Documentation - CPPReference",
+      "description": "Official reference for C++ syntax and standard library documentation.",
+      "url": "https://en.cppreference.com/w/",
+      "type": "Documentation"
+    },
+    {
+      "title": "Learn C++ - Programiz",
+      "description": "Interactive tutorials and examples to learn C++ programming.",
+      "url": "https://www.programiz.com/cpp-programming",
+      "type": "Tutorial"
+    }
+  ]
+}
