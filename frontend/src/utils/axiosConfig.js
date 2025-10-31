@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-// For Vite projects, use import.meta.env; for CRA, use process.env
-const API_URL =
-  import.meta.env?.REACT_APP_API_URL ||
-  'https://bytecode-qsew.onrender.com/api';
+// For Vite projects, use import.meta.env
+const API_URL = import.meta.env.VITE_API_URL || 'https://bytecode-qsew.onrender.com/api';
+console.log('API URL:', API_URL); // For debugging
 
 const api = axios.create({
   baseURL: API_URL,
@@ -30,6 +29,14 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    console.error('API Error:', {
+      url: error.config?.url,
+      method: error.config?.method,
+      status: error.response?.status,
+      data: error.response?.data,
+      message: error.message
+    });
+    
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
