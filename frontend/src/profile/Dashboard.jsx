@@ -629,7 +629,7 @@ const Dashboard = () => {
       }
 
       const response = await fetch(
-        `https://bytecode-backend.vercel.app/api/courses/user/enrolled`,
+        `https://bytecode-backend.vercel.app//courses/user/enrolled`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -658,7 +658,7 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://bytecode-backend.vercel.app/api/courses/user/stats",
+        "https://bytecode-backend.vercel.app//courses/user/stats",
         {
           headers: {
             Authorization: `Bearer ${token}`,
