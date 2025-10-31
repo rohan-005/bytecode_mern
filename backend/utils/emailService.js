@@ -1,21 +1,26 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
-// Create transporter
 const createTransporter = () => {
-  const cleanPassword = process.env.EMAIL_PASS?.replace(/\s/g, '') || '';
-  
-  console.log('🔧 Creating email transporter...');
-  console.log('Email:', process.env.EMAIL_USER);
-  console.log('Password length:', cleanPassword.length);
+  const cleanPassword = process.env.EMAIL_PASS?.trim() || "";
+
+  console.log("🔧 Creating email transporter...");
+  console.log("Email:", process.env.EMAIL_USER);
+  console.log("Password length:", cleanPassword.length);
 
   return nodemailer.createTransport({
-    service: 'gmail',
+    host: "smtp.gmail.com",      // Explicit host (Render-friendly)
+    port: 465,                   // Secure SSL port
+    secure: true,                // True = use SSL/TLS
     auth: {
       user: process.env.EMAIL_USER,
       pass: cleanPassword,
     },
+    tls: {
+      rejectUnauthorized: false, // Helps avoid certificate issues
+    },
   });
 };
+
 
 // Send OTP Email (for email verification)
 const sendOTPEmail = async (email, otp, name) => {
