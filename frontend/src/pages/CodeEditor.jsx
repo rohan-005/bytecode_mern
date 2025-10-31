@@ -226,7 +226,7 @@ export default function CodeEditor() {
   const iframeRefs = useRef({});
   const editorRef = useRef(null);
 
-  const API_BASE = import.meta.env.VITE_API_URL || "https://bytecode-qsew.onrender.com";
+  const API_BASE = import.meta.env.VITE_API_URL || "https://bytecode-qsew.onrender.com/api";
   // course
   // Add this function to CodeEditor.jsx
 const initializeExerciseMode = () => {
