@@ -711,7 +711,7 @@ const Dashboard = () => {
     },
     {
       label: "XP Earned",
-      value: user?.xp || 0, // Use user.xp from auth context with fallback
+      value: userStats.totalHours , // Prefer server-provided stats, fallback to auth user.xp
       unit: " XP",
       emoji: "⭐",
       color: "bg-gradient-to-r from-purple-500 to-pink-500",

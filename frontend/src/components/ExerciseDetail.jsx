@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "../utils/axiosConfig";
 import { FloatingNavbar } from "../components/FloatingNavbar";
+
 import {
   IconHome,
   IconBook,
@@ -55,6 +56,7 @@ const ExerciseDetail = () => {
   const [outputMode, setOutputMode] = useState("preview");
   const [nextExercise, setNextExercise] = useState(null);
   const codeEditorRef = useRef(null);
+  
 
   // API base URL - use the same as your CodeEditor
   const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
