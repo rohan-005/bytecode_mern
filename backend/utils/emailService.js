@@ -23,26 +23,31 @@ async function sendEmail(to, subject, html) {
     console.log("To:", to);
     console.log("Subject:", subject);
 
-    if (!process.env.RESEND_FROM_EMAIL) {
-      console.error("❌ RESEND_FROM_EMAIL is not set in environment variables!");
-      return false;
-    }
+    // Use Resend's default domain
+    const fromEmail = "ByteCode <frosthowl005@gmail.com>";
+    console.log("📧 Sending from:", fromEmail);
 
     const response = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL,
+      from: fromEmail,
       to: [to], // ensure it's an array for Resend API
       subject,
       html,
       tags: [{ name: 'category', value: 'auth' }], // for better email analytics
+      reply_to: "frosthowl005@gmail.com" // Optional: add a reply-to address
     });
 
-    if (response?.id) {
-      console.log("✅ Email sent successfully with ID:", response.id);
-      return true;
-    } else {
+    if (response?.error) {
+      console.error("❌ Resend API error:", response.error);
+      return false;
+    }
+    
+    if (!response?.id) {
       console.warn("⚠️ Resend did not return an ID. Response:", response);
       return false;
     }
+
+    console.log("✅ Email sent successfully with ID:", response.id);
+    return true;
   } catch (error) {
     console.error("❌ Error sending email via Resend:", error);
     return false;
