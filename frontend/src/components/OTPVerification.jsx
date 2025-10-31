@@ -89,7 +89,7 @@ const OTPVerification = () => {
     setError('');
 
     try {
-      const response = await api.post('/otp/verify-email', {
+      const response = await api.post('/verify-email', {
         email,
         otp: otpValue
       });
@@ -121,7 +121,7 @@ const OTPVerification = () => {
     setError('');
 
     try {
-      const response = await api.post('/otp/resend-otp', { email });
+      const response = await api.post('/resend-otp', { email });
       setMessage('OTP resent successfully!');
       toast.success('📧 New OTP sent to your email!');
       setCountdown(60); // 60 seconds countdown
