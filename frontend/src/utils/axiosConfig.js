@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // For Vite projects, use import.meta.env
-const API_URL = import.meta.env.VITE_API_URL || 'https://bytecode-backend.vercel.app/';
+const API_URL = import.meta.env.VITE_API_URL || 'https://bytecode-backend.vercel.app/api';
 console.log('API URL:', API_URL); // For debugging
 
 const api = axios.create({
