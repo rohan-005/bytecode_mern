@@ -12,6 +12,39 @@ router.get('/test', (req, res) => {
   res.json({ message: 'OTP routes are working!' });
 });
 
+// Test email route
+router.post('/test-email', async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required' });
+    }
+
+    const testOTP = '123456'; // Test OTP
+    const result = await sendOTPEmail(email, testOTP, 'Test User');
+    
+    if (result) {
+      res.json({ 
+        message: 'Test email sent successfully',
+        email,
+        success: true
+      });
+    } else {
+      res.status(500).json({ 
+        message: 'Failed to send test email',
+        success: false
+      });
+    }
+  } catch (error) {
+    console.error('Test email error:', error);
+    res.status(500).json({ 
+      message: 'Server error sending test email',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined,
+      success: false
+    });
+  }
+});
+
 // @desc    Send OTP for email verification
 // @route   POST /api/otp/send-verification
 // @access  Public

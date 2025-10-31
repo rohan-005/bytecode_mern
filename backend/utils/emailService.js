@@ -1,7 +1,15 @@
 const { Resend } = require('resend');
 
 // Initialize Resend with your API key from Render env vars
-const resend = new Resend(process.env.RESEND_API_KEY);
+let resend;
+try {
+  if (!process.env.RESEND_API_KEY) {
+    console.error("❌ RESEND_API_KEY is not set in environment variables!");
+  }
+  resend = new Resend(process.env.RESEND_API_KEY);
+} catch (error) {
+  console.error("❌ Failed to initialize Resend:", error);
+}
 
 // ✅ Generic function to send email safely via Resend
 async function sendEmail(to, subject, html) {
@@ -15,11 +23,17 @@ async function sendEmail(to, subject, html) {
     console.log("To:", to);
     console.log("Subject:", subject);
 
+    if (!process.env.RESEND_FROM_EMAIL) {
+      console.error("❌ RESEND_FROM_EMAIL is not set in environment variables!");
+      return false;
+    }
+
     const response = await resend.emails.send({
-      from: "ByteCode <frosthowl005@gmail.com>",
+      from: process.env.RESEND_FROM_EMAIL,
       to: [to], // ensure it's an array for Resend API
       subject,
       html,
+      tags: [{ name: 'category', value: 'auth' }], // for better email analytics
     });
 
     if (response?.id) {
