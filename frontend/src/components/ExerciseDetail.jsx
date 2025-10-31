@@ -59,7 +59,7 @@ const ExerciseDetail = () => {
   
 
   // API base URL - use the same as your CodeEditor
-  const API_BASE = import.meta.env.REACT_APP_API_URL || "https://bytecode-qsew.onrender.com/api";
+  const API_BASE = import.meta.env.REACT_APP_API_URL || "https://bytecode-backend.vercel.app/";
 
   // Default code templates - matching your backend expectations
   const defaultCode = {
