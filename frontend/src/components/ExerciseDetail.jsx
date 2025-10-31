@@ -512,6 +512,7 @@ const ExerciseDetail = () => {
           />
         ))}
       </div>
+      
 
       <FloatingNavbar items={navItems} />
 
@@ -528,7 +529,7 @@ const ExerciseDetail = () => {
 
       {/* Header */}
       <div className="relative bg-gradient-to-r from-purple-900/30 to-blue-900/30 backdrop-blur-sm border-b border-white/10">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container  px-4 py-7">
           <div className="flex items-center gap-4">
             <button
               onClick={() => navigate(`/course/${courseId}`)}

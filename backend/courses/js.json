@@ -1,0 +1,141 @@
+{
+  "id": "js",
+  "name": "JavaScript Fundamentals",
+  "description": "From language basics to modern JavaScript patterns: variables, functions, closures, DOM manipulation, asynchronous programming, ES6+ features and tooling.",
+  "instructor": "Sarah Johnson",
+  "duration": "8 weeks",
+  "level": "Beginner → Intermediate",
+  "price": 0,
+  "image": "/logos/js.png",
+  "category": "Programming",
+  "rating": 4.9,
+  "ratingCount": 4300,
+  "students": 4300,
+  "tags": ["javascript", "web", "es6", "dom", "async"],
+  "whatYouLearn": [
+    "Syntax, types and operators in JS",
+    "Functions, scope and closures",
+    "Working with the DOM and events",
+    "ES6+ features (let/const, arrow functions, classes, modules)",
+    "Asynchronous JS: callbacks, promises, async/await",
+    "Browser APIs and basic performance patterns"
+  ],
+  "prerequisites": ["Basic HTML/CSS knowledge", "Comfort with using a code editor and browser devtools"],
+  "exercises": [
+    {
+      "id": "ex1",
+      "title": "Hello JavaScript & Console",
+      "description": "Output to console and alert. Understand `script` placement and DOMContentLoaded.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Use `console.log()` for debugging, `alert()` for quick messages. Scripts in head may need DOMContentLoaded before accessing DOM.",
+      "objective": "Log a message and show an alert on page load.",
+      "initialCode": "<script>\n// code\n</script>",
+      "solutionCode": "console.log('Hello from JS');\nalert('Welcome!');\n// or\nwindow.addEventListener('DOMContentLoaded', ()=>{ console.log('DOM ready'); });",
+      "requirements": ["Use console.log", "Demonstrate DOMContentLoaded if manipulating DOM"],
+      "hints": ["Prefer console over alert in real apps"]
+    },
+    {
+      "id": "ex2",
+      "title": "Variables, Types & Operators",
+      "description": "Practice `let`, `const`, basic types, type coercion and template literals.",
+      "duration": "25 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "`let` and `const` are block-scoped. JS has primitive types and objects. Template literals use backticks for interpolation.",
+      "objective": "Declare variables, perform arithmetic and show a template literal.",
+      "initialCode": "// write code here",
+      "solutionCode": "const name='Alex';\nlet age=25;\nlet msg = `${name} is ${age} years old`;\nconsole.log(msg);",
+      "requirements": ["Use let/const", "Show template literal usage"],
+      "hints": ["Avoid `var` unless specifically needed"]
+    },
+    {
+      "id": "ex3",
+      "title": "Functions, Scope & Closures",
+      "description": "Define functions, arrow functions, and create a closure.",
+      "duration": "40 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Closures let functions remember the scope where they were created. Arrow functions have lexical `this`.",
+      "objective": "Create a counter function that returns a function incrementing the count (closure).",
+      "initialCode": "function makeCounter(){\n  // return a function that increments\n}",
+      "solutionCode": "function makeCounter(){\n  let count=0;\n  return function(){ count++; return count; }\n}\nconst c = makeCounter();\nconsole.log(c()); // 1\nconsole.log(c()); // 2",
+      "requirements": ["Use closure to persist state", "Demonstrate calling the returned function"],
+      "hints": ["Remember count is in the outer scope accessible to inner function"]
+    },
+    {
+      "id": "ex4",
+      "title": "DOM Manipulation & Events",
+      "description": "Create a dynamic to-do list: add items, remove items and persist to localStorage.",
+      "duration": "2 hours",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Use `document.querySelector`, `addEventListener`, `createElement` and `localStorage` for basic persistence.",
+      "objective": "Build a small to-do app with add/remove and localStorage save/load.",
+      "initialCode": "<!-- skeleton HTML with form and list -->\n<form id=\"todo-form\">...</form>\n<ul id=\"todos\"></ul>\n<script>\n// JS\n</script>",
+      "solutionCode": "const form=document.getElementById('todo-form');\nconst list=document.getElementById('todos');\nfunction render(){ list.innerHTML=''; const todos=JSON.parse(localStorage.getItem('todos')||'[]'); todos.forEach((t,i)=>{ const li=document.createElement('li'); li.textContent=t; const btn=document.createElement('button'); btn.textContent='Remove'; btn.addEventListener('click',()=>{ todos.splice(i,1); localStorage.setItem('todos',JSON.stringify(todos)); render(); }); li.appendChild(btn); list.appendChild(li); }); }\nform.addEventListener('submit', e=>{ e.preventDefault(); const val=form.elements['task'].value; const todos=JSON.parse(localStorage.getItem('todos')||'[]'); todos.push(val); localStorage.setItem('todos',JSON.stringify(todos)); form.reset(); render(); });\nrender();",
+      "requirements": ["Use DOM APIs and event listeners", "Persist state with localStorage"],
+      "hints": ["Use `e.preventDefault()` on form submit", "Re-render list after changes"]
+    },
+    {
+      "id": "ex5",
+      "title": "Promises & Async/Await",
+      "description": "Fetch data from a public API (or mock) using fetch and async/await, handle errors and show results.",
+      "duration": "1 hour",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "`fetch` returns a promise. Use `.then()` or `async/await` with try/catch for clearer code.",
+      "objective": "Request a JSON resource and display titles in a list; handle network errors gracefully.",
+      "initialCode": "async function load(){\n  // fetch data here\n}",
+      "solutionCode": "async function load(){\n  try{\n    const res = await fetch('https://jsonplaceholder.typicode.com/posts');\n    if(!res.ok) throw new Error('Network response was not ok');\n    const data=await res.json();\n    const list=document.getElementById('posts');\n    data.slice(0,10).forEach(p=>{ const li=document.createElement('li'); li.textContent=p.title; list.appendChild(li); });\n  }catch(err){ console.error(err); document.getElementById('error').textContent='Failed to load posts'; }\n}\nload();",
+      "requirements": ["Use async/await", "Handle non-OK responses and exceptions"],
+      "hints": ["Check `res.ok` before parsing JSON"]
+    },
+    {
+      "id": "ex6",
+      "title": "Modules & Tooling",
+      "description": "Split code into ES modules and import/export. Brief intro to bundlers (conceptual).",
+      "duration": "45 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "ES Modules (`export`/`import`) enable modular code. In production, bundlers or native modules (via type=\"module\") are used.",
+      "objective": "Create two modules: `math.js` exports functions; `app.js` imports and uses them. Use `type=\"module\"` in script tag.",
+      "initialCode": "// math.js and app.js skeletons",
+      "solutionCode": "// math.js\nexport function add(a,b){return a+b}\nexport const pi=3.1415\n\n// app.js\nimport {add, pi} from './math.js'\nconsole.log(add(2,3), pi);\n\n// index.html\n<script type=\"module\" src=\"./app.js\"></script>",
+      "requirements": ["Use export/import syntax", "Module script tag in HTML when running in browser"],
+      "hints": ["Use default export only when a module has a single primary value"]
+    },
+    {
+      "id": "ex7",
+      "title": "Project: Mini SPA (Single Page App)",
+      "description": "Build a small single page app with client-side routing (hash-based), dynamic content and modular code.",
+      "duration": "4-6 hours",
+      "difficulty": "Advanced",
+      "language": "javascript",
+      "theory": "SPAs update the URL and content without full page reloads. Hash routing (`#home`) is simple to implement using `window.onhashchange`.",
+      "objective": "Create pages (home, about, contact) loaded into a main container based on URL hash; no frameworks.",
+      "initialCode": "<!-- base HTML with nav -->",
+      "solutionCode": "const routes={ '':()=>document.getElementById('app').innerHTML='<h2>Home</h2>', '#about':()=>document.getElementById('app').innerHTML='<h2>About</h2>' };\nfunction router(){ (routes[location.hash]||routes[''])(); }\nwindow.addEventListener('hashchange',router);\nwindow.addEventListener('DOMContentLoaded',router);",
+      "requirements": ["Implement hash routing", "Load content without reload", "Clean separation of route handlers"],
+      "hints": ["Use history API only if comfortable; start with hash routing"]
+    }
+  ],
+  "references": [
+    {
+      "title": "MDN Web Docs - JavaScript",
+      "description": "In-depth JS documentation and learning resources.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    },
+    {
+      "title": "You Don't Know JS (book series)",
+      "description": "Deep dive into JavaScript concepts (scope, closures, this, prototypes).",
+      "url": "https://github.com/getify/You-Dont-Know-JS"
+    },
+    {
+      "title": "JavaScript.info",
+      "description": "Modern JavaScript tutorial from basics to advanced topics.",
+      "url": "https://javascript.info/"
+    }
+  ]
+}

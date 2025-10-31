@@ -1,0 +1,165 @@
+{
+  "id": "html",
+  "name": "HTML Complete Guide - Web Development Fundamentals",
+  "description": "Master HTML5 and learn to structure web pages with semantic markup, forms, multimedia, and accessibility features.",
+  "instructor": "Sarah Johnson",
+  "duration": "6 weeks",
+  "level": "Beginner",
+  "price": 0,
+  "image": "/logos/html.png",
+  "category": "Web Development",
+  "rating": 4.7,
+  "ratingCount": 1850,
+  "students": 1850,
+  "tags": ["html", "html5", "web", "frontend", "beginner", "markup"],
+  "whatYouLearn": [
+    "Understand HTML document structure",
+    "Create semantic HTML5 layouts",
+    "Build forms with validation",
+    "Embed multimedia content",
+    "Implement accessibility features",
+    "Use tables and lists effectively"
+  ],
+  "prerequisites": ["Basic computer skills", "Text editor knowledge"],
+  "exercises": [
+    {
+      "id": "html-ex1",
+      "title": "Basic HTML Structure",
+      "description": "Create a properly structured HTML5 document with essential elements.",
+      "duration": "25 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "HTML documents require a specific structure with doctype, html, head, and body elements. The head contains metadata while the body contains visible content.",
+      "objective": "Create a valid HTML5 document with title, heading, paragraph, and list.",
+      "initialCode": "<!DOCTYPE html>\n<html>\n<head>\n    <!-- Add title and meta tags -->\n</head>\n<body>\n    <!-- Add content here -->\n</body>\n</html>",
+      "solutionCode": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>My First Web Page</title>\n</head>\n<body>\n    <h1>Welcome to My Website</h1>\n    <p>This is my first HTML page.</p>\n    <ul>\n        <li>HTML</li>\n        <li>CSS</li>\n        <li>JavaScript</li>\n    </ul>\n</body>\n</html>",
+      "requirements": [
+        "Use HTML5 doctype",
+        "Include proper meta tags",
+        "Add a heading with h1",
+        "Create a paragraph and unordered list"
+      ],
+      "hints": [
+        "Use lang attribute in html tag",
+        "Include charset and viewport meta tags",
+        "Use ul for unordered list, li for list items"
+      ]
+    },
+    {
+      "id": "html-ex2",
+      "title": "Semantic HTML Layout",
+      "description": "Build a semantic webpage layout using HTML5 structural elements.",
+      "duration": "35 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "Semantic HTML uses elements that clearly describe their meaning to both browser and developer. Elements like header, nav, main, article, section, and footer improve accessibility and SEO.",
+      "objective": "Create a semantic webpage layout with header, navigation, main content, and footer.",
+      "initialCode": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Semantic Layout</title>\n</head>\n<body>\n    <!-- Build semantic structure here -->\n</body>\n</html>",
+      "solutionCode": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Semantic Web Page</title>\n</head>\n<body>\n    <header>\n        <h1>Website Header</h1>\n        <nav>\n            <ul>\n                <li><a href=\"#home\">Home</a></li>\n                <li><a href=\"#about\">About</a></li>\n                <li><a href=\"#contact\">Contact</a></li>\n            </ul>\n        </nav>\n    </header>\n    \n    <main>\n        <article>\n            <h2>Article Title</h2>\n            <p>This is the main content of the article.</p>\n        </article>\n        \n        <section>\n            <h3>Related Content</h3>\n            <p>Additional information goes here.</p>\n        </section>\n    </main>\n    \n    <footer>\n        <p>&copy; 2024 My Website</p>\n    </footer>\n</body>\n</html>",
+      "requirements": [
+        "Use header, nav, main, article, section, footer",
+        "Create navigation with links",
+        "Add meaningful content in articles and sections",
+        "Include copyright in footer"
+      ],
+      "hints": [
+        "Header typically contains logo and navigation",
+        "Main should contain primary content",
+        "Use article for self-contained content",
+        "Section groups related content"
+      ]
+    },
+    {
+      "id": "html-ex3",
+      "title": "HTML Forms and Validation",
+      "description": "Create interactive forms with input validation and different field types.",
+      "duration": "45 min",
+      "difficulty": "Intermediate",
+      "language": "html",
+      "theory": "HTML forms collect user input using various input types. HTML5 introduced new input types and attributes for validation like required, pattern, email, number, etc.",
+      "objective": "Build a registration form with validation for different input types.",
+      "initialCode": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Registration Form</title>\n</head>\n<body>\n    <!-- Create registration form here -->\n</body>\n</html>",
+      "solutionCode": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Registration Form</title>\n</head>\n<body>\n    <h1>User Registration</h1>\n    <form>\n        <div>\n            <label for=\"name\">Full Name:</label>\n            <input type=\"text\" id=\"name\" name=\"name\" required minlength=\"2\">\n        </div>\n        \n        <div>\n            <label for=\"email\">Email:</label>\n            <input type=\"email\" id=\"email\" name=\"email\" required>\n        </div>\n        \n        <div>\n            <label for=\"password\">Password:</label>\n            <input type=\"password\" id=\"password\" name=\"password\" required minlength=\"8\">\n        </div>\n        \n        <div>\n            <label for=\"age\">Age:</label>\n            <input type=\"number\" id=\"age\" name=\"age\" min=\"18\" max=\"100\">\n        </div>\n        \n        <div>\n            <label for=\"country\">Country:</label>\n            <select id=\"country\" name=\"country\">\n                <option value=\"\">Select Country</option>\n                <option value=\"us\">United States</option>\n                <option value=\"ca\">Canada</option>\n                <option value=\"uk\">United Kingdom</option>\n            </select>\n        </div>\n        \n        <div>\n            <label>\n                <input type=\"checkbox\" name=\"newsletter\" checked>\n                Subscribe to newsletter\n            </label>\n        </div>\n        \n        <button type=\"submit\">Register</button>\n    </form>\n</body>\n</html>",
+      "requirements": [
+        "Create form with various input types",
+        "Implement client-side validation",
+        "Include text, email, password, number inputs",
+        "Add select dropdown and checkbox",
+        "Make required fields"
+      ],
+      "hints": [
+        "Use type='email' for email validation",
+        "required attribute makes field mandatory",
+        "minlength sets minimum character length",
+        "min and max work with number inputs"
+      ]
+    },
+    {
+      "id": "html-ex4",
+      "title": "Multimedia and Embedding",
+      "description": "Learn to embed images, audio, video, and iframes in web pages.",
+      "duration": "40 min",
+      "difficulty": "Intermediate",
+      "language": "html",
+      "theory": "HTML provides elements for embedding multimedia content. img for images, audio for sound, video for videos, and iframe for embedding external content. Always include alt text for accessibility.",
+      "objective": "Create a multimedia page with images, audio, video, and embedded content.",
+      "initialCode": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Multimedia Page</title>\n</head>\n<body>\n    <!-- Add multimedia elements here -->\n</body>\n</html>",
+      "solutionCode": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Multimedia Gallery</title>\n</head>\n<body>\n    <h1>Multimedia Content</h1>\n    \n    <section>\n        <h2>Images</h2>\n        <figure>\n            <img src=\"https://via.placeholder.com/400x300\" alt=\"Placeholder image\" width=\"400\" height=\"300\">\n            <figcaption>Example image with caption</figcaption>\n        </figure>\n    </section>\n    \n    <section>\n        <h2>Audio Player</h2>\n        <audio controls>\n            <source src=\"audio.mp3\" type=\"audio/mpeg\">\n            <source src=\"audio.ogg\" type=\"audio/ogg\">\n            Your browser does not support the audio element.\n        </audio>\n    </section>\n    \n    <section>\n        <h2>Video Player</h2>\n        <video controls width=\"600\">\n            <source src=\"video.mp4\" type=\"video/mp4\">\n            <source src=\"video.webm\" type=\"video/webm\">\n            Your browser does not support the video element.\n        </video>\n    </section>\n    \n    <section>\n        <h2>Embedded Content</h2>\n        <iframe \n            width=\"560\" \n            height=\"315\" \n            src=\"https://www.youtube.com/embed/dQw4w9WgXcQ\" \n            title=\"YouTube video player\" \n            frameborder=\"0\" \n            allowfullscreen>\n        </iframe>\n    </section>\n</body>\n</html>",
+      "requirements": [
+        "Embed images with proper alt text",
+        "Create audio player with controls",
+        "Add video player with multiple sources",
+        "Embed external content using iframe",
+        "Use figure and figcaption for images"
+      ],
+      "hints": [
+        "Always include alt attribute for images",
+        "Use controls attribute for media playback",
+        "Provide multiple source formats for compatibility",
+        "Set width and height for video and iframe"
+      ]
+    },
+    {
+      "id": "html-ex5",
+      "title": "Advanced HTML Features",
+      "description": "Implement advanced HTML features like data attributes, details/summary, and microdata.",
+      "duration": "50 min",
+      "difficulty": "Advanced",
+      "language": "html",
+      "theory": "Advanced HTML features include data-* attributes for storing custom data, details/summary for collapsible content, and microdata for structured data markup that helps search engines understand content.",
+      "objective": "Create a page using advanced HTML5 features including data attributes and semantic markup.",
+      "initialCode": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Advanced HTML</title>\n</head>\n<body>\n    <!-- Implement advanced features here -->\n</body>\n</html>",
+      "solutionCode": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Advanced HTML Features</title>\n    <style>\n        .product {\n            border: 1px solid #ccc;\n            padding: 15px;\n            margin: 10px;\n        }\n        [data-highlight=\"true\"] {\n            background-color: yellow;\n        }\n    </style>\n</head>\n<body>\n    <h1>Advanced HTML Demo</h1>\n    \n    <!-- Data Attributes -->\n    <section>\n        <h2>Data Attributes Example</h2>\n        <div class=\"product\" data-product-id=\"123\" data-price=\"29.99\" data-category=\"electronics\" data-highlight=\"true\">\n            <h3>Smartphone</h3>\n            <p>Price: $29.99</p>\n        </div>\n        <div class=\"product\" data-product-id=\"124\" data-price=\"19.99\" data-category=\"books\" data-highlight=\"false\">\n            <h3>Programming Book</h3>\n            <p>Price: $19.99</p>\n        </div>\n    </section>\n    \n    <!-- Details/Summary -->\n    <section>\n        <h2>Collapsible Content</h2>\n        <details>\n            <summary>Click to see more information</summary>\n            <p>This is hidden content that appears when you click the summary.</p>\n            <p>You can put any HTML content here.</p>\n        </details>\n    </section>\n    \n    <!-- Microdata -->\n    <section itemscope itemtype=\"https://schema.org/Person\">\n        <h2>Structured Data (Microdata)</h2>\n        <p>Name: <span itemprop=\"name\">John Doe</span></p>\n        <p>Job: <span itemprop=\"jobTitle\">Web Developer</span></p>\n        <p>Company: <span itemprop=\"worksFor\">Tech Corp</span></p>\n        <p>Email: <span itemprop=\"email\">john@example.com</span></p>\n    </section>\n    \n    <!-- Progress and Meter -->\n    <section>\n        <h2>Progress Indicators</h2>\n        <label for=\"progress\">Download Progress:</label>\n        <progress id=\"progress\" value=\"75\" max=\"100\">75%</progress>\n        \n        <label for=\"meter\">Storage Usage:</label>\n        <meter id=\"meter\" value=\"0.8\" min=\"0\" max=\"1\">80%</meter>\n    </section>\n    \n    <!-- Dialog Element -->\n    <section>\n        <h2>Modal Dialog</h2>\n        <button onclick=\"document.getElementById('demoDialog').showModal()\">Open Dialog</button>\n        <dialog id=\"demoDialog\">\n            <h3>Dialog Title</h3>\n            <p>This is a native HTML dialog.</p>\n            <button onclick=\"document.getElementById('demoDialog').close()\">Close</button>\n        </dialog>\n    </section>\n</body>\n</html>",
+      "requirements": [
+        "Use data-* attributes to store custom data",
+        "Implement details/summary for collapsible content",
+        "Add microdata for structured data markup",
+        "Use progress and meter elements",
+        "Create modal dialog with dialog element"
+      ],
+      "hints": [
+        "Data attributes can be accessed via JavaScript",
+        "Details/summary works without JavaScript",
+        "Microdata helps search engines understand content",
+        "Dialog element creates native modals"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "title": "MDN Web Docs - HTML",
+      "description": "Comprehensive HTML reference and guides",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML"
+    },
+    {
+      "title": "W3Schools - HTML Tutorial",
+      "description": "Interactive HTML tutorials and examples",
+      "url": "https://www.w3schools.com/html/"
+    },
+    {
+      "title": "HTML Living Standard",
+      "description": "Official HTML specification",
+      "url": "https://html.spec.whatwg.org/"
+    }
+  ]
+}

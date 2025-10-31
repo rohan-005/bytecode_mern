@@ -1,0 +1,142 @@
+{
+  "id": "css",
+  "name": "CSS Fundamentals & Layouts",
+  "description": "Master CSS from basics to advanced layouts: selectors, box model, Flexbox, Grid, responsive design, animations and best-practices for maintainable styling.",
+  "instructor": "Priya Sharma",
+  "duration": "7 weeks",
+  "level": "Beginner → Advanced",
+  "price": 0,
+  "image": "/logos/css.png",
+  "category": "Web Development",
+  "rating": 4.9,
+  "ratingCount": 1602,
+  "students": 1602,
+  "tags": ["css", "styles", "responsive", "flexbox", "grid"],
+  "whatYouLearn": [
+    "CSS syntax and selectors (simple to complex)",
+    "Box model, margin, border, padding, content",
+    "Positioning, display types and stacking context",
+    "Responsive design with media queries",
+    "Flexbox & Grid for modern layouts",
+    "Transitions, transforms and keyframe animations",
+    "Organizing CSS: BEM, variables and preprocessors"
+  ],
+  "prerequisites": ["Basic HTML knowledge", "Familiarity with web browsers"],
+  "exercises": [
+    {
+      "id": "ex1",
+      "title": "Selectors and Basic Styling",
+      "description": "Apply basic styles for body, headings and paragraphs using class and element selectors.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "css",
+      "theory": "Selectors target elements; cascade and specificity decide which rule applies. Common properties: color, background, font-size, margin, padding.",
+      "objective": "Style body background, headings with a font-size, and paragraphs with line-height.",
+      "initialCode": "/* add your CSS here */",
+      "solutionCode": "body { font-family: Arial, sans-serif; background:#f7f7f7; color:#222; }\nh1 { font-size: 2rem; margin: .5rem 0; }\np { line-height: 1.6; color: #444; }",
+      "requirements": ["Use element selectors and one class selector", "Avoid inline styles"],
+      "hints": ["Remember specificity: id > class > element"]
+    },
+    {
+      "id": "ex2",
+      "title": "Box Model & Spacing",
+      "description": "Demonstrate understanding of padding, border and margin; create a card component.",
+      "duration": "35 min",
+      "difficulty": "Easy",
+      "language": "css",
+      "theory": "The CSS box model includes content, padding, border and margin. `box-sizing: border-box` simplifies sizing.",
+      "objective": "Create a `.card` with padding, border-radius and box-shadow.",
+      "initialCode": "<div class=\"card\">Card content</div>\n/* CSS */",
+      "solutionCode": "*, *::before, *::after { box-sizing:border-box; }\n.card { background:#fff; padding:16px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.08); border:1px solid #e6e6e6; }",
+      "requirements": ["Use `box-sizing: border-box`", "Add padding, border-radius and subtle shadow"],
+      "hints": ["Use `::before` or `::after` for decorative elements"]
+    },
+    {
+      "id": "ex3",
+      "title": "Flexbox Layout",
+      "description": "Build a responsive navbar and a 3-column layout (collapses to single column on small screens) using Flexbox.",
+      "duration": "50 min",
+      "difficulty": "Medium",
+      "language": "css",
+      "theory": "Flexbox is ideal for 1D layouts. Key properties: display:flex, flex-direction, justify-content, align-items, flex-grow.",
+      "objective": "Use `.container { display:flex; }` and flex properties to create a responsive layout.",
+      "initialCode": "<div class=\"container\">...</div>\n/* CSS */",
+      "solutionCode": ".container{display:flex;gap:16px}\n.container > .col{flex:1}\n@media (max-width:768px){ .container{flex-direction:column} }",
+      "requirements": ["Use display:flex and media query", "Three columns on desktop, one column on mobile"],
+      "hints": ["Use `gap` for spacing instead of margins between flex children"]
+    },
+    {
+      "id": "ex4",
+      "title": "CSS Grid — Dashboard",
+      "description": "Create a simple dashboard layout using CSS Grid with header, sidebar and content area.",
+      "duration": "1 hour",
+      "difficulty": "Medium",
+      "language": "css",
+      "theory": "Grid is powerful for 2D layouts. Use grid-template-areas, grid-template-columns and grid-auto-rows for arrangement.",
+      "objective": "Design layout with header across top, sidebar on left and content on right.",
+      "initialCode": "<div class=\"grid\">...</div>\n/* CSS */",
+      "solutionCode": ".grid{display:grid;grid-template-columns:250px 1fr;grid-template-rows:60px 1fr;grid-template-areas:'header header' 'sidebar content'}\nheader{grid-area:header}\naside{grid-area:sidebar}\nmain{grid-area:content}",
+      "requirements": ["Use grid-template-areas", "Sidebar fixed width, content flexible"],
+      "hints": ["Combine Grid with media queries for responsive dashboards"]
+    },
+    {
+      "id": "ex5",
+      "title": "Responsive Design & Media Queries",
+      "description": "Make a site responsive for mobile, tablet and desktop breakpoints using media queries and fluid units.",
+      "duration": "45 min",
+      "difficulty": "Medium",
+      "language": "css",
+      "theory": "Use relative units (rem, %) and media queries to adjust layout and typography across breakpoints.",
+      "objective": "Adjust typography and layout at 480px, 768px and 1200px breakpoints.",
+      "initialCode": "/* base styles */\n@media (max-width:768px){ /* mobile */ }",
+      "solutionCode": "html{font-size:16px}\n@media (max-width:1200px){ html{font-size:15px} }\n@media (max-width:768px){ html{font-size:14px} .container{padding:12px} }",
+      "requirements": ["Use at least two breakpoints", "Use rem or % rather than px for scaling"],
+      "hints": ["Design mobile-first (base styles for small screens, then min-width queries)"]
+    },
+    {
+      "id": "ex6",
+      "title": "Transitions & Animations",
+      "description": "Add subtle hover transitions to buttons and create a simple keyframe animation for a loading indicator.",
+      "duration": "40 min",
+      "difficulty": "Medium",
+      "language": "css",
+      "theory": "`transition` provides simple state change animations; `@keyframes` defines complex animations.",
+      "objective": "Style a button with a color/transform transition and add an animated spinner using keyframes.",
+      "initialCode": "<button class=\"btn\">Click</button>\n<div class=\"spinner\"></div>\n/* CSS */",
+      "solutionCode": ".btn{transition:transform .18s ease, box-shadow .18s}\n.btn:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(0,0,0,.08)}\n.spinner{width:24px;height:24px;border-radius:50%;border:3px solid rgba(0,0,0,.08);border-top-color:#222;animation:spin 1s linear infinite}\n@keyframes spin{to{transform:rotate(360deg)}}",
+      "requirements": ["Use `transition` for the button", "Create spinner with `@keyframes`"],
+      "hints": ["Keep animations subtle and performant (transform/opacity)"]
+    },
+    {
+      "id": "ex7",
+      "title": "Organizing CSS & BEM",
+      "description": "Refactor a component’s CSS to use BEM naming and CSS variables for theme colors.",
+      "duration": "50 min",
+      "difficulty": "Medium",
+      "language": "css",
+      "theory": "BEM improves maintainability. CSS variables enable theming and reduce repetition.",
+      "objective": "Convert `.card` styles to `.card`, `.card__title`, `.card--highlight` and use `--primary-color` variable.",
+      "initialCode": "/* non-BEM styles */",
+      "solutionCode": ":root{--primary:#0b5cff}\n.card{background:#fff}\n.card__title{font-weight:700}\n.card--highlight{border:2px solid var(--primary)}",
+      "requirements": ["Use BEM-like class names", "Use at least one CSS variable"],
+      "hints": ["Keep variables in `:root` for global theme control"]
+    }
+  ],
+  "references": [
+    {
+      "title": "MDN Web Docs - CSS",
+      "description": "Comprehensive reference for CSS features and guides.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS"
+    },
+    {
+      "title": "CSS-Tricks",
+      "description": "Practical tips, patterns and guides for CSS.",
+      "url": "https://css-tricks.com/"
+    },
+    {
+      "title": "A Complete Guide to Flexbox",
+      "description": "In-depth Flexbox guide.",
+      "url": "https://css-tricks.com/snippets/css/a-guide-to-flexbox/"
+    }
+  ]
+}

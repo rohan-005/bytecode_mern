@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -46,6 +47,7 @@ const CourseDetail = () => {
       fetchUserStats();
       fetchUserRating();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId, user]);
 
   const fetchCourseData = async () => {
@@ -224,7 +226,7 @@ const CourseDetail = () => {
               <img 
                 src={course.image || '/images/default-course.jpg'} 
                 alt={course.name}
-                className="w-full h-64 lg:h-80 object-cover rounded-2xl shadow-2xl"
+                className="w-64 h-64 lg:h-80 object-cover rounded-2xl shadow-2xl"
               />
             </div>
 

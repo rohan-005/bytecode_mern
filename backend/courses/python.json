@@ -1,0 +1,156 @@
+{
+  "id": "python",
+  "name": "Python Programming: From Basics to Real Projects",
+  "description": "Learn Python programming: syntax, data structures, OOP, modules, file I/O, virtual environments, and build small real-world projects.",
+  "instructor": "Dr. Anil Kapoor",
+  "duration": "8 weeks",
+  "level": "Beginner → Intermediate",
+  "price": 0,
+  "image": "/logos/python.png",
+  "category": "Programming",
+  "rating": 4.9,
+  "ratingCount": 5200,
+  "students": 5200,
+  "tags": ["python", "programming", "scripting", "data"],
+  "whatYouLearn": [
+    "Python syntax and data types",
+    "Control flow and functions",
+    "Built-in data structures: lists, tuples, dicts, sets",
+    "File handling and modules",
+    "Object-oriented programming in Python",
+    "Virtual environments and package management",
+    "Simple web scraping and small projects"
+  ],
+  "prerequisites": ["Basic programming logic helpful but not required", "Comfort with a code editor"],
+  "exercises": [
+    {
+      "id": "ex1",
+      "title": "Hello Python & Variables",
+      "description": "Print to console and use variables of different types.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Use `print()` for output. Python is dynamically typed; common types: int, float, str, bool.",
+      "objective": "Create variables for name, age and print a formatted message.",
+      "initialCode": "# write code here",
+      "solutionCode": "name = 'Alex'\nage = 30\nprint(f\"{name} is {age} years old\")",
+      "requirements": ["Use f-string formatting", "Define variables and print"],
+      "hints": ["f-strings are `f\"...{var}...\"` (Python 3.6+)"]
+    },
+    {
+      "id": "ex2",
+      "title": "Control Flow & Loops",
+      "description": "Use if/elif/else, for and while loops; practice loop control with break/continue.",
+      "duration": "30 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Python uses indentation for blocks. `for` iterates over iterables; `while` repeats until condition false.",
+      "objective": "Print even numbers from a list and stop when a negative number is found.",
+      "initialCode": "nums = [2,4,6,-1,8]\n# code here",
+      "solutionCode": "for n in nums:\n  if n<0:\n    break\n  if n%2!=0:\n    continue\n  print(n)",
+      "requirements": ["Use for loop and break/continue appropriately"],
+      "hints": ["Indentation is significant in Python"]
+    },
+    {
+      "id": "ex3",
+      "title": "Functions & Modules",
+      "description": "Define functions with positional and keyword args; import a helper module.",
+      "duration": "40 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Functions help organize code. Modules allow code reuse; use `import` or `from x import y`.",
+      "objective": "Create `math_utils.py` with an `is_prime(n)` function, then import and use it.",
+      "initialCode": "# math_utils.py\n# app.py imports and uses is_prime",
+      "solutionCode": "# math_utils.py\n\ndef is_prime(n):\n  if n<2: return False\n  i=2\n  while i*i<=n:\n    if n%i==0: return False\n    i+=1\n  return True\n\n# app.py\nfrom math_utils import is_prime\nprint(is_prime(17))  # True",
+      "requirements": ["Create a module file and import it", "Implement basic primality test"],
+      "hints": ["Use `if __name__ == '__main__':` for module test code"]
+    },
+    {
+      "id": "ex4",
+      "title": "Data Structures: Lists, Dicts & Sets",
+      "description": "Use lists, dictionary comprehensions and set operations.",
+      "duration": "45 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Lists are ordered, dicts are key-value maps (insertion ordered since Python 3.7), sets are unordered unique collections.",
+      "objective": "Count word frequencies from a text using a dict and show top 3 words.",
+      "initialCode": "text = 'hello world hello python'\n# code here",
+      "solutionCode": "text = 'hello world hello python'\nwords = text.split()\nfreq={}\nfor w in words:\n  freq[w]=freq.get(w,0)+1\ntop = sorted(freq.items(), key=lambda x: x[1], reverse=True)[:3]\nprint(top)",
+      "requirements": ["Use dict to count", "Sort by frequency"],
+      "hints": ["`collections.Counter` can simplify but try manual first"]
+    },
+    {
+      "id": "ex5",
+      "title": "File I/O & CSV",
+      "description": "Read and write files and parse CSV data using the `csv` module.",
+      "duration": "1 hour",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Use `open()` with context managers to handle resources, and `csv.reader`/`csv.DictReader` for CSV.",
+      "objective": "Read `data.csv` and compute average of a numeric column, then write results to `summary.txt`.",
+      "initialCode": "# data.csv present\n# write processing code",
+      "solutionCode": "import csv\nwith open('data.csv', newline='') as f:\n  reader = csv.DictReader(f)\n  vals=[]\n  for row in reader:\n    vals.append(float(row['value']))\navg = sum(vals)/len(vals)\nwith open('summary.txt','w') as out:\n  out.write(f'Average: {avg}\\n')",
+      "requirements": ["Use context managers (`with`)", "Parse CSV with csv module"],
+      "hints": ["Handle missing/invalid rows defensively"]
+    },
+    {
+      "id": "ex6",
+      "title": "Object Oriented Programming",
+      "description": "Create classes, use inheritance and magic methods (`__str__`, `__repr__`).",
+      "duration": "1 hour",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "OOP in Python is simple and flexible. Use `self` for instance, and override methods in subclasses.",
+      "objective": "Implement a `Vehicle` base class and `Car` subclass; override `__str__`.",
+      "initialCode": "class Vehicle:\n  pass\n\nclass Car(Vehicle):\n  pass",
+      "solutionCode": "class Vehicle:\n  def __init__(self, make, year):\n    self.make = make\n    self.year = year\n  def __str__(self):\n    return f\"{self.make} ({self.year})\"\n\nclass Car(Vehicle):\n  def __init__(self, make, year, doors):\n    super().__init__(make, year)\n    self.doors = doors\n  def __str__(self):\n    return f\"{self.make} ({self.year}) - {self.doors} doors\"\n\nc = Car('Toyota', 2020, 4)\nprint(c)",
+      "requirements": ["Use inheritance and `super()`", "Implement `__str__`"],
+      "hints": ["Use `__repr__` for unambiguous representation helpful in debugging"]
+    },
+    {
+      "id": "ex7",
+      "title": "Web Scraping (requests + BeautifulSoup)",
+      "description": "Fetch an HTML page and extract headings or links using `requests` and `bs4`.",
+      "duration": "1 hour",
+      "difficulty": "Advanced",
+      "language": "python",
+      "theory": "`requests` retrieves HTML, `BeautifulSoup` parses DOM-like structure for scraping.",
+      "objective": "Download a page and list all linked URLs and page title.",
+      "initialCode": "# use requests and bs4",
+      "solutionCode": "import requests\nfrom bs4 import BeautifulSoup\nres = requests.get('https://example.com')\nsoup=BeautifulSoup(res.text,'html.parser')\nprint('Title:', soup.title.string)\nfor a in soup.find_all('a', href=True):\n  print(a['href'])",
+      "requirements": ["Use requests and BeautifulSoup", "Respect robots.txt and scraping ethics"],
+      "hints": ["Throttle requests and do not scrape protected content"]
+    },
+    {
+      "id": "ex8",
+      "title": "Final Project: CLI Tool or Small Web App",
+      "description": "Build a command-line utility (e.g., CSV analyzer) or a small Flask web app demonstrating learned concepts.",
+      "duration": "6-8 hours",
+      "difficulty": "Advanced",
+      "language": "python",
+      "theory": "Combine modules, package structure, virtualenv and packaging basics (pip install -e .).",
+      "objective": "Deliver a small, well-structured project with README and dependency list (requirements.txt).",
+      "initialCode": "# scaffold project structure",
+      "solutionCode": "# Example: CLI CSV analyzer (concept)\n# main.py uses argparse, imports analyzer module, writes output summary\n# Provide README and requirements.txt",
+      "requirements": ["Use virtual environment", "Provide README and run instructions", "Include tests if possible"],
+      "hints": ["Start small and iterate; use argparse for CLI tools"]
+    }
+  ],
+  "references": [
+    {
+      "title": "Python.org Tutorial",
+      "description": "Official Python tutorial and docs.",
+      "url": "https://docs.python.org/3/tutorial/"
+    },
+    {
+      "title": "Real Python",
+      "description": "Practical Python tutorials.",
+      "url": "https://realpython.com/"
+    },
+    {
+      "title": "Automate the Boring Stuff",
+      "description": "Great beginner projects and practical examples.",
+      "url": "https://automatetheboringstuff.com/"
+    }
+  ]
+}

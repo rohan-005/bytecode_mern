@@ -1,0 +1,170 @@
+{
+  "id": "c",
+  "name": "C Programming: Complete Course",
+  "description": "A complete, in-depth C programming course starting from basics to systems-level programming topics: pointers, memory management, data structures and file I/O with practical exercises.",
+  "instructor": "Michael Thompson",
+  "duration": "10 weeks",
+  "level": "Beginner → Advanced",
+  "price": 0,
+  "image": "/logos/c.png",
+  "category": "Programming",
+  "rating": 4.8,
+  "ratingCount": 2140,
+  "students": 2140,
+  "tags": ["c", "systems", "pointers", "memory", "algorithms"],
+  "whatYouLearn": [
+    "C program structure, compilation and debugging",
+    "Primitive types, operators and control flow",
+    "Functions, recursion and modular code",
+    "Pointers, arrays and dynamic memory management",
+    "Structures, unions and enums",
+    "File I/O, preprocessor and makefiles",
+    "Basic data structures (linked list, stack, queue) in C"
+  ],
+  "prerequisites": ["Basic computer knowledge", "Familiarity with using a terminal"],
+  "exercises": [
+    {
+      "id": "ex1",
+      "title": "Hello World Program",
+      "description": "Write your first C program to print 'Hello, World!' and learn the compilation steps.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "c",
+      "theory": "C programs start at `main`. Use `#include` to include headers; compile with `gcc`.",
+      "objective": "Write and compile a Hello World program using `gcc`.",
+      "initialCode": "#include <stdio.h>\n\nint main() {\n    // Write your code here\n    return 0;\n}",
+      "solutionCode": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}",
+      "requirements": ["Include stdio.h", "Compile with gcc: `gcc hello.c -o hello`"],
+      "hints": ["Use `-Wall` to show warnings: `gcc -Wall hello.c -o hello`"]
+    },
+    {
+      "id": "ex2",
+      "title": "Functions & Parameters",
+      "description": "Write functions with parameters and return values; practice pass-by-value.",
+      "duration": "30 min",
+      "difficulty": "Easy",
+      "language": "c",
+      "theory": "Functions break logic into reusable parts; arguments are passed by value in C.",
+      "objective": "Create a function to compute GCD of two integers and call it from main.",
+      "initialCode": "// declare gcd function and call it in main",
+      "solutionCode": "#include <stdio.h>\n\nint gcd(int a, int b){\n    while(b){ int t=b; b=a%b; a=t; }\n    return a;\n}\nint main(){ printf(\"GCD = %d\\n\", gcd(48,18)); return 0; }",
+      "requirements": ["Implement gcd function", "Call from main and print result"],
+      "hints": ["Use Euclidean algorithm for efficiency"]
+    },
+    {
+      "id": "ex3",
+      "title": "Arrays and Strings",
+      "description": "Work with arrays and C-style strings; implement string length and copy functions.",
+      "duration": "45 min",
+      "difficulty": "Medium",
+      "language": "c",
+      "theory": "Strings in C are char arrays terminated by '\\0'. Be careful with buffer sizes and null terminators.",
+      "objective": "Implement `my_strlen` and `my_strcpy` functions and test them.",
+      "initialCode": "/* write my_strlen and my_strcpy */",
+      "solutionCode": "#include <stdio.h>\n\nsize_t my_strlen(const char *s){ const char *p=s; while(*p) p++; return p-s; }\nchar* my_strcpy(char *dest, const char *src){ char *d=dest; while((*d++ = *src++)); return dest; }\nint main(){ char s[100] = \"hello\"; printf(\"len=%zu\\n\", my_strlen(s)); char t[100]; my_strcpy(t,s); printf(\"t=%s\\n\",t); }",
+      "requirements": ["Handle null terminator correctly", "Avoid buffer overflow in tests"],
+      "hints": ["Use `size_t` for lengths"]
+    },
+    {
+      "id": "ex4",
+      "title": "Pointers & Dynamic Memory",
+      "description": "Understand pointers, pointer arithmetic and dynamic allocation with `malloc`/`free`.",
+      "duration": "1 hour",
+      "difficulty": "Medium",
+      "language": "c",
+      "theory": "Pointers store addresses. Use `malloc` to allocate heap memory and `free` to release it. Always check for NULL.",
+      "objective": "Allocate an int array dynamically, fill it and free it.",
+      "initialCode": "/* allocate array of n ints */",
+      "solutionCode": "#include <stdio.h>\n#include <stdlib.h>\nint main(){ int n=5; int *a = malloc(n * sizeof *a); if(!a){ perror(\"malloc\"); return 1; }\nfor(int i=0;i<n;i++) a[i]=i*i;\nfor(int i=0;i<n;i++) printf(\"%d \", a[i]);\nfree(a);\nreturn 0; }",
+      "requirements": ["Use malloc and free", "Check returned pointer for NULL"],
+      "hints": ["Use `sizeof *a` style to avoid type repetition"]
+    },
+    {
+      "id": "ex5",
+      "title": "Structs, Enums & Typedefs",
+      "description": "Define and use structures and enums; create functions that accept struct pointers.",
+      "duration": "45 min",
+      "difficulty": "Medium",
+      "language": "c",
+      "theory": "Structs group related data; pass by pointer to avoid copies. Enums provide named integer constants.",
+      "objective": "Create a `Point` struct and function to compute distance (use `sqrt` from math.h).",
+      "initialCode": "/* define Point and distance function */",
+      "solutionCode": "#include <stdio.h>\n#include <math.h>\ntypedef struct { double x,y; } Point;\ndouble dist(const Point *a,const Point *b){ double dx=a->x-b->x; double dy=a->y-b->y; return sqrt(dx*dx+dy*dy); }\nint main(){ Point p1={0,0}, p2={3,4}; printf(\"dist=%.2f\\n\", dist(&p1,&p2)); }",
+      "requirements": ["Use struct and pointer dereference `->`", "Link with math (`-lm`) if needed on some systems"],
+      "hints": ["Remember to `#include <math.h>`"]
+    },
+    {
+      "id": "ex6",
+      "title": "File I/O and Streams",
+      "description": "Read and write files using `fopen`, `fgets`, `fprintf` and `fclose`.",
+      "duration": "45 min",
+      "difficulty": "Medium",
+      "language": "c",
+      "theory": "C standard I/O uses `FILE*`. Check return values for errors.",
+      "objective": "Read a text file line-by-line and write lines with line numbers to another file.",
+      "initialCode": "/* open input and output files and process lines */",
+      "solutionCode": "#include <stdio.h>\n#include <stdlib.h>\nint main(){ FILE *in=fopen(\"input.txt\",\"r\"); if(!in){ perror(\"fopen\"); return 1; }\nFILE *out=fopen(\"out.txt\",\"w\"); if(!out){ perror(\"fopen out\"); fclose(in); return 1; }\nchar buf[512]; int ln=1; while(fgets(buf,sizeof buf,in)){ fprintf(out, \"%4d: %s\", ln++, buf); }\nfclose(in); fclose(out); return 0; }",
+      "requirements": ["Check for NULL on fopen", "Use fgets to avoid overflow"],
+      "hints": ["Use `feof`/`ferror` only when needed; prefer checking return of fgets"]
+    },
+    {
+      "id": "ex7",
+      "title": "Linked List Implementation",
+      "description": "Implement a singly linked list with insert, delete and traversal operations.",
+      "duration": "2 hours",
+      "difficulty": "Advanced",
+      "language": "c",
+      "theory": "Dynamic data structures often use malloc/free. Carefully manage pointers to avoid leaks and invalid accesses.",
+      "objective": "Create a linked list storing integers and implement insert at head, delete value, and print list.",
+      "initialCode": "/* node struct and main skeleton */",
+      "solutionCode": "#include <stdio.h>\n#include <stdlib.h>\ntypedef struct Node{ int val; struct Node *next; } Node;\nNode* push(Node *head,int v){ Node *n=malloc(sizeof *n); n->val=v; n->next=head; return n; }\nNode* delete_val(Node *head,int v){ Node **cur=&head; while(*cur){ if((*cur)->val==v){ Node *tmp=*cur; *cur=(*cur)->next; free(tmp); break; } cur=&(*cur)->next; } return head; }\nvoid printlist(Node *h){ while(h){ printf(\"%d -> \", h->val); h=h->next; } printf(\"NULL\\n\"); }\nint main(){ Node *head=NULL; head=push(head,3); head=push(head,5); printlist(head); head=delete_val(head,3); printlist(head); // free remaining\n while(head){ Node *t=head; head=head->next; free(t);} }",
+      "requirements": ["Manage memory with malloc/free", "Avoid dangling pointers"],
+      "hints": ["Use double pointers (`Node **`) to simplify deletion logic"]
+    },
+    {
+      "id": "ex8",
+      "title": "Makefile & Compilation Flags",
+      "description": "Create a Makefile for a multi-file project and understand common gcc flags (`-Wall`, `-Werror`, `-O2`).",
+      "duration": "45 min",
+      "difficulty": "Medium",
+      "language": "c",
+      "theory": "Make automates builds. Use object files to avoid recompiling unchanged sources.",
+      "objective": "Write a Makefile to build `app` from `main.c` and `utils.c`.",
+      "initialCode": "# Makefile skeleton",
+      "solutionCode": "CC=gcc\nCFLAGS=-Wall -Wextra -O2\nOBJ=main.o utils.o\napp: $(OBJ)\n\t$(CC) $(CFLAGS) -o $@ $(OBJ)\n%.o: %.c\n\t$(CC) $(CFLAGS) -c $<\nclean:\n\trm -f *.o app",
+      "requirements": ["Provide rules for object files and clean", "Use CFLAGS variable"],
+      "hints": ["Use tabs (not spaces) before commands in Makefile"]
+    },
+    {
+      "id": "ex9",
+      "title": "Final Project: Small CLI Utility in C",
+      "description": "Create a small command line utility (e.g., text grep, CSV summarizer, or simple HTTP client using sockets) combining file I/O, argument parsing and modular code.",
+      "duration": "8-10 hours",
+      "difficulty": "Advanced",
+      "language": "c",
+      "theory": "Real-world C projects need error handling, modularity, makefiles and testing.",
+      "objective": "Deliver a working CLI program with README and Makefile.",
+      "initialCode": "/* scaffold main.c and modules */",
+      "solutionCode": "/* Example deliverables: main.c, parser.c/h, utils.c/h, Makefile and README describing usage */",
+      "requirements": ["Use modular files, Makefile, and proper error handling", "Include README with usage examples"],
+      "hints": ["Start with small features and incrementally add functionality; test memory with valgrind if possible"]
+    }
+  ],
+  "references": [
+    {
+      "title": "The C Programming Language (K&R)",
+      "description": "Classic book by Kernighan & Ritchie — essential reading for C.",
+      "url": "https://en.wikipedia.org/wiki/The_C_Programming_Language"
+    },
+    {
+      "title": "GNU C Library Documentation",
+      "description": "Reference for C standard library functions.",
+      "url": "https://www.gnu.org/software/libc/manual/"
+    },
+    {
+      "title": "Learn C - TutorialsPoint",
+      "description": "Step-by-step tutorials and examples.",
+      "url": "https://www.tutorialspoint.com/cprogramming/index.htm"
+    }
+  ]
+}

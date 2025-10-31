@@ -313,7 +313,7 @@ const Courses = () => {
             return (
               <div
                 key={course.id}
-                className="group bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 hover:border-purple-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10 hover:scale-105"
+                className="h-80 group bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 hover:border-purple-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10 hover:scale-105"
               >
                 {/* Course Header */}
                 <div className="flex justify-between items-start mb-4">
@@ -341,7 +341,7 @@ const Courses = () => {
                 </p>
 
                 {/* Course Meta */}
-                <div className="flex items-center justify-between text-sm text-gray-300 mb-4">
+                {/* <div className="flex items-center justify-between text-sm text-gray-300 mb-4">
                   <div className="flex items-center gap-4">
                     <span className="flex items-center gap-1">
                       <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
@@ -358,7 +358,6 @@ const Courses = () => {
                   </div>
                 </div>
 
-                {/* Stats & Price */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1">
@@ -383,7 +382,7 @@ const Courses = () => {
                   >
                     {course.price === 0 ? "FREE" : `$${course.price}`}
                   </span>
-                </div>
+                </div> */}
 
                 {/* Progress for enrolled courses */}
                 {enrolled && (
@@ -407,7 +406,7 @@ const Courses = () => {
                 {enrolled ? (
                   <Link
                     to={`/course/${course.id}`}
-                    className="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-green-500/25 hover:shadow-green-500/40 flex items-center justify-center gap-2 group/btn"
+                    className=" absolute bottom-5 bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-green-500/25 hover:shadow-green-500/40 flex items-center justify-center gap-2 group/btn"
                   >
                     <span>
                       {progress === 100
@@ -432,7 +431,7 @@ const Courses = () => {
                   <button
                     id={`enroll-btn-${course.id}`}
                     onClick={() => enrollInCourse(course.id)}
-                    className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 flex items-center justify-center gap-2 group/btn"
+                    className=" absolute bottom-5  bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 flex items-center justify-center gap-2 group/btn"
                   >
                     <span>Start Learning</span>
                     <svg
