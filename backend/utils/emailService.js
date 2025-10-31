@@ -84,7 +84,7 @@ const emailTemplate = (title, message, otp, name, themeColor = '#667eea') => `
 async function sendEmail(to, subject, html) {
   try {
     const response = await resend.emails.send({
-      from: 'ByteCode <onboarding@resend.dev>',
+      from: 'frosthowl005@gmail.com',
       to,
       subject,
       html,
