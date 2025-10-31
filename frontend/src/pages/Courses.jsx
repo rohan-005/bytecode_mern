@@ -89,12 +89,11 @@ const Courses = () => {
           }, 1500);
         }
       } else {
+        // eslint-disable-next-line no-unused-vars
         const error = await response.json();
-        alert(error.message);
       }
     } catch (error) {
       console.error("Error enrolling in course:", error);
-      alert("Error enrolling in course");
     }
   };
 
@@ -162,7 +161,7 @@ const Courses = () => {
   { title: "Courses", href: "/courses", icon: <IconBooks /> },
   { title: "Byte-Compiler", href: "/editor", icon: <IconEdit size={20} /> },
   { title: "Dev Den", href: "/code", icon: <IconCode /> },
-  { title: "AI", href: "/ai", icon: <IconCpu /> },
+  { title: "AI", href: "/byteai", icon: <IconCpu /> },
 
   // { title: "Tools", href: "/tools", icon: <IconTools /> },
   // { title: "GitHub", href: "https://github.com", icon: <IconBrandGithub /> },

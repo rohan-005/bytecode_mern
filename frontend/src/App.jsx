@@ -21,6 +21,8 @@ import Profile from './profile/Profile';
 import CodeEditor from "./pages/CodeEditor";
 import CourseDetail from "./pages/CourseDetail";
 import ExerciseDetail from "./components/ExerciseDetail";
+import Devden from "./devden/devden";
+import Byteai from "./byteai/byteai";
 
 
 function App() {
@@ -78,9 +80,14 @@ function App() {
             {/* courses-individuals */}
             <Route path="/course/:courseId" element={<CourseDetail />} />
 
-            // Add this route to your App.jsx
+            {/* exercises */}
             <Route path="/courses/:courseId/exercises/:exerciseId" element={<ExerciseDetail />} />
 
+            {/* devden */}
+             <Route path="/devden" element={< Devden/>} />
+
+            {/* byteai */}
+               <Route path="/byteai" element={<Byteai/>} />
 
             {/* Redirect unknown routes to 404 */}
             <Route path="*" element={<Navigate to="/404" replace />} />

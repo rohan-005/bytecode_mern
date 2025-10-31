@@ -166,7 +166,7 @@ router.post('/login', [
         token: generateToken(user._id),
       });
     } else {
-      res.status(401).json({ message: 'Invalid credentials' });
+      res.status(401).json({ message: 'User not found. Please register' });
     }
   } catch (error) {
     console.error(error);

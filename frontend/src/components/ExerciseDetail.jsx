@@ -21,6 +21,7 @@ import {
   IconTrophy,
   IconScreenShare,
   IconTerminal2,
+  IconArrowRight,
 } from "@tabler/icons-react";
 
 const navItems = [
@@ -52,6 +53,7 @@ const ExerciseDetail = () => {
   const [activeHint, setActiveHint] = useState(null);
   const [copied, setCopied] = useState(false);
   const [outputMode, setOutputMode] = useState("preview");
+  const [nextExercise, setNextExercise] = useState(null);
   const codeEditorRef = useRef(null);
 
   // API base URL - use the same as your CodeEditor
@@ -64,7 +66,7 @@ const ExerciseDetail = () => {
     css: `/* Welcome to CSS Styling! */\nbody {\n    font-family: 'Arial', sans-serif;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    margin: 0;\n    padding: 40px;\n    min-height: 100vh;\n}\n\n.container {\n    max-width: 800px;\n    margin: 0 auto;\n    background: rgba(255, 255, 255, 0.95);\n    padding: 40px;\n    border-radius: 20px;\n    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);\n    text-align: center;\n}`,
     javascript: `// Welcome to JavaScript!\nconsole.log("Hello, World!");\n\n// Simple function example\nfunction greet(name) {\n    return "Hello, " + name + "!";\n}\n\n// Array operations\nconst numbers = [1, 2, 3, 4, 5];\nconst squares = numbers.map(n => n * n);\n\nconsole.log("Original numbers:", numbers);\nconsole.log("Squared numbers:", squares);\nconsole.log("Greeting:", greet("Developer"));`,
     html: `<!DOCTYPE html>\n<html>\n<head>\n    <title>ByteCode Exercise</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n            margin: 0;\n            padding: 40px;\n            color: white;\n        }\n        .container {\n            max-width: 800px;\n            margin: 0 auto;\n            background: rgba(255, 255, 255, 0.1);\n            padding: 30px;\n            border-radius: 15px;\n            backdrop-filter: blur(10px);\n        }\n    </style>\n</head>\n<body>\n    <div class="container">\n        <h1>Welcome to ByteCode!</h1>\n        <p>Edit this HTML to see changes in real-time.</p>\n    </div>\n</body>\n</html>`,
-    python: `# Welcome to Python!\nprint("Hello, World!")\n\n# Simple function example\ndef greet(name):\n    return f"Hello, {name}!"\n\n# List operations\nnumbers = [1, 2, 3, 4, 5]\nsquares = [n * n for n in numbers]\n\nprint("Original numbers:", numbers)\nprint("Squared numbers:", squares)\nprint("Greeting:", greet("Developer"))`,
+    python: `# Welcome to Python!\nprint("Hello, World!");\n\n// Simple function example\ndef greet(name):\n    return f"Hello, {name}!"\n\n// List operations\nnumbers = [1, 2, 3, 4, 5]\nsquares = [n * n for n in numbers]\n\nprint("Original numbers:", numbers)\nprint("Squared numbers:", squares)\nprint("Greeting:", greet("Developer"))`,
     java: `// Welcome to Java!\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n        \n        // Simple function example\n        String greeting = greet("Developer");\n        System.out.println("Greeting: " + greeting);\n    }\n    \n    public static String greet(String name) {\n        return "Hello, " + name + "!";\n    }\n}`
   };
 
@@ -117,6 +119,12 @@ const ExerciseDetail = () => {
       if (foundExercise) {
         setExercise(foundExercise);
         
+        // Find next exercise
+        const exercises = courseRes.data.exercises || [];
+        const currentIndex = exercises.findIndex(ex => ex.id === exerciseId);
+        const nextEx = currentIndex < exercises.length - 1 ? exercises[currentIndex + 1] : null;
+        setNextExercise(nextEx);
+
         // Set initial output mode based on exercise type
         const initialOutputMode = canShowPreview(foundExercise.language) ? "preview" : "console";
         setOutputMode(initialOutputMode);
@@ -176,16 +184,20 @@ const ExerciseDetail = () => {
         setTimeout(() => setShowXpAnimation(false), 3000);
       }
 
-      alert("🎉 Exercise marked as complete!");
+      
     } catch (error) {
       console.error("Error completing exercise:", error);
-      if (error.response?.status === 404) {
-        alert("Error: Progress system not available. Please try again later.");
-      } else if (error.response?.status === 400) {
-        alert("Exercise already completed!");
-      } else {
-        alert("Error completing exercise. Please try again.");
-      }
+      
+    }
+  };
+
+  // Navigate to next exercise
+  const goToNextExercise = () => {
+    if (nextExercise) {
+      navigate(`/courses/${courseId}/exercises/${nextExercise.id}`);
+    } else {
+      // If no next exercise, go back to course page
+      navigate(`/courses/${courseId}`);
     }
   };
 
@@ -698,14 +710,14 @@ const ExerciseDetail = () => {
                       {exercise.difficulty || "Unknown"}
                     </div>
                   </div>
-                  <div className="bg-gray-800/50 rounded-2xl p-4 border border-gray-700">
+                  {/* <div className="bg-gray-800/50 rounded-2xl p-4 border border-gray-700">
                     <div className="text-gray-400 flex items-center gap-2">
                       ⏱️ Duration
                     </div>
                     <div className="font-semibold text-lg text-white">
                       {exercise.duration || "Not specified"}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             )}
@@ -1031,6 +1043,34 @@ const ExerciseDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* Next Exercise Button - Only shows when exercise is completed */}
+      {isExerciseCompleted() && (
+        <div className="fixed bottom-6 right-6 z-40 animate-bounce">
+          <button
+            onClick={goToNextExercise}
+            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-4 rounded-2xl font-bold text-lg shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center gap-3 group"
+          >
+            {nextExercise ? (
+              <>
+                <span>Next Exercise</span>
+                <IconArrowRight 
+                  size={20} 
+                  className="group-hover:translate-x-1 transition-transform duration-300" 
+                />
+              </>
+            ) : (
+              <>
+                <span>Back to Course</span>
+                <IconArrowRight 
+                  size={20} 
+                  className="group-hover:translate-x-1 transition-transform duration-300" 
+                />
+              </>
+            )}
+          </button>
+        </div>
+      )}
 
       <style jsx>{`
         @keyframes float {

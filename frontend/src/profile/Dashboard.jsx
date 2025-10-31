@@ -686,6 +686,7 @@ const Dashboard = () => {
     loadDashboardData();
   }, []);
 
+  // Fixed USER_STATS array - using user.xp from auth context
   const USER_STATS = [
     {
       label: "Courses Enrolled",
@@ -709,11 +710,11 @@ const Dashboard = () => {
       color: "bg-gradient-to-r from-yellow-500 to-amber-500",
     },
     {
-      label: "Hours Learned",
-      value: userStats.totalHours,
-      unit: "h",
-      emoji: "⏰",
-      color: "bg-gradient-to-r from-green-500 to-emerald-500",
+      label: "XP Earned",
+      value: user?.xp || 0, // Use user.xp from auth context with fallback
+      unit: " XP",
+      emoji: "⭐",
+      color: "bg-gradient-to-r from-purple-500 to-pink-500",
     },
   ];
 

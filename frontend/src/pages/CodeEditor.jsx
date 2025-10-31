@@ -21,7 +21,7 @@ const navItems = [
   { title: "Courses", href: "/courses", icon: <IconBooks size={20} /> },
   { title: "Byte-Compiler", href: "/editor", icon: <IconEdit size={20} /> },
   { title: "Dev Den", href: "/code", icon: <IconCode size={20} /> },
-  { title: "AI", href: "/ai", icon: <IconCpu size={20} /> },
+  { title: "AI", href: "/byteai", icon: <IconCpu size={20} /> },
 ];
 
 
