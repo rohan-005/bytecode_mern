@@ -1,9 +1,42 @@
 const { Resend } = require('resend');
 
+// Initialize Resend with your API key from Render env vars
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Shared HTML style generator
-const emailTemplate = (title, message, otp, name, themeColor = '#667eea') => `
+// ✅ Generic function to send email safely via Resend
+async function sendEmail(to, subject, html) {
+  try {
+    if (!to) {
+      console.error("❌ No recipient email provided! Skipping send.");
+      return false;
+    }
+
+    console.log("📧 Sending email via Resend...");
+    console.log("To:", to);
+    console.log("Subject:", subject);
+
+    const response = await resend.emails.send({
+      from: "ByteCode <frosthowl005@gmail.com>",
+      to: [to], // ensure it's an array for Resend API
+      subject,
+      html,
+    });
+
+    if (response?.id) {
+      console.log("✅ Email sent successfully with ID:", response.id);
+      return true;
+    } else {
+      console.warn("⚠️ Resend did not return an ID. Response:", response);
+      return false;
+    }
+  } catch (error) {
+    console.error("❌ Error sending email via Resend:", error);
+    return false;
+  }
+}
+
+// ✅ Shared email template generator
+const emailTemplate = (title, message, otp, name, themeColor = "#667eea") => `
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,45 +114,36 @@ const emailTemplate = (title, message, otp, name, themeColor = '#667eea') => `
 </html>
 `;
 
-async function sendEmail(to, subject, html) {
-  try {
-    const response = await resend.emails.send({
-      from: 'frosthowl005@gmail.com',
-      to,
-      subject,
-      html,
-    });
-    console.log('✅ Email sent successfully:', response.id || 'No ID');
-    return true;
-  } catch (error) {
-    console.error('❌ Error sending email via Resend:', error);
-    return false;
-  }
-}
-
+// ✅ Send OTP Email (for account verification)
 async function sendOTPEmail(email, otp, name) {
+  console.log("🧩 Preparing to send verification OTP to:", email);
   const html = emailTemplate(
-    '🔐 ByteCode Verification',
-    'Welcome to ByteCode! Use the verification code below to complete your registration:',
+    "🔐 ByteCode Verification",
+    "Welcome to ByteCode! Use the verification code below to complete your registration:",
     otp,
     name,
-    'linear-gradient(135deg, #000000 0%, #333333 100%)'
+    "linear-gradient(135deg, #000000 0%, #333333 100%)"
   );
-  return sendEmail(email, 'Email Verification OTP - ByteCode', html);
+  return sendEmail(email, "Email Verification OTP - ByteCode", html);
 }
 
+// ✅ Send Password Reset OTP Email
 async function sendPasswordResetOTPEmail(email, otp, name) {
+  console.log("🧩 Preparing to send password reset OTP to:", email);
   const html = emailTemplate(
-    '🔒 Password Reset - ByteCode',
-    'You requested to reset your password. Use the OTP code below to verify your identity:',
+    "🔒 Password Reset - ByteCode",
+    "You requested to reset your password. Use the OTP code below to verify your identity:",
     otp,
     name,
-    'linear-gradient(135deg, #dc2626 0%, #ef4444 100%)'
+    "linear-gradient(135deg, #dc2626 0%, #ef4444 100%)"
   );
-  return sendEmail(email, 'Password Reset OTP - ByteCode', html);
+  return sendEmail(email, "Password Reset OTP - ByteCode", html);
 }
 
+// ✅ Send Password Reset Link Email
 async function sendPasswordResetEmail(email, resetToken, name) {
+  console.log("🧩 Preparing to send password reset link to:", email);
+
   const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f9f9f9; padding: 20px;">
@@ -128,14 +152,16 @@ async function sendPasswordResetEmail(email, resetToken, name) {
         <p>Hello ${name},</p>
         <p>You requested to reset your password. Click the button below to create a new password:</p>
         <div style="text-align: center; margin: 20px 0;">
-          <a href="${resetUrl}" style="background: linear-gradient(135deg, #061e88 0%, #764ba2 100%); color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">Reset Password</a>
+          <a href="${resetUrl}" style="background: linear-gradient(135deg, #061e88 0%, #764ba2 100%); color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+            Reset Password
+          </a>
         </div>
         <p style="color: #666;">This link will expire in <strong>1 hour</strong>.</p>
         <p style="color: #666;">If you didn't request a password reset, please ignore this email.</p>
       </div>
     </div>
   `;
-  return sendEmail(email, 'Password Reset Request - ByteCode', html);
+  return sendEmail(email, "Password Reset Request - ByteCode", html);
 }
 
 module.exports = {
