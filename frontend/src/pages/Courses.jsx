@@ -24,7 +24,7 @@ const Courses = () => {
   // eslint-disable-next-line no-unused-vars
   const { user } = useAuth();
 
-  const API_BASE = "https://bytecode-backend.vercel.app/";
+  const API_BASE = "https://bytecode-backend.vercel.app/api";
 
   useEffect(() => {
     fetchCourses();
