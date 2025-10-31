@@ -24,7 +24,7 @@ async function sendEmail(to, subject, html) {
     console.log("Subject:", subject);
 
     // Use Resend's default domain
-    const fromEmail = "ByteCode <frosthowl005@gmail.com>";
+    const fromEmail = "ByteCode <onboarding@resend.dev>";
     console.log("📧 Sending from:", fromEmail);
 
     const response = await resend.emails.send({
@@ -33,7 +33,7 @@ async function sendEmail(to, subject, html) {
       subject,
       html,
       tags: [{ name: 'category', value: 'auth' }], // for better email analytics
-      reply_to: "frosthowl005@gmail.com" // Optional: add a reply-to address
+      // reply_to: "onboarding@resend.dev" // Optional: add a reply-to address
     });
 
     if (response?.error) {
