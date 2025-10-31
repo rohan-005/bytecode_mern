@@ -24,7 +24,7 @@ const Courses = () => {
   // eslint-disable-next-line no-unused-vars
   const { user } = useAuth();
 
-  const API_BASE = "http://localhost:5000/api";
+  const API_BASE = "https://bytecode-qsew.onrender.com/api";
 
   useEffect(() => {
     fetchCourses();
