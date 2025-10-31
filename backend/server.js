@@ -20,7 +20,7 @@ const connectdb = require('./config/connectdb');
 connectdb();
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: "https://bytecode.vercel.app" }));
 app.use(express.json());
 
 // Routes
