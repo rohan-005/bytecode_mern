@@ -3,7 +3,7 @@ import axios from 'axios';
 // For Vite projects, use import.meta.env; for CRA, use process.env
 const API_URL =
   import.meta.env?.VITE_API_URL ||
-  'https://bytecode-qsew.onrender.com/api';
+  'https://bytecode-qsew.onrender.com';
 
 const api = axios.create({
   baseURL: API_URL,

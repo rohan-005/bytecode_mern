@@ -45,7 +45,7 @@ const Profile = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://bytecode-qsew.onrender.com/api/auth/profile', {
+      const response = await fetch('https://bytecode-qsew.onrender.com/auth/profile', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -106,7 +106,7 @@ const Profile = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://bytecode-qsew.onrender.com/api/auth/change-password', {
+      const response = await fetch('https://bytecode-qsew.onrender.com/auth/change-password', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
