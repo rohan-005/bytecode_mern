@@ -629,7 +629,7 @@ const Dashboard = () => {
       }
 
       const response = await fetch(
-        `https://bytecode-qsew.onrender.com/api/courses/user/enrolled`,
+        `https://bytecode-qsew.onrender.com/courses/user/enrolled`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -658,7 +658,7 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://bytecode-qsew.onrender.com/api/courses/user/stats",
+        "https://bytecode-qsew.onrender.com/courses/user/stats",
         {
           headers: {
             Authorization: `Bearer ${token}`,
