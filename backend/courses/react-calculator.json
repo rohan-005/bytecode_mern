@@ -1,0 +1,137 @@
+{
+  "id": "react-calculator",
+  "name": "Build a Calculator with React & Tailwind CSS",
+  "description": "A complete hands-on tutorial to build a modern calculator web app from scratch using React and Tailwind CSS — covering setup, components, state management, event handling, styling, and deployment.",
+  "instructor": "Michael Roberts",
+  "duration": "5 weeks",
+  "level": "Beginner → Intermediate",
+  "price": 0,
+  "image": "/logos/react.png",
+  "category": "Frontend Development",
+  "rating": 4.9,
+  "ratingCount": 1800,
+  "students": 1800,
+  "tags": ["react", "tailwind", "frontend", "webapp", "calculator"],
+  "whatYouLearn": [
+    "Set up a React + Tailwind project from scratch",
+    "Understand React components, props, and state",
+    "Handle user input and events for calculator buttons",
+    "Implement dynamic display and mathematical operations",
+    "Apply modern responsive styling using Tailwind CSS",
+    "Organize code with modular structure and reusable components",
+    "Build and deploy the app for production"
+  ],
+  "prerequisites": [
+    "Basic understanding of HTML, CSS, and JavaScript",
+    "Familiarity with Node.js and npm",
+    "Comfortable using a terminal or code editor (VS Code)"
+  ],
+  "exercises": [
+    {
+      "id": "ex1",
+      "title": "Environment Setup & Project Initialization",
+      "description": "Set up your React development environment and initialize a new React + Tailwind CSS project.",
+      "duration": "30 min",
+      "difficulty": "Easy",
+      "language": "bash",
+      "theory": "React apps are built using Node.js and npm. Tailwind CSS provides utility-first CSS classes for fast UI building. We'll use Vite for faster React setup.",
+      "objective": "Initialize a new React app using Vite and integrate Tailwind CSS.",
+      "initialCode": "npm create vite@latest react-calculator --template react\ncd react-calculator\nnpm install -D tailwindcss postcss autoprefixer\nnpx tailwindcss init -p",
+      "solutionCode": "npm create vite@latest react-calculator --template react\ncd react-calculator\nnpm install -D tailwindcss postcss autoprefixer\nnpx tailwindcss init -p\n# configure tailwind.config.js\ncontent: ['./index.html','./src/**/*.{js,jsx,ts,tsx}']\n# add Tailwind directives in src/index.css:\n@tailwind base;\n@tailwind components;\n@tailwind utilities;\n# start dev server\nnpm run dev",
+      "requirements": ["Initialize React project", "Configure Tailwind CSS"],
+      "hints": ["Use Vite instead of CRA for faster builds"]
+    },
+    {
+      "id": "ex2",
+      "title": "Creating the App Structure",
+      "description": "Set up the base layout and component structure for the calculator.",
+      "duration": "45 min",
+      "difficulty": "Easy",
+      "language": "jsx",
+      "theory": "React uses components to break UI into reusable parts. We'll create components for Display and Buttons inside an App container.",
+      "objective": "Create App.jsx with Display and Button components organized inside a Calculator container.",
+      "initialCode": "// src/App.jsx\nexport default function App(){\n  return (\n    <div className=\"min-h-screen flex items-center justify-center bg-gray-900\">\n      {/* Calculator layout */}\n    </div>\n  )\n}",
+      "solutionCode": "// src/App.jsx\nimport Display from './components/Display'\nimport Buttons from './components/Buttons'\n\nexport default function App(){\n  return (\n    <div className=\"min-h-screen flex items-center justify-center bg-gray-900\">\n      <div className=\"bg-gray-800 p-4 rounded-2xl shadow-lg w-80\">\n        <Display />\n        <Buttons />\n      </div>\n    </div>\n  )\n}\n\n// src/components/Display.jsx\nexport default function Display({ value }){\n  return (\n    <div className=\"bg-black text-white text-right text-2xl p-4 rounded-lg mb-2\">\n      {value || 0}\n    </div>\n  )\n}\n\n// src/components/Buttons.jsx\nexport default function Buttons(){\n  const btns=['7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+'];\n  return (\n    <div className=\"grid grid-cols-4 gap-2\">\n      {btns.map(b=>(\n        <button key={b} className=\"bg-gray-700 text-white p-4 rounded-lg hover:bg-gray-600\">\n          {b}\n        </button>\n      ))}\n    </div>\n  )\n}",
+      "requirements": ["Create Display and Buttons components", "Use Tailwind for styling"],
+      "hints": ["Grid layout simplifies button arrangement"]
+    },
+    {
+      "id": "ex3",
+      "title": "Handling Button Clicks & State Management",
+      "description": "Make the calculator interactive using React useState hook to manage display value.",
+      "duration": "1 hour",
+      "difficulty": "Medium",
+      "language": "jsx",
+      "theory": "React’s `useState` lets you store and update data in functional components. We'll track the current input and result dynamically.",
+      "objective": "Implement logic to update display when buttons are clicked.",
+      "initialCode": "import { useState } from 'react';",
+      "solutionCode": "import { useState } from 'react';\nimport Display from './components/Display';\nimport Buttons from './components/Buttons';\n\nexport default function App(){\n  const [input,setInput]=useState('');\n\n  const handleClick = (val)=>{\n    if(val==='C') setInput('');\n    else if(val==='='){\n      try{ setInput(eval(input).toString()); }\n      catch{ setInput('Error'); }\n    }else{\n      setInput(input + val);\n    }\n  }\n\n  return (\n    <div className=\"min-h-screen flex items-center justify-center bg-gray-900\">\n      <div className=\"bg-gray-800 p-4 rounded-2xl shadow-lg w-80\">\n        <Display value={input} />\n        <Buttons onButtonClick={handleClick} />\n      </div>\n    </div>\n  )\n}\n\n// src/components/Buttons.jsx\nexport default function Buttons({onButtonClick}){\n  const btns=['7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+','C'];\n  return (\n    <div className=\"grid grid-cols-4 gap-2\">\n      {btns.map(b=>(\n        <button key={b} onClick={()=>onButtonClick(b)} className=\"bg-gray-700 text-white p-4 rounded-lg hover:bg-gray-600\">\n          {b}\n        </button>\n      ))}\n    </div>\n  )\n}",
+      "requirements": ["Use useState hook", "Handle button click events", "Implement calculation logic"],
+      "hints": ["Use eval() only for demo; real apps should use math parsers"]
+    },
+    {
+      "id": "ex4",
+      "title": "Improving UI and Adding Responsive Design",
+      "description": "Enhance the calculator design using Tailwind utilities and make it responsive for mobile and desktop.",
+      "duration": "45 min",
+      "difficulty": "Easy",
+      "language": "jsx",
+      "theory": "Tailwind classes allow responsive design by prefixing breakpoints like sm:, md:, lg:. We’ll improve spacing, typography, and colors.",
+      "objective": "Refine calculator look with consistent button colors, spacing, and mobile responsiveness.",
+      "initialCode": "// Update Tailwind classes",
+      "solutionCode": "// src/App.jsx\n<div className=\"min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-700\">\n  <div className=\"bg-gray-800 p-6 rounded-3xl shadow-2xl w-80 sm:w-96\">\n    <Display value={input} />\n    <Buttons onButtonClick={handleClick} />\n  </div>\n</div>",
+      "requirements": ["Enhance Tailwind styling", "Add responsiveness"],
+      "hints": ["Try gradient backgrounds and shadows for modern feel"]
+    },
+    {
+      "id": "ex5",
+      "title": "Refactoring & Component Optimization",
+      "description": "Split logic into smaller functions and improve maintainability by separating the display logic and operator handling.",
+      "duration": "1 hour",
+      "difficulty": "Medium",
+      "language": "jsx",
+      "theory": "Cleaner code ensures scalability. We'll move calculation logic to a separate helper and add keyboard input support.",
+      "objective": "Create a `calculate.js` helper for cleaner code and optionally add keyboard event handling.",
+      "initialCode": "// src/utils/calculate.js",
+      "solutionCode": "// src/utils/calculate.js\nexport function calculate(expr){\n  try{\n    return eval(expr).toString();\n  }catch{\n    return 'Error';\n  }\n}\n\n// src/App.jsx\nimport { calculate } from './utils/calculate';\n\nconst handleClick=(val)=>{\n  if(val==='C') setInput('');\n  else if(val==='=') setInput(calculate(input));\n  else setInput(input+val);\n}\n\n// optional keyboard listener\nuseEffect(()=>{\n  const handleKey=(e)=>{\n    const keys='0123456789+-*/.=C';\n    if(keys.includes(e.key)) handleClick(e.key);\n  }\n  window.addEventListener('keydown',handleKey);\n  return()=>window.removeEventListener('keydown',handleKey);\n},[input]);",
+      "requirements": ["Use helper function for calculations", "Add optional keyboard input"],
+      "hints": ["Focus on clean modular code"]
+    },
+    {
+      "id": "ex6",
+      "title": "Deployment",
+      "description": "Build the final calculator app for production and deploy it to Vercel or Netlify.",
+      "duration": "30 min",
+      "difficulty": "Easy",
+      "language": "bash",
+      "theory": "Vite builds static assets for production. Hosting services like Vercel automatically detect frameworks and deploy apps instantly.",
+      "objective": "Build production version and deploy it online.",
+      "initialCode": "npm run build",
+      "solutionCode": "npm run build\n# creates /dist folder\n# push to GitHub, then deploy via Vercel CLI or website\nnpm install -g vercel\nvercel",
+      "requirements": ["Build for production", "Deploy app"],
+      "hints": ["Make sure 'vite.config.js' has correct base path if deploying in subfolder"]
+    }
+  ],
+  "references": [
+    {
+      "title": "React Official Docs",
+      "description": "Learn core React concepts like components, state, and lifecycle.",
+      "url": "https://react.dev/learn"
+    },
+    {
+      "title": "Tailwind CSS Documentation",
+      "description": "Detailed reference for Tailwind utility classes and customization.",
+      "url": "https://tailwindcss.com/docs"
+    },
+    {
+      "title": "Vite Documentation",
+      "description": "Modern frontend tooling for fast development with React.",
+      "url": "https://vitejs.dev/guide/"
+    },
+    {
+      "title": "Netlify & Vercel Deploy Guides",
+      "description": "Step-by-step hosting tutorials for modern web apps.",
+      "url": "https://vercel.com/docs"
+    }
+  ]
+}

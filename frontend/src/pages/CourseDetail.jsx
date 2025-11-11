@@ -282,10 +282,10 @@ const CourseDetail = () => {
                     <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
                       <IconUser size={20} className="text-blue-400" />
                     </div>
-                    <div>
+                    {/* <div>
                       <div className="text-sm text-gray-400">Instructor</div>
                       <div className="font-semibold">{course.instructor}</div>
-                    </div>
+                    </div> */}
                   </div>
                   
                   <div className="flex items-center gap-3">
