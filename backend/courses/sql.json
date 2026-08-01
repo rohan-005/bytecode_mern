@@ -1,0 +1,442 @@
+{
+  "id": "sql",
+  "name": "SQL & Relational Database Architecture Track",
+  "description": "Master relational database design, DDL schema creation, DML data manipulation, multi-table JOINs, subqueries, indexing, transactions, and enterprise analytics.",
+  "instructor": "Engineering Database Team",
+  "duration": "8 weeks",
+  "level": "Intermediate to Advanced",
+  "price": 0,
+  "image": "/logos/sql.png",
+  "category": "Database Engineering",
+  "rating": 4.9,
+  "ratingCount": 4120,
+  "students": 7820,
+  "tags": ["sql", "database", "relational", "postgres", "mysql", "joins"],
+  "whatYouLearn": [
+    "Design normalized relational database schemas (1NF, 2NF, 3NF)",
+    "Execute DDL statements (CREATE TABLE, ALTER, DROP, FOREIGN KEY)",
+    "Master multi-table JOIN operations (INNER, LEFT, RIGHT, FULL OUTER)",
+    "Perform aggregate analytical queries with GROUP BY and HAVING",
+    "Optimize query performance with B-Tree Indexes and EXPLAIN ANALYZE",
+    "Build an E-Commerce Analytics Relational Database"
+  ],
+  "prerequisites": ["Basic computer operating system usage"],
+  "exercises": [
+    {
+      "id": "sql-ex1",
+      "title": "DDL Table Creation & Primary Keys (CREATE TABLE)",
+      "description": "Create relational database tables with constraints and AUTO_INCREMENT primary keys.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "sql",
+      "theory": "Data Definition Language (DDL) creates and modifies table structures. Primary keys uniquely identify rows.",
+      "objective": "Create a users table with PRIMARY KEY and NOT NULL constraints.",
+      "initialCode": "-- Create users table\nCREATE TABLE users (\n    -- Add columns and constraints\n);",
+      "solutionCode": "CREATE TABLE users (\n    user_id INT PRIMARY KEY AUTO_INCREMENT,\n    username VARCHAR(50) NOT NULL UNIQUE,\n    email VARCHAR(100) NOT NULL UNIQUE,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);",
+      "requirements": [
+        "Create user_id INT PRIMARY KEY AUTO_INCREMENT",
+        "Add NOT NULL and UNIQUE constraints to username and email",
+        "Set created_at DEFAULT CURRENT_TIMESTAMP"
+      ],
+      "hints": [
+        "VARCHAR(n) specifies maximum string length n"
+      ],
+      "codeExample": "CREATE TABLE items (id INT PRIMARY KEY, name VARCHAR(50) NOT NULL);"
+    },
+    {
+      "id": "sql-ex2",
+      "title": "DML Data Insertion & Querying (INSERT INTO, SELECT)",
+      "description": "Insert records and query table rows using column aliasing.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "sql",
+      "theory": "Data Manipulation Language (DML) manages table row contents. SELECT projects columns and AS creates output aliases.",
+      "objective": "Insert rows and query table data.",
+      "initialCode": "-- Insert and select users",
+      "solutionCode": "INSERT INTO users (username, email) VALUES \n('alex_dev', 'alex@bytecode.io'),\n('sarah_tech', 'sarah@bytecode.io');\n\nSELECT username AS user_handle, email AS contact_email FROM users;",
+      "requirements": [
+        "Insert two user rows with INSERT INTO",
+        "Select username and email with AS column aliases"
+      ],
+      "hints": [
+        "AS specifies display name aliases for query result columns"
+      ],
+      "codeExample": "INSERT INTO t (col) VALUES ('val'); SELECT col AS c FROM t;"
+    },
+    {
+      "id": "sql-ex3",
+      "title": "Filtering Rows with WHERE Clause & Logical Operators",
+      "description": "Filter rows using WHERE, AND, OR, NOT, and BETWEEN operators.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "sql",
+      "theory": "WHERE clauses evaluate condition expressions to filter returned rows before aggregation.",
+      "objective": "Query products priced between $20 and $100.",
+      "initialCode": "-- Filter products with WHERE clause",
+      "solutionCode": "SELECT product_name, price, category \nFROM products \nWHERE price BETWEEN 20.00 AND 100.00 \n  AND is_active = TRUE \nORDER BY price DESC;",
+      "requirements": [
+        "Use WHERE with BETWEEN 20.00 AND 100.00",
+        "Add AND is_active = TRUE condition",
+        "Order results using ORDER BY price DESC"
+      ],
+      "hints": [
+        "BETWEEN is inclusive of start and end boundary values"
+      ],
+      "codeExample": "SELECT * FROM items WHERE price BETWEEN 10 AND 50;"
+    },
+    {
+      "id": "sql-ex4",
+      "title": "Pattern Matching & Sets (LIKE, IN, IS NULL)",
+      "description": "Filter strings with wildcards (LIKE '%text%') and test set memberships (IN).",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "sql",
+      "theory": "LIKE matches string patterns (% represents multiple wildcard characters, _ represents single character). IN tests against a list of values.",
+      "objective": "Find users with bytecode.io emails in specific departments.",
+      "initialCode": "-- Execute pattern and set filtering",
+      "solutionCode": "SELECT username, email, department \nFROM employees \nWHERE email LIKE '%@bytecode.io' \n  AND department IN ('Engineering', 'Product') \n  AND manager_id IS NOT NULL;",
+      "requirements": [
+        "Use LIKE '%@bytecode.io'",
+        "Use IN ('Engineering', 'Product')",
+        "Use IS NOT NULL check"
+      ],
+      "hints": [
+        "Use IS NULL / IS NOT NULL instead of = NULL"
+      ],
+      "codeExample": "SELECT * FROM users WHERE email LIKE 'a%' AND role IN ('admin', 'user');"
+    },
+    {
+      "id": "sql-ex5",
+      "title": "Updating & Deleting Rows (UPDATE, DELETE, SAFE GUARDS)",
+      "description": "Update existing records and delete rows with strict WHERE criteria.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "sql",
+      "theory": "UPDATE modifies existing row values. DELETE removes matching rows. Always include WHERE clauses to prevent mutating all rows in a table.",
+      "objective": "Update user roles and delete inactive accounts.",
+      "initialCode": "-- Update and delete operations",
+      "solutionCode": "UPDATE users \nSET role = 'senior_developer', updated_at = CURRENT_TIMESTAMP \nWHERE user_id = 42;\n\nDELETE FROM users \nWHERE is_active = FALSE AND last_login < '2025-01-01';",
+      "requirements": [
+        "Execute UPDATE with SET and WHERE user_id = 42",
+        "Execute DELETE with double WHERE conditions"
+      ],
+      "hints": [
+        "Executing UPDATE or DELETE without WHERE modifies every single row in the table"
+      ],
+      "codeExample": "UPDATE users SET active = TRUE WHERE id = 1;"
+    },
+    {
+      "id": "sql-ex6",
+      "title": "Foreign Keys & Relational Integrity (FOREIGN KEY)",
+      "description": "Enforce referential integrity between tables using FOREIGN KEY constraints.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "sql",
+      "theory": "Foreign keys link columns in child tables to primary keys in parent tables, preventing orphaned record creation.",
+      "objective": "Build an orders table referencing users(user_id) with ON DELETE CASCADE.",
+      "initialCode": "-- Create orders table with foreign key",
+      "solutionCode": "CREATE TABLE orders (\n    order_id INT PRIMARY KEY AUTO_INCREMENT,\n    user_id INT NOT NULL,\n    total_amount DECIMAL(10, 2) NOT NULL,\n    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    CONSTRAINT fk_orders_user FOREIGN KEY (user_id) \n        REFERENCES users(user_id) \n        ON DELETE CASCADE\n);",
+      "requirements": [
+        "Define foreign key referencing users(user_id)",
+        "Include ON DELETE CASCADE clause",
+        "Use DECIMAL(10, 2) for currency amounts"
+      ],
+      "hints": [
+        "ON DELETE CASCADE automatically deletes child orders when parent user row is deleted"
+      ],
+      "codeExample": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "id": "sql-ex7",
+      "title": "Inner Joins (INNER JOIN)",
+      "description": "Combine matching records from multiple tables using INNER JOIN.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "sql",
+      "theory": "INNER JOIN returns rows only when there is a matching key value in both joined tables.",
+      "objective": "Join users and orders tables on user_id.",
+      "initialCode": "-- Perform INNER JOIN query",
+      "solutionCode": "SELECT \n    u.username,\n    u.email,\n    o.order_id,\n    o.total_amount,\n    o.order_date\nFROM users u\nINNER JOIN orders o ON u.user_id = o.user_id\nWHERE o.total_amount > 50.00\nORDER BY o.order_date DESC;",
+      "requirements": [
+        "Use table aliases u for users and o for orders",
+        "Join ON u.user_id = o.user_id",
+        "Filter total_amount > 50.00"
+      ],
+      "hints": [
+        "ON clause specifies key equality matching condition"
+      ],
+      "codeExample": "SELECT * FROM a INNER JOIN b ON a.id = b.a_id;"
+    },
+    {
+      "id": "sql-ex8",
+      "title": "Outer Joins (LEFT JOIN & RIGHT JOIN)",
+      "description": "Retrieve all parent records regardless of whether child matches exist using LEFT JOIN.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "sql",
+      "theory": "LEFT JOIN returns all records from left table, along with matched records from right table (filling NULL for missing right matches).",
+      "objective": "Find all users including users who have never placed an order.",
+      "initialCode": "-- Perform LEFT JOIN query",
+      "solutionCode": "SELECT \n    u.user_id,\n    u.username,\n    COUNT(o.order_id) AS total_orders,\n    COALESCE(SUM(o.total_amount), 0.00) AS total_spent\nFROM users u\nLEFT JOIN orders o ON u.user_id = o.user_id\nGROUP BY u.user_id, u.username;",
+      "requirements": [
+        "Use LEFT JOIN to include users without orders",
+        "Use COALESCE(SUM(...), 0.00) to replace NULL with 0.00",
+        "Group by user_id and username"
+      ],
+      "hints": [
+        "COALESCE returns first non-null argument"
+      ],
+      "codeExample": "SELECT u.name, o.id FROM users u LEFT JOIN orders o ON u.id = o.user_id;"
+    },
+    {
+      "id": "sql-ex9",
+      "title": "Aggregate Functions & Grouping (GROUP BY, SUM, AVG, COUNT)",
+      "description": "Group table rows and calculate statistical summaries.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "sql",
+      "theory": "GROUP BY summarizes rows by distinct column values. Aggregate functions include COUNT(), SUM(), AVG(), MIN(), and MAX().",
+      "objective": "Calculate total order volume and average spend by department.",
+      "initialCode": "-- Group sales data by department",
+      "solutionCode": "SELECT \n    department,\n    COUNT(*) AS employee_count,\n    ROUND(AVG(salary), 2) AS avg_salary,\n    MAX(salary) AS max_salary\nFROM employees\nGROUP BY department\nORDER BY avg_salary DESC;",
+      "requirements": [
+        "Group by department column",
+        "Calculate COUNT(*), ROUND(AVG(salary), 2), and MAX(salary)"
+      ],
+      "hints": [
+        "Non-aggregated columns in SELECT must appear inside GROUP BY clause"
+      ],
+      "codeExample": "SELECT category, COUNT(*) FROM items GROUP BY category;"
+    },
+    {
+      "id": "sql-ex10",
+      "title": "Filtering Group Aggregates (HAVING Clause)",
+      "description": "Filter aggregated group results using the HAVING clause.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "sql",
+      "theory": "WHERE filters rows before grouping occurs. HAVING filters aggregated groups after GROUP BY computation finishes.",
+      "objective": "Find departments with more than 5 employees and average salary > $80,000.",
+      "initialCode": "-- Filter aggregate groups with HAVING",
+      "solutionCode": "SELECT \n    department,\n    COUNT(*) AS total_staff,\n    ROUND(AVG(salary), 2) AS avg_salary\nFROM employees\nGROUP BY department\nHAVING COUNT(*) > 5 AND AVG(salary) > 80000.00;",
+      "requirements": [
+        "Group by department",
+        "Filter using HAVING COUNT(*) > 5 AND AVG(salary) > 80000.00"
+      ],
+      "hints": [
+        "HAVING is used for aggregate conditions like SUM() > X, while WHERE is for individual row conditions"
+      ],
+      "codeExample": "SELECT cat, SUM(val) FROM t GROUP BY cat HAVING SUM(val) > 100;"
+    },
+    {
+      "id": "sql-ex11",
+      "title": "Subqueries & Scalar Nested Queries",
+      "description": "Write scalar subqueries inside WHERE and SELECT clauses.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "sql",
+      "theory": "A subquery is a nested SELECT query enclosed in parentheses that returns values to an outer primary query.",
+      "objective": "Find employees earning more than the company average salary.",
+      "initialCode": "-- Write subquery filtering above-average salaries",
+      "solutionCode": "SELECT \n    employee_id,\n    first_name,\n    last_name,\n    salary\nFROM employees\nWHERE salary > (\n    SELECT AVG(salary) \n    FROM employees\n)\nORDER BY salary DESC;",
+      "requirements": [
+        "Write scalar subquery (SELECT AVG(salary) FROM employees)",
+        "Filter outer query WHERE salary > subquery"
+      ],
+      "hints": [
+        "Scalar subqueries return a single single-cell value"
+      ],
+      "codeExample": "SELECT * FROM t WHERE price > (SELECT AVG(price) FROM t);"
+    },
+    {
+      "id": "sql-ex12",
+      "title": "Correlated Subqueries & EXISTS Operator",
+      "description": "Write correlated subqueries evaluated per candidate row using the EXISTS operator.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "sql",
+      "theory": "Correlated subqueries reference columns from the outer query. EXISTS evaluates to TRUE if the inner subquery returns one or more rows.",
+      "objective": "Find customers who placed at least one high-value order (> $500).",
+      "initialCode": "-- Write EXISTS correlated subquery",
+      "solutionCode": "SELECT \n    u.user_id,\n    u.username,\n    u.email\nFROM users u\nWHERE EXISTS (\n    SELECT 1 \n    FROM orders o \n    WHERE o.user_id = u.user_id \n      AND o.total_amount > 500.00\n);",
+      "requirements": [
+        "Use WHERE EXISTS (SELECT 1 FROM orders ...)",
+        "Correlate inner subquery with outer table u.user_id"
+      ],
+      "hints": [
+        "EXISTS stops scanning subquery rows as soon as the first match is found"
+      ],
+      "codeExample": "SELECT * FROM u WHERE EXISTS (SELECT 1 FROM o WHERE o.u_id = u.id);"
+    },
+    {
+      "id": "sql-ex13",
+      "title": "Common Table Expressions (WITH CTE)",
+      "description": "Break complex queries into readable pipeline steps using WITH CTE statements.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "sql",
+      "theory": "Common Table Expressions (CTEs) define named temporary result sets using the WITH keyword for modular multi-step query construction.",
+      "objective": "Build a CTE calculating user spend metrics, then query high-tier users.",
+      "initialCode": "-- Build WITH CTE query",
+      "solutionCode": "WITH UserSpendCTE AS (\n    SELECT \n        user_id,\n        COUNT(order_id) AS total_orders,\n        SUM(total_amount) AS total_spent\n    FROM orders\n    GROUP BY user_id\n)\nSELECT \n    u.username,\n    cte.total_orders,\n    cte.total_spent\nFROM UserSpendCTE cte\nINNER JOIN users u ON cte.user_id = u.user_id\nWHERE cte.total_spent > 1000.00\nORDER BY cte.total_spent DESC;",
+      "requirements": [
+        "Define WITH UserSpendCTE AS (...)",
+        "Join CTE with users table in main query",
+        "Filter total_spent > 1000.00"
+      ],
+      "hints": [
+        "CTEs improve query readability compared to deeply nested subqueries"
+      ],
+      "codeExample": "WITH Summary AS (SELECT user_id, SUM(val) FROM t GROUP BY user_id) SELECT * FROM Summary;"
+    },
+    {
+      "id": "sql-ex14",
+      "title": "Window Functions (ROW_NUMBER, RANK, DENSE_RANK)",
+      "description": "Compute row rankings and moving totals without collapsing rows using OVER(PARTITION BY).",
+      "duration": "35 min",
+      "difficulty": "Hard",
+      "language": "sql",
+      "theory": "Window functions perform calculations across related row sets without collapsing table rows into single output summary rows.",
+      "objective": "Rank top-earning employees within each department using DENSE_RANK().",
+      "initialCode": "-- Execute window function query",
+      "solutionCode": "SELECT \n    department,\n    employee_id,\n    first_name,\n    salary,\n    DENSE_RANK() OVER (\n        PARTITION BY department \n        ORDER BY salary DESC\n    ) AS salary_rank\nFROM employees;",
+      "requirements": [
+        "Use DENSE_RANK() OVER (...)",
+        "Partition by department and order by salary DESC"
+      ],
+      "hints": [
+        "PARTITION BY splits window function calculations into department groups"
+      ],
+      "codeExample": "SELECT name, DENSE_RANK() OVER (PARTITION BY cat ORDER BY price DESC) FROM items;"
+    },
+    {
+      "id": "sql-ex15",
+      "title": "Database Indexing & Query Optimization (CREATE INDEX)",
+      "description": "Accelerate slow lookup queries by creating single and composite B-Tree indexes.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "sql",
+      "theory": "Indexes create lookup trees on table columns to avoid expensive full table scans. Composite indexes optimize multi-column WHERE clauses.",
+      "objective": "Create composite index on orders table for user_id and order_date.",
+      "initialCode": "-- Create composite B-Tree index",
+      "solutionCode": "CREATE INDEX idx_orders_user_date \nON orders (user_id, order_date DESC);\n\n-- Inspect index utilization with EXPLAIN\nEXPLAIN SELECT * FROM orders WHERE user_id = 42 ORDER BY order_date DESC;",
+      "requirements": [
+        "Execute CREATE INDEX idx_orders_user_date ON orders (user_id, order_date DESC)",
+        "Inspect execution plan with EXPLAIN"
+      ],
+      "hints": [
+        "Put most selective columns first in composite index definitions"
+      ],
+      "codeExample": "CREATE INDEX idx_user ON users(email);"
+    },
+    {
+      "id": "sql-ex16",
+      "title": "ACID Transactions (BEGIN, COMMIT, ROLLBACK)",
+      "description": "Execute atomic database transactions guaranteeing all-or-nothing execution.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "sql",
+      "theory": "Transactions preserve ACID properties (Atomicity, Consistency, Isolation, Durability). COMMIT saves changes permanently; ROLLBACK cancels pending updates.",
+      "objective": "Execute a safe money transfer transaction block.",
+      "initialCode": "-- Execute database transaction block",
+      "solutionCode": "START TRANSACTION;\n\nUPDATE accounts \nSET balance = balance - 100.00 \nWHERE account_id = 101;\n\nUPDATE accounts \nSET balance = balance + 100.00 \nWHERE account_id = 102;\n\n-- Verify consistency before committing\nCOMMIT;",
+      "requirements": [
+        "Start transaction block with START TRANSACTION / BEGIN",
+        "Execute debit and credit UPDATE queries",
+        "Commit changes with COMMIT"
+      ],
+      "hints": [
+        "If any query inside transaction fails, call ROLLBACK to undo changes"
+      ],
+      "codeExample": "START TRANSACTION; UPDATE a SET bal = bal - 10; COMMIT;"
+    },
+    {
+      "id": "sql-ex17",
+      "title": "Database Views (CREATE VIEW)",
+      "description": "Encapsulate complex SQL queries into reusable virtual table views.",
+      "duration": "20 min",
+      "difficulty": "Medium",
+      "language": "sql",
+      "theory": "Views are virtual stored queries that act like tables without duplicating underlying data storage.",
+      "objective": "Create a UserSalesSummary view joining users and orders.",
+      "initialCode": "-- Create database view",
+      "solutionCode": "CREATE VIEW vw_user_sales_summary AS\nSELECT \n    u.user_id,\n    u.username,\n    u.email,\n    COUNT(o.order_id) AS total_orders,\n    COALESCE(SUM(o.total_amount), 0.00) AS total_spent\nFROM users u\nLEFT JOIN orders o ON u.user_id = o.user_id\nGROUP BY u.user_id, u.username, u.email;\n\n-- Query view like a normal table\nSELECT * FROM vw_user_sales_summary WHERE total_spent > 500.00;",
+      "requirements": [
+        "Create view using CREATE VIEW vw_user_sales_summary AS ...",
+        "Query view using SELECT * FROM view_name"
+      ],
+      "hints": [
+        "Views simplify complex reporting queries across application services"
+      ],
+      "codeExample": "CREATE VIEW v_active AS SELECT * FROM users WHERE active = TRUE;"
+    },
+    {
+      "id": "sql-ex18",
+      "title": "Database Triggers (BEFORE / AFTER INSERT)",
+      "description": "Automate database audit logging using event triggers.",
+      "duration": "35 min",
+      "difficulty": "Hard",
+      "language": "sql",
+      "theory": "Triggers automatically execute procedural SQL code when INSERT, UPDATE, or DELETE events occur on a table.",
+      "objective": "Build a trigger logging user deletion events into an audit log table.",
+      "initialCode": "-- Create trigger for audit logging",
+      "solutionCode": "CREATE TABLE user_audit_log (\n    log_id INT PRIMARY KEY AUTO_INCREMENT,\n    deleted_user_id INT,\n    deleted_username VARCHAR(50),\n    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);\n\nDELIMITER //\nCREATE TRIGGER trg_after_user_delete\nAFTER DELETE ON users\nFOR EACH ROW\nBEGIN\n    INSERT INTO user_audit_log (deleted_user_id, deleted_username)\n    VALUES (OLD.user_id, OLD.username);\nEND; //\nDELIMITER ;",
+      "requirements": [
+        "Create user_audit_log table",
+        "Create AFTER DELETE trigger referencing OLD.user_id and OLD.username"
+      ],
+      "hints": [
+        "OLD pseudo-record references deleted row values in DELETE triggers"
+      ],
+      "codeExample": "CREATE TRIGGER trg AFTER DELETE ON users FOR EACH ROW BEGIN ... END;"
+    },
+    {
+      "id": "sql-ex19",
+      "title": "Case Statements & Conditional Column Calculations",
+      "description": "Perform conditional logic inside SELECT queries using CASE WHEN expressions.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "sql",
+      "theory": "CASE WHEN evaluates boolean conditions inline to return specific values for calculated query result columns.",
+      "objective": "Classify user spending tiers using CASE WHEN.",
+      "initialCode": "-- Query user spend tiers with CASE WHEN",
+      "solutionCode": "SELECT \n    username,\n    total_spent,\n    CASE \n        WHEN total_spent >= 1000.00 THEN 'VIP Tier'\n        WHEN total_spent >= 250.00 THEN 'Gold Tier'\n        ELSE 'Standard Tier'\n    END AS customer_tier\nFROM vw_user_sales_summary\nORDER BY total_spent DESC;",
+      "requirements": [
+        "Write CASE WHEN clause with multiple threshold conditions",
+        "Alias calculated column AS customer_tier"
+      ],
+      "hints": [
+        "CASE statements evaluate sequentially and return value for the first matching WHEN condition"
+      ],
+      "codeExample": "SELECT price, CASE WHEN price > 100 THEN 'High' ELSE 'Low' END AS tier FROM t;"
+    },
+    {
+      "id": "sql-ex20",
+      "title": "Capstone Project: E-Commerce Analytics Database Architecture",
+      "description": "Build an E-Commerce Analytics Database System featuring DDL Table Schemas, Foreign Keys, Indexing, CTE Analytics, and Customer Segmentation Views.",
+      "duration": "60 min",
+      "difficulty": "Hard",
+      "language": "sql",
+      "theory": "This capstone project integrates relational database engineering: DDL table design, foreign key integrity, indexing, multi-table JOIN analytics, WITH CTEs, and database views.",
+      "objective": "Engineer a complete Relational Database Analytics architecture.",
+      "initialCode": "-- Engineer E-Commerce Analytics DB",
+      "solutionCode": "-- 1. DDL Schema Setup\nCREATE TABLE customers (\n    customer_id INT PRIMARY KEY AUTO_INCREMENT,\n    name VARCHAR(100) NOT NULL,\n    email VARCHAR(100) UNIQUE NOT NULL\n);\n\nCREATE TABLE sales_orders (\n    order_id INT PRIMARY KEY AUTO_INCREMENT,\n    customer_id INT NOT NULL,\n    amount DECIMAL(10, 2) NOT NULL,\n    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE\n);\n\n-- 2. Indexing Optimization\nCREATE INDEX idx_sales_customer_date ON sales_orders (customer_id, order_date);\n\n-- 3. Analytics View with CTE\nCREATE VIEW vw_customer_analytics AS\nWITH CustomerAggregates AS (\n    SELECT \n        customer_id,\n        COUNT(order_id) AS total_orders,\n        SUM(amount) AS total_revenue\n    FROM sales_orders\n    GROUP BY customer_id\n)\nSELECT \n    c.customer_id,\n    c.name,\n    COALESCE(ca.total_orders, 0) AS total_orders,\n    COALESCE(ca.total_revenue, 0.00) AS total_revenue,\n    CASE \n        WHEN ca.total_revenue >= 1000 THEN 'Platinum'\n        WHEN ca.total_revenue >= 500 THEN 'Gold'\n        ELSE 'Standard'\n    END AS segment\nFROM customers c\nLEFT JOIN CustomerAggregates ca ON c.customer_id = ca.customer_id;\n\nSELECT * FROM vw_customer_analytics;",
+      "requirements": [
+        "Create customers and sales_orders tables with foreign key constraints",
+        "Create composite B-Tree index on sales_orders",
+        "Build vw_customer_analytics view using WITH CTE and CASE WHEN segmentation"
+      ],
+      "hints": [
+        "Combine DDL tables, foreign keys, CTE aggregates, and CASE WHEN customer segmentation"
+      ],
+      "codeExample": "CREATE VIEW v AS WITH c AS (...) SELECT * FROM c;"
+    }
+  ],
+  "references": [
+    {
+      "title": "PostgreSQL 16 Official Documentation",
+      "description": "Comprehensive reference guide for SQL syntax, functions, and relational database management",
+      "url": "https://www.postgresql.org/docs/16/index.html"
+    }
+  ]
+}

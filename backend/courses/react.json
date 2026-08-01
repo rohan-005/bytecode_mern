@@ -1,0 +1,444 @@
+{
+  "id": "react",
+  "name": "React.js Production Engineering Track",
+  "description": "Master modern React 18+ component architecture, JSX syntax, state management, useEffect lifecycle side-effects, custom hooks, Context API, and production web application building.",
+  "instructor": "Engineering Frontend Team",
+  "duration": "10 weeks",
+  "level": "Intermediate to Advanced",
+  "price": 0,
+  "image": "/logos/react.png",
+  "category": "Web Development",
+  "rating": 4.9,
+  "ratingCount": 6120,
+  "students": 11400,
+  "tags": ["react", "jsx", "hooks", "state", "frontend", "context"],
+  "whatYouLearn": [
+    "Understand React virtual DOM and component rendering trees",
+    "Pass data via immutable Props and manage local State with useState",
+    "Synchronize side effects and API data fetching with useEffect",
+    "Encapsulate stateful logic using custom React Hooks",
+    "Eliminate prop drilling with Context API and state dispatchers",
+    "Build a production Shopping Cart and Movie Search Web App"
+  ],
+  "prerequisites": ["JavaScript ES6+ Full Stack Engine Track"],
+  "exercises": [
+    {
+      "id": "react-ex1",
+      "title": "JSX Syntax & Component Rendering",
+      "description": "Write functional React components returning valid JSX markup.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "JSX is a syntax extension for JavaScript that looks like HTML. In JSX, class becomes className and all tags must close explicitly.",
+      "objective": "Build a functional React header component returning JSX.",
+      "initialCode": "import React from 'react';\n\nfunction Header() {\n    // Return JSX markup\n}",
+      "solutionCode": "import React from 'react';\n\nconst Header = () => {\n    const appTitle = 'ByteCode React Platform';\n    return (\n        <header className=\"app-header\">\n            <h1>{appTitle}</h1>\n            <p className=\"tagline\">Interactive Component Architecture</p>\n        </header>\n    );\n};\n\nexport default Header;",
+      "requirements": [
+        "Use className instead of class",
+        "Embed variable expressions using single curly braces {}",
+        "Export default functional component"
+      ],
+      "hints": [
+        "JSX single root element or Fragment (<>...</>) wrapper is required"
+      ],
+      "codeExample": "const Card = () => <div className=\"card\"><h1>Title</h1></div>;"
+    },
+    {
+      "id": "react-ex2",
+      "title": "Props & Component Reusability",
+      "description": "Pass data down to child components using destructured props.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Props (properties) pass immutable data down from parent to child components.",
+      "objective": "Build a reusable ProductCard component driven by props.",
+      "initialCode": "function ProductCard(props) {\n    // Render product details from props\n}",
+      "solutionCode": "import React from 'react';\n\nconst ProductCard = ({ name, price, inStock = true }) => {\n    return (\n        <div className=\"product-card\">\n            <h3>{name}</h3>\n            <p className=\"price\">${price.toFixed(2)}</p>\n            <span className={inStock ? 'badge-active' : 'badge-disabled'}>\n                {inStock ? 'In Stock' : 'Out of Stock'}\n            </span>\n        </div>\n    );\n};\n\nexport default ProductCard;",
+      "requirements": [
+        "Destructure props in parameter signature",
+        "Set default value for inStock = true",
+        "Render conditional badge class based on inStock boolean"
+      ],
+      "hints": [
+        "Destructuring parameter ({ name, price }) avoids writing props.name repeatedly"
+      ],
+      "codeExample": "const User = ({ name, age = 18 }) => <div>{name}</div>;"
+    },
+    {
+      "id": "react-ex3",
+      "title": "State Management with useState",
+      "description": "Declare state variables and trigger re-renders using the useState hook.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "useState declares state variables. Calling setter functions triggers component re-rendering with updated state.",
+      "objective": "Build an interactive Counter component with increment and decrement handlers.",
+      "initialCode": "import React, { useState } from 'react';\n\nfunction Counter() {\n    // Implement count state\n}",
+      "solutionCode": "import React, { useState } from 'react';\n\nconst Counter = ({ initialValue = 0 }) => {\n    const [count, setCount] = useState(initialValue);\n    \n    return (\n        <div className=\"counter-widget\">\n            <h2>Count: {count}</h2>\n            <button onClick={() => setCount(prev => prev + 1)}>Increment</button>\n            <button onClick={() => setCount(prev => prev - 1)}>Decrement</button>\n            <button onClick={() => setCount(0)}>Reset</button>\n        </div>\n    );\n};\n\nexport default Counter;",
+      "requirements": [
+        "Use useState hook initialized with initialValue",
+        "Use functional state updater (prev => prev + 1)",
+        "Bind click handlers to buttons"
+      ],
+      "hints": [
+        "Always use functional state updates when next state depends on previous state"
+      ],
+      "codeExample": "const [val, setVal] = useState(0); setVal(p => p + 1);"
+    },
+    {
+      "id": "react-ex4",
+      "title": "Conditional Rendering Patterns",
+      "description": "Render UI elements conditionally using ternary operators, logical AND (&&), and early returns.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Use inline ternary (condition ? A : B) or short-circuit logical AND (condition && <Component />) for conditional UI rendering.",
+      "objective": "Render UserDashboard vs LoginPrompt based on isLoggedIn boolean prop.",
+      "initialCode": "function AuthView({ isLoggedIn, user }) {\n    // Conditional rendering\n}",
+      "solutionCode": "import React from 'react';\n\nconst AuthView = ({ isLoggedIn, user }) => {\n    if (!isLoggedIn) {\n        return (\n            <div className=\"auth-banner\">\n                <p>Please log in to access your developer environment.</p>\n            </div>\n        );\n    }\n    \n    return (\n        <div className=\"dashboard-view\">\n            <h2>Welcome, {user.name}!</h2>\n            {user.isAdmin && <span className=\"admin-tag\">Admin Console</span>}\n        </div>\n    );\n};\n\nexport default AuthView;",
+      "requirements": [
+        "Use early return guard clause for !isLoggedIn",
+        "Use logical && for user.isAdmin badge"
+      ],
+      "hints": [
+        "Early returns keep JSX template rendering clean"
+      ],
+      "codeExample": "{isLoaded && <DataView />}"
+    },
+    {
+      "id": "react-ex5",
+      "title": "Rendering Lists with Keys",
+      "description": "Render arrays of objects using map() and assign unique keys to list elements.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "When rendering lists in React, each item must have a unique key prop to help the Virtual DOM reconcile list updates efficiently.",
+      "objective": "Render a list of course items with unique keys.",
+      "initialCode": "const courses = [{ id: '1', title: 'React' }, { id: '2', title: 'Python' }];\n// Render list with keys",
+      "solutionCode": "import React from 'react';\n\nconst CourseList = ({ courses }) => {\n    return (\n        <ul className=\"course-grid\">\n            {courses.map(course => (\n                <li key={course.id} className=\"course-item\">\n                    <h4>{course.title}</h4>\n                    <span className=\"level\">{course.level}</span>\n                </li>\n            ))}\n        </ul>\n    );\n};\n\nexport default CourseList;",
+      "requirements": [
+        "Use array.map() to project list items into JSX",
+        "Assign unique key prop matching course.id"
+      ],
+      "hints": [
+        "Avoid using array index as key when list order can change dynamically"
+      ],
+      "codeExample": "{items.map(item => <li key={item.id}>{item.name}</li>)}"
+    },
+    {
+      "id": "react-ex6",
+      "title": "Handling User Input & Controlled Components",
+      "description": "Build controlled form inputs bound to React state.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "In controlled components, form input values are driven by React state and updated via onChange handlers.",
+      "objective": "Build a controlled login form with email and password state.",
+      "initialCode": "function LoginForm() {\n    // Controlled component form\n}",
+      "solutionCode": "import React, { useState } from 'react';\n\nconst LoginForm = ({ onSubmit }) => {\n    const [formData, setFormData] = useState({ email: '', password: '' });\n    \n    const handleChange = (e) => {\n        const { name, value } = e.target;\n        setFormData(prev => ({ ...prev, [name]: value }));\n    };\n    \n    const handleSubmit = (e) => {\n        e.preventDefault();\n        onSubmit(formData);\n    };\n    \n    return (\n        <form onSubmit={handleSubmit} className=\"form-card\">\n            <input\n                type=\"email\"\n                name=\"email\"\n                value={formData.email}\n                onChange={handleChange}\n                placeholder=\"Email\"\n                required\n            />\n            <input\n                type=\"password\"\n                name=\"password\"\n                value={formData.password}\n                onChange={handleChange}\n                placeholder=\"Password\"\n                required\n            />\n            <button type=\"submit\">Login</button>\n        </form>\n    );\n};\n\nexport default LoginForm;",
+      "requirements": [
+        "Manage form input object state with useState",
+        "Use compute property name handler [e.target.name]: e.target.value",
+        "Call e.preventDefault() in submit handler"
+      ],
+      "hints": [
+        "e.preventDefault() prevents default full-page browser submit refresh"
+      ],
+      "codeExample": "<input value={val} onChange={e => setVal(e.target.value)} />"
+    },
+    {
+      "id": "react-ex7",
+      "title": "Side Effects & Data Fetching with useEffect",
+      "description": "Fetch API data on component mount and handle cleanup using the useEffect hook.",
+      "duration": "30 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "useEffect synchronizes components with external systems. Dependency array controls when side effect callback re-runs.",
+      "objective": "Fetch courses data on component mount using useEffect.",
+      "initialCode": "import React, { useState, useEffect } from 'react';\n\nfunction CourseCatalog() {\n    // Fetch data inside useEffect\n}",
+      "solutionCode": "import React, { useState, useEffect } from 'react';\n\nconst CourseCatalog = () => {\n    const [courses, setCourses] = useState([]);\n    const [loading, setLoading] = useState(true);\n    \n    useEffect(() => {\n        const loadData = async () => {\n            try {\n                const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5');\n                const data = await res.json();\n                setCourses(data);\n            } catch (err) {\n                console.error(err);\n            } finally {\n                setLoading(false);\n            }\n        };\n        \n        loadData();\n    }, []); // Empty dependency array runs once on mount\n    \n    if (loading) return <div>Loading courses...</div>;\n    \n    return (\n        <div>\n            {courses.map(c => <p key={c.id}>{c.title}</p>)}\n        </div>\n    );\n};\n\nexport default CourseCatalog;",
+      "requirements": [
+        "Use useEffect with empty dependency array []",
+        "Handle loading spinner state",
+        "Set fetched data in state"
+      ],
+      "hints": [
+        "Empty array [] ensures side effect runs only once when component mounts"
+      ],
+      "codeExample": "useEffect(() => { fetchData(); }, []);"
+    },
+    {
+      "id": "react-ex8",
+      "title": "useEffect Dependency Arrays & Cleanup",
+      "description": "Manage dependency array triggers and return cleanup functions to prevent memory leaks.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Returning a function from useEffect defines a cleanup handler executed when the component unmounts or before re-running the effect.",
+      "objective": "Build a window resize window listener component with cleanup.",
+      "initialCode": "function WindowTracker() {\n    // Add resize listener with cleanup\n}",
+      "solutionCode": "import React, { useState, useEffect } from 'react';\n\nconst WindowTracker = () => {\n    const [width, setWidth] = useState(window.innerWidth);\n    \n    useEffect(() => {\n        const handleResize = () => setWidth(window.innerWidth);\n        window.addEventListener('resize', handleResize);\n        \n        // Cleanup listener on unmount\n        return () => {\n            window.removeEventListener('resize', handleResize);\n        };\n    }, []);\n    \n    return <div>Window Width: {width}px</div>;\n};\n\nexport default WindowTracker;",
+      "requirements": [
+        "Attach window resize event listener in useEffect",
+        "Return cleanup function removing event listener"
+      ],
+      "hints": [
+        "Always clean up event listeners, timers, and subscriptions in useEffect returns"
+      ],
+      "codeExample": "useEffect(() => { const timer = setInterval(fn, 1000); return () => clearInterval(timer); }, []);"
+    },
+    {
+      "id": "react-ex9",
+      "title": "Custom React Hooks",
+      "description": "Extract reusable stateful logic into custom React hooks (useFetch, useLocalStorage).",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Custom hooks are JavaScript functions whose names start with 'use' and can invoke other React hooks to encapsulate reusable state logic.",
+      "objective": "Build a custom useLocalStorage hook.",
+      "initialCode": "// Create custom useLocalStorage hook",
+      "solutionCode": "import { useState, useEffect } from 'react';\n\nconst useLocalStorage = (key, initialValue) => {\n    const [storedValue, setStoredValue] = useState(() => {\n        try {\n            const item = localStorage.getItem(key);\n            return item ? JSON.parse(item) : initialValue;\n        } catch (error) {\n            return initialValue;\n        }\n    });\n    \n    useEffect(() => {\n        try {\n            localStorage.setItem(key, JSON.stringify(storedValue));\n        } catch (error) {\n            console.error(error);\n        }\n    }, [key, storedValue]);\n    \n    return [storedValue, setStoredValue];\n};\n\nexport default useLocalStorage;",
+      "requirements": [
+        "Name hook function starting with 'use' (useLocalStorage)",
+        "Use lazy state initialization with useState(() => ...)",
+        "Return tuple array [storedValue, setStoredValue]"
+      ],
+      "hints": [
+        "Lazy initial state prevents reading from localStorage on every render"
+      ],
+      "codeExample": "const useToggle = (init = false) => { const [v, setV] = useState(init); return [v, () => setV(!v)]; };"
+    },
+    {
+      "id": "react-ex10",
+      "title": "Context API & Global State Management",
+      "description": "Eliminate prop drilling by creating ThemeContext with createContext and useContext.",
+      "duration": "30 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Context API provides a way to share data globally across the component tree without passing props manually down every level.",
+      "objective": "Create ThemeContext Provider and consume theme state in child components.",
+      "initialCode": "import { createContext } from 'react';\n// Create and consume ThemeContext",
+      "solutionCode": "import React, { createContext, useContext, useState } from 'react';\n\nconst ThemeContext = createContext();\n\nexport const ThemeProvider = ({ children }) => {\n    const [theme, setTheme] = useState('dark');\n    const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark');\n    \n    return (\n        <ThemeContext.Provider value={{ theme, toggleTheme }}>\n            {children}\n        </ThemeContext.Provider>\n    );\n};\n\nexport const useTheme = () => useContext(ThemeContext);",
+      "requirements": [
+        "Create context with createContext()",
+        "Build ThemeProvider wrapper passing value object",
+        "Export custom useTheme hook wrapping useContext(ThemeContext)"
+      ],
+      "hints": [
+        "Wrap root application inside <ThemeProvider> to make context accessible"
+      ],
+      "codeExample": "const Context = createContext(); const val = useContext(Context);"
+    },
+    {
+      "id": "react-ex11",
+      "title": "Reducer Pattern with useReducer",
+      "description": "Manage complex state transitions using the useReducer hook.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "useReducer is preferred over useState when managing complex state objects with multiple sub-values and explicit action dispatchers.",
+      "objective": "Build a Todo list state reducer handling ADD, TOGGLE, and DELETE actions.",
+      "initialCode": "import { useReducer } from 'react';\n// Implement todo reducer",
+      "solutionCode": "import React, { useReducer } from 'react';\n\nconst todoReducer = (state, action) => {\n    switch (action.type) {\n        case 'ADD_TODO':\n            return [...state, { id: Date.now(), text: action.payload, completed: false }];\n        case 'TOGGLE_TODO':\n            return state.map(todo => \n                todo.id === action.payload ? { ...todo, completed: !todo.completed } : todo\n            );\n        case 'DELETE_TODO':\n            return state.filter(todo => todo.id !== action.payload);\n        default:\n            return state;\n    }\n};\n\nconst TodoApp = () => {\n    const [todos, dispatch] = useReducer(todoReducer, []);\n    return <div>Todos Count: {todos.length}</div>;\n};\n\nexport default TodoApp;",
+      "requirements": [
+        "Write pure reducer function handling switch(action.type)",
+        "Use useReducer(todoReducer, initialArray)",
+        "Dispatch actions with type and payload"
+      ],
+      "hints": [
+        "Reducers must remain pure functions without side effects"
+      ],
+      "codeExample": "const [state, dispatch] = useReducer(reducer, initialState);"
+    },
+    {
+      "id": "react-ex12",
+      "title": "Performance Optimization: useMemo & useCallback",
+      "description": "Memoize expensive calculations with useMemo and callback references with useCallback.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "useMemo caches calculation results, while useCallback caches function references to prevent unnecessary child re-renders.",
+      "objective": "Optimize expensive data filtering using useMemo.",
+      "initialCode": "import { useMemo } from 'react';\n// Optimize calculation",
+      "solutionCode": "import React, { useState, useMemo } from 'react';\n\nconst FilteredList = ({ items, searchQuery }) => {\n    const filteredItems = useMemo(() => {\n        console.log('Calculating filtered items...');\n        return items.filter(item => \n            item.name.toLowerCase().includes(searchQuery.toLowerCase())\n        );\n    }, [items, searchQuery]);\n    \n    return (\n        <ul>\n            {filteredItems.map(item => <li key={item.id}>{item.name}</li>)}\n        </ul>\n    );\n};\n\nexport default FilteredList;",
+      "requirements": [
+        "Wrap expensive array filter in useMemo",
+        "Set dependency array [items, searchQuery]"
+      ],
+      "hints": [
+        "useMemo re-executes calculation function only when specified dependencies change"
+      ],
+      "codeExample": "const memoized = useMemo(() => compute(a, b), [a, b]);"
+    },
+    {
+      "id": "react-ex13",
+      "title": "DOM References with useRef",
+      "description": "Access underlying DOM elements directly and store mutable values without triggering re-renders.",
+      "duration": "20 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "useRef returns a mutable ref object whose .current property persists across re-renders without causing component re-rendering.",
+      "objective": "Auto-focus an input element on component mount using useRef.",
+      "initialCode": "import React, { useRef, useEffect } from 'react';\n\nfunction SearchInput() {\n    // Focus input on mount\n}",
+      "solutionCode": "import React, { useRef, useEffect } from 'react';\n\nconst SearchInput = () => {\n    const inputRef = useRef(null);\n    \n    useEffect(() => {\n        if (inputRef.current) {\n            inputRef.current.focus();\n        }\n    }, []);\n    \n    return (\n        <input\n            ref={inputRef}\n            type=\"text\"\n            placeholder=\"Search documentation...\"\n            className=\"search-input\"\n        />\n    );\n};\n\nexport default SearchInput;",
+      "requirements": [
+        "Declare ref object with useRef(null)",
+        "Attach ref attribute to input element",
+        "Call inputRef.current.focus() inside useEffect on mount"
+      ],
+      "hints": [
+        "inputRef.current points directly to the underlying HTMLInputElement node"
+      ],
+      "codeExample": "const ref = useRef(null); ref.current.focus();"
+    },
+    {
+      "id": "react-ex14",
+      "title": "React Portals & Modal Dialogs",
+      "description": "Render modal dialog overlays outside parent DOM containers using ReactDOM.createPortal.",
+      "duration": "25 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "React Portals (createPortal) render children into a DOM node existing outside the parent component's DOM hierarchy.",
+      "objective": "Build a Modal overlay rendering into document.body.",
+      "initialCode": "import ReactDOM from 'react-dom';\n// Build Modal portal",
+      "solutionCode": "import React from 'react';\nimport ReactDOM from 'react-dom';\n\nconst Modal = ({ isOpen, onClose, children }) => {\n    if (!isOpen) return null;\n    \n    return ReactDOM.createPortal(\n        <div className=\"modal-overlay\" onClick={onClose}>\n            <div className=\"modal-card\" onClick={e => e.stopPropagation()}>\n                {children}\n                <button onClick={onClose}>Close</button>\n            </div>\n        </div>,\n        document.body\n    );\n};\n\nexport default Modal;",
+      "requirements": [
+        "Use ReactDOM.createPortal(jsx, document.body)",
+        "Call e.stopPropagation() on modal card to prevent backdrop click closing"
+      ],
+      "hints": [
+        "stopPropagation prevents click events inside modal card from closing the overlay"
+      ],
+      "codeExample": "ReactDOM.createPortal(<Modal />, document.body);"
+    },
+    {
+      "id": "react-ex15",
+      "title": "Error Boundaries",
+      "description": "Catch JavaScript errors anywhere in child component trees using error boundary class components.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Error Boundaries are React class components that catch errors in child component trees during rendering and display fallback UI.",
+      "objective": "Implement an ErrorBoundary class component.",
+      "initialCode": "import React, { Component } from 'react';\n// Create ErrorBoundary",
+      "solutionCode": "import React, { Component } from 'react';\n\nclass ErrorBoundary extends Component {\n    state = { hasError: false, error: null };\n    \n    static getDerivedStateFromError(error) {\n        return { hasError: true, error };\n    }\n    \n    componentDidCatch(error, errorInfo) {\n        console.error('ErrorBoundary caught:', error, errorInfo);\n    }\n    \n    render() {\n        if (this.state.hasError) {\n            return (\n                <div className=\"error-fallback\">\n                    <h3>Something went wrong in this component.</h3>\n                </div>\n            );\n        }\n        return this.props.children;\n    }\n}\n\nexport default ErrorBoundary;",
+      "requirements": [
+        "Define static getDerivedStateFromError method",
+        "Implement componentDidCatch for error logging",
+        "Render fallback UI when hasError is true"
+      ],
+      "hints": [
+        "Error boundaries catch rendering errors in child components, not event handler errors"
+      ],
+      "codeExample": "static getDerivedStateFromError(error) { return { hasError: true }; }"
+    },
+    {
+      "id": "react-ex16",
+      "title": "React.memo & Pure Component Optimization",
+      "description": "Prevent unnecessary child component re-renders using React.memo.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "React.memo wraps functional components to shallowly compare props, skipping re-renders if props have not changed.",
+      "objective": "Wrap a child ListItem component with React.memo.",
+      "initialCode": "import React from 'react';\n// Optimize ListItem with React.memo",
+      "solutionCode": "import React from 'react';\n\nconst ListItem = React.memo(({ title, onSelect }) => {\n    console.log(`Rendering ListItem: ${title}`);\n    return (\n        <div className=\"list-item\" onClick={() => onSelect(title)}>\n            <span>{title}</span>\n        </div>\n    );\n});\n\nexport default ListItem;",
+      "requirements": [
+        "Wrap functional component in React.memo()",
+        "Log component rendering to demonstrate memoization"
+      ],
+      "hints": [
+        "Combine React.memo with useCallback on function props for complete optimization"
+      ],
+      "codeExample": "const MemoComp = React.memo(({ prop }) => <div>{prop}</div>);"
+    },
+    {
+      "id": "react-ex17",
+      "title": "Client-Side Routing Concepts",
+      "description": "Simulate client-side view routing based on location hash or state.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Client-side routing swaps rendered view components based on URL path updates without reloading the HTML page.",
+      "objective": "Build a lightweight Router view switcher.",
+      "initialCode": "function SimpleRouter({ currentPath }) {\n    // Switch views based on path\n}",
+      "solutionCode": "import React from 'react';\n\nconst Home = () => <h2>Home View</h2>;\nconst Courses = () => <h2>Courses Catalog View</h2>;\nconst NotFound = () => <h2>404 Page Not Found</h2>;\n\nconst SimpleRouter = ({ path }) => {\n    switch (path) {\n        case '/':\n            return <Home />;\n        case '/courses':\n            return <Courses />;\n        default:\n            return <NotFound />;\n    }\n};\n\nexport default SimpleRouter;",
+      "requirements": [
+        "Write view components Home, Courses, NotFound",
+        "Switch rendered component based on path prop"
+      ],
+      "hints": [
+        "Routing components swap rendered children while sharing global navigation headers"
+      ],
+      "codeExample": "switch(path) { case '/': return <Home />; default: return <NotFound />; }"
+    },
+    {
+      "id": "react-ex18",
+      "title": "Compound Component Pattern",
+      "description": "Design flexible UI component libraries using the Compound Component pattern.",
+      "duration": "35 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Compound components share implicit state between parent and child components (e.g. Select and Select.Option).",
+      "objective": "Build a Accordion and Accordion.Item compound component.",
+      "initialCode": "// Build compound accordion component",
+      "solutionCode": "import React, { createContext, useContext, useState } from 'react';\n\nconst AccordionContext = createContext();\n\nconst Accordion = ({ children }) => {\n    const [activeId, setActiveId] = useState(null);\n    return (\n        <AccordionContext.Provider value={{ activeId, setActiveId }}>\n            <div className=\"accordion-group\">{children}</div>\n        </AccordionContext.Provider>\n    );\n};\n\nAccordion.Item = ({ id, title, children }) => {\n    const { activeId, setActiveId } = useContext(AccordionContext);\n    const isOpen = activeId === id;\n    return (\n        <div className=\"accordion-item\">\n            <button onClick={() => setActiveId(isOpen ? null : id)}>{title}</button>\n            {isOpen && <div>{children}</div>}\n        </div>\n    );\n};\n\nexport default Accordion;",
+      "requirements": [
+        "Create shared AccordionContext",
+        "Attach Item sub-component directly to main Accordion component object"
+      ],
+      "hints": [
+        "Attaching sub-components to parent object (Accordion.Item = ...) improves component API ergonomics"
+      ],
+      "codeExample": "Accordion.Item = ({ children }) => { ... };"
+    },
+    {
+      "id": "react-ex19",
+      "title": "Optimistic UI Updates",
+      "description": "Implement optimistic UI updates that update local state immediately before API server confirmation.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Optimistic UI renders changes instantly to enhance perceived performance, rolling back state if the network request fails.",
+      "objective": "Build an optimistic Like button with rollback on failure.",
+      "initialCode": "function LikeButton({ initialLikes }) {\n    // Implement optimistic update with rollback\n}",
+      "solutionCode": "import React, { useState } from 'react';\n\nconst LikeButton = ({ initialLikes = 10, onLikeApi }) => {\n    const [likes, setLikes] = useState(initialLikes);\n    const [isLiked, setIsLiked] = useState(false);\n    \n    const handleLike = async () => {\n        const prevLikes = likes;\n        const prevLiked = isLiked;\n        \n        // Optimistic update\n        setLikes(prev => prevLiked ? prev - 1 : prev + 1);\n        setIsLiked(!prevLiked);\n        \n        try {\n            await onLikeApi(!prevLiked);\n        } catch (error) {\n            // Rollback on failure\n            setLikes(prevLikes);\n            setIsLiked(prevLiked);\n            console.error('Like failed, rolled back state.');\n        }\n    };\n    \n    return (\n        <button onClick={handleLike} className={isLiked ? 'liked' : ''}>\n            {isLiked ? '♥ Liked' : '♡ Like'} ({likes})\n        </button>\n    );\n};\n\nexport default LikeButton;",
+      "requirements": [
+        "Update state optimistically before API promise resolves",
+        "Rollback state to initial values inside catch block on failure"
+      ],
+      "hints": [
+        "Store previous state values before mutating state so rollback can restore them exactly"
+      ],
+      "codeExample": "setVal(v => v + 1); try { await api(); } catch { setVal(prev); }"
+    },
+    {
+      "id": "react-ex20",
+      "title": "Capstone Project: Interactive Shopping Cart App",
+      "description": "Build a production-grade Shopping Cart application featuring Context API, useReducer, item additions, quantity updates, total cost calculations, and localStorage persistence.",
+      "duration": "60 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "This capstone project combines modern React 18+ architecture: useReducer state management, Context API global distribution, custom hooks, and local storage persistence.",
+      "objective": "Construct a full Shopping Cart application system.",
+      "initialCode": "// Construct Shopping Cart system",
+      "solutionCode": "import React, { createContext, useContext, useReducer, useEffect } from 'react';\n\nconst CartContext = createContext();\n\nconst cartReducer = (state, action) => {\n    switch (action.type) {\n        case 'ADD_ITEM': {\n            const existingIndex = state.findIndex(item => item.id === action.payload.id);\n            if (existingIndex > -1) {\n                const updated = [...state];\n                updated[existingIndex].qty += 1;\n                return updated;\n            }\n            return [...state, { ...action.payload, qty: 1 }];\n        }\n        case 'REMOVE_ITEM':\n            return state.filter(item => item.id !== action.payload);\n        case 'CLEAR_CART':\n            return [];\n        default:\n            return state;\n    }\n};\n\nexport const CartProvider = ({ children }) => {\n    const [cart, dispatch] = useReducer(cartReducer, [], () => {\n        const saved = localStorage.getItem('bytecode_cart');\n        return saved ? JSON.parse(saved) : [];\n    });\n    \n    useEffect(() => {\n        localStorage.setItem('bytecode_cart', JSON.stringify(cart));\n    }, [cart]);\n    \n    const totalCost = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);\n    \n    return (\n        <CartContext.Provider value={{ cart, dispatch, totalCost }}>\n            {children}\n        </CartContext.Provider>\n    );\n};\n\nexport const useCart = () => useContext(CartContext);",
+      "requirements": [
+        "Implement cartReducer with ADD_ITEM, REMOVE_ITEM, and CLEAR_CART actions",
+        "Calculate total cost dynamically",
+        "Persist cart state in localStorage"
+      ],
+      "hints": [
+        "Lazy initialization in useReducer (3rd parameter) initializes state from localStorage safely"
+      ],
+      "codeExample": "const total = cart.reduce((a, b) => a + (b.price * b.qty), 0);"
+    }
+  ],
+  "references": [
+    {
+      "title": "React 18 Official Documentation",
+      "description": "Comprehensive guide for React architecture, hooks, and component APIs",
+      "url": "https://react.dev/"
+    }
+  ]
+}

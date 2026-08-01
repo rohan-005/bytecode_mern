@@ -1,0 +1,442 @@
+{
+  "id": "mongodb",
+  "name": "MongoDB Data Architecture & Aggregations Track",
+  "description": "Master NoSQL document modeling, BSON data types, CRUD operations, Aggregation Pipelines, compound indexing, transactions, and enterprise database engineering.",
+  "instructor": "Engineering Database Team",
+  "duration": "8 weeks",
+  "level": "Intermediate to Advanced",
+  "price": 0,
+  "image": "/logos/mongodb.png",
+  "category": "Database Engineering",
+  "rating": 4.9,
+  "ratingCount": 3890,
+  "students": 6940,
+  "tags": ["mongodb", "nosql", "database", "aggregation", "crud", "bson"],
+  "whatYouLearn": [
+    "Design flexible JSON/BSON document schemas",
+    "Execute complex CRUD operations with query operators ($gt, $in, $elemMatch)",
+    "Build multi-stage Aggregation Pipelines ($match, $group, $lookup, $unwind)",
+    "Optimize query performance using single-field and compound Indexes",
+    "Model relationships using embedding vs referencing patterns",
+    "Build an Inventory Management System Database"
+  ],
+  "prerequisites": ["Backend Engineering Fundamentals"],
+  "exercises": [
+    {
+      "id": "mongo-ex1",
+      "title": "BSON Documents & Collection Insertions (insertOne, insertMany)",
+      "description": "Insert single and bulk BSON documents into MongoDB collections.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "MongoDB stores data records as BSON (Binary JSON) documents inside collections. insertOne inserts one document, while insertMany inserts arrays of documents.",
+      "objective": "Insert single and array document payloads into a products collection.",
+      "initialCode": "// Execute MongoDB insertOne and insertMany operations",
+      "solutionCode": "db.products.insertOne({\n    name: 'Wireless Mouse',\n    category: 'Electronics',\n    price: 29.99,\n    inStock: true,\n    createdAt: new Date()\n});\n\ndb.products.insertMany([\n    { name: 'Mechanical Keyboard', category: 'Electronics', price: 99.99, inStock: true },\n    { name: 'USB-C Cable', category: 'Accessories', price: 12.99, inStock: false }\n]);",
+      "requirements": [
+        "Use db.collection.insertOne() with document payload",
+        "Use db.collection.insertMany() with document array"
+      ],
+      "hints": [
+        "MongoDB automatically generates a unique _id ObjectId if not supplied"
+      ],
+      "codeExample": "db.users.insertOne({ name: 'Alex', age: 25 });"
+    },
+    {
+      "id": "mongo-ex2",
+      "title": "Querying Documents (find, findOne & Projection)",
+      "description": "Query documents with equality matches, projections, and pagination (limit, skip).",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "find(query, projection) retrieves documents. Projections ({ name: 1, _id: 0 }) specify which fields to return.",
+      "objective": "Find electronics products excluding _id from output.",
+      "initialCode": "// Execute find query with projection",
+      "solutionCode": "db.products.find(\n    { category: 'Electronics' },\n    { name: 1, price: 1, _id: 0 }\n).sort({ price: -1 }).limit(5);",
+      "requirements": [
+        "Query category: 'Electronics'",
+        "Use projection { name: 1, price: 1, _id: 0 }",
+        "Chain .sort({ price: -1 }) and .limit(5)"
+      ],
+      "hints": [
+        "1 includes a field in projection; 0 excludes a field"
+      ],
+      "codeExample": "db.users.find({ active: true }, { name: 1 });"
+    },
+    {
+      "id": "mongo-ex3",
+      "title": "Comparison Query Operators ($gt, $gte, $lt, $in)",
+      "description": "Filter documents using comparison query operators.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Comparison operators include $eq (equal), $ne (not equal), $gt (greater than), $gte (greater than or equal), $lt, $lte, and $in (matches array values).",
+      "objective": "Query products priced between $20 and $100 in specified categories.",
+      "initialCode": "// Execute query using comparison operators",
+      "solutionCode": "db.products.find({\n    price: { $gte: 20, $lte: 100 },\n    category: { $in: ['Electronics', 'Accessories'] }\n});",
+      "requirements": [
+        "Use $gte and $lte price bounds",
+        "Use $in operator for category array match"
+      ],
+      "hints": [
+        "$in takes an array of values to match against"
+      ],
+      "codeExample": "db.items.find({ qty: { $gt: 10 }, cat: { $in: ['A', 'B'] } });"
+    },
+    {
+      "id": "mongo-ex4",
+      "title": "Logical Query Operators ($and, $or, $nor, $not)",
+      "description": "Combine complex filtering conditions using logical query operators.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Logical operators ($or, $and, $nor, $not) combine multiple clause expressions.",
+      "objective": "Query items matching either category or discount conditions.",
+      "initialCode": "// Execute query with $or and $and operators",
+      "solutionCode": "db.products.find({\n    $or: [\n        { category: 'Electronics' },\n        { price: { $lt: 15 } }\n    ],\n    $and: [\n        { inStock: true }\n    ]\n});",
+      "requirements": [
+        "Use $or operator containing two filter clauses",
+        "Use $and for stock validation"
+      ],
+      "hints": [
+        "$or takes an array of query condition objects"
+      ],
+      "codeExample": "db.users.find({ $or: [{ role: 'admin' }, { points: { $gt: 100 } }] });"
+    },
+    {
+      "id": "mongo-ex5",
+      "title": "Update Operators ($set, $unset, $inc)",
+      "description": "Update document fields using atomic update operators.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "updateOne and updateMany require atomic update operators ($set modifies fields, $unset removes fields, $inc increments numerical values).",
+      "objective": "Increment stock quantity and update status on matching items.",
+      "initialCode": "// Execute updateOne with $set and $inc",
+      "solutionCode": "db.products.updateOne(\n    { name: 'Wireless Mouse' },\n    {\n        $inc: { stockCount: 10 },\n        $set: { lastRestocked: new Date(), inStock: true }\n    }\n);",
+      "requirements": [
+        "Use $inc to increment stockCount by 10",
+        "Use $set to update lastRestocked timestamp and inStock boolean"
+      ],
+      "hints": [
+        "Always use atomic operators like $set inside update documents to avoid overwriting entire documents"
+      ],
+      "codeExample": "db.users.updateOne({ id: 1 }, { $set: { active: true }, $inc: { logins: 1 } });"
+    },
+    {
+      "id": "mongo-ex6",
+      "title": "Array Update Operators ($push, $pull, $addToSet)",
+      "description": "Manipulate nested document arrays atomically.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "$push adds elements to an array, $pull removes matching elements, and $addToSet adds elements only if they do not already exist (unique set behavior).",
+      "objective": "Add unique tags to a product document array.",
+      "initialCode": "// Execute array update operators",
+      "solutionCode": "db.products.updateOne(\n    { _id: 'prod-101' },\n    {\n        $addToSet: { tags: { $each: ['gadget', 'wireless', 'featured'] } }\n    }\n);",
+      "requirements": [
+        "Use $addToSet operator with $each modifier",
+        "Prevent duplicate tag strings from being added"
+      ],
+      "hints": [
+        "$addToSet prevents duplicate array values; $each allows adding multiple array items at once"
+      ],
+      "codeExample": "db.items.updateOne({ id: 1 }, { $addToSet: { tags: 'new' } });"
+    },
+    {
+      "id": "mongo-ex7",
+      "title": "Deletion & Bulk Operations (deleteOne, deleteMany, bulkWrite)",
+      "description": "Delete records safely and execute high-throughput bulk write operations.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "deleteOne and deleteMany remove documents matching query criteria. bulkWrite executes ordered or unordered batch operations.",
+      "objective": "Delete out-of-stock items and run a bulkWrite operations batch.",
+      "initialCode": "// Execute deleteMany and bulkWrite",
+      "solutionCode": "db.products.deleteMany({ inStock: false, stockCount: 0 });\n\ndb.products.bulkWrite([\n    { insertOne: { document: { name: 'Item A', price: 10 } } },\n    { updateOne: { filter: { name: 'Item B' }, update: { $set: { price: 15 } } } }\n]);",
+      "requirements": [
+        "Delete items with inStock: false and stockCount: 0",
+        "Execute bulkWrite containing insertOne and updateOne operations"
+      ],
+      "hints": [
+        "deleteMany({}) without query filter deletes all documents in collection"
+      ],
+      "codeExample": "db.users.deleteMany({ active: false });"
+    },
+    {
+      "id": "mongo-ex8",
+      "title": "Aggregation Pipeline Basics ($match, $project)",
+      "description": "Build multi-stage aggregation pipelines to filter and reshape documents.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "The Aggregation Framework processes documents through ordered pipeline stages. $match filters documents; $project reshapes document fields.",
+      "objective": "Build a 2-stage aggregation pipeline with $match and $project.",
+      "initialCode": "// Execute db.collection.aggregate([])",
+      "solutionCode": "db.products.aggregate([\n    { $match: { category: 'Electronics', inStock: true } },\n    {\n        $project: {\n            productName: '$name',\n            formattedPrice: { $concat: ['$', { $toString: '$price' }] },\n            _id: 0\n        }\n    }\n]);",
+      "requirements": [
+        "Stage 1: $match for category: 'Electronics' and inStock: true",
+        "Stage 2: $project to rename productName and format price string"
+      ],
+      "hints": [
+        "Prefix field names with $ (e.g. '$price') inside aggregation expressions to reference field values"
+      ],
+      "codeExample": "db.items.aggregate([{ $match: { active: true } }, { $project: { name: 1 } }]);"
+    },
+    {
+      "id": "mongo-ex9",
+      "title": "Aggregation Grouping & Accumulators ($group, $sum, $avg)",
+      "description": "Group dataset rows and compute aggregate totals, averages, and counts.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "$group stage collapses documents by a specified _id key and computes accumulated values ($sum, $avg, $min, $max).",
+      "objective": "Calculate total stock value and average price grouped by category.",
+      "initialCode": "// Execute aggregation pipeline with $group stage",
+      "solutionCode": "db.products.aggregate([\n    {\n        $group: {\n            _id: '$category',\n            totalProducts: { $sum: 1 },\n            avgPrice: { $avg: '$price' },\n            totalInventoryValue: { $sum: { $multiply: ['$price', '$stockCount'] } }\n        }\n    },\n    { $sort: { totalInventoryValue: -1 } }\n]);",
+      "requirements": [
+        "Group by category using _id: '$category'",
+        "Compute totalProducts count using $sum: 1",
+        "Compute average price with $avg and total value with $multiply"
+      ],
+      "hints": [
+        "Setting _id: '$category' groups documents by unique category values"
+      ],
+      "codeExample": "db.orders.aggregate([{ $group: { _id: '$status', total: { $sum: '$amount' } } }]);"
+    },
+    {
+      "id": "mongo-ex10",
+      "title": "Array Aggregations ($unwind, $arrayElemAt)",
+      "description": "Deconstruct document arrays into individual stream documents using $unwind.",
+      "duration": "30 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "$unwind outputs a new document for each element in a target array field, enabling individual array item grouping.",
+      "objective": "Unwind product tags array and calculate tag occurrences.",
+      "initialCode": "// Execute $unwind aggregation pipeline",
+      "solutionCode": "db.products.aggregate([\n    { $unwind: '$tags' },\n    {\n        $group: {\n            _id: '$tags',\n            tagCount: { $sum: 1 }\n        }\n    },\n    { $sort: { tagCount: -1 } }\n]);",
+      "requirements": [
+        "Stage 1: $unwind: '$tags'",
+        "Stage 2: $group by _id: '$tags' and calculate sum count",
+        "Stage 3: $sort descending by tagCount"
+      ],
+      "hints": [
+        "$unwind expands an array containing 3 items into 3 separate documents"
+      ],
+      "codeExample": "db.posts.aggregate([{ $unwind: '$tags' }]);"
+    },
+    {
+      "id": "mongo-ex11",
+      "title": "Relational Joins with $lookup Stage",
+      "description": "Perform left outer joins between collections using the $lookup aggregation stage.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "$lookup performs relational joins between collections matching localField with foreignField from another collection.",
+      "objective": "Join order documents with customer profile details.",
+      "initialCode": "// Execute $lookup aggregation join",
+      "solutionCode": "db.orders.aggregate([\n    {\n        $lookup: {\n            from: 'users',\n            localField: 'userId',\n            foreignField: '_id',\n            as: 'customerDetails'\n        }\n    },\n    { $unwind: '$customerDetails' },\n    {\n        $project: {\n            orderId: '$_id',\n            amount: 1,\n            customerName: '$customerDetails.name',\n            customerEmail: '$customerDetails.email'\n        }\n    }\n]);",
+      "requirements": [
+        "Use $lookup with from: 'users', localField: 'userId', foreignField: '_id', as: 'customerDetails'",
+        "Unwind joined customerDetails array",
+        "Project clean order and customer payload"
+      ],
+      "hints": [
+        "$lookup returns joined matches as an array on the target specified in 'as'"
+      ],
+      "codeExample": "db.orders.aggregate([{ $lookup: { from: 'users', localField: 'uId', foreignField: '_id', as: 'user' } }]);"
+    },
+    {
+      "id": "mongo-ex12",
+      "title": "Single-Field & Compound Indexes",
+      "description": "Create single-field, compound, and unique indexes using createIndex().",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Indexes speed up read query performance by maintaining an ordered data structure. Compound indexes optimize queries matching multiple fields.",
+      "objective": "Create unique single-field index on email and compound index on category/price.",
+      "initialCode": "// Create single-field and compound indexes",
+      "solutionCode": "db.users.createIndex({ email: 1 }, { unique: true });\n\ndb.products.createIndex(\n    { category: 1, price: -1 },\n    { name: 'idx_category_price' }\n);\n\nconsole.log(db.products.getIndexes());",
+      "requirements": [
+        "Create unique index on users.email",
+        "Create compound index on products { category: 1, price: -1 }"
+      ],
+      "hints": [
+        "1 specifies ascending index order; -1 specifies descending index order"
+      ],
+      "codeExample": "db.users.createIndex({ email: 1 }, { unique: true });"
+    },
+    {
+      "id": "mongo-ex13",
+      "title": "Text Indexes & Full-Text Search ($text, $search)",
+      "description": "Create full-text search indexes and query text using $text and $search.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Text indexes enable searching for words within string fields without requiring exact string or regex matches.",
+      "objective": "Create a text index on product title/description and execute text search.",
+      "initialCode": "// Create text index and query $text",
+      "solutionCode": "db.products.createIndex({ name: 'text', description: 'text' });\n\ndb.products.find(\n    { $text: { $search: 'wireless keyboard' } },\n    { score: { $meta: 'textScore' } }\n).sort({ score: { $meta: 'textScore' } });",
+      "requirements": [
+        "Create text index on name and description fields",
+        "Query using $text: { $search: '...' }",
+        "Project and sort by textScore metadata"
+      ],
+      "hints": [
+        "Text search ranks documents using textScore relevance metadata"
+      ],
+      "codeExample": "db.articles.find({ $text: { $search: 'react node' } });"
+    },
+    {
+      "id": "mongo-ex14",
+      "title": "Geospatial Indexing & Location Queries ($near, $geoWithin)",
+      "description": "Store GeoJSON Point data and query locations using 2dsphere indexes.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "2dsphere indexes query GeoJSON point objects on a spherical earth model using operators like $near and $maxDistance.",
+      "objective": "Query stores within 5000 meters of a GeoJSON coordinate.",
+      "initialCode": "// Create 2dsphere index and query $near",
+      "solutionCode": "db.stores.createIndex({ location: '2dsphere' });\n\ndb.stores.find({\n    location: {\n        $near: {\n            $geometry: {\n                type: 'Point',\n                coordinates: [-73.9667, 40.78] // [longitude, latitude]\n            },\n            $maxDistance: 5000 // meters\n        }\n    }\n});",
+      "requirements": [
+        "Create 2dsphere index on location field",
+        "Query using $near and $geometry GeoJSON Point coordinates",
+        "Specify $maxDistance in meters"
+      ],
+      "hints": [
+        "GeoJSON coordinates order is ALWAYS [longitude, latitude]"
+      ],
+      "codeExample": "db.places.createIndex({ loc: '2dsphere' });"
+    },
+    {
+      "id": "mongo-ex15",
+      "title": "Schema Validation Rules ($jsonSchema)",
+      "description": "Enforce collection data integrity using native $jsonSchema validation rules.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "MongoDB supports collection-level JSON Schema validation to enforce required fields, data types, and value constraints upon insertion/update.",
+      "objective": "Create a users collection with strict $jsonSchema validation.",
+      "initialCode": "// Create collection with $jsonSchema validator",
+      "solutionCode": "db.createCollection('validated_users', {\n    validator: {\n        $jsonSchema: {\n            bsonType: 'object',\n            required: ['name', 'email', 'role'],\n            properties: {\n                name: {\n                    bsonType: 'string',\n                    description: 'name must be a string'\n                },\n                email: {\n                    bsonType: 'string',\n                    pattern: '^.+@.+$',\n                    description: 'email must be valid'\n                },\n                role: {\n                    enum: ['admin', 'user', 'developer'],\n                    description: 'role must be an allowed enum string'\n                }\n            }\n        }\n    }\n});",
+      "requirements": [
+        "Use db.createCollection with validator option",
+        "Define required fields array",
+        "Define properties with bsonType, pattern, and enum rules"
+      ],
+      "hints": [
+        "Insertions breaking validator rules throw a MongoServerError validation error"
+      ],
+      "codeExample": "db.createCollection('test', { validator: { $jsonSchema: { required: ['name'] } } });"
+    },
+    {
+      "id": "mongo-ex16",
+      "title": "Data Modeling: Embedded vs Referenced Documents",
+      "description": "Model 1-to-Few (embedding) vs 1-to-Many / Many-to-Many (referencing) relationships.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Embed child data when data is accessed together and bounded. Use references (ObjectId pointers) for large, unbounded 1-to-Many relationships.",
+      "objective": "Model a user profile with embedded addresses and referenced order IDs.",
+      "initialCode": "// Insert document with embedded and referenced data structures",
+      "solutionCode": "db.users.insertOne({\n    name: 'Alex River',\n    email: 'alex@bytecode.dev',\n    // Embedded Document Array (1-to-Few)\n    addresses: [\n        { type: 'home', street: '123 Tech Lane', city: 'San Francisco', zip: '94105' }\n    ],\n    // Referenced Array (1-to-Many)\n    orderIds: [\n        ObjectId('60c72b2f9b1d8b2a3c4d5e6f')\n    ]\n});",
+      "requirements": [
+        "Embed address object array directly inside user document",
+        "Store referenced ObjectId array for orders"
+      ],
+      "hints": [
+        "Embedded documents save extra $lookup query operations"
+      ],
+      "codeExample": "db.users.insertOne({ name: 'A', address: { city: 'SF' } });"
+    },
+    {
+      "id": "mongo-ex17",
+      "title": "Multi-Document ACID Transactions",
+      "description": "Execute atomic multi-document ACID transactions using sessions.",
+      "duration": "35 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Sessions support multi-document ACID transactions across replica sets, guaranteeing all updates commit together or roll back on error.",
+      "objective": "Execute a bank transfer multi-document transaction session.",
+      "initialCode": "// Execute MongoDB session transaction",
+      "solutionCode": "const session = db.getMongo().startSession();\nsession.startTransaction();\n\ntry {\n    const accounts = session.getDatabase('bank').accounts;\n    accounts.updateOne({ _id: 'acc-1' }, { $inc: { balance: -100 } });\n    accounts.updateOne({ _id: 'acc-2' }, { $inc: { balance: 100 } });\n    \n    session.commitTransaction();\n    console.log('Transaction Committed Successfully.');\n} catch (error) {\n    session.abortTransaction();\n    console.error('Transaction Aborted:', error);\n} finally {\n    session.endSession();\n}",
+      "requirements": [
+        "Start session with startSession() and startTransaction()",
+        "Execute multi-document updates passing session context",
+        "Commit with commitTransaction() and rollback with abortTransaction()"
+      ],
+      "hints": [
+        "Always call session.endSession() in finally block"
+      ],
+      "codeExample": "session.startTransaction(); session.commitTransaction();"
+    },
+    {
+      "id": "mongo-ex18",
+      "title": "GridFS Storage for Large Files",
+      "description": "Store and retrieve files larger than 16MB BSON limit using GridFS buckets.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "GridFS divides files into 255KB chunks stored in fs.chunks and file metadata in fs.files when assets exceed the 16MB document size limit.",
+      "objective": "Inspect GridFS chunks and files collections structure.",
+      "initialCode": "// Query GridFS metadata collections",
+      "solutionCode": "const fileMetadata = db.fs.files.findOne({ filename: 'video_archive.mp4' });\n\nif (fileMetadata) {\n    const chunks = db.fs.chunks.find({ files_id: fileMetadata._id }).count();\n    console.log(`File Size: ${fileMetadata.length} bytes split across ${chunks} GridFS chunks.`);\n}",
+      "requirements": [
+        "Find file record in fs.files collection",
+        "Count chunk references in fs.chunks collection matching files_id"
+      ],
+      "hints": [
+        "GridFS automatically handles splitting and stitching binary streams"
+      ],
+      "codeExample": "db.fs.files.findOne({ filename: 'app.zip' });"
+    },
+    {
+      "id": "mongo-ex19",
+      "title": "Database Profiling & Query Explain (explain('executionStats'))",
+      "description": "Analyze query performance and index usage using the .explain() executionStats plan.",
+      "duration": "25 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "explain('executionStats') displays execution plan details (nReturned, totalKeysExamined, totalDocsExamined, stage: 'IXSCAN' vs 'COLLSCAN').",
+      "objective": "Analyze query execution plan using explain('executionStats').",
+      "initialCode": "// Execute query explain plan",
+      "solutionCode": "const explanation = db.products.find({\n    category: 'Electronics',\n    price: { $lt: 50 }\n}).explain('executionStats');\n\nconst stats = explanation.executionStats;\nconsole.log(`Execution Stage: ${explanation.queryPlanner.winningPlan.stage}`);\nconsole.log(`Docs Examined: ${stats.totalDocsExamined} | Keys Examined: ${stats.totalKeysExamined}`);",
+      "requirements": [
+        "Chain .explain('executionStats') on find query",
+        "Inspect winningPlan.stage and totalDocsExamined"
+      ],
+      "hints": [
+        "Stage 'IXSCAN' indicates index scan, while 'COLLSCAN' indicates inefficient full collection scan"
+      ],
+      "codeExample": "db.users.find({ email: 'test' }).explain('executionStats');"
+    },
+    {
+      "id": "mongo-ex20",
+      "title": "Capstone Project: Inventory Management Database Architecture",
+      "description": "Engineer a complete NoSQL Inventory Management Database featuring Schema Validation, Compound Indexing, Aggregation Stock Reports, and Relational Joins.",
+      "duration": "60 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "This capstone exercise synthesizes MongoDB database engineering: Schema Validation, Compound Indexes, Aggregation Pipeline reports, relational $lookup joins, and atomic inventory updates.",
+      "objective": "Build a complete Inventory Management Database System script.",
+      "initialCode": "// Construct Inventory Management Database System",
+      "solutionCode": "// 1. Create Collection with Validator\ndb.createCollection('inventory_items', {\n    validator: {\n        $jsonSchema: {\n            bsonType: 'object',\n            required: ['sku', 'name', 'quantity', 'price'],\n            properties: {\n                sku: { bsonType: 'string' },\n                quantity: { bsonType: 'int', minimum: 0 },\n                price: { bsonType: 'double', minimum: 0 }\n            }\n        }\n    }\n});\n\n// 2. Create Compound Index\ndb.inventory_items.createIndex({ sku: 1 }, { unique: true });\ndb.inventory_items.createIndex({ category: 1, quantity: 1 });\n\n// 3. Stock Report Aggregation Pipeline\nconst report = db.inventory_items.aggregate([\n    {\n        $group: {\n            _id: '$category',\n            totalItems: { $sum: 1 },\n            totalQuantity: { $sum: '$quantity' },\n            valuation: { $sum: { $multiply: ['$price', '$quantity'] } }\n        }\n    },\n    { $sort: { valuation: -1 } }\n]);\n\nconsole.log('Stock Report Aggregation Complete.');",
+      "requirements": [
+        "Create inventory_items collection with $jsonSchema validation",
+        "Create unique index on SKU and compound index on category/quantity",
+        "Run multi-stage aggregation calculating stock counts and total inventory valuation"
+      ],
+      "hints": [
+        "Combine minimum validation bounds on price/quantity with $group sum valuations"
+      ],
+      "codeExample": "db.items.aggregate([{ $group: { _id: '$cat', total: { $sum: '$qty' } } }]);"
+    }
+  ],
+  "references": [
+    {
+      "title": "MongoDB Official Manual",
+      "description": "Official reference manual for MongoDB database operations, aggregations, and driver APIs",
+      "url": "https://www.mongodb.com/docs/manual/"
+    }
+  ]
+}
