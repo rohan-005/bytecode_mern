@@ -115,7 +115,7 @@ const Login = () => {
                   placeholder="developer@bytecode.dev"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#AAB2AD]">
-                  <IconMail size={20} />
+                  {/* <IconMail size={20} /> */}
                 </div>
               </div>
             </div>
@@ -136,7 +136,7 @@ const Login = () => {
                   placeholder="••••••••••••"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#AAB2AD]">
-                  <IconLock size={20} />
+                  {/* <IconLock size={20} /> */}
                 </div>
                 <button
                   type="button"

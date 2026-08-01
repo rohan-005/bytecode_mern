@@ -159,7 +159,7 @@ const Register = () => {
                   placeholder="Linus Torvalds"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#AAB2AD]">
-                  <IconUser size={18} />
+                  {/* <IconUser size={18} /> */}
                 </div>
               </div>
             </div>
@@ -180,7 +180,7 @@ const Register = () => {
                   placeholder="developer@bytecode.dev"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#AAB2AD]">
-                  <IconMail size={18} />
+                  {/* <IconMail size={18} /> */}
                 </div>
               </div>
             </div>
@@ -201,7 +201,7 @@ const Register = () => {
                   placeholder="••••••••••••"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#AAB2AD]">
-                  <IconLock size={18} />
+                  {/* <IconLock size={18} /> */}
                 </div>
                 <button
                   type="button"
