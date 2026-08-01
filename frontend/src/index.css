@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #252422;
+    --bg-primary: #1B1B1B;
+    --bg-secondary: #2D2D2D;
+    --bg-card: #303030;
+    --border-main: #4A4A4A;
+    --accent-primary: #FF6A2A;
+    --accent-secondary: #FF8C42;
+    --text-primary: #FFFFFF;
+    --text-secondary: #CFCFCF;
+    --text-muted: #8E8E8E;
+    --color-success: #35C759;
+    --color-warning: #FFC300;
+    --color-danger: #FF4D4F;
+  }
+
+  /* Strict Sharp Edge Enforcement */
+  *, ::before, ::after {
+    border-radius: 0 !important;
+  }
+
+  body {
+    background-color: #1B1B1B;
+    color: #FFFFFF;
+    font-family: 'JetBrains Mono', monospace;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Typography Classes */
+.font-bebas { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
+.font-anton { font-family: 'Anton', sans-serif; letter-spacing: 0.03em; }
+.font-teko { font-family: 'Teko', sans-serif; letter-spacing: 0.04em; }
+.font-oswald { font-family: 'Oswald', sans-serif; }
+.font-jetbrains { font-family: 'JetBrains Mono', monospace; }
+.font-ibm { font-family: 'IBM Plex Mono', monospace; }
+.font-fira { font-family: 'Fira Code', monospace; }
+.font-pixel { font-family: 'Press Start 2P', monospace; }
+.font-pixelify { font-family: 'Pixelify Sans', sans-serif; }
+.font-tiny { font-family: 'Tiny5', sans-serif; }
+.font-cinzel { font-family: 'Cinzel', serif; }
+.font-cormorant { font-family: 'Cormorant Garamond', serif; }
+
+/* Custom Scrollbar - Sharp Developer Aesthetic */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1B1B1B;
+}
+::-webkit-scrollbar-thumb {
+  background: #4A4A4A;
+  border-radius: 0 !important;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6A2A;
+}
+
+/* Developer Platform UI Utilities */
+.bytecode-card {
+  background-color: #303030;
+  border: 1px solid #4A4A4A;
+  transition: all 0.2s ease-in-out;
+}
+
+.bytecode-card-hover {
+  background-color: #303030;
+  border: 1px solid #4A4A4A;
+  transition: all 0.2s ease-in-out;
+}
+.bytecode-card-hover:hover {
+  border-color: #FF6A2A;
+  box-shadow: 0 4px 20px -2px rgba(255, 106, 42, 0.25);
+  transform: translateY(-2px);
+}
+
+.bytecode-btn-primary {
+  background-color: #FF6A2A;
+  color: #FFFFFF;
+  border: 1px solid #FF8C42;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.bytecode-btn-primary:hover:not(:disabled) {
+  background-color: #FF8C42;
+  box-shadow: 0 0 15px rgba(255, 106, 42, 0.4);
+  transform: scale(1.02);
+}
+.bytecode-btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+.bytecode-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.bytecode-btn-secondary {
+  background-color: #2D2D2D;
+  color: #FFFFFF;
+  border: 1px solid #4A4A4A;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.bytecode-btn-secondary:hover:not(:disabled) {
+  border-color: #FF6A2A;
+  color: #FF6A2A;
+  background-color: #303030;
+  box-shadow: 0 0 12px rgba(255, 106, 42, 0.2);
+}
+.bytecode-btn-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.bytecode-input {
+  background-color: #252422;
+  border: 1px solid #4A4A4A;
+  color: #FFFFFF;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 0.625rem 0.875rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.bytecode-input:focus {
+  border-color: #FF6A2A !important;
+  box-shadow: 0 0 0 1px #FF6A2A !important;
+}
+
+/* Background Grids & Terminal Scanlines */
+.grid-bg {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(74, 74, 74, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(74, 74, 74, 0.15) 1px, transparent 1px);
+}
+
+.scanline {
+  position: relative;
+}
+.scanline::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Accent Glow Animation */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(255, 106, 42, 0.3); }
+  50% { box-shadow: 0 0 18px rgba(255, 106, 42, 0.6); }
+}
+.animate-glow {
+  animation: pulse-glow 2.5s infinite ease-in-out;
+}
+
+/* Loading Shimmer for Skeletons */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton-box {
+  background: linear-gradient(90deg, #2D2D2D 25%, #383838 50%, #2D2D2D 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}

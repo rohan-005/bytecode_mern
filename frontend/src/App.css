@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./index.css";
 
 @font-face {
   font-family: 'Transformer';
@@ -7,7 +8,7 @@
   font-style: normal;
 }
 .font-transformer {
-  font-family: 'Transformer', sans-serif;
+  font-family: 'Transformer', 'Bebas Neue', sans-serif;
 }
 
 @font-face {
@@ -17,7 +18,7 @@
   font-style: normal;
 }
 .font-racing {
-  font-family: 'Racing', sans-serif;
+  font-family: 'Racing', 'Anton', sans-serif;
 }
 
 @font-face {
@@ -27,20 +28,15 @@
   font-style: normal;
 }
 .font-ice {
-  font-family: 'Ice', sans-serif;
+  font-family: 'Ice', 'Teko', sans-serif;
 }
-
-
 
 body {
-  background-color: black;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* background-color: #f5f5f5; */
-  color: #333;
-  
+  background-color: #1B1B1B;
+  color: #FFFFFF;
+  font-family: 'JetBrains Mono', monospace;
 }
 
- /* Add to your global CSS */
 .resize-horizontal {
   resize: horizontal;
   overflow: auto;
@@ -51,13 +47,12 @@ body {
   overflow: auto;
 }
 
-/* For the split layout */
 .split-panel {
-  min-width: 300px;
-  min-height: 200px;
+  min-width: 280px;
+  min-height: 180px;
 }
 
 .code-editor-bg {
-  background: linear-gradient(45deg, #1a1a1a 25%, #1f1f1f 25%, #1f1f1f 50%, #1a1a1a 50%, #1a1a1a 75%, #1f1f1f 75%, #1f1f1f);
-  background-size: 20px 20px;
+  background: linear-gradient(45deg, #1B1B1B 25%, #252422 25%, #252422 50%, #1B1B1B 50%, #1B1B1B 75%, #252422 75%, #252422);
+  background-size: 24px 24px;
 }
