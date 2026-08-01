@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Footer from "../components/Footer";
+import { FloatingNavbar } from "../components/FloatingNavbar";
 import { SkeletonCard } from "../components/SkeletonLoader";
 import {
   IconBook,
@@ -190,6 +191,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#2F3437] text-[#F5F7F5] font-inter flex flex-col justify-between grid-bg">
+      <FloatingNavbar />
       {/* Widescreen Main Container */}
       <div className="w-full max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-16 py-10">
         

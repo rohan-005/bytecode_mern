@@ -25,7 +25,8 @@ import {
   IconArrowRight,
   IconLoader2,
   IconSparkles,
-  IconTarget
+  IconTarget,
+  IconUser
 } from "@tabler/icons-react";
 
 const navItems = [
@@ -34,6 +35,7 @@ const navItems = [
   { title: "Byte-Compiler", href: "/editor", icon: <IconEdit size={20} /> },
   { title: "Dev Den", href: "/devden", icon: <IconCode size={20} /> },
   { title: "AI", href: "/byteai", icon: <IconCpu size={20} /> },
+  { title: "Profile", href: "/profile", icon: <IconUser size={20} /> },
 ];
 
 const ExerciseDetail = () => {

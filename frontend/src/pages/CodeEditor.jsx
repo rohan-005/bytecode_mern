@@ -13,6 +13,7 @@ import {
   IconPlus,
   IconAlertTriangle,
   IconDownload,
+  IconUser,
 } from "@tabler/icons-react";
 import logo from "../assets/logo.png"
 
@@ -20,8 +21,9 @@ const navItems = [
   { title: "Dashboard", href: "/dashboard", icon: <IconHome size={20} /> },
   { title: "Courses", href: "/courses", icon: <IconBooks size={20} /> },
   { title: "Byte-Compiler", href: "/editor", icon: <IconEdit size={20} /> },
-  { title: "Dev Den", href: "/code", icon: <IconCode size={20} /> },
+  { title: "Dev Den", href: "/devden", icon: <IconCode size={20} /> },
   { title: "AI", href: "/byteai", icon: <IconCpu size={20} /> },
+  { title: "Profile", href: "/profile", icon: <IconUser size={20} /> },
 ];
 
 

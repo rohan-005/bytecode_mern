@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import { FloatingNavbar } from "../components/FloatingNavbar";
 import { IconUser, IconLock, IconArrowLeft, IconCheck, IconAlertTriangle, IconLoader2, IconShieldLock } from "@tabler/icons-react";
 
 const Profile = () => {
@@ -147,6 +148,7 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen bg-[#2F3437] text-[#F5F7F5] font-outfit flex flex-col justify-between">
+      <FloatingNavbar />
       {/* Widescreen Container */}
       <div className="w-full max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-16 py-12">
         {/* Navigation Link */}

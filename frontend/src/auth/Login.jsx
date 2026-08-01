@@ -104,7 +104,7 @@ const Login = () => {
               <label className="block text-xs font-bold text-[#D5DBD6] uppercase tracking-wider mb-2 font-mono">
                 Email Address
               </label>
-              <div className="relative">
+              <div className="relative gap-4">
                 <input
                   type="email"
                   name="email"

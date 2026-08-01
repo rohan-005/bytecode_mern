@@ -14,7 +14,8 @@ import {
   IconSearch,
   IconCheck,
   IconArrowRight,
-  IconFilter
+  IconFilter,
+  IconUser
 } from "@tabler/icons-react";
 
 const Courses = () => {
@@ -146,6 +147,7 @@ const Courses = () => {
     { title: "Byte-Compiler", href: "/editor", icon: <IconEdit size={20} /> },
     { title: "Dev Den", href: "/devden", icon: <IconCode /> },
     { title: "AI", href: "/byteai", icon: <IconCpu /> },
+    { title: "Profile", href: "/profile", icon: <IconUser /> },
   ];
 
   if (loading) {
