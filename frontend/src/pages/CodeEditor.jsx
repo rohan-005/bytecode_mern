@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect } from "react";
 import Editor from "@monaco-editor/react";
-import axios from "axios";
+import axios from "../utils/axiosConfig";
 import { FloatingNavbar } from "../components/FloatingNavbar";
 import {
   IconHome,
