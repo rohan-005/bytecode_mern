@@ -81,17 +81,17 @@ console.log("Squares:", squares);`,
 </head>
 <body>
     <div class="container">
-        <h1>🚀 Welcome to ByteCode!</h1>
+        <h1>Welcome to ByteCode!</h1>
         <div class="feature">
-            <h3>✨ Code Editor</h3>
+            <h3>Code Editor</h3>
             <p>Write and test your HTML, CSS, and JavaScript code in real-time.</p>
         </div>
         <div class="feature">
-            <h3>🎯 Live Preview</h3>
+            <h3>Live Preview</h3>
             <p>See your changes instantly with our live preview feature.</p>
         </div>
         <div class="feature">
-            <h3>💾 Save & Load</h3>
+            <h3>Save & Load</h3>
             <p>Save your code snippets and load them anytime.</p>
         </div>
     </div>

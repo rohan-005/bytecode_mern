@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 import Footer from "../components/Footer";
 import { FloatingNavbar } from "../components/FloatingNavbar";
 import { SkeletonCard } from "../components/SkeletonLoader";
@@ -80,9 +80,10 @@ const Courses = () => {
       });
 
       if (response.ok) {
+        toast.success("Enrolled in course track successfully!");
         const button = document.getElementById(`enroll-btn-${courseId}`);
         if (button) {
-          button.innerHTML = "✅ ENROLLED!";
+          button.innerHTML = "ENROLLED";
           button.className = "bytecode-btn-secondary w-full text-sm text-[#35C759] border-[#35C759]";
           setTimeout(() => {
             fetchEnrolledCourses();
@@ -91,6 +92,7 @@ const Courses = () => {
       }
     } catch (error) {
       console.error("Error enrolling in course:", error);
+      toast.error("Failed to enroll in course track.");
     }
   };
 
@@ -290,7 +292,7 @@ const Courses = () => {
                       to={`/course/${course.id}`}
                       className="bytecode-btn-secondary w-full text-sm py-3 flex items-center justify-center gap-2 text-[#35C759] border-[#35C759]"
                     >
-                      <span>{progress === 100 ? "🎉 Completed" : "Continue Learning"}</span>
+                      <span>{progress === 100 ? "Completed Track" : "Continue Learning"}</span>
                       <IconArrowRight size={16} />
                     </Link>
                   ) : (

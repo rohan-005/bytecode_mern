@@ -70,9 +70,8 @@ const Register = () => {
 
     if (result.success) {
       toast.dismiss(loadingToast);
-      toast.success('Account created! Please verify your email via OTP. 📧', {
-        duration: 4000,
-        icon: '⚡'
+      toast.success("Account created successfully!", {
+        duration: 2000,
       });
       
       localStorage.setItem('pendingVerificationEmail', email);

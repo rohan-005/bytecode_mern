@@ -256,8 +256,6 @@ router.put('/profile', [
     }
 
     const { name } = req.body;
-    
-    console.log('Updating profile for user:', req.user._id, 'New name:', name);
 
     const user = await User.findByIdAndUpdate(
       req.user._id,
@@ -268,8 +266,6 @@ router.put('/profile', [
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-
-    console.log('Profile updated successfully:', user.name);
 
     res.json({
       message: 'Profile updated successfully',
@@ -315,8 +311,6 @@ router.put('/change-password', [
     }
 
     const { currentPassword, newPassword } = req.body;
-    
-    console.log('Changing password for user:', req.user._id);
 
     // Get user with password
     const user = await User.findById(req.user._id).select('+password');
@@ -334,8 +328,6 @@ router.put('/change-password', [
     // Update password
     user.password = newPassword;
     await user.save();
-
-    console.log('Password changed successfully for user:', req.user._id);
 
     res.json({ 
       message: 'Password changed successfully' 

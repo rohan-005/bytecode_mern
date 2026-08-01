@@ -43,7 +43,6 @@ const Login = () => {
       toast.dismiss(loadingToast);
       toast.success("Authentication successful! Loading dashboard...", {
         duration: 2000,
-        icon: "⚡",
       });
 
       setTimeout(() => {

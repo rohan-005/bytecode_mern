@@ -28,12 +28,10 @@ export const AuthProvider = ({ children }) => {
       if (token && savedUser) {
         // Verify token is still valid
         const response = await api.get('/auth/me');
-        console.log(response);
         setUser(JSON.parse(savedUser));
       }
     } catch (error) {
       // Token is invalid, clear storage
-      console.log(error);
       localStorage.removeItem('token');
       localStorage.removeItem('user');
     } finally {

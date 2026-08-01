@@ -7,10 +7,10 @@ import Footer from '../components/Footer';
 import { IconTerminal2, IconRocket, IconChevronRight, IconCode, IconCpu, IconShieldCheck, IconBooks } from "@tabler/icons-react";
 
 const whyByteCode = [
-  { title: "Interactive Execution", description: "Execute real code in browser without passive reading.", icon: "⚡" },
-  { title: "Sequenced Tracks", description: "Unlock topics sequentially as skills build progressively.", icon: "🎯" },
-  { title: "Dev Leaderboards", description: "Earn XP, badges, and rank up across developer challenges.", icon: "🏆" },
-  { title: "Verified Syllabus", description: "Curriculum designed by active software engineering practitioners.", icon: "🛠️" },
+  { title: "Interactive Execution", description: "Execute real code in browser without passive reading.", icon: <IconTerminal2 size={28} className="text-[#FF6A2A]" /> },
+  { title: "Sequenced Tracks", description: "Unlock topics sequentially as skills build progressively.", icon: <IconCode size={28} className="text-[#35C759]" /> },
+  { title: "Dev Leaderboards", description: "Earn XP, badges, and rank up across developer challenges.", icon: <IconCpu size={28} className="text-[#FFC300]" /> },
+  { title: "Verified Syllabus", description: "Curriculum designed by active software engineering practitioners.", icon: <IconShieldCheck size={28} className="text-[#FF8C42]" /> },
 ];
 
 const languages = [

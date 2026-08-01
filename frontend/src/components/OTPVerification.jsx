@@ -92,7 +92,7 @@ const OTPVerification = () => {
       });
 
       setMessage('Email verified successfully!');
-      toast.success('🎉 Email verified successfully! Redirecting to login...');
+      toast.success('Email verified successfully! Redirecting...');
       
       localStorage.removeItem('pendingVerificationEmail');
       

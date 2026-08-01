@@ -2,7 +2,6 @@ import axios from 'axios';
 
 // For Vite projects, use import.meta.env
 const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.VITE_BACKEND_URL ? `${import.meta.env.VITE_BACKEND_URL}/api` : 'http://localhost:5000/api');
-console.log('API URL:', API_URL); // For debugging
 
 const api = axios.create({
   baseURL: API_URL,
