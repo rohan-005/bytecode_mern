@@ -24,7 +24,7 @@ export const FloatingNavbar = ({ items, className }) => {
   return (
     <div
       className={cn(
-        "fixed top-6 right-8 md:right-12 flex items-center justify-center z-50 font-jetbrains",
+        "fixed top-10 right-8 md:right-12 flex items-center justify-center z-50 font-jetbrains",
         className
       )}
     >

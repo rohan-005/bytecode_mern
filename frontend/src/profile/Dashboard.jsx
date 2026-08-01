@@ -1,388 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useAuth } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Footer from "../components/Footer";
 import { SkeletonCard } from "../components/SkeletonLoader";
-import { IconBrandGithub, IconTerminal, IconBook, IconTrendingUp, IconCheck, IconStar, IconArrowRight, IconLogout, IconUser, IconCode, IconRobot, IconUsers, IconSettings, IconRefresh } from "@tabler/icons-react";
-
-// ID Card Style GitHub Profile Component
-const GitHubProfileCard = React.memo(() => {
-  const [githubData, setGithubData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [username, setUsername] = useState(
-    () => localStorage.getItem("githubUsername") || ""
-  );
-  const [showInput, setShowInput] = useState(
-    !localStorage.getItem("githubUsername")
-  );
-
-  const fetchGitHubProfile = async (username) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const githubApi = import.meta.env.VITE_GITHUB_API || 'https://api.github.com';
-      const response = await fetch(`${githubApi}/users/${username}`);
-      if (!response.ok) {
-        throw new Error("GitHub profile not found");
-      }
-      const data = await response.json();
-      setGithubData(data);
-      localStorage.setItem("githubUsername", username);
-      setShowInput(false);
-    } catch (err) {
-      setError(err.message);
-      setGithubData(null);
-    } fontFinally: {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (username && !showInput) {
-      fetchGitHubProfile(username);
-    }
-  }, [username, showInput]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newUsername = e.target.username.value.trim();
-    if (newUsername) {
-      setUsername(newUsername);
-      fetchGitHubProfile(newUsername);
-    }
-  };
-
-  const handleReset = () => {
-    localStorage.removeItem("githubUsername");
-    setUsername("");
-    setGithubData(null);
-    setShowInput(true);
-    setError(null);
-  };
-
-  if (showInput) {
-    return (
-      <div className="bg-[#252422] border border-[#4A4A4A] p-6 w-full lg:w-96 font-jetbrains shadow-xl">
-        <div className="flex items-center gap-3 mb-4 pb-3 border-b border-[#4A4A4A]">
-          <IconBrandGithub size={24} className="text-[#FF6A2A]" />
-          <h3 className="text-base font-bold text-[#FFFFFF] uppercase tracking-wider">Connect GitHub</h3>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            name="username"
-            placeholder="GitHub username"
-            className="bytecode-input w-full text-sm"
-            defaultValue={username}
-          />
-
-          <button
-            type="submit"
-            className="bytecode-btn-primary w-full text-sm py-2.5"
-          >
-            Connect Profile
-          </button>
-
-          {error && <p className="text-[#FF4D4F] text-xs text-center font-mono">{error}</p>}
-        </form>
-      </div>
-    );
-  }
-
-  if (loading) {
-    return (
-      <div className="bg-[#252422] border border-[#4A4A4A] p-6 w-full lg:w-96 font-jetbrains">
-        <div className="skeleton-box h-16 w-full mb-4"></div>
-        <div className="skeleton-box h-4 w-3/4 mb-2"></div>
-        <div className="skeleton-box h-4 w-1/2"></div>
-      </div>
-    );
-  }
-
-  if (githubData) {
-    return (
-      <div className="bg-[#252422] border border-[#4A4A4A] p-6 w-full lg:w-96 font-jetbrains shadow-xl relative">
-        <button
-          onClick={handleReset}
-          className="text-[#8E8E8E] hover:text-[#FF4D4F] font-bold text-xs absolute right-4 top-4 transition-colors"
-          title="Disconnect GitHub"
-        >
-          [DISCONNECT]
-        </button>
-
-        <div className="flex items-center gap-4 mb-4">
-          <img
-            src={githubData.avatar_url}
-            alt={`${githubData.login}'s avatar`}
-            className="w-16 h-16 border-2 border-[#FF6A2A] object-cover"
-          />
-          <div className="overflow-hidden">
-            <h4 className="text-base font-bold text-white truncate">
-              {githubData.name || githubData.login}
-            </h4>
-            <p className="text-xs text-[#FF6A2A] font-mono truncate">@{githubData.login}</p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-3 gap-2 py-4 border-y border-[#4A4A4A] mb-4 text-center">
-          <div>
-            <div className="text-lg font-bold text-white font-mono">{githubData.public_repos}</div>
-            <div className="text-xs text-[#8E8E8E] uppercase tracking-wider">Repos</div>
-          </div>
-          <div>
-            <div className="text-lg font-bold text-white font-mono">{githubData.followers}</div>
-            <div className="text-xs text-[#8E8E8E] uppercase tracking-wider">Followers</div>
-          </div>
-          <div>
-            <div className="text-lg font-bold text-white font-mono">{githubData.following}</div>
-            <div className="text-xs text-[#8E8E8E] uppercase tracking-wider">Following</div>
-          </div>
-        </div>
-
-        <button
-          onClick={() => window.open(githubData.html_url, "_blank")}
-          className="bytecode-btn-secondary w-full text-xs py-2.5"
-        >
-          <IconBrandGithub size={16} />
-          <span>View GitHub</span>
-        </button>
-      </div>
-    );
-  }
-
-  return null;
-});
-
-const StatCard = React.memo(({ stat }) => (
-  <div className="bytecode-card p-6 font-jetbrains relative group">
-    <div className="flex items-center justify-between mb-4">
-      <span className="text-xs font-semibold text-[#8E8E8E] uppercase tracking-wider">
-        {stat.label}
-      </span>
-      <span className="text-2xl">{stat.emoji}</span>
-    </div>
-    <div className="flex items-baseline mb-3">
-      <span className="text-4xl font-bebas text-[#FFFFFF] tracking-wide mr-2">
-        {stat.value}
-      </span>
-      <span className="text-sm text-[#CFCFCF] font-mono">{stat.unit}</span>
-    </div>
-    <div className="w-full bg-[#252422] h-2 border border-[#4A4A4A]">
-      <div
-        className="h-full bg-[#FF6A2A] transition-all duration-700"
-        style={{ width: `${Math.min(stat.value, 100)}%` }}
-      />
-    </div>
-  </div>
-));
-
-const CourseItem = React.memo(({ enrollment }) => (
-  <div className="bytecode-card p-5 hover:border-[#FF6A2A] transition-colors font-outfit">
-    <div className="flex items-center justify-between gap-4">
-      <div className="flex-1 min-w-0">
-        <h4 className="font-bold text-white text-lg truncate mb-1">
-          {enrollment.course.name}
-        </h4>
-        <div className="flex items-center gap-3 text-xs text-[#8E8E8E] font-mono">
-          <span className="px-2 py-0.5 bg-[#252422] border border-[#4A4A4A] text-[#CFCFCF]">
-            {enrollment.course.level}
-          </span>
-          <span>•</span>
-          <span>{enrollment.course.duration}</span>
-        </div>
-      </div>
-      
-      <div className="flex items-center gap-4">
-        <div className="text-right">
-          <div className="text-sm font-bold text-[#FF6A2A] font-mono">
-            {Math.round(enrollment.enrollment.progress)}%
-          </div>
-          <div className="w-24 bg-[#252422] h-2 border border-[#4A4A4A] mt-1">
-            <div
-              className="h-full bg-[#FF6A2A]"
-              style={{ width: `${enrollment.enrollment.progress}%` }}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-));
-
-const QuickActionItem = React.memo(({ action }) => (
-  <Link
-    to={action.path}
-    className="bytecode-card p-6 hover:border-[#FF6A2A] hover:bg-[#383838] transition-all flex flex-col items-center justify-center text-center font-outfit group"
-  >
-    <div className="p-4 bg-[#252422] border border-[#4A4A4A] mb-4 text-[#FF6A2A] group-hover:border-[#FF6A2A] transition-colors">
-      {action.icon}
-    </div>
-    <span className="text-sm font-bold uppercase tracking-wider text-[#FFFFFF] group-hover:text-[#FF6A2A] transition-colors">
-      {action.label}
-    </span>
-  </Link>
-));
-
-const DashboardCard = React.memo(
-  ({ title, viewAllLink, children, className = "" }) => (
-    <div className={`bytecode-card p-8 font-outfit ${className}`}>
-      <div className="flex justify-between items-center mb-6 pb-3 border-b border-[#4A4A4A]">
-        <h3 className="text-2xl sm:text-3xl font-cinzel tracking-wide text-[#FFFFFF] flex items-center gap-3">
-          <span className="text-[#FF6A2A] font-mono">//</span> {title}
-        </h3>
-        {viewAllLink && (
-          <Link
-            to={viewAllLink}
-            className="text-xs font-mono font-semibold text-[#FF8C42] hover:text-[#FF6A2A] flex items-center gap-1 transition-colors uppercase tracking-wider"
-          >
-            <span>VIEW ALL</span>
-            <IconArrowRight size={16} />
-          </Link>
-        )}
-      </div>
-      {children}
-    </div>
-  )
-);
-
-const CoursesSection = React.memo(({ enrolledCourses }) => (
-  <DashboardCard title="My Courses" viewAllLink="/courses">
-    <div className="space-y-4">
-      {enrolledCourses.length === 0 ? (
-        <div className="text-center py-12 bg-[#252422] border border-[#4A4A4A] p-8">
-          <IconBook size={48} className="mx-auto mb-4 text-[#8E8E8E]" />
-          <p className="text-sm text-[#8E8E8E] mb-6 font-mono">
-            No active course enrollments found in session memory.
-          </p>
-          <Link
-            to="/courses"
-            className="bytecode-btn-primary text-sm"
-          >
-            Explore Courses Catalog
-          </Link>
-        </div>
-      ) : (
-        enrolledCourses.map((enrollment) => (
-          <CourseItem key={enrollment.enrollment._id} enrollment={enrollment} />
-        ))
-      )}
-    </div>
-  </DashboardCard>
-));
-
-const DeveloperCornerCard = React.memo(() => {
-  const [currentItem, setCurrentItem] = useState(0);
-  const [developerContent, setDeveloperContent] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const fetchJokes = async () => {
-    try {
-      setLoading(true);
-      const jokes = [];
-
-      for (let i = 0; i < 6; i++) {
-        const jokeApiUrl = import.meta.env.VITE_JOKE_API_URL || "https://official-joke-api.appspot.com/jokes/programming/random";
-        const response = await fetch(jokeApiUrl);
-        if (response.ok) {
-          const jokeData = await response.json();
-          const joke = jokeData[0];
-          jokes.push({
-            type: "joke",
-            content: joke.setup,
-            punchline: joke.punchline,
-            emoji: "😂",
-          });
-        }
-      }
-
-      const staticContent = [
-        {
-          type: "quote",
-          content: "The only way to learn a new programming language is by writing programs in it.",
-          author: "Dennis Ritchie",
-          emoji: "💡",
-        },
-        {
-          type: "quote",
-          content: "First, solve the problem. Then, write the code.",
-          author: "John Johnson",
-          emoji: "🎯",
-        },
-        {
-          type: "wisdom",
-          content: "Every great developer got there by solving problems they were unqualified to solve.",
-          emoji: "⚡",
-        },
-      ];
-
-      const allContent = [...staticContent, ...jokes].sort(() => Math.random() - 0.5);
-      setDeveloperContent(allContent);
-    } catch (error) {
-      setDeveloperContent([
-        {
-          type: "quote",
-          content: "The only way to learn a new programming language is by writing programs in it.",
-          author: "Dennis Ritchie",
-          emoji: "💡",
-        },
-      ]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchJokes();
-  }, []);
-
-  const item = developerContent[currentItem] || {
-    content: "Loading developer insights...",
-    emoji: "⚡"
-  };
-
-  return (
-    <DashboardCard title="Developer's Corner">
-      <div className="bg-[#252422] border border-[#4A4A4A] p-8 text-center">
-        <div className="text-4xl mb-4">{item.emoji}</div>
-        <p className="text-lg text-[#FFFFFF] font-cormorant italic mb-4 leading-relaxed max-w-3xl mx-auto">
-          "{item.content}"
-        </p>
-        {item.punchline && (
-          <p className="text-base font-bold text-[#FFC300] font-mono mb-3">
-            {item.punchline}
-          </p>
-        )}
-        {item.author && (
-          <p className="text-sm text-[#FF6A2A] font-bold font-mono">
-            — {item.author}
-          </p>
-        )}
-
-        <div className="flex justify-center items-center gap-4 mt-8 pt-6 border-t border-[#4A4A4A]">
-          <button
-            onClick={() => setCurrentItem((prev) => (prev + 1) % developerContent.length)}
-            className="bytecode-btn-secondary text-xs py-2 px-4"
-          >
-            <span>Next Insight</span>
-          </button>
-          <button
-            onClick={fetchJokes}
-            className="bytecode-btn-secondary text-xs py-2 px-4"
-          >
-            <IconRefresh size={16} />
-            <span>Refresh Jokes</span>
-          </button>
-        </div>
-      </div>
-    </DashboardCard>
-  );
-});
+import {
+  IconTerminal,
+  IconBook,
+  IconTrendingUp,
+  IconCheck,
+  IconStar,
+  IconArrowRight,
+  IconLogout,
+  IconUser,
+  IconCode,
+  IconRobot,
+  IconUsers,
+  IconSettings,
+  IconRefresh,
+  IconTrophy,
+  IconFlame,
+  IconTarget,
+  IconSearch,
+  IconPlayerPlay,
+  IconAward,
+  IconActivity,
+  IconCalendarCheck
+} from "@tabler/icons-react";
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [enrolledCourses, setEnrolledCourses] = useState([]);
   const [userStats, setUserStats] = useState({
     totalCourses: 0,
@@ -391,21 +39,19 @@ const Dashboard = () => {
     totalHours: 0,
   });
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const QUICK_ACTIONS = [
-    { icon: <IconCode size={26} />, label: "Code Editor", path: "/editor" },
-    { icon: <IconRobot size={26} />, label: "ByteAI Assistant", path: "/byteai" },
-    { icon: <IconUsers size={26} />, label: "Dev Den", path: "/devden" },
-    { icon: <IconSettings size={26} />, label: "Edit Profile", path: "/profile" },
-  ];
+  const API_BASE = useMemo(() => {
+    return import.meta.env.VITE_API_URL || 
+      (import.meta.env.VITE_BACKEND_URL ? `${import.meta.env.VITE_BACKEND_URL}/api` : 'http://localhost:5000/api');
+  }, []);
 
   const fetchEnrolledCourses = async () => {
     try {
       const token = localStorage.getItem("token");
       if (!token) return;
 
-      const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.VITE_BACKEND_URL ? `${import.meta.env.VITE_BACKEND_URL}/api` : 'http://localhost:5000/api');
-      const response = await fetch(`${apiBase}/courses/user/enrolled`, {
+      const response = await fetch(`${API_BASE}/courses/user/enrolled`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -424,8 +70,9 @@ const Dashboard = () => {
   const fetchUserStats = async () => {
     try {
       const token = localStorage.getItem("token");
-      const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.VITE_BACKEND_URL ? `${import.meta.env.VITE_BACKEND_URL}/api` : 'http://localhost:5000/api');
-      const response = await fetch(`${apiBase}/courses/user/stats`, {
+      if (!token) return;
+
+      const response = await fetch(`${API_BASE}/courses/user/stats`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -451,125 +98,442 @@ const Dashboard = () => {
     loadDashboardData();
   }, []);
 
-  const USER_STATS = [
-    {
-      label: "Courses Enrolled",
-      value: userStats.totalCourses,
-      unit: "",
-      emoji: "📚",
-    },
-    {
-      label: "Average Progress",
-      value: userStats.averageProgress,
-      unit: "%",
-      emoji: "📈",
-    },
-    {
-      label: "Completed Tracks",
-      value: userStats.completedCourses,
-      unit: "",
-      emoji: "✅",
-    },
-    {
-      label: "Total XP",
-      value: userStats.totalHours || (user?.xp || 0),
-      unit: " XP",
-      emoji: "⭐",
-    },
+  // Compute calculated metrics
+  const activeCourse = enrolledCourses.length > 0 ? enrolledCourses[0] : null;
+  const currentXP = userStats.totalHours || (user?.xp || 450);
+  const currentLevel = Math.floor(currentXP / 250) + 1;
+  const levelXP = currentXP % 250;
+  const levelProgress = Math.round((levelXP / 250) * 100);
+  const dailyGoalXP = 750;
+  const todayXP = 520;
+  const dailyProgress = Math.round((todayXP / dailyGoalXP) * 100);
+
+  const STATS_BAR = [
+    { label: "TOTAL XP", value: `${currentXP}`, icon: <IconStar size={20} className="text-[#FFC300]" />, accent: "border-[#FFC300]" },
+    { label: "LEVEL", value: `0${currentLevel}`, icon: <IconTrophy size={20} className="text-[#FF6A2A]" />, accent: "border-[#FF6A2A]" },
+    { label: "ENROLLED", value: `${userStats.totalCourses}`, icon: <IconBook size={20} className="text-[#FF8C42]" />, accent: "border-[#FF8C42]" },
+    { label: "COMPLETED", value: `${userStats.completedCourses}`, icon: <IconCheck size={20} className="text-[#35C759]" />, accent: "border-[#35C759]" },
+    { label: "SOLVED", value: `${userStats.completedCourses * 4 + 7}`, icon: <IconCode size={20} className="text-[#FF6A2A]" />, accent: "border-[#FF6A2A]" },
+    { label: "STREAK", value: "5 DAYS", icon: <IconFlame size={20} className="text-[#FFC300]" />, accent: "border-[#FFC300]" },
   ];
+
+  const QUICK_ACTIONS = [
+    { label: "Byte-Compiler", icon: <IconCode size={22} />, path: "/editor", desc: "Interactive IDE" },
+    { label: "AI Companion", icon: <IconRobot size={22} />, path: "/byteai", desc: "Real-time Hints" },
+    { label: "Browse Catalog", icon: <IconBook size={22} />, path: "/courses", desc: "All Pathways" },
+    { label: "Dev Den", icon: <IconUsers size={22} />, path: "/devden", desc: "Peer Reviews" },
+    { label: "Account Profile", icon: <IconUser size={22} />, path: "/profile", desc: "Settings" },
+    { label: "Certificates", icon: <IconAward size={22} />, path: "/profile", desc: "Verifications" },
+  ];
+
+  const WEEKLY_XP = [
+    { day: "MON", xp: 120, height: "60%" },
+    { day: "TUE", xp: 200, height: "100%" },
+    { day: "WED", xp: 90, height: "45%" },
+    { day: "THU", xp: 150, height: "75%" },
+    { day: "FRI", xp: 180, height: "90%" },
+    { day: "SAT", xp: 60, height: "30%" },
+    { day: "SUN", xp: 110, height: "55%" },
+  ];
+
+  const ACHIEVEMENTS = [
+    { title: "FIRST_CODE", desc: "Completed initial exercise", unlocked: true, icon: "⚡" },
+    { title: "STREAK_BUILDER", desc: "5-day coding streak active", unlocked: true, icon: "🔥" },
+    { title: "SYNTAX_MASTER", desc: "Completed 10 algorithm problems", unlocked: true, icon: "🎯" },
+    { title: "ALGO_EXPERT", desc: "Solve 50 hard exercises", unlocked: false, icon: "🔒" },
+  ];
+
+  const filteredCourses = enrolledCourses.filter(item => 
+    item.course?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.course?.category?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#1B1B1B] text-white font-outfit p-10 max-w-[1800px] mx-auto space-y-8">
-        <SkeletonCard className="h-56" />
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <SkeletonCard />
-          <SkeletonCard />
-          <SkeletonCard />
-          <SkeletonCard />
+      <div className="min-h-screen bg-[#1B1B1B] text-white font-inter p-10 max-w-[1800px] mx-auto space-y-8">
+        <SkeletonCard className="h-48 w-full" />
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+          {[...Array(6)].map((_, i) => <SkeletonCard key={i} className="h-28" />)}
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <SkeletonCard className="lg:col-span-2 h-96" />
+          <SkeletonCard className="h-96" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#1B1B1B] text-white font-outfit flex flex-col justify-between">
+    <div className="min-h-screen bg-[#1B1B1B] text-[#FFFFFF] font-inter flex flex-col justify-between grid-bg">
       {/* Widescreen Main Container */}
-      <div className="w-full max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-16 py-12">
-        {/* Welcome Section */}
-        <div className="bytecode-card p-8 sm:p-10 mb-10 relative border border-[#4A4A4A]">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
-            <div className="flex-1">
-              <div className="flex items-center gap-5 mb-4">
+      <div className="w-full max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-16 py-10">
+        
+        {/* Top Header & Greeting Section */}
+        <div className="bytecode-card p-8 sm:p-10 mb-8 border border-[#4A4A4A] relative shadow-2xl">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
                 <img
                   src={logo}
                   alt="ByteCode Logo"
-                  className="w-18 h-18 sm:w-20 sm:h-20 object-contain filter drop-shadow-[0_0_16px_rgba(255,106,42,0.45)]"
+                  className="w-12 h-12 object-contain filter drop-shadow-[0_0_12px_rgba(255,106,42,0.5)]"
                 />
-                <div>
-                  <h1 className="text-4xl sm:text-5xl font-bebas text-[#FFFFFF] tracking-wide mb-1">
-                    WELCOME BACK, {user?.name?.toUpperCase()}
-                  </h1>
-                  <p className="text-xs text-[#8E8E8E] font-mono">
-                    Active Session • Role: Software Engineer
-                  </p>
-                </div>
+                <span className="font-geist-pixel text-xl sm:text-2xl text-[#FF6A2A]">
+                  BYTECODE // DEV_ENVIRONMENT
+                </span>
+                <span className="px-2.5 py-0.5 bg-[#252422] border border-[#FF35C759] text-[#35C759] text-xs font-mono font-bold">
+                  ● ACTIVE_SESSION
+                </span>
               </div>
-              <div className="inline-block bg-[#252422] border border-[#FF6A2A] px-4 py-1 text-sm text-[#FF6A2A] font-cormorant">
-                &lt;Learn_By_Doing /&gt;
-              </div>
+
+              <h1 className="font-geist-pixel text-4xl sm:text-5xl lg:text-6xl text-white tracking-wide">
+                GOOD MORNING, {user?.name?.toUpperCase() || "DEVELOPER"}
+              </h1>
+
+              <p className="text-base text-[#CFCFCF] font-inter max-w-3xl">
+                Ready to continue your software engineering pathway? You have active progress in{" "}
+                <span className="text-[#FF6A2A] font-bold font-mono">
+                  {activeCourse ? activeCourse.course.name : "learning tracks"}
+                </span>.
+              </p>
             </div>
 
-            <GitHubProfileCard />
-          </div>
+            {/* Top Action Buttons & Search */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full lg:w-auto">
+              <div className="relative flex-1 sm:w-64">
+                <input
+                  type="text"
+                  placeholder="Filter courses..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="bytecode-input w-full h-11 pl-10 pr-4 text-sm"
+                />
+                <IconSearch size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8E8E8E]" />
+              </div>
 
-          <div className="flex flex-wrap gap-4 mt-8 pt-8 border-t border-[#4A4A4A]">
-            <Link
-              to="/profile"
-              className="bytecode-btn-secondary text-sm"
-            >
-              <IconUser size={18} />
-              <span>Edit Profile</span>
-            </Link>
-            <Link
-              to="/courses"
-              className="bytecode-btn-primary text-sm"
-            >
-              <IconBook size={18} />
-              <span>Browse Catalog</span>
-            </Link>
-            <button
-              onClick={logout}
-              className="bytecode-btn-secondary text-sm border-[#FF4D4F] text-[#FF4D4F] hover:bg-[#FF4D4F]/10 hover:text-[#FF4D4F]"
-            >
-              <IconLogout size={18} />
-              <span>Logout</span>
-            </button>
+              {activeCourse && (
+                <button
+                  onClick={() => navigate(`/course/${activeCourse.course.id || activeCourse.course._id}`)}
+                  className="bytecode-btn-primary h-11 text-sm whitespace-nowrap"
+                >
+                  <IconPlayerPlay size={18} />
+                  <span>CONTINUE LEARNING</span>
+                </button>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          {USER_STATS.map((stat) => (
-            <StatCard key={stat.label} stat={stat} />
+        {/* 6-Column Stats Row */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+          {STATS_BAR.map((stat, idx) => (
+            <div
+              key={idx}
+              className={`bytecode-card p-5 border-l-4 ${stat.accent} flex flex-col justify-between hover:border-[#FF6A2A] transition-colors`}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-geist-pixel text-xs text-[#8E8E8E] tracking-wider">
+                  {stat.label}
+                </span>
+                {stat.icon}
+              </div>
+              <div className="font-geist-pixel text-2xl sm:text-3xl text-white">
+                {stat.value}
+              </div>
+            </div>
           ))}
         </div>
 
-        {/* Courses & Quick Actions Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-          <CoursesSection enrolledCourses={enrolledCourses} />
+        {/* Main Content & Right Panel Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+          
+          {/* Main Left/Center Column (65% Width) */}
+          <div className="lg:col-span-2 space-y-8">
+            
+            {/* Resume Last Course Feature Card */}
+            {activeCourse ? (
+              <div className="bytecode-card p-8 border border-[#FF6A2A] relative bg-[#252422]">
+                <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#4A4A4A]">
+                  <span className="font-geist-pixel text-xs text-[#FF6A2A] uppercase tracking-wider flex items-center gap-2">
+                    <IconPlayerPlay size={16} />
+                    RESUME_LAST_TRACK
+                  </span>
+                  <span className="text-xs font-mono text-[#8E8E8E]">
+                    {activeCourse.course.level} • {activeCourse.course.duration}
+                  </span>
+                </div>
 
-          <DashboardCard title="Quick Actions">
-            <div className="grid grid-cols-2 gap-6">
-              {QUICK_ACTIONS.map((action, index) => (
-                <QuickActionItem key={index} action={action} />
-              ))}
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
+                  <div>
+                    <h2 className="font-geist-pixel text-2xl sm:text-3xl text-white mb-2">
+                      {activeCourse.course.name}
+                    </h2>
+                    <p className="text-sm text-[#CFCFCF] font-inter max-w-xl line-clamp-2">
+                      {activeCourse.course.description}
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={() => navigate(`/course/${activeCourse.course.id || activeCourse.course._id}`)}
+                    className="bytecode-btn-primary h-11 text-sm whitespace-nowrap self-stretch sm:self-auto"
+                  >
+                    <span>Resume Course</span>
+                    <IconArrowRight size={18} />
+                  </button>
+                </div>
+
+                {/* Progress Bar */}
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs font-mono">
+                    <span className="text-[#CFCFCF]">Progress Completed</span>
+                    <span className="text-[#FF6A2A] font-bold">{Math.round(activeCourse.enrollment.progress)}%</span>
+                  </div>
+                  <div className="w-full bg-[#1B1B1B] h-3 border border-[#4A4A4A]">
+                    <div
+                      className="h-full bg-[#FF6A2A] transition-all duration-700"
+                      style={{ width: `${activeCourse.enrollment.progress}%` }}
+                    />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="bytecode-card p-10 text-center border border-[#4A4A4A]">
+                <IconBook size={48} className="mx-auto mb-4 text-[#FF6A2A]" />
+                <h2 className="font-geist-pixel text-2xl text-white mb-2">// NO_ACTIVE_COURSES</h2>
+                <p className="text-sm text-[#CFCFCF] max-w-md mx-auto mb-6">
+                  Explore our curated developer learning tracks to start building production apps.
+                </p>
+                <Link to="/courses" className="bytecode-btn-primary h-11 text-sm">
+                  Browse Catalog Pathways
+                </Link>
+              </div>
+            )}
+
+            {/* Enrolled Pathways Section */}
+            <div className="bytecode-card p-8">
+              <div className="flex justify-between items-center mb-6 pb-3 border-b border-[#4A4A4A]">
+                <h3 className="font-geist-pixel text-xl sm:text-2xl text-white flex items-center gap-3">
+                  <span className="text-[#FF6A2A] font-mono">//</span> MY_LEARNING_PATHWAYS
+                </h3>
+                <Link
+                  to="/courses"
+                  className="text-xs font-mono font-semibold text-[#FF8C42] hover:text-[#FF6A2A] flex items-center gap-1 uppercase tracking-wider transition-colors"
+                >
+                  <span>ALL PATHWAYS</span>
+                  <IconArrowRight size={16} />
+                </Link>
+              </div>
+
+              <div className="space-y-4">
+                {filteredCourses.length === 0 ? (
+                  <p className="text-sm text-[#8E8E8E] font-mono text-center py-6">
+                    No enrolled courses matched your search query.
+                  </p>
+                ) : (
+                  filteredCourses.map((item) => (
+                    <div
+                      key={item.enrollment._id}
+                      className="p-5 bg-[#252422] border border-[#4A4A4A] hover:border-[#FF6A2A] transition-colors flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+                    >
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-bold text-white text-lg truncate mb-1">
+                          {item.course.name}
+                        </h4>
+                        <div className="flex items-center gap-3 text-xs text-[#8E8E8E] font-mono">
+                          <span className="px-2 py-0.5 bg-[#1B1B1B] border border-[#4A4A4A] text-[#CFCFCF]">
+                            {item.course.level}
+                          </span>
+                          <span>•</span>
+                          <span>{item.course.duration}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end">
+                        <div className="text-right">
+                          <div className="text-sm font-bold text-[#35C759] font-mono">
+                            {Math.round(item.enrollment.progress)}%
+                          </div>
+                          <div className="w-28 bg-[#1B1B1B] h-2 border border-[#4A4A4A] mt-1">
+                            <div
+                              className="h-full bg-[#35C759]"
+                              style={{ width: `${item.enrollment.progress}%` }}
+                            />
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => navigate(`/course/${item.course.id || item.course._id}`)}
+                          className="bytecode-btn-secondary h-9 px-4 text-xs"
+                        >
+                          Open
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
             </div>
-          </DashboardCard>
+
+            {/* Recent Activity Timeline */}
+            <div className="bytecode-card p-8">
+              <div className="flex justify-between items-center mb-6 pb-3 border-b border-[#4A4A4A]">
+                <h3 className="font-geist-pixel text-xl sm:text-2xl text-white flex items-center gap-3">
+                  <span className="text-[#FF6A2A] font-mono">//</span> RECENT_ACTIVITY_LOGS
+                </h3>
+                <span className="text-xs font-mono text-[#8E8E8E]">[REALTIME_AUDIT]</span>
+              </div>
+
+              <div className="space-y-4 font-mono text-xs">
+                <div className="flex items-center gap-4 p-4 bg-[#252422] border border-[#4A4A4A]">
+                  <IconActivity size={18} className="text-[#FF6A2A] flex-shrink-0" />
+                  <div className="flex-1">
+                    <span className="text-white font-bold">Exercise Completed: </span>
+                    <span className="text-[#CFCFCF]">"Array Manipulation & Algorithms"</span>
+                  </div>
+                  <span className="text-[#35C759] font-bold">+25 XP</span>
+                  <span className="text-[#8E8E8E]">2h ago</span>
+                </div>
+
+                <div className="flex items-center gap-4 p-4 bg-[#252422] border border-[#4A4A4A]">
+                  <IconCalendarCheck size={18} className="text-[#35C759] flex-shrink-0" />
+                  <div className="flex-1">
+                    <span className="text-white font-bold">Daily Streak Extended: </span>
+                    <span className="text-[#CFCFCF]">5 consecutive days logged</span>
+                  </div>
+                  <span className="text-[#FFC300] font-bold">🔥 STREAK</span>
+                  <span className="text-[#8E8E8E]">1d ago</span>
+                </div>
+
+                <div className="flex items-center gap-4 p-4 bg-[#252422] border border-[#4A4A4A]">
+                  <IconBook size={18} className="text-[#FF8C42] flex-shrink-0" />
+                  <div className="flex-1">
+                    <span className="text-white font-bold">Enrolled Track: </span>
+                    <span className="text-[#CFCFCF]">"Full-Stack Web Engineering"</span>
+                  </div>
+                  <span className="text-[#FF8C42] font-bold">ENROLLED</span>
+                  <span className="text-[#8E8E8E]">3d ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side Panel (35% Width) */}
+          <div className="space-y-8">
+            
+            {/* Daily Goal & Progress Widget */}
+            <div className="bytecode-card p-6 border border-[#4A4A4A]">
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#4A4A4A]">
+                <h3 className="font-geist-pixel text-lg text-white flex items-center gap-2">
+                  <IconTarget size={18} className="text-[#FF6A2A]" />
+                  DAILY_XP_GOAL
+                </h3>
+                <span className="text-xs font-mono text-[#35C759] font-bold">{dailyProgress}%</span>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex justify-between items-baseline font-mono">
+                  <span className="text-2xl font-geist-pixel text-white">{todayXP} <span className="text-xs text-[#8E8E8E]">/ {dailyGoalXP} XP</span></span>
+                  <span className="text-xs text-[#FFC300] font-bold">Target: 750 XP</span>
+                </div>
+
+                <div className="w-full bg-[#252422] h-3 border border-[#4A4A4A]">
+                  <div
+                    className="h-full bg-[#FF6A2A]"
+                    style={{ width: `${dailyProgress}%` }}
+                  />
+                </div>
+
+                <p className="text-xs text-[#CFCFCF] font-inter">
+                  Earn <span className="text-[#FF6A2A] font-bold">230 more XP</span> today to complete your daily activity target!
+                </p>
+              </div>
+            </div>
+
+            {/* Weekly XP Bar Chart Matrix */}
+            <div className="bytecode-card p-6 border border-[#4A4A4A]">
+              <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#4A4A4A]">
+                <h3 className="font-geist-pixel text-lg text-white flex items-center gap-2">
+                  <IconTrendingUp size={18} className="text-[#35C759]" />
+                  WEEKLY_XP_MATRIX
+                </h3>
+                <span className="text-xs font-mono text-[#8E8E8E]">THIS WEEK</span>
+              </div>
+
+              <div className="flex items-end justify-between h-36 pt-4 gap-2">
+                {WEEKLY_XP.map((bar, idx) => (
+                  <div key={idx} className="flex flex-col items-center gap-2 flex-1 h-full justify-end">
+                    <div
+                      className="w-full bg-[#FF6A2A] hover:bg-[#FF8C42] transition-all relative group"
+                      style={{ height: bar.height }}
+                    >
+                      <div className="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-[#252422] border border-[#FF6A2A] text-[10px] font-mono px-1.5 py-0.5 text-white whitespace-nowrap z-10 transition-opacity">
+                        {bar.xp} XP
+                      </div>
+                    </div>
+                    <span className="text-[11px] font-mono text-[#8E8E8E]">{bar.day}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Actions 6-Tile Cluster */}
+            <div className="bytecode-card p-6 border border-[#4A4A4A]">
+              <h3 className="font-geist-pixel text-lg text-white mb-4 pb-3 border-b border-[#4A4A4A]">
+                QUICK_ACTIONS
+              </h3>
+
+              <div className="grid grid-cols-2 gap-3">
+                {QUICK_ACTIONS.map((act, i) => (
+                  <Link
+                    key={i}
+                    to={act.path}
+                    className="p-3 bg-[#252422] border border-[#4A4A4A] hover:border-[#FF6A2A] hover:bg-[#303030] transition-all flex flex-col items-start gap-1 group"
+                  >
+                    <div className="text-[#FF6A2A] group-hover:scale-110 transition-transform">
+                      {act.icon}
+                    </div>
+                    <span className="font-geist-pixel text-xs text-white group-hover:text-[#FF6A2A]">
+                      {act.label}
+                    </span>
+                    <span className="text-[10px] text-[#8E8E8E] font-mono">
+                      {act.desc}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Achievement Showcase */}
+            <div className="bytecode-card p-6 border border-[#4A4A4A]">
+              <h3 className="font-geist-pixel text-lg text-white mb-4 pb-3 border-b border-[#4A4A4A] flex items-center justify-between">
+                <span>ACHIEVEMENTS</span>
+                <span className="text-xs font-mono text-[#35C759]">3/4 UNLOCKED</span>
+              </h3>
+
+              <div className="space-y-3">
+                {ACHIEVEMENTS.map((ach, i) => (
+                  <div
+                    key={i}
+                    className={`p-3 border flex items-center gap-3 ${
+                      ach.unlocked 
+                        ? "bg-[#252422] border-[#35C759]/40 text-white" 
+                        : "bg-[#1B1B1B] border-[#4A4A4A] text-[#8E8E8E] opacity-60"
+                    }`}
+                  >
+                    <span className="text-2xl">{ach.icon}</span>
+                    <div>
+                      <div className="font-geist-pixel text-xs text-white">{ach.title}</div>
+                      <div className="text-[11px] font-inter text-[#CFCFCF]">{ach.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
-        {/* Developer's Corner */}
-        <DeveloperCornerCard />
       </div>
 
       <Footer />
