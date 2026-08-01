@@ -427,13 +427,13 @@
     },
     {
       "id": "cpp1-ex20",
-      "title": "Capstone Project: C++ I \u2014 Fundamentals & Pointers Industry Application",
-      "description": "Practice and master Capstone Project: C++ I \u2014 Fundamentals & Pointers Industry Application with interactive coding.",
+      "title": "Capstone Project: Library Management System",
+      "description": "Build a complete production-grade Library Management System integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "cpp",
-      "theory": "This capstone integrates all core modules learned in C++ I \u2014 Fundamentals & Pointers into a complete project.",
-      "objective": "Build a full production capstone project for C++ I \u2014 Fundamentals & Pointers.",
+      "theory": "This capstone project combines all curriculum concepts into a production Library Management System.",
+      "objective": "Construct a complete Library Management System application.",
       "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
       "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
       "requirements": [

@@ -427,13 +427,13 @@
     },
     {
       "id": "cpp2-ex20",
-      "title": "Capstone Project: C++ II \u2014 Object-Oriented Programming & Templates Industry Application",
-      "description": "Practice and master Capstone Project: C++ II \u2014 Object-Oriented Programming & Templates Industry Application with interactive coding.",
+      "title": "Capstone Project: Bank Management System",
+      "description": "Build a complete production-grade Bank Management System integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "cpp",
-      "theory": "This capstone integrates all core modules learned in C++ II \u2014 Object-Oriented Programming & Templates into a complete project.",
-      "objective": "Build a full production capstone project for C++ II \u2014 Object-Oriented Programming & Templates.",
+      "theory": "This capstone project combines all curriculum concepts into a production Bank Management System.",
+      "objective": "Construct a complete Bank Management System application.",
       "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
       "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
       "requirements": [

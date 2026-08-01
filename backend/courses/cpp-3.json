@@ -427,13 +427,13 @@
     },
     {
       "id": "cpp3-ex20",
-      "title": "Capstone Project: C++ III \u2014 Advanced C++, Smart Pointers & Move Semantics Industry Application",
-      "description": "Practice and master Capstone Project: C++ III \u2014 Advanced C++, Smart Pointers & Move Semantics Industry Application with interactive coding.",
+      "title": "Capstone Project: Mini Compiler Core",
+      "description": "Build a complete production-grade Mini Compiler Core integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "cpp",
-      "theory": "This capstone integrates all core modules learned in C++ III \u2014 Advanced C++, Smart Pointers & Move Semantics into a complete project.",
-      "objective": "Build a full production capstone project for C++ III \u2014 Advanced C++, Smart Pointers & Move Semantics.",
+      "theory": "This capstone project combines all curriculum concepts into a production Mini Compiler Core.",
+      "objective": "Construct a complete Mini Compiler Core application.",
       "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
       "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
       "requirements": [

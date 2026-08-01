@@ -427,13 +427,13 @@
     },
     {
       "id": "cppdsa-ex20",
-      "title": "Capstone Project: C++ DSA \u2014 Data Structures & Algorithms using C++ Industry Application",
-      "description": "Practice and master Capstone Project: C++ DSA \u2014 Data Structures & Algorithms using C++ Industry Application with interactive coding.",
+      "title": "Capstone Project: Maze Solver & Algo Engine",
+      "description": "Build a complete production-grade Maze Solver & Algo Engine integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "cpp",
-      "theory": "This capstone integrates all core modules learned in C++ DSA \u2014 Data Structures & Algorithms using C++ into a complete project.",
-      "objective": "Build a full production capstone project for C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "theory": "This capstone project combines all curriculum concepts into a production Maze Solver & Algo Engine.",
+      "objective": "Construct a complete Maze Solver & Algo Engine application.",
       "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
       "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
       "requirements": [
