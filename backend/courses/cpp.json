@@ -1,0 +1,452 @@
+{
+  "id": "cpp",
+  "name": "C++ Object-Oriented & Systems Track",
+  "description": "Master modern C++17/C++20 object-oriented design, constructors/destructors, inheritance, virtual polymorphism, generic Templates, Standard Template Library (STL), and Smart Pointers.",
+  "instructor": "Engineering C++ Team",
+  "duration": "10 weeks",
+  "level": "Intermediate to Advanced",
+  "price": 0,
+  "image": "/logos/cpp.png",
+  "category": "Software Engineering",
+  "rating": 4.9,
+  "ratingCount": 3810,
+  "students": 6740,
+  "tags": ["cpp", "c++", "oop", "stl", "templates", "smart-pointers"],
+  "whatYouLearn": [
+    "Master C++ Class architecture, encapsulation, and initializer lists",
+    "Implement Inheritance, virtual functions, and runtime Polymorphism",
+    "Write generic functions and classes using C++ Templates",
+    "Utilize Standard Template Library containers (std::vector, std::map, std::unordered_map)",
+    "Prevent memory leaks using RAII and Smart Pointers (std::unique_ptr, std::shared_ptr)",
+    "Build a production Game Engine Logic Core"
+  ],
+  "prerequisites": ["C Programming & Systems Engineering Track"],
+  "exercises": [
+    {
+      "id": "cpp-ex1",
+      "title": "Classes, Constructors & Initializer Lists",
+      "description": "Build C++ classes with constructors, member initializer lists, and getter/setter methods.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "C++ classes group data and methods under access specifiers (public, private, protected). Member initializer lists initialize fields before constructor execution.",
+      "objective": "Build a Player class with constructor initializer list.",
+      "initialCode": "#include <iostream>\n#include <string>\n\n// Create Player class",
+      "solutionCode": "#include <iostream>\n#include <string>\n\nclass Player {\nprivate:\n    std::string name;\n    int level;\n    int health;\n\npublic:\n    Player(std::string n, int l = 1, int h = 100)\n        : name(n), level(l), health(h) {}\n    \n    void displayStatus() const {\n        std::cout << \"Player: \" << name << \" [Level \" << level << \"] Health: \" << health << std::endl;\n    }\n};\n\nint main() {\n    Player p1(\"Hero_Alex\", 5, 150);\n    p1.displayStatus();\n    return 0;\n}",
+      "requirements": [
+        "Include <iostream> and <string>",
+        "Declare private fields name, level, health",
+        "Use constructor member initializer list syntax : name(n), level(l), health(h)",
+        "Declare const method displayStatus()"
+      ],
+      "hints": [
+        "const after method signature promises method will not modify object state"
+      ],
+      "codeExample": "class Car { int speed; public: Car(s) : speed(s) {} };"
+    },
+    {
+      "id": "cpp-ex2",
+      "title": "Destructors & RAII Memory Management",
+      "description": "Implement destructors (~ClassName) following RAII (Resource Acquisition Is Initialization).",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Destructors (~ClassName) execute automatically when objects go out of scope, releasing acquired heap resources automatically (RAII idiom).",
+      "objective": "Build a BufferResource class with custom destructor cleanup.",
+      "initialCode": "#include <iostream>\n\n// Build class with destructor",
+      "solutionCode": "#include <iostream>\n\nclass BufferResource {\nprivate:\n    int* buffer;\n    size_t size;\n\npublic:\n    BufferResource(size_t s) : size(s) {\n        buffer = new int[size];\n        std::cout << \"Allocated buffer of size \" << size << std::endl;\n    }\n    \n    ~BufferResource() {\n        delete[] buffer;\n        std::cout << \"Destructor deallocated buffer automatically.\" << std::endl;\n    }\n};\n\nint main() {\n    {\n        BufferResource res(1024);\n    } // Destructor fires automatically here upon scope exit\n    return 0;\n}",
+      "requirements": [
+        "Allocate heap memory in constructor using new int[size]",
+        "Deallocate heap memory in destructor using delete[] buffer",
+        "Demonstrate automatic destructor execution upon scope exit"
+      ],
+      "hints": [
+        "Always match new[] with delete[] and single new with single delete"
+      ],
+      "codeExample": "class Res { int *p; public: Res() { p = new int; } ~Res() { delete p; } };"
+    },
+    {
+      "id": "cpp-ex3",
+      "title": "Copy Constructors & Deep Copying",
+      "description": "Prevent double-free bugs by writing custom copy constructors performing deep memory copying.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Default copy constructors perform shallow member-wise copies. Classes managing dynamic raw pointers require custom deep copy constructors.",
+      "objective": "Write a deep copy constructor for dynamic array class.",
+      "initialCode": "#include <iostream>\n\n// Implement deep copy constructor",
+      "solutionCode": "#include <iostream>\n\nclass DynamicArray {\nprivate:\n    int* data;\n    int size;\n\npublic:\n    DynamicArray(int s) : size(s) {\n        data = new int[size];\n        for (int i = 0; i < size; ++i) data[i] = i * 10;\n    }\n    \n    // Deep Copy Constructor\n    DynamicArray(const DynamicArray& other) : size(other.size) {\n        data = new int[size];\n        for (int i = 0; i < size; ++i) data[i] = other.data[i];\n        std::cout << \"Deep copy constructor executed.\" << std::endl;\n    }\n    \n    ~DynamicArray() {\n        delete[] data;\n    }\n};\n\nint main() {\n    DynamicArray arr1(3);\n    DynamicArray arr2 = arr1; // Invokes deep copy constructor\n    return 0;\n}",
+      "requirements": [
+        "Write copy constructor syntax ClassName(const ClassName& other)",
+        "Allocate new memory array and copy individual elements",
+        "Demonstrate deep copy invocation"
+      ],
+      "hints": [
+        "Passing reference parameter const ClassName& avoids recursive copy constructor calls"
+      ],
+      "codeExample": "Obj(const Obj& other) { data = new int(*other.data); }"
+    },
+    {
+      "id": "cpp-ex4",
+      "title": "Inheritance & Access Specifiers (public, protected)",
+      "description": "Extend base classes using public inheritance and protected member variables.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Subclasses inherit base class properties. protected members are accessible inside derived subclasses but hidden from public scope.",
+      "objective": "Build Entity base class and Character subclass.",
+      "initialCode": "#include <iostream>\n#include <string>\n\n// Build base and subclass hierarchy",
+      "solutionCode": "#include <iostream>\n#include <string>\n\nclass Entity {\nprotected:\n    std::string name;\n    int x, y;\n\npublic:\n    Entity(std::string n, int xPos, int yPos) : name(n), x(xPos), y(yPos) {}\n    \n    void move(int dx, int dy) {\n        x += dx;\n        y += dy;\n    }\n};\n\nclass Character : public Entity {\npublic:\n    Character(std::string n, int x, int y) : Entity(n, x, y) {}\n    \n    void printPosition() const {\n        std::cout << name << \" Position: (\" << x << \", \" << y << \")\" << std::endl;\n    }\n};\n\nint main() {\n    Character hero(\"Warrior\", 0, 0);\n    hero.move(10, 5);\n    hero.printPosition();\n    return 0;\n}",
+      "requirements": [
+        "Create base Entity class with protected fields",
+        "Inherit publicly using class Character : public Entity",
+        "Call base constructor Entity(n, x, y) in subclass initializer list"
+      ],
+      "hints": [
+        "protected members allow child classes direct field access"
+      ],
+      "codeExample": "class Child : public Parent { public: Child() : Parent() {} };"
+    },
+    {
+      "id": "cpp-ex5",
+      "title": "Virtual Functions & Polymorphism (virtual, override)",
+      "description": "Achieve dynamic runtime polymorphism using virtual methods and virtual destructors.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Declaring base methods with virtual enables dynamic dispatch. Subclasses override virtual methods. Always make base destructors virtual.",
+      "objective": "Build polymorphic Shape base class and Circle / Rectangle subclasses.",
+      "initialCode": "#include <iostream>\n\n// Build polymorphic Shape class hierarchy",
+      "solutionCode": "#include <iostream>\n\nclass Shape {\npublic:\n    virtual void draw() const {\n        std::cout << \"Drawing generic shape\" << std::endl;\n    }\n    virtual ~Shape() {} // Virtual destructor\n};\n\nclass Circle : public Shape {\npublic:\n    void draw() const override {\n        std::cout << \"Drawing Circle [O]\" << std::endl;\n    }\n};\n\nint main() {\n    Shape* shapePtr = new Circle();\n    shapePtr->draw(); // Dynamic dispatch calls Circle::draw()\n    delete shapePtr;\n    return 0;\n}",
+      "requirements": [
+        "Declare virtual void draw() const in base Shape class",
+        "Use override keyword in Circle subclass",
+        "Declare virtual destructor ~Shape()"
+      ],
+      "hints": [
+        "override keyword ensures compiler verifies function signature matches base virtual method exactly"
+      ],
+      "codeExample": "virtual void render() override;"
+    },
+    {
+      "id": "cpp-ex6",
+      "title": "Pure Virtual Functions & Abstract Classes",
+      "description": "Create abstract interface classes containing pure virtual functions (= 0).",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "A function marked with = 0 is a pure virtual function. Classes containing pure virtual functions are abstract and cannot be directly instantiated.",
+      "objective": "Build abstract IRenderable interface.",
+      "initialCode": "#include <iostream>\n\n// Create abstract interface class",
+      "solutionCode": "#include <iostream>\n\nclass IRenderable {\npublic:\n    virtual void render() = 0; // Pure Virtual Function\n    virtual ~IRenderable() {}\n};\n\nclass Button : public IRenderable {\npublic:\n    void render() override {\n        std::cout << \"[Render]: Button UI Element\" << std::endl;\n    }\n};\n\nint main() {\n    Button btn;\n    btn.render();\n    return 0;\n}",
+      "requirements": [
+        "Declare virtual void render() = 0; pure virtual function",
+        "Implement render() in Button derived class"
+      ],
+      "hints": [
+        "Pure virtual functions define pure contract interfaces that subclasses MUST implement"
+      ],
+      "codeExample": "virtual void log() = 0;"
+    },
+    {
+      "id": "cpp-ex7",
+      "title": "Operator Overloading",
+      "description": "Overload arithmetic (+, -) and stream insertion (<<) operators.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Operator overloading permits custom class objects to operate using native operators (+, -, ==, <<).",
+      "objective": "Overload + operator and << stream operator for a Vector2D class.",
+      "initialCode": "#include <iostream>\n\n// Overload + and << operators",
+      "solutionCode": "#include <iostream>\n\nclass Vector2D {\npublic:\n    float x, y;\n    Vector2D(float xVal = 0, float yVal = 0) : x(xVal), y(yVal) {}\n    \n    Vector2D operator+(const Vector2D& other) const {\n        return Vector2D(x + other.x, y + other.y);\n    }\n    \n    friend std::ostream& operator<<(std::ostream& os, const Vector2D& vec) {\n        os << \"(\" << vec.x << \", \" << vec.y << \")\";\n        return os;\n    }\n};\n\nint main() {\n    Vector2D v1(3.0f, 4.0f);\n    Vector2D v2(1.0f, 2.0f);\n    Vector2D v3 = v1 + v2;\n    \n    std::cout << \"V1 + V2 = \" << v3 << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Overload Vector2D operator+(const Vector2D& other) const",
+        "Overload friend std::ostream& operator<<(std::ostream&, const Vector2D&)"
+      ],
+      "hints": [
+        "friend functions allow non-member stream operators access to private class members"
+      ],
+      "codeExample": "Vector2D operator+(const Vector2D& v) const { return Vector2D(x+v.x, y+v.y); }"
+    },
+    {
+      "id": "cpp-ex8",
+      "title": "Function & Class Templates (template <typename T>)",
+      "description": "Write generic functions and classes using C++ Templates.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Templates enable generic programming. The compiler generates specialized code for each concrete type passed to template parameters.",
+      "objective": "Build generic template function maxVal<T>() and class Box<T>.",
+      "initialCode": "#include <iostream>\n\n// Write function and class templates",
+      "solutionCode": "#include <iostream>\n#include <string>\n\ntemplate <typename T>\nT getMax(T a, T b) {\n    return (a > b) ? a : b;\n}\n\ntemplate <typename T>\nclass Box {\nprivate:\n    T content;\npublic:\n    Box(T val) : content(val) {}\n    T getContent() const { return content; }\n};\n\nint main() {\n    std::cout << \"Max Int: \" << getMax<int>(10, 20) << std::endl;\n    std::cout << \"Max Double: \" << getMax<double>(45.5, 12.3) << std::endl;\n    \n    Box<std::string> strBox(\"ByteCode C++ Templates\");\n    std::cout << \"Box Content: \" << strBox.getContent() << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Write template <typename T> T getMax(T a, T b)",
+        "Write template <typename T> class Box",
+        "Instantiate with <int>, <double>, and <std::string>"
+      ],
+      "hints": [
+        "template <typename T> must precede every template function or class definition"
+      ],
+      "codeExample": "template <typename T> T add(T a, T b) { return a + b; }"
+    },
+    {
+      "id": "cpp-ex9",
+      "title": "STL std::vector & Iterators",
+      "description": "Manipulate dynamic arrays using std::vector and STL iterators.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "std::vector is a dynamic array template from the Standard Template Library. Traverse vectors using iterator loops or range-based for loops.",
+      "objective": "Manipulate std::vector elements and iterate using range-based for loop.",
+      "initialCode": "#include <iostream>\n#include <vector>\n\nint main() {\n    // Manipulate std::vector\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nint main() {\n    std::vector<int> numbers = {40, 10, 50, 20, 30};\n    numbers.push_back(60);\n    \n    std::sort(numbers.begin(), numbers.end());\n    \n    std::cout << \"Sorted Vector: \";\n    for (const auto& num : numbers) {\n        std::cout << num << \" \";\n    }\n    std::cout << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Include <vector> and <algorithm>",
+        "Use push_back() to append item",
+        "Sort vector using std::sort(begin, end)",
+        "Iterate using range-based for loop for (const auto& num : numbers)"
+      ],
+      "hints": [
+        "std::sort sorts elements in ascending order in O(N log N) time"
+      ],
+      "codeExample": "std::vector<int> vec; vec.push_back(1);"
+    },
+    {
+      "id": "cpp-ex10",
+      "title": "STL Key-Value Maps (std::map & std::unordered_map)",
+      "description": "Store and retrieve key-value pairs using std::map and std::unordered_map.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "std::map stores ordered key-value pairs using Red-Black Trees O(log N). std::unordered_map uses Hash Tables for average O(1) lookups.",
+      "objective": "Store and query student grades using std::unordered_map.",
+      "initialCode": "#include <iostream>\n#include <unordered_map>\n#include <string>\n\nint main() {\n    // Use std::unordered_map\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n#include <unordered_map>\n#include <string>\n\nint main() {\n    std::unordered_map<std::string, double> studentGpas;\n    studentGpas[\"Alex\"] = 3.95;\n    studentGpas[\"Sarah\"] = 3.80;\n    studentGpas[\"Charlie\"] = 3.65;\n    \n    auto it = studentGpas.find(\"Alex\");\n    if (it != studentGpas.end()) {\n        std::cout << \"Found Alex GPA: \" << it->second << std::endl;\n    }\n    \n    for (const auto& pair : studentGpas) {\n        std::cout << pair.first << \" -> \" << pair.second << std::endl;\n    }\n    return 0;\n}",
+      "requirements": [
+        "Include <unordered_map>",
+        "Insert key-value pairs using operator[]",
+        "Perform safe lookup using map.find(key)",
+        "Iterate using key-value pair destructuring"
+      ],
+      "hints": [
+        "find() returns map.end() iterator if key is absent"
+      ],
+      "codeExample": "std::unordered_map<std::string, int> map; map[\"a\"] = 1;"
+    },
+    {
+      "id": "cpp-ex11",
+      "title": "Smart Pointers: std::unique_ptr",
+      "description": "Manage exclusive-ownership dynamic memory safely using std::unique_ptr.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "std::unique_ptr guarantees exclusive ownership of dynamic heap memory, preventing memory leaks by auto-deleting when unique_ptr leaves scope.",
+      "objective": "Allocate objects with std::make_unique<T>() and transfer ownership using std::move().",
+      "initialCode": "#include <iostream>\n#include <memory>\n\nint main() {\n    // Use std::unique_ptr\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n#include <memory>\n\nclass Resource {\npublic:\n    Resource() { std::cout << \"Resource Acquired\" << std::endl; }\n    ~Resource() { std::cout << \"Resource Destroyed\" << std::endl; }\n    void work() { std::cout << \"Working...\" << std::endl; }\n};\n\nint main() {\n    std::unique_ptr<Resource> ptr1 = std::make_unique<Resource>();\n    ptr1->work();\n    \n    // Transfer ownership using std::move()\n    std::unique_ptr<Resource> ptr2 = std::move(ptr1);\n    if (!ptr1) {\n        std::cout << \"ptr1 is now null after move.\" << std::endl;\n    }\n    ptr2->work();\n    return 0;\n}",
+      "requirements": [
+        "Include <memory>",
+        "Create instance using std::make_unique<Resource>()",
+        "Transfer ownership using std::move(ptr1)"
+      ],
+      "hints": [
+        "std::unique_ptr cannot be copied, only moved using std::move()"
+      ],
+      "codeExample": "auto ptr = std::make_unique<int>(42);"
+    },
+    {
+      "id": "cpp-ex12",
+      "title": "Smart Pointers: std::shared_ptr & std::weak_ptr",
+      "description": "Manage shared reference-counted memory using std::shared_ptr and break cyclic references with std::weak_ptr.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "cpp",
+      "theory": "std::shared_ptr shares ownership across multiple owners using reference counting. std::weak_ptr provides a non-owning observer pointer to break retain cycles.",
+      "objective": "Demonstrate reference count tracking with std::shared_ptr.",
+      "initialCode": "#include <iostream>\n#include <memory>\n\nint main() {\n    // Use std::shared_ptr\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n#include <memory>\n\nclass Node {\npublic:\n    int id;\n    Node(int val) : id(val) {}\n    ~Node() { std::cout << \"Node \" << id << \" destroyed.\" << std::endl; }\n};\n\nint main() {\n    std::shared_ptr<Node> p1 = std::make_shared<Node>(101);\n    std::cout << \"Ref Count: \" << p1.use_count() << std::endl; // 1\n    \n    {\n        std::shared_ptr<Node> p2 = p1;\n        std::cout << \"Ref Count inside block: \" << p1.use_count() << std::endl; // 2\n    }\n    \n    std::cout << \"Ref Count after block exit: \" << p1.use_count() << std::endl; // 1\n    return 0;\n}",
+      "requirements": [
+        "Create shared pointer using std::make_shared<Node>(101)",
+        "Copy shared pointer to increment reference count",
+        "Inspect reference count using p1.use_count()"
+      ],
+      "hints": [
+        "Memory is freed only when the internal reference count drops to 0"
+      ],
+      "codeExample": "auto p1 = std::make_shared<int>(10); auto p2 = p1;"
+    },
+    {
+      "id": "cpp-ex13",
+      "title": "Lambda Expressions ([capture](params) -> ret)",
+      "description": "Write inline C++ lambda functions with value and reference capture clauses.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Lambdas are anonymous inline functions. Capture clauses [=], [&], [var] control access to outer variables.",
+      "objective": "Write C++ lambda expressions with capture clauses for std::count_if.",
+      "initialCode": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nint main() {\n    // Write lambda expression\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nint main() {\n    std::vector<int> scores = {85, 92, 78, 95, 60, 88};\n    int threshold = 80;\n    \n    // Lambda with value capture [threshold]\n    int passCount = std::count_if(scores.begin(), scores.end(), [threshold](int score) {\n        return score >= threshold;\n    });\n    \n    std::cout << \"Scores >= \" << threshold << \": \" << passCount << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Include <algorithm>",
+        "Write lambda with capture [threshold](int score) -> bool",
+        "Pass lambda callback into std::count_if"
+      ],
+      "hints": [
+        "[=] captures all outer variables by value; [&] captures by reference"
+      ],
+      "codeExample": "auto add = [](int a, int b) { return a + b; };"
+    },
+    {
+      "id": "cpp-ex14",
+      "title": "Move Semantics & Rvalue References (&&)",
+      "description": "Eliminate expensive deep copies using rvalue references (&&) and move constructors.",
+      "duration": "35 min",
+      "difficulty": "Hard",
+      "language": "cpp",
+      "theory": "Move semantics transfer ownership of resources from temporary rvalues without allocating new heap memory blocks.",
+      "objective": "Implement a move constructor ClassName(ClassName&& other) noexcept.",
+      "initialCode": "#include <iostream>\n\n// Implement move constructor",
+      "solutionCode": "#include <iostream>\n#include <utility>\n\nclass Buffer {\nprivate:\n    int* data;\n    size_t size;\n\npublic:\n    Buffer(size_t s) : size(s) {\n        data = new int[size];\n        std::cout << \"Constructed Buffer of size \" << size << std::endl;\n    }\n    \n    // Move Constructor\n    Buffer(Buffer&& other) noexcept : data(other.data), size(other.size) {\n        other.data = nullptr;\n        other.size = 0;\n        std::cout << \"Move constructor executed (0 memory allocations).\" << std::endl;\n    }\n    \n    ~Buffer() { delete[] data; }\n};\n\nint main() {\n    Buffer b1(1000);\n    Buffer b2 = std::move(b1); // Triggers move constructor\n    return 0;\n}",
+      "requirements": [
+        "Write move constructor Buffer(Buffer&& other) noexcept",
+        "Transfer pointer ownership and set other.data = nullptr",
+        "Mark move constructor noexcept"
+      ],
+      "hints": [
+        "Setting source pointer to nullptr in move constructor prevents destructor double-free errors"
+      ],
+      "codeExample": "Buffer(Buffer&& o) noexcept : data(o.data) { o.data = nullptr; }"
+    },
+    {
+      "id": "cpp-ex15",
+      "title": "C++ Exception Handling (try, catch, throw)",
+      "description": "Throw custom exception objects and catch exception hierarchies.",
+      "duration": "20 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "C++ exception handling uses try, catch, and throw. Standard exceptions inherit from std::exception.",
+      "objective": "Throw std::runtime_error and catch exception reference.",
+      "initialCode": "#include <iostream>\n#include <stdexcept>\n\nint main() {\n    // Execute try/catch block\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n#include <stdexcept>\n\ndouble divide(double a, double b) {\n    if (b == 0.0) {\n        throw std::runtime_error(\"Division by zero is undefined.\");\n    }\n    return a / b;\n}\n\nint main() {\n    try {\n        std::cout << \"Result: \" << divide(10.0, 0.0) << std::endl;\n    } catch (const std::runtime_error& e) {\n        std::cerr << \"Caught Exception: \" << e.what() << std::endl;\n    }\n    return 0;\n}",
+      "requirements": [
+        "Include <stdexcept>",
+        "Throw std::runtime_error with error string",
+        "Catch const std::runtime_error& and print e.what()"
+      ],
+      "hints": [
+        "e.what() returns the error message string passed to the exception constructor"
+      ],
+      "codeExample": "try { throw std::runtime_error(\"err\"); } catch (const std::exception& e) {}"
+    },
+    {
+      "id": "cpp-ex16",
+      "title": "Type Casting (static_cast, dynamic_cast)",
+      "description": "Perform compile-time static_cast and runtime polymorphic dynamic_cast.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "static_cast converts compatible types at compile time. dynamic_cast safely downcasts polymorphic base class pointers at runtime.",
+      "objective": "Perform safe dynamic_cast downcasting on polymorphic class pointers.",
+      "initialCode": "#include <iostream>\n\n// Perform dynamic_cast downcast",
+      "solutionCode": "#include <iostream>\n\nclass Base { public: virtual ~Base() {} };\nclass Derived : public Base {\npublic:\n    void specialAction() { std::cout << \"Derived special action!\" << std::endl; }\n};\n\nint main() {\n    Base* basePtr = new Derived();\n    \n    // Safe polymorphic downcast\n    Derived* derivedPtr = dynamic_cast<Derived*>(basePtr);\n    if (derivedPtr != nullptr) {\n        derivedPtr->specialAction();\n    }\n    \n    delete basePtr;\n    return 0;\n}",
+      "requirements": [
+        "Use dynamic_cast<Derived*>(basePtr)",
+        "Check derivedPtr != nullptr guard before invoking child methods"
+      ],
+      "hints": [
+        "dynamic_cast returns nullptr if the underlying object is NOT an instance of target derived class"
+      ],
+      "codeExample": "Derived* d = dynamic_cast<Derived*>(b);"
+    },
+    {
+      "id": "cpp-ex17",
+      "title": "Enum Classes (enum class)",
+      "description": "Group scoped, strongly-typed constants using enum class.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "enum class defines strongly-typed, scoped enumerations that do not implicitly convert to integers or leak names into enclosing scope.",
+      "objective": "Declare an enum class State and use in switch statements.",
+      "initialCode": "#include <iostream>\n\n// Declare enum class State",
+      "solutionCode": "#include <iostream>\n\nenum class GameState {\n    Menu,\n    Playing,\n    Paused,\n    GameOver\n};\n\nvoid printState(GameState state) {\n    switch (state) {\n        case GameState::Menu:\n            std::cout << \"State: Main Menu\" << std::endl; break;\n        case GameState::Playing:\n            std::cout << \"State: Playing Game\" << std::endl; break;\n        default:\n            std::cout << \"State: Other\" << std::endl; break;\n    }\n}\n\nint main() {\n    GameState currentState = GameState::Playing;\n    printState(currentState);\n    return 0;\n}",
+      "requirements": [
+        "Declare enum class GameState",
+        "Access members using scope resolution operator GameState::Playing",
+        "Handle states in switch block"
+      ],
+      "hints": [
+        "enum class prevents name collisions by keeping enum values scoped inside the enum name"
+      ],
+      "codeExample": "enum class Color { Red, Blue }; Color c = Color::Red;"
+    },
+    {
+      "id": "cpp-ex18",
+      "title": "Namespaces & Scope Resolution (namespace, ::)",
+      "description": "Prevent global naming collisions using custom namespaces.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Namespaces partition code identifiers into distinct named logical scopes.",
+      "objective": "Declare custom namespace ByteCode and invoke nested functions.",
+      "initialCode": "#include <iostream>\n\n// Declare custom namespace",
+      "solutionCode": "#include <iostream>\n\nnamespace ByteCode {\n    namespace Engine {\n        void initialize() {\n            std::cout << \"ByteCode Engine Initialized.\" << std::endl;\n        }\n    }\n}\n\nint main() {\n    ByteCode::Engine::initialize();\n    return 0;\n}",
+      "requirements": [
+        "Declare nested namespaces ByteCode::Engine",
+        "Invoke using scope resolution operator ByteCode::Engine::initialize()"
+      ],
+      "hints": [
+        "Avoid writing using namespace std; in header files to prevent scope pollution"
+      ],
+      "codeExample": "namespace App { void run() {} } App::run();"
+    },
+    {
+      "id": "cpp-ex19",
+      "title": "Chrono Library & Execution Benchmarking (std::chrono)",
+      "description": "Measure precise code execution duration using <chrono> high-resolution clocks.",
+      "duration": "20 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "std::chrono::high_resolution_clock measures high-precision time intervals for code performance benchmarking.",
+      "objective": "Measure execution time of a computation loop using std::chrono.",
+      "initialCode": "#include <iostream>\n#include <chrono>\n\nint main() {\n    // Measure execution duration with chrono\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n#include <chrono>\n#include <vector>\n\nint main() {\n    auto start = std::chrono::high_resolution_clock::now();\n    \n    std::vector<int> v(1000000, 42);\n    \n    auto end = std::chrono::high_resolution_clock::now();\n    std::chrono::duration<double, std::milli> elapsed = end - start;\n    \n    std::cout << \"Vector Allocation Time: \" << elapsed.count() << \" ms\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Include <chrono>",
+        "Capture start and end timestamps with std::chrono::high_resolution_clock::now()",
+        "Calculate duration in milliseconds with elapsed.count()"
+      ],
+      "hints": [
+        "duration<double, std::milli> outputs elapsed time formatted as floating point milliseconds"
+      ],
+      "codeExample": "auto t1 = std::chrono::high_resolution_clock::now();"
+    },
+    {
+      "id": "cpp-ex20",
+      "title": "Capstone Project: Object-Oriented Game Logic Engine Core",
+      "description": "Engineered a production-grade Game Engine Logic Core featuring Polymorphic Game Objects, Smart Pointers (std::unique_ptr), Templates, and STL Containers.",
+      "duration": "60 min",
+      "difficulty": "Hard",
+      "language": "cpp",
+      "theory": "This capstone project synthesizes modern C++17 architecture: Abstract interface classes, dynamic polymorphism, smart pointer ownership (std::unique_ptr), std::vector container management, and RAII resource safety.",
+      "objective": "Construct a complete Game Engine Core system.",
+      "initialCode": "// Engineer Game Engine Logic Core",
+      "solutionCode": "#include <iostream>\n#include <vector>\n#include <memory>\n#include <string>\n\nclass GameObject {\npublic:\n    virtual void update(float deltaTime) = 0;\n    virtual void render() const = 0;\n    virtual ~GameObject() {}\n};\n\nclass PlayerObject : public GameObject {\nprivate:\n    std::string name;\npublic:\n    PlayerObject(std::string n) : name(n) {}\n    \n    void update(float deltaTime) override {\n        // Update player position\n    }\n    \n    void render() const override {\n        std::cout << \"[Render Player]: \" << name << std::endl;\n    }\n};\n\nclass GameEngine {\nprivate:\n    std::vector<std::unique_ptr<GameObject>> objects;\n\npublic:\n    void addObject(std::unique_ptr<GameObject> obj) {\n        objects.push_back(std::move(obj));\n    }\n    \n    void renderAll() const {\n        for (const auto& obj : objects) {\n            obj->render();\n        }\n    }\n};\n\nint main() {\n    GameEngine engine;\n    engine.addObject(std::make_unique<PlayerObject>(\"Hero_Vantage\"));\n    engine.renderAll();\n    return 0;\n}",
+      "requirements": [
+        "Define abstract GameObject interface with pure virtual update/render methods",
+        "Implement PlayerObject subclass",
+        "Build GameEngine class storing std::vector<std::unique_ptr<GameObject>>"
+      ],
+      "hints": [
+        "std::unique_ptr enforces clean automatic destruction of game objects without memory leaks"
+      ],
+      "codeExample": "std::vector<std::unique_ptr<GameObject>> objects;"
+    }
+  ],
+  "references": [
+    {
+      "title": "C++ Reference (ISO/IEC 14882)",
+      "description": "Comprehensive reference manual for C++ language syntax, STL algorithms, and memory models",
+      "url": "https://en.cppreference.com/w/cpp"
+    }
+  ]
+}

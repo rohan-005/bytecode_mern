@@ -1,0 +1,446 @@
+{
+  "id": "express",
+  "name": "Express.js Production REST API Track",
+  "description": "Master Express.js web framework architecture, routing, middleware pipelines, error handling, JWT authentication, security best practices, and production REST API development.",
+  "instructor": "Engineering Express Team",
+  "duration": "6 weeks",
+  "level": "Intermediate to Advanced",
+  "price": 0,
+  "image": "/logos/express.png",
+  "category": "Backend Engineering",
+  "rating": 4.9,
+  "ratingCount": 3520,
+  "students": 6420,
+  "tags": ["express", "expressjs", "nodejs", "rest", "api", "middleware"],
+  "whatYouLearn": [
+    "Architect modular Express app routing structures",
+    "Write custom request processing middleware functions",
+    "Implement centralized global error handling middleware",
+    "Secure APIs using Helmet, CORS, and Rate Limiting",
+    "Handle file uploads using Multer multipart middleware",
+    "Build a production Blog Engine REST API"
+  ],
+  "prerequisites": ["Node.js Server Systems Track"],
+  "exercises": [
+    {
+      "id": "express-ex1",
+      "title": "Express Application Setup & Basic Routing",
+      "description": "Initialize an Express server app and handle GET/POST routes.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Express simplifies Node.js HTTP server creation. Use app.get(), app.post(), and res.json() to handle route responses.",
+      "objective": "Build an Express server with status and ping endpoints.",
+      "initialCode": "const express = require('express');\nconst app = express();\n// Define routes",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\napp.use(express.json());\n\napp.get('/api/v1/health', (req, res) => {\n    res.status(200).json({ status: 'healthy', timestamp: new Date().toISOString() });\n});\n\napp.post('/api/v1/echo', (req, res) => {\n    res.status(201).json({ echo: req.body });\n});\n\napp.listen(5000, () => console.log('Express Server running on port 5000'));",
+      "requirements": [
+        "Initialize express app instance",
+        "Add express.json() body parsing middleware",
+        "Implement GET /api/v1/health and POST /api/v1/echo routes"
+      ],
+      "hints": [
+        "app.use(express.json()) is required to automatically parse JSON request bodies into req.body"
+      ],
+      "codeExample": "app.get('/', (req, res) => res.json({ msg: 'OK' }));"
+    },
+    {
+      "id": "express-ex2",
+      "title": "Route Parameters & Query Strings (req.params, req.query)",
+      "description": "Extract dynamic URL parameters and search query strings.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Route parameters (/users/:id) extract path variables into req.params. Query strings (?search=val) parse into req.query.",
+      "objective": "Handle dynamic route parameters and query filters.",
+      "initialCode": "// Handle /api/users/:userId route",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\napp.get('/api/v1/users/:userId', (req, res) => {\n    const { userId } = req.params;\n    const { includeProfile = 'false' } = req.query;\n    \n    res.json({\n        userId: parseInt(userId, 10),\n        includeProfile: includeProfile === 'true'\n    });\n});\n\napp.listen(5001);",
+      "requirements": [
+        "Extract req.params.userId parameter",
+        "Extract req.query.includeProfile string",
+        "Return structured JSON payload"
+      ],
+      "hints": [
+        "Colon prefix in route path (:userId) defines a named route parameter"
+      ],
+      "codeExample": "app.get('/item/:id', (req, res) => res.send(req.params.id));"
+    },
+    {
+      "id": "express-ex3",
+      "title": "Custom Application & Router Middleware",
+      "description": "Write custom request logging and execution timing middleware functions.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Express middleware functions receive (req, res, next). Call next() to pass control to the subsequent middleware function in stack.",
+      "objective": "Build a custom request logger middleware.",
+      "initialCode": "const requestLogger = (req, res, next) => {\n    // Implement logging middleware\n};",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\nconst requestLogger = (req, res, next) => {\n    const start = Date.now();\n    res.on('finish', () => {\n        const duration = Date.now() - start;\n        console.log(`[${req.method}] ${req.originalUrl} - ${res.statusCode} (${duration}ms)`);\n    });\n    next();\n};\n\napp.use(requestLogger);\napp.get('/test', (req, res) => res.send('OK'));",
+      "requirements": [
+        "Create middleware function taking (req, res, next)",
+        "Log request method, url, status code, and duration",
+        "Call next() callback"
+      ],
+      "hints": [
+        "Always call next() inside custom middleware to avoid hanging requests"
+      ],
+      "codeExample": "app.use((req, res, next) => { console.log('Log'); next(); });"
+    },
+    {
+      "id": "express-ex4",
+      "title": "Modular Express Router Architecture (express.Router)",
+      "description": "Modularize route endpoints across controller files using express.Router().",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "express.Router() creates isolated, modular sub-routers that mount under specific path prefixes in the main app.",
+      "objective": "Build and mount an isolated /api/v1/auth sub-router.",
+      "initialCode": "const express = require('express');\nconst router = express.Router();\n// Build auth sub-router",
+      "solutionCode": "const express = require('express');\nconst app = express();\nconst authRouter = express.Router();\n\nauthRouter.post('/login', (req, res) => {\n    res.json({ token: 'jwt_mock_token_secret' });\n});\n\nauthRouter.post('/register', (req, res) => {\n    res.status(201).json({ message: 'User registered' });\n});\n\napp.use('/api/v1/auth', authRouter);\napp.listen(5002);",
+      "requirements": [
+        "Create express.Router() instance",
+        "Define /login and /register routes on sub-router",
+        "Mount sub-router under app.use('/api/v1/auth', authRouter)"
+      ],
+      "hints": [
+        "Routes defined on sub-router are relative to its mounted parent path prefix"
+      ],
+      "codeExample": "const r = express.Router(); r.get('/list', fn); app.use('/api', r);"
+    },
+    {
+      "id": "express-ex5",
+      "title": "Global Error Handling Middleware",
+      "description": "Centralize error responses using 4-parameter error handling middleware (err, req, res, next).",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Express identifies error-handling middleware by its 4-parameter signature (err, req, res, next). Pass errors to it using next(err).",
+      "objective": "Build a global 4-parameter error handler middleware.",
+      "initialCode": "app.use((err, req, res, next) => {\n    // Implement global error handler\n});",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\napp.get('/broken', (req, res, next) => {\n    const err = new Error('Database Connection Failed');\n    err.statusCode = 500;\n    next(err);\n});\n\n// Global Error Handler Middleware\napp.use((err, req, res, next) => {\n    const statusCode = err.statusCode || 500;\n    res.status(statusCode).json({\n        error: {\n            message: err.message,\n            status: statusCode\n        }\n    });\n});\n\napp.listen(5003);",
+      "requirements": [
+        "Define global error middleware with 4 parameters (err, req, res, next)",
+        "Return formatted JSON error payload with status code",
+        "Trigger handler by passing error to next(err)"
+      ],
+      "hints": [
+        "Error handling middleware must be registered AFTER all normal app routes"
+      ],
+      "codeExample": "app.use((err, req, res, next) => res.status(500).json({ err: err.message }));"
+    },
+    {
+      "id": "express-ex6",
+      "title": "JWT Authentication Middleware",
+      "description": "Protect private API routes by verifying Bearer JWT Authorization headers.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "JWT authentication middleware inspects the Authorization header ('Bearer <token>'), verifies signature authenticity, and attaches user payload to req.user.",
+      "objective": "Build a protect route middleware verifying Bearer tokens.",
+      "initialCode": "const protect = (req, res, next) => {\n    // Verify Bearer token\n};",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\nconst protect = (req, res, next) => {\n    const authHeader = req.headers.authorization;\n    if (!authHeader || !authHeader.startsWith('Bearer ')) {\n        return res.status(401).json({ message: 'Unauthorized: Missing token' });\n    }\n    \n    const token = authHeader.split(' ')[1];\n    if (token === 'valid_secret_token') {\n        req.user = { id: 42, role: 'developer' };\n        next();\n    } else {\n        res.status(403).json({ message: 'Forbidden: Invalid token' });\n    }\n};\n\napp.get('/api/protected', protect, (req, res) => {\n    res.json({ message: 'Access granted', user: req.user });\n});",
+      "requirements": [
+        "Verify req.headers.authorization starts with 'Bearer '",
+        "Extract token string",
+        "Attach user payload to req.user and call next()"
+      ],
+      "hints": [
+        "Return 401 Unauthorized when Authorization header is absent"
+      ],
+      "codeExample": "const token = req.headers.authorization?.split(' ')[1];"
+    },
+    {
+      "id": "express-ex7",
+      "title": "API Security: Helmet & CORS Configuration",
+      "description": "Secure Express HTTP headers using Helmet and configure CORS origins.",
+      "duration": "20 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Helmet sets security HTTP headers (X-Frame-Options, CSP, HSTS). CORS configures cross-origin browser access permissions.",
+      "objective": "Configure CORS header simulation middleware.",
+      "initialCode": "const corsMiddleware = (req, res, next) => {\n    // Configure CORS headers\n};",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\nconst corsMiddleware = (req, res, next) => {\n    res.setHeader('Access-Control-Allow-Origin', 'https://bytecode.dev');\n    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');\n    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');\n    if (req.method === 'OPTIONS') {\n        return res.sendStatus(204);\n    }\n    next();\n};\n\napp.use(corsMiddleware);\napp.get('/api/data', (req, res) => res.json({ secure: true }));",
+      "requirements": [
+        "Set Access-Control-Allow-Origin header",
+        "Set Access-Control-Allow-Methods header",
+        "Handle preflight OPTIONS request with 204 status"
+      ],
+      "hints": [
+        "Browsers send preflight OPTIONS requests before issuing POST/PUT cross-origin calls"
+      ],
+      "codeExample": "res.setHeader('Access-Control-Allow-Origin', '*');"
+    },
+    {
+      "id": "express-ex8",
+      "title": "Rate Limiting Middleware",
+      "description": "Prevent DDoS and brute force attacks using client IP rate limiting.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Rate limiting restricts the maximum number of requests a single client IP address can issue within a specified time window.",
+      "objective": "Build an in-memory IP rate limiter middleware.",
+      "initialCode": "const rateLimiter = (req, res, next) => {\n    // Implement rate limiting\n};",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\nconst ipHits = new Map();\nconst MAX_REQUESTS = 5;\nconst WINDOW_MS = 60000;\n\nconst rateLimiter = (req, res, next) => {\n    const ip = req.ip || req.connection.remoteAddress;\n    const now = Date.now();\n    const record = ipHits.get(ip) || { count: 0, resetTime: now + WINDOW_MS };\n    \n    if (now > record.resetTime) {\n        record.count = 1;\n        record.resetTime = now + WINDOW_MS;\n    } else {\n        record.count += 1;\n    }\n    \n    ipHits.set(ip, record);\n    \n    if (record.count > MAX_REQUESTS) {\n        return res.status(429).json({ error: 'Too Many Requests. Try again later.' });\n    }\n    next();\n};\n\napp.use(rateLimiter);\napp.get('/api/limited', (req, res) => res.send('OK'));",
+      "requirements": [
+        "Track request hits per IP using Map",
+        "Return 429 Too Many Requests status when limit exceeded",
+        "Reset hit count after time window elapses"
+      ],
+      "hints": [
+        "HTTP status code 429 indicates client rate limit exceeded"
+      ],
+      "codeExample": "if (count > max) return res.status(429).send('Rate limited');"
+    },
+    {
+      "id": "express-ex9",
+      "title": "Asynchronous Route Handler Wrapper (asyncHandler)",
+      "description": "Eliminate repetitive try/catch blocks in async routes using an asyncHandler wrapper.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "asyncHandler wraps async express route functions to catch rejected promises automatically and forward them to next(err).",
+      "objective": "Build a reusable asyncHandler utility wrapper.",
+      "initialCode": "const asyncHandler = (fn) => (req, res, next) => {\n    // Wrap async function\n};",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\nconst asyncHandler = (fn) => (req, res, next) => {\n    Promise.resolve(fn(req, res, next)).catch(next);\n};\n\napp.get('/api/async-data', asyncHandler(async (req, res) => {\n    const data = await Promise.resolve({ item: 'Async Express' });\n    res.json(data);\n}));\n\napp.use((err, req, res, next) => res.status(500).json({ error: err.message }));",
+      "requirements": [
+        "Write higher-order asyncHandler function taking async route callback",
+        "Catch rejected promises with .catch(next)"
+      ],
+      "hints": [
+        "Promise.resolve(fn(req, res, next)).catch(next) forwards all uncaught errors to error middleware"
+      ],
+      "codeExample": "const asyncHandler = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);"
+    },
+    {
+      "id": "express-ex10",
+      "title": "Static File Serving (express.static)",
+      "description": "Serve client assets, images, and HTML single-page apps using express.static.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "express.static middleware serves static assets (CSS, JS, images) directly from a specified public directory.",
+      "objective": "Serve static assets from a public directory.",
+      "initialCode": "const path = require('path');\n// Configure express.static",
+      "solutionCode": "const express = require('express');\nconst path = require('path');\nconst app = express();\n\nconst publicDir = path.join(__dirname, 'public');\napp.use('/static', express.static(publicDir));\n\napp.get('/', (req, res) => {\n    res.send('Server serving static assets under /static');\n});",
+      "requirements": [
+        "Use express.static(directoryPath)",
+        "Mount under /static virtual path prefix"
+      ],
+      "hints": [
+        "Path prefix allows serving static assets from explicit URL routes"
+      ],
+      "codeExample": "app.use(express.static('public'));"
+    },
+    {
+      "id": "express-ex11",
+      "title": "Cookie Parser & HTTP-Only Cookies",
+      "description": "Set and read secure HTTP-Only cookies for session management.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "HTTP-Only cookies cannot be accessed by client-side JavaScript, protecting authentication session tokens against XSS attacks.",
+      "objective": "Set secure HTTP-Only authentication cookie on login.",
+      "initialCode": "// Set HTTP-Only cookie simulation",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\napp.post('/api/login', (req, res) => {\n    res.cookie('token', 'jwt_secret_token_123', {\n        httpOnly: true,\n        secure: true,\n        sameSite: 'strict',\n        maxAge: 3600000 // 1 hour\n    });\n    res.json({ message: 'Login successful, cookie set' });\n});",
+      "requirements": [
+        "Use res.cookie('token', value, options)",
+        "Set httpOnly: true, secure: true, and sameSite: 'strict'"
+      ],
+      "hints": [
+        "httpOnly: true prevents client-side document.cookie access"
+      ],
+      "codeExample": "res.cookie('auth', token, { httpOnly: true });"
+    },
+    {
+      "id": "express-ex12",
+      "title": "Request Input Validation Middleware (express-validator pattern)",
+      "description": "Validate incoming HTTP request body fields before reaching route controllers.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Validation middleware checks body field formatting (email syntax, password minimum length) and rejects invalid requests before controller execution.",
+      "objective": "Build validation middleware checking email and password fields.",
+      "initialCode": "const validateRegistration = (req, res, next) => {\n    // Validate email and password\n};",
+      "solutionCode": "const express = require('express');\nconst app = express();\napp.use(express.json());\n\nconst validateRegistration = (req, res, next) => {\n    const { email, password } = req.body;\n    const errors = [];\n    \n    if (!email || !email.includes('@')) errors.push('Valid email is required');\n    if (!password || password.length < 8) errors.push('Password must be at least 8 characters');\n    \n    if (errors.length > 0) {\n        return res.status(400).json({ errors });\n    }\n    next();\n};\n\napp.post('/api/register', validateRegistration, (req, res) => {\n    res.status(201).json({ success: true });\n});",
+      "requirements": [
+        "Check email format and password length",
+        "Return 400 Bad Request with errors array if invalid",
+        "Call next() if valid"
+      ],
+      "hints": [
+        "Returning 400 Bad Request prevents invalid requests from touching database logic"
+      ],
+      "codeExample": "if (!email) return res.status(400).json({ error: 'Email required' });"
+    },
+    {
+      "id": "express-ex13",
+      "title": "File Upload Multipart Middleware (Multer pattern)",
+      "description": "Handle multipart/form-data file uploads and validate file extensions.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "File uploads require handling multipart/form-data request streams. Multipart middleware validates file MIME types and saves uploaded file buffers.",
+      "objective": "Build single file upload validation middleware.",
+      "initialCode": "const handleUpload = (req, res, next) => {\n    // Validate file upload\n};",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\nconst validateFileUpload = (req, res, next) => {\n    // Simulating file payload on req.file\n    const file = req.file || { originalname: 'avatar.png', mimetype: 'image/png', size: 102400 };\n    const allowedTypes = ['image/png', 'image/jpeg'];\n    \n    if (!allowedTypes.includes(file.mimetype)) {\n        return res.status(400).json({ error: 'Invalid file format. PNG and JPEG allowed.' });\n    }\n    req.uploadedFile = file;\n    next();\n};\n\napp.post('/api/upload', validateFileUpload, (req, res) => {\n    res.json({ message: 'File uploaded', file: req.uploadedFile });\n});",
+      "requirements": [
+        "Validate allowed MIME types ('image/png', 'image/jpeg')",
+        "Attach validated file to req.uploadedFile"
+      ],
+      "hints": [
+        "Always validate file extensions and MIME types to prevent malicious script uploads"
+      ],
+      "codeExample": "if (!allowed.includes(file.mimetype)) return res.status(400).send('Invalid file');"
+    },
+    {
+      "id": "express-ex14",
+      "title": "Express Sub-Applications & Mounting",
+      "description": "Mount nested Express sub-applications for API versioning (/api/v1, /api/v2).",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Express allows mounting full sub-apps using app.use('/v1', v1SubApp) to manage versioned API releases cleanly.",
+      "objective": "Mount v1 and v2 Express sub-apps under versioned route prefixes.",
+      "initialCode": "const v1App = express();\nconst v2App = express();\n// Mount sub-apps",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\nconst v1 = express();\nv1.get('/users', (req, res) => res.json({ version: 'v1', users: ['Alex'] }));\n\nconst v2 = express();\nv2.get('/users', (req, res) => res.json({ version: 'v2', users: [{ id: 1, name: 'Alex' }] }));\n\napp.use('/api/v1', v1);\napp.use('/api/v2', v2);",
+      "requirements": [
+        "Create v1 and v2 sub-apps with express()",
+        "Mount under /api/v1 and /api/v2",
+        "Return versioned API response structures"
+      ],
+      "hints": [
+        "API versioning isolates legacy endpoints while deploying modern schemas"
+      ],
+      "codeExample": "app.use('/api/v1', v1App);"
+    },
+    {
+      "id": "express-ex15",
+      "title": "HTTP Response Caching Headers (Cache-Control, ETag)",
+      "description": "Configure client-side and CDN response caching headers.",
+      "duration": "20 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Cache-Control HTTP headers instruct browsers and CDNs how long response payloads can be cached before revalidation.",
+      "objective": "Set Cache-Control and ETag headers for static data API endpoints.",
+      "initialCode": "app.get('/api/catalog', (req, res) => {\n    // Set Cache-Control header\n});",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\napp.get('/api/catalog', (req, res) => {\n    res.set({\n        'Cache-Control': 'public, max-age=3600, must-revalidate',\n        'ETag': 'W/\"catalog_version_101\"'\n    });\n    res.json({ catalog: ['Course A', 'Course B'] });\n});",
+      "requirements": [
+        "Set Cache-Control: 'public, max-age=3600, must-revalidate'",
+        "Set ETag header for conditional request validation"
+      ],
+      "hints": [
+        "max-age=3600 specifies 1 hour client caching duration"
+      ],
+      "codeExample": "res.set('Cache-Control', 'public, max-age=86400');"
+    },
+    {
+      "id": "express-ex16",
+      "title": "Server-Sent Events (SSE) Push Stream Endpoints",
+      "description": "Build real-time one-way push notification stream endpoints using Server-Sent Events.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Server-Sent Events (text/event-stream) keep HTTP connections open to push real-time updates from server to client.",
+      "objective": "Build a SSE endpoint pushing periodic server updates.",
+      "initialCode": "app.get('/api/events', (req, res) => {\n    // Configure SSE event stream\n});",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\napp.get('/api/events', (req, res) => {\n    res.set({\n        'Content-Type': 'text/event-stream',\n        'Cache-Control': 'no-cache',\n        'Connection': 'keep-alive'\n    });\n    \n    const interval = setInterval(() => {\n        res.write(`data: ${JSON.stringify({ time: new Date().toISOString() })}\\n\\n`);\n    }, 1000);\n    \n    req.on('close', () => {\n        clearInterval(interval);\n        res.end();\n    });\n});",
+      "requirements": [
+        "Set Content-Type: text/event-stream and Connection: keep-alive headers",
+        "Push event data formatted as `data: ${payload}\\n\\n`",
+        "Clear timer interval on req.on('close')"
+      ],
+      "hints": [
+        "SSE format requires double newline \\n\\n at the end of each message payload"
+      ],
+      "codeExample": "res.set('Content-Type', 'text/event-stream'); res.write('data: msg\\n\\n');"
+    },
+    {
+      "id": "express-ex17",
+      "title": "Webhooks Receiver & Signature Verification",
+      "description": "Receive and verify HMAC signatures on incoming external webhook callbacks.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Webhooks receive HTTP POST notifications from external services. Verifying HMAC header signatures guarantees event payload authenticity.",
+      "objective": "Verify incoming HMAC signature on a webhook endpoint.",
+      "initialCode": "app.post('/api/webhook', (req, res) => {\n    // Verify HMAC signature\n});",
+      "solutionCode": "const express = require('express');\nconst crypto = require('crypto');\nconst app = express();\napp.use(express.json());\n\nconst WEBHOOK_SECRET = 'secret_key_123';\n\napp.post('/api/webhook', (req, res) => {\n    const signature = req.headers['x-signature'];\n    const computed = crypto\n        .createHmac('sha256', WEBHOOK_SECRET)\n        .update(JSON.stringify(req.body))\n        .digest('hex');\n        \n    if (signature !== computed) {\n        return res.status(401).json({ error: 'Invalid Webhook Signature' });\n    }\n    res.json({ status: 'Webhook Verified & Processed' });\n});",
+      "requirements": [
+        "Extract x-signature header",
+        "Compute HMAC SHA-256 hash of JSON body",
+        "Return 401 Unauthorized if signatures do not match"
+      ],
+      "hints": [
+        "HMAC verification protects webhook endpoints against forged request payloads"
+      ],
+      "codeExample": "const hash = crypto.createHmac('sha256', secret).update(body).digest('hex');"
+    },
+    {
+      "id": "express-ex18",
+      "title": "Database Connection Pool Middleware Integration",
+      "description": "Attach database connection handles to request objects via middleware.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Attaching database pools to req.db via middleware simplifies dependency injection across route handlers.",
+      "objective": "Build middleware binding mock database context to req.db.",
+      "initialCode": "const dbMiddleware = (req, res, next) => {\n    // Bind database connection to req.db\n};",
+      "solutionCode": "const express = require('express');\nconst app = express();\n\nconst mockDb = {\n    query: (sql) => [{ id: 1, title: 'Express Architecture' }]\n};\n\nconst dbMiddleware = (req, res, next) => {\n    req.db = mockDb;\n    next();\n};\n\napp.use(dbMiddleware);\napp.get('/api/posts', (req, res) => {\n    const posts = req.db.query('SELECT * FROM posts');\n    res.json(posts);\n});",
+      "requirements": [
+        "Attach mockDb object to req.db inside middleware",
+        "Access req.db inside route controller"
+      ],
+      "hints": [
+        "Attaching database handles to req objects simplifies unit testing"
+      ],
+      "codeExample": "app.use((req, res, next) => { req.db = db; next(); });"
+    },
+    {
+      "id": "express-ex19",
+      "title": "Graceful Server Shutdown & Socket Cleanup",
+      "description": "Close server connections gracefully without dropping active HTTP requests.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Graceful shutdown listens for termination signals, stops accepting new connections, and waits for pending requests to finish before exiting.",
+      "objective": "Implement graceful server shutdown handler.",
+      "initialCode": "// Implement server graceful shutdown",
+      "solutionCode": "const express = require('express');\nconst app = express();\nconst server = app.listen(5004);\n\nconst gracefulShutdown = (signal) => {\n    console.log(`Received ${signal}. Shutting down Express server...`);\n    server.close(() => {\n        console.log('All HTTP connections closed cleanly.');\n        process.exit(0);\n    });\n    \n    // Force shutdown after 10 seconds if connections hang\n    setTimeout(() => {\n        console.error('Forced shutdown due to timeout.');\n        process.exit(1);\n    }, 10000);\n};\n\nprocess.on('SIGTERM', () => gracefulShutdown('SIGTERM'));",
+      "requirements": [
+        "Call server.close() inside SIGTERM listener",
+        "Include fallback timeout forcing process.exit(1) if connections hang"
+      ],
+      "hints": [
+        "Fallback timeouts prevent server shutdown hanging indefinitely if sockets remain open"
+      ],
+      "codeExample": "server.close(() => process.exit(0));"
+    },
+    {
+      "id": "express-ex20",
+      "title": "Capstone Project: Production Blog Engine REST API",
+      "description": "Build a production-grade Blog Engine REST API featuring Modular Routers, JWT Auth Middleware, Request Validation, Error Handlers, and Rate Limiting.",
+      "duration": "60 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "This capstone project synthesizes Express.js architecture: express.Router modules, JWT authentication, request validation, rate limiting, and centralized 4-parameter error handling.",
+      "objective": "Construct a complete Blog Engine REST API System.",
+      "initialCode": "// Engineer complete Blog Engine REST API",
+      "solutionCode": "const express = require('express');\nconst app = express();\napp.use(express.json());\n\n// 1. Auth Middleware\nconst authGuard = (req, res, next) => {\n    const token = req.headers.authorization?.split(' ')[1];\n    if (token === 'valid_jwt') {\n        req.user = { id: 1, role: 'author' };\n        return next();\n    }\n    res.status(401).json({ error: 'Unauthorized' });\n};\n\n// 2. Posts Modular Router\nconst postsRouter = express.Router();\nconst posts = [];\n\npostsRouter.get('/', (req, res) => res.json(posts));\npostsRouter.post('/', authGuard, (req, res) => {\n    const { title, content } = req.body;\n    if (!title || !content) return res.status(400).json({ error: 'Title and content required' });\n    const post = { id: Date.now(), title, content, authorId: req.user.id };\n    posts.push(post);\n    res.status(201).json(post);\n});\n\napp.use('/api/v1/posts', postsRouter);\n\n// 3. Centralized Error Handler\napp.use((err, req, res, next) => {\n    res.status(err.status || 500).json({ error: err.message || 'Server Error' });\n});\n\napp.listen(5005, () => console.log('Blog API Engine running on port 5005'));",
+      "requirements": [
+        "Implement postsRouter with GET and POST /api/v1/posts",
+        "Protect creation endpoint with authGuard middleware",
+        "Add input validation and global error handling"
+      ],
+      "hints": [
+        "Combine express.Router() modularity with JWT auth guards and body validation"
+      ],
+      "codeExample": "app.use('/api/v1/posts', postsRouter);"
+    }
+  ],
+  "references": [
+    {
+      "title": "Express.js Official Guide",
+      "description": "Comprehensive reference documentation for Express routing, middleware, and application APIs",
+      "url": "https://expressjs.com/"
+    }
+  ]
+}

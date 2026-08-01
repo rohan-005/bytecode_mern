@@ -1,0 +1,445 @@
+{
+  "id": "git",
+  "name": "Git & GitHub Version Control Track",
+  "description": "Master distributed version control, commit staging, feature branching strategies, interactive rebasing, merge conflict resolution, stashing, and GitHub team pull request workflows.",
+  "instructor": "Engineering DevOps Team",
+  "duration": "4 weeks",
+  "level": "Beginner to Intermediate",
+  "price": 0,
+  "image": "/logos/git.png",
+  "category": "DevOps & Tools",
+  "rating": 4.9,
+  "ratingCount": 4920,
+  "students": 9120,
+  "tags": ["git", "github", "versioncontrol", "branching", "rebase", "devops"],
+  "whatYouLearn": [
+    "Initialize local Git repositories and configure user identity",
+    "Track file state stages (untracked, modified, staged, committed)",
+    "Manage feature branches, merging, and merge conflict resolution",
+    "Perform interactive rebasing, commit squashing, and cherry-picking",
+    "Utilize git stash to temporarily store uncommitted working changes",
+    "Execute team GitHub Pull Request code review workflows"
+  ],
+  "prerequisites": ["Basic terminal command line usage"],
+  "exercises": [
+    {
+      "id": "git-ex1",
+      "title": "Repository Initialization & Global Identity Config",
+      "description": "Configure user name/email and initialize a local Git repository.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "bash",
+      "theory": "Git tracks history by author identity. Configure global user.name and user.email before initializing repositories with git init.",
+      "objective": "Set global user configuration and initialize a new Git repository.",
+      "initialCode": "# Configure user identity and initialize repository",
+      "solutionCode": "git config --global user.name \"Alex River\"\ngit config --global user.email \"alex@bytecode.io\"\ngit config --global init.defaultBranch main\n\ngit init bytecode-app\ncd bytecode-app\ngit status",
+      "requirements": [
+        "Set git config --global user.name and user.email",
+        "Initialize repository using git init bytecode-app",
+        "Inspect initial repository state with git status"
+      ],
+      "hints": [
+        "git status displays active branch, staged files, and untracked files"
+      ],
+      "codeExample": "git config --global user.name \"Dev\"; git init;"
+    },
+    {
+      "id": "git-ex2",
+      "title": "Staging & Committing Files (git add, git commit)",
+      "description": "Stage modified files into the index and record atomic commits.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "bash",
+      "theory": "Git uses a 3-tier architecture: Working Directory -> Staging Index -> Commit History. Use git add to stage files and git commit -m to save snapshot history.",
+      "objective": "Stage new files and create an initial commit.",
+      "initialCode": "# Stage and commit index.html",
+      "solutionCode": "echo \"<!DOCTYPE html><html><body><h1>ByteCode</h1></body></html>\" > index.html\n\ngit add index.html\ngit commit -m \"feat: initialize HTML document structure\"\ngit log --oneline",
+      "requirements": [
+        "Stage index.html using git add",
+        "Create commit with conventional commit message git commit -m 'feat: ...'",
+        "Inspect commit history using git log --oneline"
+      ],
+      "hints": [
+        "git add . stages all modified and untracked files in current directory"
+      ],
+      "codeExample": "git add .; git commit -m \"initial commit\";"
+    },
+    {
+      "id": "git-ex3",
+      "title": "Inspecting Differences & History (git diff, git log)",
+      "description": "Compare working directory changes and inspect formatted commit logs.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "bash",
+      "theory": "git diff compares working directory changes against the staging index. git log displays commit history graphs.",
+      "objective": "Inspect file modifications using git diff.",
+      "initialCode": "# Compare modified changes with git diff",
+      "solutionCode": "echo \"<p>New feature paragraph</p>\" >> index.html\n\ngit diff\ngit add index.html\ngit diff --staged\ngit commit -m \"docs: update feature section\"",
+      "requirements": [
+        "Use git diff to view unstaged working directory changes",
+        "Use git diff --staged to view staged changes before commit"
+      ],
+      "hints": [
+        "git diff --staged displays differences between staged index and last commit"
+      ],
+      "codeExample": "git diff; git diff --staged;"
+    },
+    {
+      "id": "git-ex4",
+      "title": "Ignoring Unwanted Files (.gitignore)",
+      "description": "Exclude node_modules, build artifacts, and secrets using .gitignore.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "bash",
+      "theory": "The .gitignore file defines pattern rules matching files and directories that Git should never track or commit.",
+      "objective": "Create a .gitignore file ignoring node_modules and .env files.",
+      "initialCode": "# Create .gitignore file",
+      "solutionCode": "cat <<EOT > .gitignore\nnode_modules/\ndist/\n.env\n*.log\nEOT\n\ngit add .gitignore\ngit commit -m \"chore: add .gitignore configuration\"",
+      "requirements": [
+        "Ignore node_modules/ directory",
+        "Ignore .env secrets file and *.log files",
+        "Commit .gitignore file"
+      ],
+      "hints": [
+        "Directories end with trailing slash node_modules/"
+      ],
+      "codeExample": "echo \"node_modules/\" >> .gitignore"
+    },
+    {
+      "id": "git-ex5",
+      "title": "Branch Creation & Switching (git branch, git checkout / switch)",
+      "description": "Create isolated feature branches and switch branch contexts.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "bash",
+      "theory": "Branches allow developing features in isolated environments without affecting the main production branch. git switch switches active branch context.",
+      "objective": "Create and switch to a new feature branch.",
+      "initialCode": "# Create and switch branch",
+      "solutionCode": "git switch -c feature/user-auth\n\necho \"// Auth module\" > auth.js\ngit add auth.js\ngit commit -m \"feat: implement auth login handler\"\n\ngit switch main",
+      "requirements": [
+        "Create and switch branch using git switch -c feature/user-auth",
+        "Commit changes on feature branch",
+        "Switch back to main branch using git switch main"
+      ],
+      "hints": [
+        "git switch -c branch-name creates and checks out new branch in single command"
+      ],
+      "codeExample": "git switch -c feature/login; git switch main;"
+    },
+    {
+      "id": "git-ex6",
+      "title": "Branch Merging (Fast-Forward vs 3-Way Merge)",
+      "description": "Merge completed feature branches back into the main line of development.",
+      "duration": "25 min",
+      "difficulty": "Easy",
+      "language": "bash",
+      "theory": "git merge integrates history from a target branch into active branch. Fast-forward merges simply move the branch pointer forward.",
+      "objective": "Merge feature branch into main using git merge.",
+      "initialCode": "# Merge feature branch into main",
+      "solutionCode": "git switch main\ngit merge feature/user-auth -m \"merge: integrate user-auth feature branch\"\ngit branch -d feature/user-auth\ngit branch",
+      "requirements": [
+        "Switch to main branch",
+        "Merge feature/user-auth branch",
+        "Delete merged feature branch using git branch -d"
+      ],
+      "hints": [
+        "git branch -d deletes branch safely after it has been merged"
+      ],
+      "codeExample": "git checkout main; git merge feature/login;"
+    },
+    {
+      "id": "git-ex7",
+      "title": "Resolving Merge Conflicts",
+      "description": "Identify conflict markers (<<<<<<<, =======, >>>>>>>) and resolve merge conflicts.",
+      "duration": "30 min",
+      "difficulty": "Medium",
+      "language": "bash",
+      "theory": "Merge conflicts occur when changes are made to the same lines of a file in two different branches. Resolving requires manually editing conflict markers.",
+      "objective": "Resolve a simulated file merge conflict manually.",
+      "initialCode": "# Resolve merge conflict",
+      "solutionCode": "# Manually resolve file conflict\ncat <<EOT > index.html\n<!DOCTYPE html>\n<html>\n<body>\n    <h1>ByteCode Combined Header</h1>\n</body>\n</html>\nEOT\n\ngit add index.html\ngit commit -m \"fix: resolve merge conflict between main and feature branch\"",
+      "requirements": [
+        "Remove conflict markers <<<<<<<, =======, >>>>>>>",
+        "Combine conflicting content lines cleanly",
+        "Stage resolved file with git add and complete merge commit"
+      ],
+      "hints": [
+        "Staging resolved files with git add marks conflict as resolved"
+      ],
+      "codeExample": "git add resolved-file.txt; git commit;"
+    },
+    {
+      "id": "git-ex8",
+      "title": "Stashing Changes (git stash, pop, list)",
+      "description": "Temporarily shelve uncommitted dirty working directory changes using git stash.",
+      "duration": "20 min",
+      "difficulty": "Medium",
+      "language": "bash",
+      "theory": "git stash saves uncommitted modifications to a temporary stack, returning working directory to clean HEAD state.",
+      "objective": "Stash uncommitted work, switch context, and restore stashed work.",
+      "initialCode": "# Stash and restore working changes",
+      "solutionCode": "echo \"// Unfinished draft code\" >> app.js\n\ngit stash save \"WIP: unfinished app logic\"\ngit stash list\n\n# Perform urgent hotfix on clean HEAD\n\ngit stash pop",
+      "requirements": [
+        "Stash working changes with git stash save 'msg'",
+        "Inspect stash list using git stash list",
+        "Restore changes using git stash pop"
+      ],
+      "hints": [
+        "git stash pop applies stashed changes and deletes item from stash stack"
+      ],
+      "codeExample": "git stash; git stash pop;"
+    },
+    {
+      "id": "git-ex9",
+      "title": "Undoing Changes (git checkout, restore, reset)",
+      "description": "Discard unstaged modifications or unstage files using git restore and git reset.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "bash",
+      "theory": "git restore discards unstaged working tree changes. git restore --staged un-stages files without losing file edits.",
+      "objective": "Unstage staged file and discard working directory edits.",
+      "initialCode": "# Discard edits and unstage file",
+      "solutionCode": "echo \"Bad Edits\" >> app.js\ngit add app.js\n\n# Unstage file\ngit restore --staged app.js\n\n# Discard working tree changes\ngit restore app.js\n\ngit status",
+      "requirements": [
+        "Unstage staged file using git restore --staged",
+        "Discard working directory changes using git restore"
+      ],
+      "hints": [
+        "git restore replaces working file content with latest commit version"
+      ],
+      "codeExample": "git restore --staged file.js; git restore file.js;"
+    },
+    {
+      "id": "git-ex10",
+      "title": "Interactive Rebasing (git rebase -i)",
+      "description": "Squash, edit, and reword commit history using interactive rebase.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "bash",
+      "theory": "Interactive rebase (git rebase -i HEAD~N) cleans commit history by squashing multiple small fix commits into single logical commits.",
+      "objective": "Rebase and squash 3 commits into 1 clean commit.",
+      "initialCode": "# Squash 3 small commits into 1",
+      "solutionCode": "# Rebase interactive command simulation\n# In interactive editor, mark commits 2 and 3 as 'squash' or 's'\n# Pick commit 1: pick 1234567 feat: initial implementation\n# Squash commit 2: s 89abcde fix typo\n# Squash commit 3: s ffedcba fix formatting\n\ngit rebase -i HEAD~3",
+      "requirements": [
+        "Run git rebase -i HEAD~3",
+        "Use 'squash' or 's' on secondary commits to combine history"
+      ],
+      "hints": [
+        "Never rebase commits that have already been pushed to public shared branches"
+      ],
+      "codeExample": "git rebase -i HEAD~3"
+    },
+    {
+      "id": "git-ex11",
+      "title": "Cherry-Picking Commits (git cherry-pick)",
+      "description": "Apply specific commit SHA hash changes from one branch onto active branch.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "bash",
+      "theory": "git cherry-pick <commit-hash> applies the exact change introduced by a specific commit from another branch onto the active branch.",
+      "objective": "Cherry-pick a bugfix commit from a hotfix branch onto main.",
+      "initialCode": "# Cherry-pick commit hash onto main",
+      "solutionCode": "git switch main\ngit cherry-pick a1b2c3d4\ngit log --oneline -n 1",
+      "requirements": [
+        "Switch to main branch",
+        "Apply specified commit hash using git cherry-pick <hash>"
+      ],
+      "hints": [
+        "Cherry-picking creates a new commit on active branch containing identical patch changes"
+      ],
+      "codeExample": "git cherry-pick 7f8a9b;"
+    },
+    {
+      "id": "git-ex12",
+      "title": "Remote Repositories (git remote, push, pull, fetch)",
+      "description": "Connect local repository to GitHub remote origin and synchronize changes.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "bash",
+      "theory": "git remote manages connections to remote repository servers (GitHub). git fetch downloads remote commits without merging.",
+      "objective": "Add remote origin and push main branch.",
+      "initialCode": "# Add remote origin and push",
+      "solutionCode": "git remote add origin https://github.com/bytecode/app.git\ngit remote -v\n\n# Fetch remote tracking branches\ngit fetch origin\n\n# Push main branch and set upstream tracking\ngit push -u origin main",
+      "requirements": [
+        "Add remote origin using git remote add origin <url>",
+        "Inspect remotes using git remote -v",
+        "Push branch and set upstream using git push -u origin main"
+      ],
+      "hints": [
+        "-u (--set-upstream) binds local branch to remote tracking branch"
+      ],
+      "codeExample": "git remote add origin <url>; git push -u origin main;"
+    },
+    {
+      "id": "git-ex13",
+      "title": "Git Tags & Semantic Versioning (git tag)",
+      "description": "Create annotated release tags matching semantic versioning standards (v1.0.0).",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "bash",
+      "theory": "Git tags create indelible markers pointing to specific commit milestones in project history, commonly used for release versions.",
+      "objective": "Create annotated release tag v1.0.0 and push tags to remote.",
+      "initialCode": "# Create annotated release tag",
+      "solutionCode": "git tag -a v1.0.0 -m \"Release v1.0.0: Initial Production Release\"\ngit tag -l\ngit push origin v1.0.0",
+      "requirements": [
+        "Create annotated tag using git tag -a v1.0.0 -m 'msg'",
+        "List tags with git tag -l",
+        "Push tag using git push origin v1.0.0"
+      ],
+      "hints": [
+        "Annotated tags storing tagger identity and date are preferred over lightweight tags for software releases"
+      ],
+      "codeExample": "git tag -a v1.0.0 -m \"Release\"; git push origin --tags;"
+    },
+    {
+      "id": "git-ex14",
+      "title": "Git Reflog & Recovering Lost Commits",
+      "description": "Recover deleted branches or lost commits using git reflog.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "bash",
+      "theory": "git reflog logs every HEAD update in local repository, allowing recovery of reset or deleted commits.",
+      "objective": "Recover a reset commit using git reflog and git reset.",
+      "initialCode": "# Recover lost commit with reflog",
+      "solutionCode": "git reflog\n\n# Locate HEAD@{n} commit SHA before reset occurred\n# Reset branch back to recovered commit hash\ngit reset --hard HEAD@{1}",
+      "requirements": [
+        "Inspect reflog history using git reflog",
+        "Recover lost commit state using git reset --hard HEAD@{n}"
+      ],
+      "hints": [
+        "reflog keeps track of local actions even after hard resets or branch deletions"
+      ],
+      "codeExample": "git reflog; git reset --hard HEAD@{1};"
+    },
+    {
+      "id": "git-ex15",
+      "title": "GitHub Pull Requests & Code Review",
+      "description": "Create feature branches and open GitHub Pull Requests for team code review.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "bash",
+      "theory": "GitHub Pull Requests (PRs) allow developers to notify team members of completed feature branches for code review before merging.",
+      "objective": "Push feature branch and prepare pull request submission.",
+      "initialCode": "# Push feature branch to GitHub",
+      "solutionCode": "git switch -c feature/payment-gateway\n\necho \"// Payment logic\" > payment.js\ngit add payment.js\ngit commit -m \"feat: implement payment gateway integration\"\n\ngit push -u origin feature/payment-gateway",
+      "requirements": [
+        "Create feature branch feature/payment-gateway",
+        "Commit feature implementation",
+        "Push branch to remote origin with -u"
+      ],
+      "hints": [
+        "Once branch is pushed, GitHub URL prompt displays direct link to open Pull Request"
+      ],
+      "codeExample": "git push -u origin feature/branch-name;"
+    },
+    {
+      "id": "git-ex16",
+      "title": "Git Hooks (pre-commit, pre-push)",
+      "description": "Automate linting and unit test execution using Client-Side Git Hooks.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "bash",
+      "theory": "Git hooks are custom scripts located inside .git/hooks/ that run automatically before or after Git lifecycle events (commit, push).",
+      "objective": "Create an executable pre-commit hook script.",
+      "initialCode": "# Create .git/hooks/pre-commit script",
+      "solutionCode": "cat <<EOT > .git/hooks/pre-commit\n#!/bin/sh\necho \"[Git Hook]: Running pre-commit validation tests...\"\n# Execute test or linter command\n# exit 1 to abort commit if tests fail\nexit 0\nEOT\n\nchmod +x .git/hooks/pre-commit",
+      "requirements": [
+        "Write pre-commit script inside .git/hooks/pre-commit",
+        "Set executable permissions using chmod +x"
+      ],
+      "hints": [
+        "Returning exit code 1 from pre-commit hook aborts the commit action"
+      ],
+      "codeExample": "chmod +x .git/hooks/pre-commit"
+    },
+    {
+      "id": "git-ex17",
+      "title": "Git Submodules",
+      "description": "Embed external Git repositories as submodules inside parent projects.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "bash",
+      "theory": "Git submodules allow keeping a Git repository as a subdirectory of another Git repository at a fixed commit hash.",
+      "objective": "Add and initialize a Git submodule repository.",
+      "initialCode": "# Add submodule repository",
+      "solutionCode": "git submodule add https://github.com/bytecode/shared-utils.git vendor/shared-utils\ngit submodule update --init --recursive\n\ngit add .gitmodules vendor/shared-utils\ngit commit -m \"chore: add shared-utils submodule\"",
+      "requirements": [
+        "Add submodule with git submodule add <url> <path>",
+        "Initialize submodules using git submodule update --init --recursive"
+      ],
+      "hints": [
+        ".gitmodules file records path mapping to remote submodule URLs"
+      ],
+      "codeExample": "git submodule add <url> path/to/submodule;"
+    },
+    {
+      "id": "git-ex18",
+      "title": "Git Bisect (Debugging Regression Commits)",
+      "description": "Locate the exact commit that introduced a bug using binary search with git bisect.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "bash",
+      "theory": "git bisect performs binary search across commit history to pinpoint which specific commit introduced a bug regression.",
+      "objective": "Run git bisect to identify faulty commit hash.",
+      "initialCode": "# Start git bisect session",
+      "solutionCode": "git bisect start\ngit bisect bad                 # Current HEAD contains bug\ngit bisect good v1.0.0         # v1.0.0 tag was known good\n\n# Test commit, then mark as good or bad:\n# git bisect good OR git bisect bad\n\ngit bisect reset               # End bisect session",
+      "requirements": [
+        "Start session with git bisect start",
+        "Mark current state git bisect bad and known good commit git bisect good <hash>",
+        "Reset when complete with git bisect reset"
+      ],
+      "hints": [
+        "git bisect automates binary search, reducing manual debugging from hundreds of commits to ~7 steps"
+      ],
+      "codeExample": "git bisect start; git bisect bad; git bisect good <tag>;"
+    },
+    {
+      "id": "git-ex19",
+      "title": "Git Blame & History Inspection",
+      "description": "Inspect author and commit details line-by-line using git blame.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "bash",
+      "theory": "git blame annotates every line of a file with the commit hash, author, and date of the last modification.",
+      "objective": "Inspect line-by-line author history for a file.",
+      "initialCode": "# Execute git blame on app.js",
+      "solutionCode": "git blame app.js\n\n# Inspect specific line range 10 to 20\ngit blame -L 10,20 app.js",
+      "requirements": [
+        "Run git blame on file",
+        "Use -L line range option to restrict output"
+      ],
+      "hints": [
+        "-L 10,20 limits output to lines 10 through 20"
+      ],
+      "codeExample": "git blame -L 1,10 server.js;"
+    },
+    {
+      "id": "git-ex20",
+      "title": "Capstone Project: Production Git Team Workflow Strategy",
+      "description": "Execute a complete Git feature branch, rebasing, squashing, merge conflict resolution, and release tagging workflow.",
+      "duration": "60 min",
+      "difficulty": "Hard",
+      "language": "bash",
+      "theory": "This capstone exercise synthesizes professional Git engineering: Branching strategy, atomic staging, squashing commits, resolving merge conflicts, and tagging semantic version releases.",
+      "objective": "Execute complete release workflow script.",
+      "initialCode": "# Execute production Git workflow script",
+      "solutionCode": "# 1. Feature Branch Creation\ngit switch -c feature/payment-stripe\n\necho \"stripe_key=sk_test_123\" > stripe.env\ngit add stripe.env\ngit commit -m \"feat: add stripe environment configuration\"\n\necho \"// Stripe Client\" > stripe.js\ngit add stripe.js\ngit commit -m \"feat: implement stripe payment client\"\n\n# 2. Interactive Squash & Rebase onto main\ngit switch main\ngit pull origin main\ngit switch feature/payment-stripe\ngit rebase main\n\n# 3. Fast-Forward Merge into main & Release Tag\ngit switch main\ngit merge feature/payment-stripe\ngit tag -a v2.0.0 -m \"Release v2.0.0 with Stripe Payment Support\"\n\n# 4. Clean up\ngit branch -d feature/payment-stripe\ngit log --oneline -n 5",
+      "requirements": [
+        "Create feature branch and make atomic commits",
+        "Rebase feature branch onto updated main branch",
+        "Merge into main and tag semantic release v2.0.0"
+      ],
+      "hints": [
+        "Rebasing before merging creates a linear, clean commit history"
+      ],
+      "codeExample": "git switch main; git merge feature; git tag v1.0.0;"
+    }
+  ],
+  "references": [
+    {
+      "title": "Pro Git Book (Official Documentation)",
+      "description": "Complete authoritative reference book for Git version control",
+      "url": "https://git-scm.com/book/en/v2"
+    }
+  ]
+}

@@ -1,0 +1,441 @@
+{
+  "id": "dsa",
+  "name": "Data Structures & Algorithms Foundations Track",
+  "description": "Master algorithmic problem solving, Big-O time and space complexity analysis, dynamic arrays, linked lists, stacks, queues, binary search, sorting algorithms, trees, and graph algorithms.",
+  "instructor": "Algorithms Engineering Team",
+  "duration": "10 weeks",
+  "level": "Intermediate to Advanced",
+  "price": 0,
+  "image": "/logos/dsa.png",
+  "category": "Computer Science",
+  "rating": 4.9,
+  "ratingCount": 5820,
+  "students": 10400,
+  "tags": ["dsa", "algorithms", "datastructures", "big-o", "binarysearch", "trees"],
+  "whatYouLearn": [
+    "Analyze time and space complexities using asymptotic Big-O notation",
+    "Implement fundamental linear data structures: Stacks, Queues, Linked Lists",
+    "Master divide-and-conquer searching and sorting algorithms",
+    "Construct non-linear structures: Binary Search Trees (BST) and Heaps",
+    "Apply Graph traversal algorithms (BFS and DFS)",
+    "Build a production Algorithm Visualizer & Execution Engine"
+  ],
+  "prerequisites": ["Programming Fundamentals in JavaScript, Python, or C++"],
+  "exercises": [
+    {
+      "id": "dsa-ex1",
+      "title": "Big-O Asymptotic Complexity Analysis",
+      "description": "Calculate Big-O time complexities (O(1), O(log N), O(N), O(N log N), O(N^2)).",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Big-O notation describes upper-bound execution time or memory space growth rate as input size N approaches infinity.",
+      "objective": "Identify and demonstrate O(1) constant time vs O(N) linear time functions.",
+      "initialCode": "// Identify O(1) constant vs O(N) linear operations",
+      "solutionCode": "// O(1) Constant Time Lookup\nconst getFirstElement = (arr) => arr[0];\n\n// O(N) Linear Time Search\nconst findElement = (arr, target) => {\n    for (let i = 0; i < arr.length; i++) {\n        if (arr[i] === target) return i;\n    }\n    return -1;\n};\n\nconsole.log('O(1) Result:', getFirstElement([10, 20, 30]));\nconsole.log('O(N) Index Result:', findElement([10, 20, 30], 20));",
+      "requirements": [
+        "Demonstrate O(1) constant array indexing",
+        "Demonstrate O(N) linear search traversal loop"
+      ],
+      "hints": [
+        "O(1) execution duration does not depend on array size N"
+      ],
+      "codeExample": "const getFirst = arr => arr[0];"
+    },
+    {
+      "id": "dsa-ex2",
+      "title": "Two-Pointer Technique",
+      "description": "Solve array problems in linear O(N) time using converging two-pointer references.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "The two-pointer technique uses left and right index pointers moving towards each other to solve array searching problems in linear time.",
+      "objective": "Find a target sum pair in a sorted array using two pointers.",
+      "initialCode": "function twoSumSorted(numbers, target) {\n    // Implement two-pointer search\n}",
+      "solutionCode": "const twoSumSorted = (numbers, target) => {\n    let left = 0;\n    let right = numbers.length - 1;\n    \n    while (left < right) {\n        const currentSum = numbers[left] + numbers[right];\n        if (currentSum === target) {\n            return [left, right];\n        } else if (currentSum < target) {\n            left++;\n        } else {\n            right--;\n        }\n    }\n    return [];\n};\n\nconsole.log('Two Sum Indices:', twoSumSorted([2, 7, 11, 15], 9));",
+      "requirements": [
+        "Initialize left = 0 and right = arr.length - 1",
+        "Converge pointers inside while (left < right) loop",
+        "Achieve O(N) time complexity and O(1) extra space"
+      ],
+      "hints": [
+        "If currentSum < target, increment left pointer to increase sum"
+      ],
+      "codeExample": "while (l < r) { if (arr[l] + arr[r] === target) return [l, r]; }"
+    },
+    {
+      "id": "dsa-ex3",
+      "title": "Sliding Window Pattern",
+      "description": "Find maximum subarray sum of fixed size K using the Sliding Window pattern.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "The sliding window pattern reuses overlapping subarray computations to reduce O(N * K) brute force algorithms into linear O(N) time.",
+      "objective": "Calculate maximum sum of contiguous subarray of size K.",
+      "initialCode": "function maxSubarraySum(arr, k) {\n    // Implement sliding window\n}",
+      "solutionCode": "const maxSubarraySum = (arr, k) => {\n    if (arr.length < k) return null;\n    \n    let maxSum = 0;\n    let windowSum = 0;\n    \n    // Compute initial window sum\n    for (let i = 0; i < k; i++) windowSum += arr[i];\n    maxSum = windowSum;\n    \n    // Slide window across remaining array\n    for (let i = k; i < arr.length; i++) {\n        windowSum += arr[i] - arr[i - k];\n        maxSum = Math.max(maxSum, windowSum);\n    }\n    \n    return maxSum;\n};\n\nconsole.log('Max Subarray Sum (K=3):', maxSubarraySum([2, 1, 5, 1, 3, 2], 3));",
+      "requirements": [
+        "Calculate initial K elements sum",
+        "Slide window by adding new element arr[i] and subtracting outgoing element arr[i - k]",
+        "Achieve O(N) linear time complexity"
+      ],
+      "hints": [
+        "Subtracting the leaving element avoids re-summing all elements inside the window"
+      ],
+      "codeExample": "windowSum += arr[i] - arr[i - k];"
+    },
+    {
+      "id": "dsa-ex4",
+      "title": "Stack Data Structure (LIFO - Last In First Out)",
+      "description": "Implement a Stack with push, pop, peek, and isEmpty methods.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "A Stack follows Last-In-First-Out (LIFO) ordering. Elements are added to and removed from the top.",
+      "objective": "Build a Stack class and solve a valid parentheses matching problem.",
+      "initialCode": "class Stack {\n    // Implement Stack data structure\n}",
+      "solutionCode": "class Stack {\n    constructor() {\n        this.items = [];\n    }\n    push(element) { this.items.push(element); }\n    pop() { return this.items.pop(); }\n    peek() { return this.items[this.items.length - 1]; }\n    isEmpty() { return this.items.length === 0; }\n}\n\nconst isValidParentheses = (s) => {\n    const stack = new Stack();\n    const map = { ')': '(', '}': '{', ']': '[' };\n    \n    for (let char of s) {\n        if (['(', '{', '['].includes(char)) {\n            stack.push(char);\n        } else {\n            if (stack.isEmpty() || stack.pop() !== map[char]) return false;\n        }\n    }\n    return stack.isEmpty();\n};\n\nconsole.log('Is Valid ()[]{}:', isValidParentheses('()[]{}'));",
+      "requirements": [
+        "Implement Stack class with LIFO methods",
+        "Use Stack to validate balanced parentheses string"
+      ],
+      "hints": [
+        "Popping mismatched bracket from stack indicates invalid string"
+      ],
+      "codeExample": "class Stack { push(x) { this.items.push(x); } pop() { return this.items.pop(); } }"
+    },
+    {
+      "id": "dsa-ex5",
+      "title": "Queue Data Structure (FIFO - First In First Out)",
+      "description": "Implement a Queue with enqueue, dequeue, and peek methods.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "A Queue operates on First-In-First-Out (FIFO) ordering. Items enter at the back (enqueue) and exit from the front (dequeue).",
+      "objective": "Build a Queue class for task processing.",
+      "initialCode": "class Queue {\n    // Implement Queue data structure\n}",
+      "solutionCode": "class Queue {\n    constructor() {\n        this.items = {};\n        this.head = 0;\n        this.tail = 0;\n    }\n    enqueue(element) {\n        this.items[this.tail++] = element;\n    }\n    dequeue() {\n        if (this.head === this.tail) return undefined;\n        const item = this.items[this.head];\n        delete this.items[this.head++];\n        return item;\n    }\n    size() { return this.tail - this.head; }\n}\n\nconst q = new Queue();\nq.enqueue('Task 1');\nq.enqueue('Task 2');\nconsole.log('Dequeued:', q.dequeue());",
+      "requirements": [
+        "Implement O(1) Queue with object storage and head/tail pointers",
+        "Demonstrate enqueue and dequeue operations"
+      ],
+      "hints": [
+        "Using object dictionary with head/tail pointers achieves O(1) dequeue operations, avoiding array shift() O(N) cost"
+      ],
+      "codeExample": "q.enqueue(item); q.dequeue();"
+    },
+    {
+      "id": "dsa-ex6",
+      "title": "Singly Linked List Implementation",
+      "description": "Build a Singly Linked List with append, prepend, and traversal methods.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "A Linked List is a linear chain of nodes containing value and next pointer references.",
+      "objective": "Build a Singly Linked List class.",
+      "initialCode": "class Node {\n    // Implement Node and LinkedList\n}",
+      "solutionCode": "class Node {\n    constructor(val) {\n        this.val = val;\n        this.next = null;\n    }\n}\n\nclass LinkedList {\n    constructor() {\n        this.head = null;\n    }\n    prepend(val) {\n        const newNode = new Node(val);\n        newNode.next = this.head;\n        this.head = newNode;\n    }\n    toArray() {\n        const result = [];\n        let curr = this.head;\n        while (curr) {\n            result.push(curr.val);\n            curr = curr.next;\n        }\n        return result;\n    }\n}\n\nconst list = new LinkedList();\nlist.prepend(30);\nlist.prepend(20);\nlist.prepend(10);\nconsole.log('List Items:', list.toArray());",
+      "requirements": [
+        "Define Node class with val and next fields",
+        "Implement LinkedList class with prepend and toArray methods"
+      ],
+      "hints": [
+        "Prepending to a linked list takes O(1) constant time"
+      ],
+      "codeExample": "class Node { constructor(v) { this.val = v; this.next = null; } }"
+    },
+    {
+      "id": "dsa-ex7",
+      "title": "Reversing a Singly Linked List",
+      "description": "Reverse a Singly Linked List in O(N) time and O(1) space.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Reversing a linked list involves re-pointing each node's next reference to its preceding node during traversal.",
+      "objective": "Write a reverseLinkedList function.",
+      "initialCode": "function reverseLinkedList(head) {\n    // Reverse linked list pointers\n}",
+      "solutionCode": "const reverseLinkedList = (head) => {\n    let prev = null;\n    let curr = head;\n    \n    while (curr !== null) {\n        const nextTemp = curr.next; // Save next node reference\n        curr.next = prev;           // Reverse pointer direction\n        prev = curr;                // Advance prev pointer\n        curr = nextTemp;            // Advance curr pointer\n    }\n    return prev; // New head of reversed list\n};\n\nconsole.log('Reversed head returned successfully.');",
+      "requirements": [
+        "Traverse linked list using prev, curr, and nextTemp pointers",
+        "Reverse node.next references in O(N) time and O(1) space"
+      ],
+      "hints": [
+        "Save curr.next into temporary variable before overwriting curr.next = prev"
+      ],
+      "codeExample": "while (curr) { let next = curr.next; curr.next = prev; prev = curr; curr = next; }"
+    },
+    {
+      "id": "dsa-ex8",
+      "title": "Binary Search Algorithm (O(log N))",
+      "description": "Implement Binary Search on a sorted array in O(log N) time complexity.",
+      "duration": "20 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Binary Search cuts search space in half repeatedly on sorted arrays, achieving logarithmic O(log N) efficiency.",
+      "objective": "Write Binary Search function returning target index.",
+      "initialCode": "function binarySearch(arr, target) {\n    // Implement binary search\n}",
+      "solutionCode": "const binarySearch = (arr, target) => {\n    let left = 0;\n    let right = arr.length - 1;\n    \n    while (left <= right) {\n        const mid = Math.floor(left + (right - left) / 2);\n        if (arr[mid] === target) {\n            return mid;\n        } else if (arr[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n    return -1;\n};\n\nconsole.log('Found Target Index:', binarySearch([10, 20, 30, 40, 50, 60], 40));",
+      "requirements": [
+        "Calculate mid = Math.floor(left + (right - left) / 2)",
+        "Halve search bounds in while (left <= right) loop",
+        "Achieve O(log N) logarithmic time complexity"
+      ],
+      "hints": [
+        "Math.floor(left + (right - left) / 2) prevents potential integer overflow"
+      ],
+      "codeExample": "let mid = Math.floor((l + r) / 2);"
+    },
+    {
+      "id": "dsa-ex9",
+      "title": "Bubble Sort & Selection Sort",
+      "description": "Implement fundamental quadratic O(N^2) sorting algorithms.",
+      "duration": "25 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Bubble Sort repeatedly swaps adjacent out-of-order elements until array is sorted, running in O(N^2) quadratic time.",
+      "objective": "Write in-place Bubble Sort function.",
+      "initialCode": "function bubbleSort(arr) {\n    // Implement bubble sort\n}",
+      "solutionCode": "const bubbleSort = (arr) => {\n    const n = arr.length;\n    let swapped;\n    for (let i = 0; i < n - 1; i++) {\n        swapped = false;\n        for (let j = 0; j < n - 1 - i; j++) {\n            if (arr[j] > arr[j + 1]) {\n                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];\n                swapped = true;\n            }\n        }\n        if (!swapped) break; // Optimized early exit\n    }\n    return arr;\n};\n\nconsole.log('Sorted Array:', bubbleSort([64, 34, 25, 12, 22, 11, 90]));",
+      "requirements": [
+        "Use nested loops to swap adjacent elements",
+        "Add swapped flag early exit optimization"
+      ],
+      "hints": [
+        "Early exit when no swaps occur optimizes best-case time to O(N)"
+      ],
+      "codeExample": "if (arr[j] > arr[j+1]) [arr[j], arr[j+1]] = [arr[j+1], arr[j]];"
+    },
+    {
+      "id": "dsa-ex10",
+      "title": "Merge Sort (Divide & Conquer O(N log N))",
+      "description": "Implement recursive Merge Sort with divide-and-conquer strategy.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Merge Sort recursively splits arrays into halves (divide) and merges sorted sub-arrays back together (conquer) in guaranteed O(N log N) time.",
+      "objective": "Write recursive mergeSort and helper merge functions.",
+      "initialCode": "function mergeSort(arr) {\n    // Implement Merge Sort\n}",
+      "solutionCode": "const merge = (left, right) => {\n    const result = [];\n    let i = 0, j = 0;\n    while (i < left.length && j < right.length) {\n        if (left[i] < right[j]) result.push(left[i++]);\n        else result.push(right[j++]);\n    }\n    return result.concat(left.slice(i)).concat(right.slice(j));\n};\n\nconst mergeSort = (arr) => {\n    if (arr.length <= 1) return arr;\n    const mid = Math.floor(arr.length / 2);\n    const left = mergeSort(arr.slice(0, mid));\n    const right = mergeSort(arr.slice(mid));\n    return merge(left, right);\n};\n\nconsole.log('Merge Sorted:', mergeSort([38, 27, 43, 3, 9, 82, 10]));",
+      "requirements": [
+        "Base case: return arr if arr.length <= 1",
+        "Split array at mid index and recursively sort halves",
+        "Merge sorted halves using two pointers"
+      ],
+      "hints": [
+        "Merge Sort guarantees O(N log N) time complexity in all cases"
+      ],
+      "codeExample": "const mid = Math.floor(arr.length / 2); mergeSort(arr.slice(0, mid));"
+    },
+    {
+      "id": "dsa-ex11",
+      "title": "Quick Sort Algorithm",
+      "description": "Implement Quick Sort partitioning around pivot elements.",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Quick Sort selects a pivot element, partitions elements into smaller and larger sub-arrays, and recursively sorts sub-arrays.",
+      "objective": "Write Quick Sort partitioning function.",
+      "initialCode": "function quickSort(arr) {\n    // Implement Quick Sort\n}",
+      "solutionCode": "const quickSort = (arr) => {\n    if (arr.length <= 1) return arr;\n    \n    const pivot = arr[arr.length - 1];\n    const left = [];\n    const right = [];\n    \n    for (let i = 0; i < arr.length - 1; i++) {\n        if (arr[i] < pivot) left.push(arr[i]);\n        else right.push(arr[i]);\n    }\n    \n    return [...quickSort(left), pivot, ...quickSort(right)];\n};\n\nconsole.log('Quick Sorted:', quickSort([10, 80, 30, 90, 40, 50, 70]));",
+      "requirements": [
+        "Select pivot element",
+        "Partition array into left (< pivot) and right (>= pivot)",
+        "Recursively sort and concatenate [...quickSort(left), pivot, ...quickSort(right)]"
+      ],
+      "hints": [
+        "Average time complexity of Quick Sort is O(N log N)"
+      ],
+      "codeExample": "return [...quickSort(left), pivot, ...quickSort(right)];"
+    },
+    {
+      "id": "dsa-ex12",
+      "title": "Binary Search Tree (BST) Insertion & Lookup",
+      "description": "Construct a Binary Search Tree supporting insert and search operations.",
+      "duration": "30 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "In a BST, left child values are strictly less than node value, and right child values are strictly greater.",
+      "objective": "Build TreeNode and BST insert and search methods.",
+      "initialCode": "class TreeNode {\n    // Implement BST\n}",
+      "solutionCode": "class TreeNode {\n    constructor(val) {\n        this.val = val;\n        this.left = null;\n        this.right = null;\n    }\n}\n\nclass BST {\n    constructor() {\n        this.root = null;\n    }\n    insert(val) {\n        const newNode = new TreeNode(val);\n        if (!this.root) { this.root = newNode; return; }\n        let curr = this.root;\n        while (true) {\n            if (val < curr.val) {\n                if (!curr.left) { curr.left = newNode; break; }\n                curr = curr.left;\n            } else {\n                if (!curr.right) { curr.right = newNode; break; }\n                curr = curr.right;\n            }\n        }\n    }\n}\n\nconst bst = new BST();\nbst.insert(10);\nbst.insert(5);\nbst.insert(15);\nconsole.log('BST initialized.');",
+      "requirements": [
+        "Define TreeNode with val, left, right",
+        "Implement BST insert method enforcing BST property"
+      ],
+      "hints": [
+        "BST properties guarantee average O(log N) lookup time"
+      ],
+      "codeExample": "if (val < node.val) node.left = insert(node.left, val);"
+    },
+    {
+      "id": "dsa-ex13",
+      "title": "Tree Traversals (In-Order, Pre-Order, Post-Order)",
+      "description": "Traverse tree nodes recursively in In-Order, Pre-Order, and Post-Order sequences.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "In-Order traversal (Left -> Node -> Right) visits BST nodes in sorted ascending order. Pre-Order is (Node -> Left -> Right). Post-Order is (Left -> Right -> Node).",
+      "objective": "Implement inOrderTraversal function.",
+      "initialCode": "function inOrder(root) {\n    // Implement In-Order Traversal\n}",
+      "solutionCode": "const inOrderTraversal = (root, result = []) => {\n    if (root !== null) {\n        inOrderTraversal(root.left, result);\n        result.push(root.val);\n        inOrderTraversal(root.right, result);\n    }\n    return result;\n};\n\nconsole.log('In-Order returns sorted array for BSTs.');",
+      "requirements": [
+        "Recursively visit left child, process node, and visit right child",
+        "Return array of visited node values in sorted order"
+      ],
+      "hints": [
+        "In-Order traversal on a valid BST always yields sorted ascending values"
+      ],
+      "codeExample": "inOrder(node.left); result.push(node.val); inOrder(node.right);"
+    },
+    {
+      "id": "dsa-ex14",
+      "title": "Breadth-First Search (BFS) Level-Order Traversal",
+      "description": "Traverse tree or graph levels using Breadth-First Search (BFS) with a Queue.",
+      "duration": "30 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "BFS visits nodes level-by-level using a Queue to store candidate nodes at current depth before moving deeper.",
+      "objective": "Implement levelOrderTraversal for Binary Tree using a Queue.",
+      "initialCode": "function levelOrder(root) {\n    // Implement BFS Level Order Traversal\n}",
+      "solutionCode": "const levelOrderTraversal = (root) => {\n    if (!root) return [];\n    const result = [];\n    const queue = [root];\n    \n    while (queue.length > 0) {\n        const levelSize = queue.length;\n        const currentLevel = [];\n        \n        for (let i = 0; i < levelSize; i++) {\n            const node = queue.shift();\n            currentLevel.push(node.val);\n            if (node.left) queue.push(node.left);\n            if (node.right) queue.push(node.right);\n        }\n        result.push(currentLevel);\n    }\n    return result;\n};\n\nconsole.log('BFS Level Order Traversal executed.');",
+      "requirements": [
+        "Use Queue to store nodes at active level",
+        "Process nodes level-by-level and push child nodes into queue"
+      ],
+      "hints": [
+        "Capturing levelSize = queue.length at loop start isolates node count per level"
+      ],
+      "codeExample": "const queue = [root]; while (queue.length) { const node = queue.shift(); }"
+    },
+    {
+      "id": "dsa-ex15",
+      "title": "Graph Representation: Adjacency List",
+      "description": "Represent directed and undirected graphs using an Adjacency List Map.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Adjacency Lists map each vertex node key to an array of its neighboring connected vertices.",
+      "objective": "Build a Graph class with addVertex and addEdge methods.",
+      "initialCode": "class Graph {\n    // Implement Adjacency List Graph\n}",
+      "solutionCode": "class Graph {\n    constructor() {\n        this.adjacencyList = new Map();\n    }\n    addVertex(v) {\n        if (!this.adjacencyList.has(v)) this.adjacencyList.set(v, []);\n    }\n    addEdge(v1, v2) {\n        this.addVertex(v1);\n        this.addVertex(v2);\n        this.adjacencyList.get(v1).push(v2);\n        this.adjacencyList.get(v2).push(v1); // Undirected\n    }\n}\n\nconst g = new Graph();\ng.addEdge('A', 'B');\ng.addEdge('A', 'C');\nconsole.log('Graph Adjacency List Created.');",
+      "requirements": [
+        "Create Graph class with Map adjacency list",
+        "Implement addVertex and addEdge for undirected graph"
+      ],
+      "hints": [
+        "Undirected graphs add edges in both directions (v1 -> v2 and v2 -> v1)"
+      ],
+      "codeExample": "map.get(v1).push(v2); map.get(v2).push(v1);"
+    },
+    {
+      "id": "dsa-ex16",
+      "title": "Graph Traversal: Depth-First Search (DFS)",
+      "description": "Traverse graph vertices recursively using Depth-First Search (DFS).",
+      "duration": "30 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "DFS explores as deep as possible along each branch before backtracking, utilizing a visited set to avoid infinite loops in cyclic graphs.",
+      "objective": "Implement DFS graph traversal using Set for visited nodes.",
+      "initialCode": "function dfsGraph(start, graph) {\n    // Implement DFS Graph Traversal\n}",
+      "solutionCode": "const dfsGraph = (startNode, graph) => {\n    const visited = new Set();\n    const result = [];\n    \n    const dfs = (node) => {\n        if (!node || visited.has(node)) return;\n        visited.add(node);\n        result.push(node);\n        \n        const neighbors = graph.get(node) || [];\n        for (const neighbor of neighbors) {\n            dfs(neighbor);\n        }\n    };\n    \n    dfs(startNode);\n    return result;\n};\n\nconsole.log('DFS Traversal complete.');",
+      "requirements": [
+        "Use Set to track visited nodes",
+        "Recursively traverse neighbor nodes",
+        "Return array of visited vertex nodes"
+      ],
+      "hints": [
+        "Set.has(node) check prevents visiting nodes multiple times in cyclic graphs"
+      ],
+      "codeExample": "if (visited.has(node)) return; visited.add(node);"
+    },
+    {
+      "id": "dsa-ex17",
+      "title": "Dynamic Programming: Fibonacci & Memoization",
+      "description": "Optimize exponential recursive algorithms into linear O(N) time using memoization.",
+      "duration": "25 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Dynamic Programming stores solutions to overlapping sub-problems (memoization) to eliminate redundant recursive calculations.",
+      "objective": "Build memoized fibonacci function.",
+      "initialCode": "function fib(n, memo = {}) {\n    // Implement memoized fibonacci\n}",
+      "solutionCode": "const fib = (n, memo = {}) => {\n    if (n in memo) return memo[n];\n    if (n <= 1) return n;\n    \n    memo[n] = fib(n - 1, memo) + fib(n - 2, memo);\n    return memo[n];\n};\n\nconsole.log('Fib(50):', fib(50));",
+      "requirements": [
+        "Use memo object parameter to cache sub-problem results",
+        "Check n in memo before recursive computation",
+        "Reduce time complexity from O(2^N) to linear O(N)"
+      ],
+      "hints": [
+        "Memoization transforms exponential O(2^N) recursion into linear O(N) time"
+      ],
+      "codeExample": "if (n in memo) return memo[n]; memo[n] = fib(n-1) + fib(n-2);"
+    },
+    {
+      "id": "dsa-ex18",
+      "title": "Priority Queue & Binary Min-Heap",
+      "description": "Construct a Binary Min-Heap supporting bubble-up and bubble-down operations.",
+      "duration": "35 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Min-Heap is a complete binary tree where parent node value is <= child node values. Top node (index 0) always holds the minimum element.",
+      "objective": "Build MinHeap insert and extractMin operations.",
+      "initialCode": "class MinHeap {\n    // Implement MinHeap\n}",
+      "solutionCode": "class MinHeap {\n    constructor() {\n        this.heap = [];\n    }\n    insert(val) {\n        this.heap.push(val);\n        this.bubbleUp();\n    }\n    bubbleUp() {\n        let idx = this.heap.length - 1;\n        while (idx > 0) {\n            let parentIdx = Math.floor((idx - 1) / 2);\n            if (this.heap[idx] >= this.heap[parentIdx]) break;\n            [this.heap[idx], this.heap[parentIdx]] = [this.heap[parentIdx], this.heap[idx]];\n            idx = parentIdx;\n        }\n    }\n}\n\nconst heap = new MinHeap();\nheap.insert(10);\nheap.insert(5);\nheap.insert(20);\nconsole.log('Min Element at Top:', heap.heap[0]); // 5",
+      "requirements": [
+        "Store heap elements in single array",
+        "Calculate parent index Math.floor((idx - 1) / 2)",
+        "Implement bubbleUp swapping elements while node < parent"
+      ],
+      "hints": [
+        "Min-Heap root (index 0) always contains minimum element in O(1) time"
+      ],
+      "codeExample": "let parentIdx = Math.floor((idx - 1) / 2);"
+    },
+    {
+      "id": "dsa-ex19",
+      "title": "Trie Data Structure (Prefix Tree)",
+      "description": "Construct a Trie (Prefix Tree) for efficient autocomplete string prefix lookups.",
+      "duration": "35 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "A Trie stores characters as node branches, enabling prefix searching (startsWith) in O(L) time where L is word length.",
+      "objective": "Build Trie insert and startsWith methods.",
+      "initialCode": "class TrieNode {\n    // Implement Trie\n}",
+      "solutionCode": "class TrieNode {\n    constructor() {\n        this.children = {};\n        this.isWord = false;\n    }\n}\n\nclass Trie {\n    constructor() {\n        this.root = new TrieNode();\n    }\n    insert(word) {\n        let curr = this.root;\n        for (let char of word) {\n            if (!curr.children[char]) curr.children[char] = new TrieNode();\n            curr = curr.children[char];\n        }\n        curr.isWord = true;\n    }\n    startsWith(prefix) {\n        let curr = this.root;\n        for (let char of prefix) {\n            if (!curr.children[char]) return false;\n            curr = curr.children[char];\n        }\n        return true;\n    }\n}\n\nconst trie = new Trie();\ntrie.insert('bytecode');\nconsole.log('Starts with \"byte\":', trie.startsWith('byte'));",
+      "requirements": [
+        "Define TrieNode with children object and isWord boolean",
+        "Implement insert and startsWith methods"
+      ],
+      "hints": [
+        "Trie startsWith executes in O(L) time independent of total words stored"
+      ],
+      "codeExample": "if (!curr.children[c]) curr.children[c] = new TrieNode();"
+    },
+    {
+      "id": "dsa-ex20",
+      "title": "Capstone Project: Algorithm Execution & Visualization Engine",
+      "description": "Engineer a complete Algorithm Execution Engine featuring Sorting step-by-step state tracking, Binary Search logging, and Execution Benchmarking.",
+      "duration": "60 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "This capstone project synthesizes core Data Structures and Algorithms: Sorting state step generation, Binary Search, Big-O complexity analysis, and execution benchmarking into a complete Algorithm Visualizer Engine.",
+      "objective": "Construct a complete Algorithm Engine module.",
+      "initialCode": "// Engineer Algorithm Visualizer & Execution Engine",
+      "solutionCode": "class AlgorithmEngine {\n    static generateSortingSteps(array) {\n        const arr = [...array];\n        const steps = [];\n        const n = arr.length;\n        \n        for (let i = 0; i < n - 1; i++) {\n            for (let j = 0; j < n - 1 - i; j++) {\n                steps.push({ type: 'compare', indices: [j, j + 1], state: [...arr] });\n                if (arr[j] > arr[j + 1]) {\n                    [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];\n                    steps.push({ type: 'swap', indices: [j, j + 1], state: [...arr] });\n                }\n            }\n        }\n        return steps;\n    }\n    \n    static benchmarkAlgorithm(fn, ...args) {\n        const start = performance.now();\n        const result = fn(...args);\n        const duration = performance.now() - start;\n        return { result, durationMs: duration.toFixed(4) };\n    }\n}\n\nconst steps = AlgorithmEngine.generateSortingSteps([5, 3, 8, 1]);\nconsole.log(`Generated ${steps.length} sorting visualization steps.`);\n\nconst bench = AlgorithmEngine.benchmarkAlgorithm(() => [1, 2, 3].map(x => x * 2));\nconsole.log(`Benchmark Duration: ${bench.durationMs}ms`);",
+      "requirements": [
+        "Implement generateSortingSteps emitting compare and swap state frames",
+        "Implement benchmarkAlgorithm calculating high-resolution duration with performance.now()"
+      ],
+      "hints": [
+        "Emitting step objects with cloned array state snapshots allows UI components to animate step-by-step sorting progress"
+      ],
+      "codeExample": "steps.push({ type: 'swap', state: [...arr] });"
+    }
+  ],
+  "references": [
+    {
+      "title": "Algorithms (Sedgewick & Wayne)",
+      "description": "Comprehensive reference textbook for computer science data structures and algorithms",
+      "url": "https://algs4.cs.princeton.edu/home/"
+    }
+  ]
+}
