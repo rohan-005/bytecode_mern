@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import logo from "../assets/logo.png";
 import { useAuth } from "../context/AuthContext";
+import { IconMail, IconKey, IconLock, IconLoader2, IconRefresh } from "@tabler/icons-react";
 
 const ForgotPassword = () => {
-  const [step, setStep] = useState(1); // 1: Email, 2: OTP, 3: New Password
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     email: "",
     otp: "",
@@ -27,21 +28,18 @@ const ForgotPassword = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Step 1: Request OTP
   const handleRequestOTP = async (e) => {
     e.preventDefault();
-    
     if (!email) {
       toast.error("Please enter your email address");
       return;
     }
 
     setLoading(true);
-    const loadingToast = toast.loading("Sending OTP...");
+    const loadingToast = toast.loading("Requesting OTP verification code...");
 
     try {
       const result = await forgotPassword(email);
-
       toast.dismiss(loadingToast);
 
       if (result.success) {
@@ -59,21 +57,18 @@ const ForgotPassword = () => {
     setLoading(false);
   };
 
-  // Step 2: Verify OTP
   const handleVerifyOTP = async (e) => {
     e.preventDefault();
-    
     if (!otp || otp.length !== 6) {
       toast.error("Please enter a valid 6-digit OTP");
       return;
     }
 
     setLoading(true);
-    const loadingToast = toast.loading("Verifying OTP...");
+    const loadingToast = toast.loading("Verifying security OTP...");
 
     try {
       const result = await verifyPasswordResetOTP(email, otp);
-
       toast.dismiss(loadingToast);
 
       if (result.success) {
@@ -95,10 +90,8 @@ const ForgotPassword = () => {
     setLoading(false);
   };
 
-  // Step 3: Reset Password
   const handleResetPassword = async (e) => {
     e.preventDefault();
-    
     if (!password || !confirmPassword) {
       toast.error("Please fill in all fields");
       return;
@@ -115,18 +108,17 @@ const ForgotPassword = () => {
     }
 
     setLoading(true);
-    const loadingToast = toast.loading("Resetting password...");
+    const loadingToast = toast.loading("Resetting account password...");
 
     try {
       const result = await resetPassword(formData.resetToken, password);
-
       toast.dismiss(loadingToast);
 
       if (result.success) {
-        toast.success(result.message || "Password reset successfully! You can now login.");
+        toast.success(result.message || "Password reset successfully! Redirecting to login...");
         setTimeout(() => {
           window.location.href = '/login';
-        }, 2000);
+        }, 1500);
       } else {
         toast.error(result.message || "Failed to reset password");
       }
@@ -139,14 +131,12 @@ const ForgotPassword = () => {
     setLoading(false);
   };
 
-  // Resend OTP
   const handleResendOTP = async () => {
     setLoading(true);
-    const loadingToast = toast.loading("Resending OTP...");
+    const loadingToast = toast.loading("Resending OTP token...");
 
     try {
       const result = await resendPasswordResetOTP(email);
-
       toast.dismiss(loadingToast);
 
       if (result.success) {
@@ -164,38 +154,46 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black to-gray-800 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#1B1B1B] text-[#FFFFFF] flex items-center justify-center p-4 font-jetbrains grid-bg">
       <div className="max-w-md w-full">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-32 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-32 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
+        {/* Terminal Header */}
+        <div className="bg-[#252422] border border-[#4A4A4A] border-b-0 px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="w-3 h-3 bg-[#FF4D4F] inline-block"></span>
+            <span className="w-3 h-3 bg-[#FFC300] inline-block"></span>
+            <span className="w-3 h-3 bg-[#35C759] inline-block"></span>
+            <span className="text-xs text-[#8E8E8E] font-mono ml-2">[PASSWORD_RECOVERY]</span>
+          </div>
+          <span className="text-[10px] text-[#FF6A2A] font-bold tracking-wider uppercase bg-[#FF6A2A]/10 px-2 py-0.5 border border-[#FF6A2A]/30">
+            STEP {step}/3
+          </span>
         </div>
 
-        <div className="relative bg-gray-800/50 backdrop-blur-lg rounded-2xl shadow-2xl border border-gray-700 p-8 hover:bg-gray-800/60 transition-all duration-300">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <div className="flex justify-center mb-4">
+        {/* Card Body */}
+        <div className="bg-[#303030] border border-[#4A4A4A] p-8 shadow-2xl relative">
+          <div className="text-center mb-6">
+            <div className="flex justify-center mb-3">
               <img
                 src={logo}
                 alt="ByteCode Logo"
-                className="w-20 h-20 drop-shadow-2xl"
+                className="w-16 h-16 object-contain filter drop-shadow-[0_0_12px_rgba(255,106,42,0.4)]"
               />
             </div>
-            <h2 className="text-3xl font-bold text-white mb-2">
-              Reset Password
+            <h2 className="text-3xl font-bebas text-[#FFFFFF] tracking-wide mb-1">
+              RESET PASSWORD
             </h2>
-            <p className="text-gray-400">
-              {step === 1 && "Enter your email to receive OTP"}
-              {step === 2 && "Enter the OTP sent to your email"}
-              {step === 3 && "Create your new password"}
+            <p className="text-xs text-[#CFCFCF] font-mono">
+              {step === 1 && "Enter registered email to receive OTP token"}
+              {step === 2 && `Enter 6-digit code sent to ${email}`}
+              {step === 3 && "Construct your new secure password"}
             </p>
           </div>
 
-          {/* Step 1: Email Input */}
+          {/* Step 1 */}
           {step === 1 && (
-            <form onSubmit={handleRequestOTP} className="space-y-6">
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+            <form onSubmit={handleRequestOTP} className="space-y-5">
+              <div>
+                <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-2">
                   Email Address
                 </label>
                 <div className="relative">
@@ -205,116 +203,148 @@ const ForgotPassword = () => {
                     value={email}
                     onChange={onChange}
                     required
-                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200"
-                    placeholder="developer@example.com"
+                    className="bytecode-input w-full pl-10 pr-4"
+                    placeholder="developer@bytecode.dev"
                   />
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#8E8E8E]">
+                    <IconMail size={18} />
+                  </div>
                 </div>
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bytecode-btn-primary w-full"
               >
-                {loading ? "Sending OTP..." : "Send OTP"}
+                {loading ? (
+                  <>
+                    <IconLoader2 size={18} className="animate-spin text-white" />
+                    <span>Sending OTP...</span>
+                  </>
+                ) : (
+                  <>
+                    <IconKey size={18} />
+                    <span>Send Security OTP</span>
+                  </>
+                )}
               </button>
             </form>
           )}
 
-          {/* Step 2: OTP Verification */}
+          {/* Step 2 */}
           {step === 2 && (
-            <form onSubmit={handleVerifyOTP} className="space-y-6">
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Enter OTP
+            <form onSubmit={handleVerifyOTP} className="space-y-5">
+              <div>
+                <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-2">
+                  Verification Code (OTP)
                 </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    name="otp"
-                    value={otp}
-                    onChange={onChange}
-                    maxLength={6}
-                    required
-                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200 text-center text-2xl tracking-widest"
-                    placeholder="000000"
-                  />
-                </div>
-                <p className="text-sm text-gray-400 mt-2 text-center">
-                  Enter the 6-digit code sent to {email}
-                </p>
+                <input
+                  type="text"
+                  name="otp"
+                  value={otp}
+                  onChange={onChange}
+                  maxLength={6}
+                  required
+                  className="bytecode-input w-full text-center text-2xl tracking-[0.5em] font-mono"
+                  placeholder="000000"
+                />
               </div>
 
-              <div className="flex space-x-4">
+              <div className="flex gap-3">
                 <button
                   type="button"
                   onClick={handleResendOTP}
                   disabled={loading}
-                  className="flex-1 bg-gray-600 hover:bg-gray-500 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 disabled:opacity-50"
+                  className="bytecode-btn-secondary flex-1"
                 >
-                  Resend OTP
+                  <IconRefresh size={16} />
+                  <span>Resend</span>
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50"
+                  className="bytecode-btn-primary flex-1"
                 >
-                  {loading ? "Verifying..." : "Verify OTP"}
+                  {loading ? (
+                    <>
+                      <IconLoader2 size={18} className="animate-spin text-white" />
+                      <span>Verifying...</span>
+                    </>
+                  ) : (
+                    <span>Verify Code</span>
+                  )}
                 </button>
               </div>
             </form>
           )}
 
-          {/* Step 3: New Password */}
+          {/* Step 3 */}
           {step === 3 && (
-            <form onSubmit={handleResetPassword} className="space-y-6">
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+            <form onSubmit={handleResetPassword} className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-2">
                   New Password
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  value={password}
-                  onChange={onChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200"
-                  placeholder="••••••••"
-                />
+                <div className="relative">
+                  <input
+                    type="password"
+                    name="password"
+                    value={password}
+                    onChange={onChange}
+                    required
+                    className="bytecode-input w-full pl-10 pr-4"
+                    placeholder="••••••••••••"
+                  />
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#8E8E8E]">
+                    <IconLock size={18} />
+                  </div>
+                </div>
               </div>
 
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+              <div>
+                <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-2">
                   Confirm New Password
                 </label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={confirmPassword}
-                  onChange={onChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200"
-                  placeholder="••••••••"
-                />
+                <div className="relative">
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    value={confirmPassword}
+                    onChange={onChange}
+                    required
+                    className="bytecode-input w-full pl-10 pr-4"
+                    placeholder="••••••••••••"
+                  />
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#8E8E8E]">
+                    <IconLock size={18} />
+                  </div>
+                </div>
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-500 hover:to-cyan-500 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50"
+                className="bytecode-btn-primary w-full mt-2"
               >
-                {loading ? "Resetting..." : "Reset Password"}
+                {loading ? (
+                  <>
+                    <IconLoader2 size={18} className="animate-spin text-white" />
+                    <span>Resetting Password...</span>
+                  </>
+                ) : (
+                  <span>Update Password</span>
+                )}
               </button>
             </form>
           )}
 
-          {/* Footer */}
-          <div className="mt-8 text-center">
-            <p className="text-gray-400">
-              Remember your password?{" "}
+          <div className="mt-6 pt-4 border-t border-[#4A4A4A] text-center">
+            <p className="text-xs text-[#8E8E8E]">
+              Remember your credentials?{" "}
               <Link
                 to="/login"
-                className="text-cyan-400 hover:text-cyan-300 font-medium transition-colors duration-200 hover:underline"
+                className="text-[#FF6A2A] hover:text-[#FF8C42] font-semibold transition-colors hover:underline ml-1"
               >
                 Sign in
               </Link>

@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import api from '../utils/axiosConfig';
 import logo from "../assets/logo.png";
+import { IconShieldCheck, IconLoader2, IconRefresh, IconArrowLeft } from '@tabler/icons-react';
 
 const OTPVerification = () => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -19,7 +20,6 @@ const OTPVerification = () => {
   const inputRefs = useRef([]);
 
   useEffect(() => {
-    // Get email from location state or localStorage
     const userEmail = location.state?.email || localStorage.getItem('pendingVerificationEmail');
     if (userEmail) {
       setEmail(userEmail);
@@ -44,12 +44,10 @@ const OTPVerification = () => {
     newOtp[index] = value;
     setOtp(newOtp);
 
-    // Auto-focus next input
     if (value && index < 5) {
       inputRefs.current[index + 1].focus();
     }
 
-    // Auto-submit when all fields are filled
     if (newOtp.every(digit => digit !== '') && index === 5) {
       handleVerifyOTP();
     }
@@ -68,7 +66,6 @@ const OTPVerification = () => {
       const newOtp = pasteData.split('').slice(0, 6);
       setOtp([...newOtp, ...Array(6 - newOtp.length).fill('')]);
       
-      // Focus the last input
       if (newOtp.length === 6) {
         inputRefs.current[5].focus();
       } else {
@@ -101,16 +98,14 @@ const OTPVerification = () => {
       
       setTimeout(() => {
         navigate('/dashboard');
-      }, 2000);
+      }, 1500);
 
     } catch (error) {
       const errorMsg = error.response?.data?.message || 'Failed to verify OTP';
       setError(errorMsg);
       toast.error(errorMsg);
-      
-      // Clear OTP on error
       setOtp(['', '', '', '', '', '']);
-      inputRefs.current[0].focus();
+      inputRefs.current[0]?.focus();
     } finally {
       setLoading(false);
     }
@@ -124,9 +119,9 @@ const OTPVerification = () => {
       const response = await api.post('/otp/resend-otp', { email });
       setMessage('OTP resent successfully!');
       toast.success('📧 New OTP sent to your email!');
-      setCountdown(60); // 60 seconds countdown
+      setCountdown(60);
       setOtp(['', '', '', '', '', '']);
-      inputRefs.current[0].focus();
+      inputRefs.current[0]?.focus();
     } catch (error) {
       const errorMsg = error.response?.data?.message || 'Failed to resend OTP';
       setError(errorMsg);
@@ -137,54 +132,57 @@ const OTPVerification = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black to-gray-800 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#1B1B1B] text-[#FFFFFF] flex items-center justify-center p-4 font-jetbrains grid-bg">
       <div className="max-w-md w-full">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-32 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-32 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
+        {/* Terminal Header */}
+        <div className="bg-[#252422] border border-[#4A4A4A] border-b-0 px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="w-3 h-3 bg-[#FF4D4F] inline-block"></span>
+            <span className="w-3 h-3 bg-[#FFC300] inline-block"></span>
+            <span className="w-3 h-3 bg-[#35C759] inline-block"></span>
+            <span className="text-xs text-[#8E8E8E] font-mono ml-2">[OTP_VERIFICATION]</span>
+          </div>
+          <span className="text-[10px] text-[#FF6A2A] font-bold tracking-wider uppercase bg-[#FF6A2A]/10 px-2 py-0.5 border border-[#FF6A2A]/30">
+            SECURITY CHECK
+          </span>
         </div>
 
-        <div className="relative bg-gray-800/50 backdrop-blur-lg rounded-2xl shadow-2xl border border-gray-700 p-8 hover:bg-gray-800/60 transition-all duration-300">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <div className="flex justify-center mb-4">
+        {/* Card Body */}
+        <div className="bg-[#303030] border border-[#4A4A4A] p-8 shadow-2xl relative">
+          <div className="text-center mb-6">
+            <div className="flex justify-center mb-3">
               <img
                 src={logo}
                 alt="ByteCode Logo"
-                className="w-20 h-20 drop-shadow-2xl"
+                className="w-16 h-16 object-contain filter drop-shadow-[0_0_12px_rgba(255,106,42,0.4)]"
               />
             </div>
-            <h2 className="text-3xl font-bold text-white mb-2">Verify Your Email</h2>
-            <p className="text-gray-400 mb-2">We've sent a 6-digit code to</p>
-            <p className="text-cyan-400 font-medium text-lg">{email}</p>
+            <h2 className="text-3xl font-bebas text-[#FFFFFF] tracking-wide mb-1">
+              VERIFY YOUR EMAIL
+            </h2>
+            <p className="text-xs text-[#CFCFCF] font-mono mb-1">We sent a 6-digit code to</p>
+            <p className="text-xs text-[#FF6A2A] font-bold font-mono bg-[#252422] py-1 px-3 border border-[#4A4A4A] inline-block">
+              {email}
+            </p>
           </div>
 
-          {/* Messages */}
           {message && (
-            <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-lg text-green-400 flex items-center">
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+            <div className="mb-4 p-3 bg-[#35C759]/10 border border-[#35C759] text-[#35C759] text-xs">
               {message}
             </div>
           )}
 
           {error && (
-            <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 flex items-center">
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+            <div className="mb-4 p-3 bg-[#FF4D4F]/10 border border-[#FF4D4F] text-[#FF4D4F] text-xs">
               {error}
             </div>
           )}
 
-          {/* OTP Input */}
-          <div className="mb-8">
-            <label className="block text-sm font-medium text-gray-300 mb-4 text-center">
-              Enter verification code
+          <div className="mb-6">
+            <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-4 text-center">
+              ENTER 6-DIGIT SECURITY CODE
             </label>
-            <div className="flex justify-between gap-3 mb-6" onPaste={handlePaste}>
+            <div className="flex justify-between gap-2 mb-6" onPaste={handlePaste}>
               {otp.map((digit, index) => (
                 <input
                   key={index}
@@ -195,66 +193,62 @@ const OTPVerification = () => {
                   onChange={(e) => handleOtpChange(e.target.value, index)}
                   onKeyDown={(e) => handleKeyDown(e, index)}
                   onFocus={(e) => e.target.select()}
-                  className="w-12 h-12 text-center text-xl font-bold bg-gray-700/50 border-2 border-gray-600 rounded-lg text-white focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-200"
+                  className="w-11 h-12 text-center text-xl font-bold bg-[#252422] border border-[#4A4A4A] text-white focus:border-[#FF6A2A] focus:outline-none transition-colors"
                   disabled={loading}
                 />
               ))}
             </div>
 
-            {/* Verify Button */}
             <button
               onClick={handleVerifyOTP}
               disabled={loading || otp.join('').length !== 6}
-              className="w-full bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="bytecode-btn-primary w-full"
             >
               {loading ? (
-                <div className="flex items-center justify-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Verifying...
-                </div>
+                <>
+                  <IconLoader2 size={18} className="animate-spin text-white" />
+                  <span>Verifying OTP Code...</span>
+                </>
               ) : (
-                'Verify Email'
+                <>
+                  <IconShieldCheck size={18} />
+                  <span>Verify Email</span>
+                </>
               )}
             </button>
           </div>
 
-          {/* Resend OTP Section */}
-          <div className="text-center space-y-4">
-            <div className="text-gray-400">
-              <p>Didn't receive the code?</p>
+          <div className="text-center space-y-4 pt-4 border-t border-[#4A4A4A]">
+            <div className="text-xs text-[#8E8E8E]">
+              <p>Didn't receive code?</p>
               <button
                 onClick={handleResendOTP}
                 disabled={resendLoading || countdown > 0}
-                className="text-cyan-400 hover:text-cyan-300 font-medium transition-colors duration-200 disabled:text-gray-500 disabled:cursor-not-allowed mt-2"
+                className="text-[#FF6A2A] hover:text-[#FF8C42] font-semibold transition-colors disabled:text-[#8E8E8E] disabled:cursor-not-allowed mt-1.5 flex items-center justify-center gap-1 mx-auto"
               >
                 {resendLoading ? (
-                  <span className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-cyan-400" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Sending...
-                  </span>
+                  <>
+                    <IconLoader2 size={14} className="animate-spin" />
+                    <span>Resending Code...</span>
+                  </>
                 ) : countdown > 0 ? (
-                  `Resend OTP in ${countdown}s`
+                  <span>Resend in {countdown}s</span>
                 ) : (
-                  'Resend OTP'
+                  <>
+                    <IconRefresh size={14} />
+                    <span>Resend OTP</span>
+                  </>
                 )}
               </button>
             </div>
 
-            {/* Back to Register */}
-            <div className="pt-4 border-t border-gray-700">
-              <button
-                onClick={() => navigate('/register')}
-                className="text-gray-400 hover:text-gray-300 font-medium transition-colors duration-200"
-              >
-                ← Back to Register
-              </button>
-            </div>
+            <button
+              onClick={() => navigate('/register')}
+              className="text-xs text-[#CFCFCF] hover:text-[#FF6A2A] transition-colors flex items-center justify-center gap-1 mx-auto pt-2"
+            >
+              <IconArrowLeft size={14} />
+              <span>Back to Register</span>
+            </button>
           </div>
         </div>
       </div>
