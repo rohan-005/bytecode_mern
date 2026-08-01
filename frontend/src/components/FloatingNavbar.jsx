@@ -1,18 +1,12 @@
 /**
  * FloatingNavbar.jsx
  * Premium sharp developer-platform floating navbar.
- * Raycast / VS Code inspired dock with terminal aesthetics.
- * Features bottom active indicator bar and sharp confirmation modal for Logout.
+ * Optimized GPU-accelerated dock with Raycast / Vercel / Linear aesthetics.
+ * 60 FPS fluid hover interactions & smooth active indicator slide.
  */
 
-import React, { useRef, useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import React, { useState, useMemo, memo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { cn } from "../lib/utils";
@@ -33,7 +27,7 @@ export const FloatingNavbar = ({ items, className }) => {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const { logout } = useAuth();
   const navigate = useNavigate();
-  const mouseX = useMotionValue(Infinity);
+
   const currentPath =
     typeof window !== "undefined" ? window.location.pathname : "";
 
@@ -45,42 +39,43 @@ export const FloatingNavbar = ({ items, className }) => {
     navigate("/login");
   };
 
-  const defaultItems = items || [
-    { title: "Dashboard", href: "/dashboard", icon: <IconHome size={20} /> },
-    { title: "Courses", href: "/courses", icon: <IconBooks size={20} /> },
-    { title: "Byte-Compiler", href: "/editor", icon: <IconEdit size={20} /> },
-    { title: "Dev Den", href: "/devden", icon: <IconCode size={20} /> },
-    { title: "AI", href: "/byteai", icon: <IconCpu size={20} /> },
-  ];
+  const defaultItems = useMemo(
+    () =>
+      items || [
+        { title: "Dashboard", href: "/dashboard", icon: <IconHome size={20} /> },
+        { title: "Courses", href: "/courses", icon: <IconBooks size={20} /> },
+        { title: "Byte-Compiler", href: "/editor", icon: <IconEdit size={20} /> },
+        { title: "Dev Den", href: "/devden", icon: <IconCode size={20} /> },
+        { title: "AI", href: "/byteai", icon: <IconCpu size={20} /> },
+      ],
+    [items]
+  );
 
   // Ensure Profile item is included before Logout
-  const hasProfile = defaultItems.some((i) => i.href === "/profile");
-  const navList = hasProfile
-    ? defaultItems
-    : [
-        ...defaultItems,
-        { title: "Profile", href: "/profile", icon: <IconUser size={20} /> },
-      ];
+  const navList = useMemo(() => {
+    const hasProfile = defaultItems.some((i) => i.href === "/profile");
+    return hasProfile
+      ? defaultItems
+      : [
+          ...defaultItems,
+          { title: "Profile", href: "/profile", icon: <IconUser size={20} /> },
+        ];
+  }, [defaultItems]);
 
   return (
     <>
       <div
         className={cn(
-          "fixed top-1 right-8 md:right-8 flex items-center justify-center z-50 font-jetbrains",
+          "fixed top-3 right-6 md:right-8 flex items-center justify-center z-50 font-jetbrains",
           className
         )}
       >
         {/* Desktop Floating Dock */}
-        <motion.div
-          onMouseMove={(e) => mouseX.set(e.pageX)}
-          onMouseLeave={() => mouseX.set(Infinity)}
-          className="hidden md:flex gap-4 px-4 py-3 bg-[#2F3437]/92 backdrop-blur-xl border border-[#626A6E]/70 shadow-xl shadow-black/40 items-center"
-        >
+        <div className="hidden md:flex gap-3 px-3 py-2.5 bg-[#2F3437]/92 backdrop-blur-xl border border-[#626A6E]/70 shadow-xl shadow-black/40 items-center">
           {navList.map((item) => (
             <IconButton
               key={item.title}
               {...item}
-              mouseX={mouseX}
               isActive={
                 currentPath === item.href ||
                 (item.href !== "/" && currentPath.startsWith(item.href))
@@ -91,28 +86,22 @@ export const FloatingNavbar = ({ items, className }) => {
           {/* Desktop Logout Button - Far Right after Profile */}
           <IconButton
             title="LOG OUT"
-            icon={
-              <LogOut
-                size={20}
-                className="text-[#E53935] group-hover:text-[#66BB6A] transition-colors"
-              />
-            }
+            icon={<LogOut size={20} />}
             onClick={() => setShowLogoutConfirm(true)}
-            mouseX={mouseX}
             isLogout={true}
           />
-        </motion.div>
+        </div>
 
         {/* Mobile Navbar */}
         <div className="relative flex md:hidden">
           <AnimatePresence>
             {mobileOpen && (
               <motion.div
-                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                initial={{ opacity: 0, y: -8, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                transition={{ duration: 0.15 }}
-                className="absolute top-16 right-0 flex flex-col gap-2 p-3 bg-[#2F3437] border border-[#626A6E] shadow-2xl min-w-[200px]"
+                exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                className="absolute top-14 right-0 flex flex-col gap-2 p-3 bg-[#2F3437] border border-[#626A6E] shadow-2xl min-w-[200px]"
               >
                 {navList.map((item) => {
                   const isActive =
@@ -139,7 +128,7 @@ export const FloatingNavbar = ({ items, className }) => {
                         {item.title}
                       </span>
                       {isActive && (
-                        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#66BB6A]" />
+                        <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#66BB6A]" />
                       )}
                     </a>
                   );
@@ -167,7 +156,7 @@ export const FloatingNavbar = ({ items, className }) => {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex h-12 w-12 items-center justify-center bg-[#2F3437] border border-[#626A6E] text-white hover:border-[#66BB6A] hover:text-[#66BB6A] transition-all shadow-lg active:scale-95 cursor-pointer"
+            className="flex h-11 w-11 items-center justify-center bg-[#2F3437] border border-[#626A6E] text-white hover:border-[#66BB6A] hover:text-[#66BB6A] transition-colors shadow-lg active:scale-95 cursor-pointer"
             aria-label="Toggle menu"
           >
             <IconLayoutNavbarCollapse size={22} />
@@ -190,10 +179,10 @@ export const FloatingNavbar = ({ items, className }) => {
 
             {/* Dialog Box */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 10 }}
+              initial={{ opacity: 0, scale: 0.95, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 10 }}
-              transition={{ type: "spring", duration: 0.25, bounce: 0.1 }}
+              exit={{ opacity: 0, scale: 0.95, y: 8 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
               className="relative bg-[#2F3437] border border-[#626A6E] p-6 sm:p-8 max-w-sm w-full shadow-2xl z-10 font-jetbrains"
             >
               <div className="flex items-center gap-3 mb-4">
@@ -233,99 +222,86 @@ export const FloatingNavbar = ({ items, className }) => {
   );
 };
 
-const IconButton = ({
-  icon,
-  title,
-  href,
-  onClick,
-  mouseX,
-  isActive,
-  isLogout,
-}) => {
-  const ref = useRef(null);
-  const [hovered, setHovered] = useState(false);
+const IconButton = memo(
+  ({ icon, title, href, onClick, isActive, isLogout }) => {
+    const [hovered, setHovered] = useState(false);
 
-  const distance = useTransform(mouseX, (val) => {
-    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-    return val - bounds.x - bounds.width / 2;
-  });
+    const containerStyles = `w-11 h-11 flex items-center justify-center bg-[#3A4044] border transition-all duration-200 relative cursor-pointer ${
+      isLogout
+        ? hovered
+          ? "border-[#66BB6A] text-[#66BB6A] bg-[#454C50] shadow-[0_4px_14px_rgba(102,187,106,0.2)]"
+          : "border-[#626A6E] text-[#E53935]"
+        : isActive
+        ? "border-[#66BB6A] text-[#66BB6A] bg-[#454C50]"
+        : hovered
+        ? "border-[#66BB6A] text-[#66BB6A] bg-[#454C50] shadow-[0_4px_14px_rgba(102,187,106,0.15)]"
+        : "border-[#626A6E] text-[#D5DBD6]"
+    }`;
 
-  const size = useTransform(distance, [-100, 0, 100], [48, 62, 48]);
-  const iconSize = useTransform(distance, [-100, 0, 100], [22, 28, 22]);
-
-  const springSize = useSpring(size, { stiffness: 450, damping: 22 });
-  const springIcon = useSpring(iconSize, { stiffness: 450, damping: 22 });
-
-  const Content = (
-    <motion.div
-      style={{ width: springSize, height: springSize }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className={`flex items-center justify-center bg-[#3A4044] border transition-all relative cursor-pointer ${
-        isLogout
-          ? "border-[#626A6E] hover:border-[#66BB6A] text-[#D5DBD6] hover:text-[#66BB6A] hover:bg-[#454C50]"
-          : isActive
-          ? "border-[#66BB6A] text-[#F5F7F5] bg-[#454C50]"
-          : "border-[#626A6E] text-[#D5DBD6] group-hover:border-[#66BB6A] group-hover:text-[#66BB6A] group-hover:bg-[#454C50]"
-      }`}
-    >
+    const innerContent = (
       <motion.div
-        style={{ width: springIcon, height: springIcon }}
-        className="flex items-center justify-center"
+        whileHover={{ y: -3, scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        className={containerStyles}
       >
-        {icon}
-      </motion.div>
+        <div className="flex items-center justify-center w-5 h-5">
+          {icon}
+        </div>
 
-      {/* Bottom Active Indicator Underline */}
-      {(isActive || (hovered && !isLogout)) && (
-        <motion.div
-          layoutId="navbar-active-indicator"
-          className="absolute bottom-0 left-1 right-1 h-1 bg-[#66BB6A]"
-          transition={{ type: "spring", stiffness: 380, damping: 28 }}
-        />
-      )}
-
-      {/* Sharp Tooltip Above */}
-      <AnimatePresence>
-        {hovered && (
+        {/* Bottom Active Indicator Underline */}
+        {isActive && (
           <motion.div
-            initial={{ opacity: 0, y: 6, x: "-50%" }}
-            animate={{ opacity: 1, y: 0, x: "-50%" }}
-            exit={{ opacity: 0, y: 6, x: "-50%" }}
-            transition={{ duration: 0.1 }}
-            className={`absolute top-14 left-1/2 px-3 py-1 bg-[#454C50] text-xs font-semibold border uppercase tracking-wider whitespace-nowrap shadow-xl z-50 pointer-events-none ${
-              isLogout
-                ? "text-[#66BB6A] border-[#66BB6A]"
-                : "text-[#F5F7F5] border-[#66BB6A]"
-            }`}
-          >
-            {title}
-          </motion.div>
+            layoutId="navbar-active-indicator"
+            className="absolute bottom-0 left-1.5 right-1.5 h-[2px] bg-[#66BB6A]"
+            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+          />
         )}
-      </AnimatePresence>
-    </motion.div>
-  );
 
-  if (onClick) {
+        {/* Sharp Tooltip Above */}
+        <AnimatePresence>
+          {hovered && (
+            <motion.div
+              initial={{ opacity: 0, y: 4, x: "-50%" }}
+              animate={{ opacity: 1, y: 0, x: "-50%" }}
+              exit={{ opacity: 0, y: 4, x: "-50%" }}
+              transition={{ duration: 0.12, ease: "easeOut" }}
+              className={`absolute top-13 left-1/2 px-2.5 py-1 bg-[#454C50] text-[11px] font-semibold border uppercase tracking-wider whitespace-nowrap shadow-xl z-50 pointer-events-none ${
+                isLogout
+                  ? "text-[#66BB6A] border-[#66BB6A]"
+                  : "text-[#F5F7F5] border-[#66BB6A]"
+              }`}
+            >
+              {title}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    );
+
+    if (onClick) {
+      return (
+        <button
+          onClick={onClick}
+          type="button"
+          className="relative select-none focus:outline-none focus:ring-1 focus:ring-[#66BB6A]"
+        >
+          {innerContent}
+        </button>
+      );
+    }
+
     return (
-      <button
-        onClick={onClick}
-        ref={ref}
-        type="button"
-        className="relative select-none group focus:outline-none focus:ring-1 focus:ring-[#66BB6A]"
+      <a
+        href={href}
+        className="relative select-none focus:outline-none focus:ring-1 focus:ring-[#66BB6A]"
       >
-        {Content}
-      </button>
+        {innerContent}
+      </a>
     );
   }
+);
 
-  return (
-    <motion.a
-      href={href}
-      ref={ref}
-      className="relative select-none group focus:outline-none focus:ring-1 focus:ring-[#66BB6A]"
-    >
-      {Content}
-    </motion.a>
-  );
-};
+IconButton.displayName = "IconButton";
