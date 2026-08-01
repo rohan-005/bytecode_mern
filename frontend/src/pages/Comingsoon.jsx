@@ -1,44 +1,42 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png"; // replace with your logo path
+import logo from "../assets/logo.png";
+import { IconTerminal, IconArrowLeft } from "@tabler/icons-react";
 
 const ComingSoon = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-black to-gray-800 text-white text-center px-6">
-      {/* Logo */}
-      <img
-        src={logo}
-        alt="Platform Logo"
-        className="w-40 h-40 mb-6"
-      />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#1B1B1B] text-[#FFFFFF] text-center px-6 font-jetbrains grid-bg">
+      <div className="bg-[#303030] border border-[#4A4A4A] p-8 max-w-md w-full shadow-2xl relative">
+        <div className="flex justify-center mb-4">
+          <img
+            src={logo}
+            alt="ByteCode Logo"
+            className="w-20 h-20 object-contain filter drop-shadow-[0_0_12px_rgba(255,106,42,0.4)]"
+          />
+        </div>
 
-      {/* Header */}
-      <h1 className="text-5xl md:text-7xl font-extrabold text-cyan-400 tracking-widest mb-4">
-        Coming Soon
-      </h1>
+        <h1 className="text-4xl font-bebas text-[#FFFFFF] tracking-wider mb-2">
+          FEATURE UNDER DEVELOPMENT
+        </h1>
 
-      {/* Subtitle */}
-      <p className="text-xl text-gray-300 font-mono mb-8">
-        {"<"}Something exciting is in the works...{"/>"}
-      </p>
+        <p className="text-xs text-[#FF6A2A] font-mono mb-4 bg-[#252422] p-2 border border-[#4A4A4A]">
+          {"<"}STATUS: FEATURE_DEPLOYMENT_PENDING{"/>"}
+        </p>
 
-      {/* Description */}
-      <p className="text-gray-400 max-w-md mb-10 leading-relaxed">
-        We’re building something amazing for you. Stay tuned for updates — this feature is under development and will be live soon!
-      </p>
+        <p className="text-xs text-[#CFCFCF] font-mono leading-relaxed mb-6">
+          This developer suite module is undergoing final validation and will be available in the upcoming build release.
+        </p>
 
-      {/* Button */}
-      <button
-        onClick={() => navigate("/dashboard")}
-        className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold rounded-xl shadow-md transition-all duration-300 transform hover:scale-105"
-      >
-        Back to Home
-      </button>
-
-      {/* Decorative line */}
-      <div className="mt-12 w-40 h-1 bg-gradient-to-r from-cyan-400 to-transparent rounded-full"></div>
+        <button
+          onClick={() => navigate("/dashboard")}
+          className="bytecode-btn-primary w-full text-xs py-3"
+        >
+          <IconArrowLeft size={16} />
+          <span>Return to Dashboard</span>
+        </button>
+      </div>
     </div>
   );
 };

@@ -3,9 +3,10 @@ import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Footer from "../components/Footer";
+import { SkeletonCard } from "../components/SkeletonLoader";
+import { IconBrandGithub, IconTerminal, IconBook, IconTrendingUp, IconCheck, IconStar, IconArrowRight, IconLogout, IconUser, IconCode, IconRobot, IconUsers, IconSettings, IconRefresh } from "@tabler/icons-react";
 
-// Enhanced GitHub Profile Card Component
-// Compact GitHub Profile Card Component - ID Card Style
+// ID Card Style GitHub Profile Component
 const GitHubProfileCard = React.memo(() => {
   const [githubData, setGithubData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -63,18 +64,10 @@ const GitHubProfileCard = React.memo(() => {
 
   if (showInput) {
     return (
-      <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200 w-80 absolute right-17 top-20 ">
-        <div className="text-center mb-4">
-          <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-blue-500 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <svg
-              className="w-6 h-6 text-white"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-          </div>
-          <h3 className="text-lg font-bold text-gray-800">Connect GitHub</h3>
+      <div className="bg-[#252422] border border-[#4A4A4A] p-5 w-full lg:w-80 font-jetbrains shadow-xl">
+        <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#4A4A4A]">
+          <IconBrandGithub size={20} className="text-[#FF6A2A]" />
+          <h3 className="text-sm font-bold text-[#FFFFFF] uppercase tracking-wider">Connect GitHub</h3>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-3">
@@ -82,18 +75,18 @@ const GitHubProfileCard = React.memo(() => {
             type="text"
             name="username"
             placeholder="GitHub username"
-            className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:outline-none focus:border-purple-500 text-sm"
+            className="bytecode-input w-full text-xs"
             defaultValue={username}
           />
 
           <button
             type="submit"
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg font-semibold text-sm transition duration-300"
+            className="bytecode-btn-primary w-full text-xs py-2"
           >
-            Connect
+            Connect Profile
           </button>
 
-          {error && <p className="text-red-500 text-xs text-center">{error}</p>}
+          {error && <p className="text-[#FF4D4F] text-[11px] text-center font-mono">{error}</p>}
         </form>
       </div>
     );
@@ -101,79 +94,60 @@ const GitHubProfileCard = React.memo(() => {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200 w-80  absolute right-17 top-20 h-85">
-        <div className="animate-pulse">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gray-300 rounded-lg"></div>
-            <div className="flex-1 space-y-2">
-              <div className="h-4 bg-gray-300 rounded w-3/4"></div>
-              <div className="h-3 bg-gray-300 rounded w-1/2"></div>
-            </div>
-          </div>
-        </div>
+      <div className="bg-[#252422] border border-[#4A4A4A] p-5 w-full lg:w-80 font-jetbrains">
+        <div className="skeleton-box h-12 w-full mb-3"></div>
+        <div className="skeleton-box h-4 w-3/4 mb-2"></div>
+        <div className="skeleton-box h-4 w-1/2"></div>
       </div>
     );
   }
 
   if (githubData) {
     return (
-      <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 border border-gray-700 w-80 absolute right-17 top-17">
-        {/* Header with Basic Info */}
-        <div className="text-center mb-6">
-          <button
-            onClick={handleReset}
-            className="text-white hover:text-gray-600 p-2 transition-colors duration-300 flex-shrink-0 absolute right-2 top-1"
-            title="Disconnect GitHub"
-          >
-            X
-          </button>
+      <div className="bg-[#252422] border border-[#4A4A4A] p-5 w-full lg:w-80 font-jetbrains shadow-xl relative">
+        <button
+          onClick={handleReset}
+          className="text-[#8E8E8E] hover:text-[#FF4D4F] font-bold text-xs absolute right-3 top-3 transition-colors"
+          title="Disconnect GitHub"
+        >
+          [DISCONNECT]
+        </button>
+
+        <div className="flex items-center gap-4 mb-4">
           <img
             src={githubData.avatar_url}
             alt={`${githubData.login}'s avatar`}
-            className="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-gray-600"
+            className="w-14 h-14 border border-[#FF6A2A] object-cover"
           />
-          <h2 className="text-xl font-bold text-white mb-1">
-            {githubData.name || githubData.login}
-          </h2>
-          <p className="text-gray-300 text-sm mb-2">
-            {githubData.bio || "Aspiring Game Developer"}
-          </p>
-          <p className="text-purple-400 text-sm flex items-center justify-center gap-1">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-            @{githubData.login}
-          </p>
-        </div>
-
-        {/* Stats Grid - Clean */}
-        <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className="text-center">
-            <div className="text-2xl font-bold text-white">
-              {githubData.public_repos}
-            </div>
-            <div className="text-gray-400 text-sm">Repos</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-white">
-              {githubData.followers}
-            </div>
-            <div className="text-gray-400 text-sm">Followers</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-white">
-              {githubData.following}
-            </div>
-            <div className="text-gray-400 text-sm">Following</div>
+          <div className="overflow-hidden">
+            <h4 className="text-sm font-bold text-white truncate">
+              {githubData.name || githubData.login}
+            </h4>
+            <p className="text-xs text-[#FF6A2A] font-mono truncate">@{githubData.login}</p>
           </div>
         </div>
 
-        {/* Contact Button */}
+        <div className="grid grid-cols-3 gap-2 py-3 border-y border-[#4A4A4A] mb-3 text-center">
+          <div>
+            <div className="text-base font-bold text-white font-mono">{githubData.public_repos}</div>
+            <div className="text-[10px] text-[#8E8E8E] uppercase tracking-wider">Repos</div>
+          </div>
+          <div>
+            <div className="text-base font-bold text-white font-mono">{githubData.followers}</div>
+            <div className="text-[10px] text-[#8E8E8E] uppercase tracking-wider">Followers</div>
+          </div>
+          <div>
+            <div className="text-base font-bold text-white font-mono">{githubData.following}</div>
+            <div className="text-[10px] text-[#8E8E8E] uppercase tracking-wider">Following</div>
+          </div>
+        </div>
+
         <button
           onClick={() => window.open(githubData.html_url, "_blank")}
-          className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-semibold transition duration-300"
+          className="bytecode-btn-secondary w-full text-xs py-2"
         >
-          Contact Me
+          <IconBrandGithub size={14} />
+          <span>View GitHub</span>
         </button>
       </div>
     );
@@ -182,82 +156,57 @@ const GitHubProfileCard = React.memo(() => {
   return null;
 });
 
-// Enhanced StatCard with modern design
 const StatCard = React.memo(({ stat }) => (
-  <div className="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 shadow-2xl border border-gray-700 hover:border-purple-500/50 transition-all duration-500 hover:scale-105 hover:shadow-purple-500/10">
-    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    <div className="relative z-10">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-gray-300 font-medium text-sm uppercase tracking-wider">
-          {stat.label}
-        </h3>
-        <span className="text-2xl transform group-hover:scale-110 transition-transform duration-300">
-          {stat.emoji}
-        </span>
-      </div>
-      <div className="flex items-baseline mb-3">
-        <span className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mr-2">
-          {stat.value}
-        </span>
-        <span className="text-gray-400 text-sm">{stat.unit}</span>
-      </div>
-      <div className="mt-2">
-        <div className="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
-          <div
-            className={`h-full rounded-full transition-all duration-1000 ease-out ${stat.color} shadow-lg`}
-            style={{ width: `${Math.min(stat.value, 100)}%` }}
-          />
-        </div>
-      </div>
+  <div className="bytecode-card p-5 font-jetbrains relative group">
+    <div className="flex items-center justify-between mb-3">
+      <span className="text-xs font-semibold text-[#8E8E8E] uppercase tracking-wider">
+        {stat.label}
+      </span>
+      <span className="text-xl">{stat.emoji}</span>
+    </div>
+    <div className="flex items-baseline mb-2">
+      <span className="text-3xl font-bebas text-[#FFFFFF] tracking-wide mr-1">
+        {stat.value}
+      </span>
+      <span className="text-xs text-[#CFCFCF] font-mono">{stat.unit}</span>
+    </div>
+    <div className="w-full bg-[#252422] h-1.5 border border-[#4A4A4A]">
+      <div
+        className="h-full bg-[#FF6A2A] transition-all duration-700"
+        style={{ width: `${Math.min(stat.value, 100)}%` }}
+      />
     </div>
   </div>
 ));
 
-// Enhanced CourseItem with modern design
 const CourseItem = React.memo(({ enrollment }) => (
-  <div className="group relative bg-gradient-to-r from-gray-500 to-gray-900 rounded-xl p-5 hover:from-purple-900/20 hover:to-blue-900/20 transition-all duration-500 border border-gray-700 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10">
-    <div className="flex items-center justify-between">
-      <div className="flex-1">
-        <h4 className="font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-blue-400 group-hover:bg-clip-text">
+  <div className="bytecode-card p-4 hover:border-[#FF6A2A] transition-colors font-jetbrains">
+    <div className="flex items-center justify-between gap-4">
+      <div className="flex-1 min-w-0">
+        <h4 className="font-semibold text-white text-sm truncate mb-1">
           {enrollment.course.name}
         </h4>
-        <p className="text-sm text-gray-400 flex items-center gap-2">
-          <span className="px-2 py-1 bg-gray-700 rounded-full text-xs">
-            Level: {enrollment.course.level}
+        <div className="flex items-center gap-2 text-[11px] text-[#8E8E8E] font-mono">
+          <span className="px-1.5 py-0.5 bg-[#252422] border border-[#4A4A4A] text-[#CFCFCF]">
+            {enrollment.course.level}
           </span>
           <span>•</span>
           <span>{enrollment.course.duration}</span>
-        </p>
-      </div>
-      <div className="flex items-center space-x-4">
-        <div className="relative">
-          <div className="w-20 h-20 transform group-hover:scale-110 transition-transform duration-300">
-            <svg className="w-full h-full" viewBox="0 0 36 36">
-              <path
-                d="M18 2.0845
-                  a 15.9155 15.9155 0 0 1 0 31.831
-                  a 15.9155 15.9155 0 0 1 0 -31.831"
-                fill="none"
-                stroke="#374151"
-                strokeWidth="3"
-              />
-              <path
-                d="M18 2.0845
-                  a 15.9155 15.9155 0 0 1 0 31.831
-                  a 15.9155 15.9155 0 0 1 0 -31.831"
-                fill="none"
-                stroke="#10B981"
-                strokeWidth="3"
-                strokeDasharray={`${enrollment.enrollment.progress}, 100`}
-                className="transition-all duration-1000 ease-out"
-              />
-            </svg>
-          </div>
-          <span className="absolute inset-0 flex items-center justify-center text-xs font-bold text-white">
-            {Math.round(enrollment.enrollment.progress)}%
-          </span>
         </div>
-        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse group-hover:scale-150 transition-transform duration-300" />
+      </div>
+      
+      <div className="flex items-center gap-3">
+        <div className="text-right">
+          <div className="text-xs font-bold text-[#FF6A2A] font-mono">
+            {Math.round(enrollment.enrollment.progress)}%
+          </div>
+          <div className="w-20 bg-[#252422] h-1.5 border border-[#4A4A4A] mt-1">
+            <div
+              className="h-full bg-[#FF6A2A]"
+              style={{ width: `${enrollment.enrollment.progress}%` }}
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -266,91 +215,53 @@ const CourseItem = React.memo(({ enrollment }) => (
 const QuickActionItem = React.memo(({ action }) => (
   <Link
     to={action.path}
-    className="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border-2 border-gray-700 hover:border-transparent transition-all duration-500 hover:scale-105 hover:shadow-2xl overflow-hidden"
+    className="bytecode-card p-5 hover:border-[#FF6A2A] hover:bg-[#383838] transition-all flex flex-col items-center justify-center text-center font-jetbrains group"
   >
-    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    <div className="relative z-10 text-center">
-      <span className="text-3xl mb-3 block transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
-        {action.icon}
-      </span>
-      <span className="font-semibold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-blue-400 group-hover:bg-clip-text transition-all duration-300">
-        {action.label}
-      </span>
+    <div className="p-3 bg-[#252422] border border-[#4A4A4A] mb-3 text-[#FF6A2A] group-hover:border-[#FF6A2A] transition-colors">
+      {action.icon}
     </div>
-    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+    <span className="text-xs font-semibold uppercase tracking-wider text-[#FFFFFF] group-hover:text-[#FF6A2A] transition-colors">
+      {action.label}
+    </span>
   </Link>
-));
-
-const LogoutButton = React.memo(({ onClick }) => (
-  <button
-    onClick={onClick}
-    className="group relative bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-500 shadow-2xl hover:shadow-red-500/20 hover:scale-105 overflow-hidden"
-  >
-    <div className="absolute inset-0 bg-white/10 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-    <div className="relative z-10 flex items-center gap-3">
-      <svg
-        className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-        />
-      </svg>
-      <span>Logout</span>
-    </div>
-  </button>
 ));
 
 const DashboardCard = React.memo(
   ({ title, viewAllLink, children, className = "" }) => (
-    <div
-      className={`group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 shadow-2xl border border-gray-700 hover:border-purple-500/30 transition-all duration-500 ${className}`}
-    >
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-blue-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      <div className="relative z-10">
-        <div className="flex justify-between items-center mb-8">
-          <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-            {title}
-          </h3>
-          {viewAllLink && (
-            <Link
-              to={viewAllLink}
-              className="group/view-all flex items-center gap-2 text-purple-400 hover:text-purple-300 font-semibold text-sm transition-all duration-300 hover:gap-3"
-            >
-              View All
-              <span className="transform group-hover/view-all:translate-x-1 transition-transform duration-300">
-                →
-              </span>
-            </Link>
-          )}
-        </div>
-        {children}
+    <div className={`bytecode-card p-6 font-jetbrains ${className}`}>
+      <div className="flex justify-between items-center mb-6 pb-2 border-b border-[#4A4A4A]">
+        <h3 className="text-xl font-bebas tracking-wide text-[#FFFFFF] flex items-center gap-2">
+          <span className="text-[#FF6A2A]">//</span> {title}
+        </h3>
+        {viewAllLink && (
+          <Link
+            to={viewAllLink}
+            className="text-xs font-mono font-semibold text-[#FF8C42] hover:text-[#FF6A2A] flex items-center gap-1 transition-colors"
+          >
+            <span>VIEW ALL</span>
+            <IconArrowRight size={14} />
+          </Link>
+        )}
       </div>
+      {children}
     </div>
   )
 );
 
 const CoursesSection = React.memo(({ enrolledCourses }) => (
   <DashboardCard title="My Courses" viewAllLink="/courses">
-    <div className="space-y-4">
+    <div className="space-y-3">
       {enrolledCourses.length === 0 ? (
-        <div className="text-center py-12">
-          <div className="text-8xl mb-6 transform hover:scale-110 transition-transform duration-500">
-            📚
-          </div>
-          <p className="text-gray-400 mb-6 text-lg">
-            You haven't enrolled in any courses yet
+        <div className="text-center py-10 bg-[#252422] border border-[#4A4A4A] p-6">
+          <IconBook size={40} className="mx-auto mb-3 text-[#8E8E8E]" />
+          <p className="text-xs text-[#8E8E8E] mb-4 font-mono">
+            No active course enrollments found.
           </p>
           <Link
             to="/courses"
-            className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-500 shadow-2xl hover:shadow-purple-500/20 hover:scale-105"
+            className="bytecode-btn-primary text-xs"
           >
-            Explore Courses
+            Explore Courses Catalog
           </Link>
         </div>
       ) : (
@@ -364,18 +275,15 @@ const CoursesSection = React.memo(({ enrolledCourses }) => (
 
 const DeveloperCornerCard = React.memo(() => {
   const [currentItem, setCurrentItem] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
   const [developerContent, setDeveloperContent] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch jokes from API
   const fetchJokes = async () => {
     try {
       setLoading(true);
       const jokes = [];
 
-      // Fetch multiple jokes to have enough content
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 6; i++) {
         const jokeApiUrl = import.meta.env.VITE_JOKE_API_URL || "https://official-joke-api.appspot.com/jokes/programming/random";
         const response = await fetch(jokeApiUrl);
         if (response.ok) {
@@ -386,85 +294,39 @@ const DeveloperCornerCard = React.memo(() => {
             content: joke.setup,
             punchline: joke.punchline,
             emoji: "😂",
-            gradient: "from-yellow-500/20 to-amber-500/20",
           });
         }
       }
 
-      // Add some static inspirational content
       const staticContent = [
         {
           type: "quote",
-          content:
-            "The only way to learn a new programming language is by writing programs in it.",
+          content: "The only way to learn a new programming language is by writing programs in it.",
           author: "Dennis Ritchie",
           emoji: "💡",
-          gradient: "from-blue-500/20 to-cyan-500/20",
         },
         {
           type: "quote",
           content: "First, solve the problem. Then, write the code.",
           author: "John Johnson",
           emoji: "🎯",
-          gradient: "from-green-500/20 to-emerald-500/20",
-        },
-        {
-          type: "quote",
-          content: "Code is like humor. When you have to explain it, it's bad.",
-          author: "Cory House",
-          emoji: "😄",
-          gradient: "from-purple-500/20 to-pink-500/20",
         },
         {
           type: "wisdom",
-          content:
-            "Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.",
-          emoji: "🚀",
-          gradient: "from-orange-500/20 to-red-500/20",
-        },
-        {
-          type: "wisdom",
-          content: "The best error message is the one that never shows up.",
-          emoji: "✅",
-          gradient: "from-emerald-500/20 to-green-500/20",
-        },
-        {
-          type: "wisdom",
-          content: "Make it work, make it right, make it fast.",
+          content: "Every great developer got there by solving problems they were unqualified to solve.",
           emoji: "⚡",
-          gradient: "from-indigo-500/20 to-purple-500/20",
         },
       ];
 
-      // Combine jokes with static content and shuffle
-      const allContent = [...staticContent, ...jokes];
-      const shuffledContent = allContent.sort(() => Math.random() - 0.5);
-      setDeveloperContent(shuffledContent);
+      const allContent = [...staticContent, ...jokes].sort(() => Math.random() - 0.5);
+      setDeveloperContent(allContent);
     } catch (error) {
-      console.error("Error fetching jokes:", error);
-      // Fallback content if API fails
       setDeveloperContent([
         {
           type: "quote",
-          content:
-            "The only way to learn a new programming language is by writing programs in it.",
+          content: "The only way to learn a new programming language is by writing programs in it.",
           author: "Dennis Ritchie",
           emoji: "💡",
-          gradient: "from-blue-500/20 to-cyan-500/20",
-        },
-        {
-          type: "wisdom",
-          content:
-            "Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.",
-          emoji: "🚀",
-          gradient: "from-orange-500/20 to-red-500/20",
-        },
-        {
-          type: "joke",
-          content: "Why do programmers prefer dark mode?",
-          punchline: "Because light attracts bugs!",
-          emoji: "🐛",
-          gradient: "from-yellow-500/20 to-amber-500/20",
         },
       ]);
     } finally {
@@ -476,122 +338,42 @@ const DeveloperCornerCard = React.memo(() => {
     fetchJokes();
   }, []);
 
-  useEffect(() => {
-    if (isHovered || developerContent.length === 0) return;
-
-    const interval = setInterval(() => {
-      setCurrentItem((prev) => (prev + 1) % developerContent.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [developerContent.length, isHovered]);
-
-  const item = developerContent[currentItem];
-
-  if (loading) {
-    return (
-      <DashboardCard title="Developer's Corner" className="lg:col-span-2">
-        <div className="text-center py-12">
-          <div className="inline-block mb-6">
-            <div className="text-6xl mb-2 animate-pulse">💻</div>
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-500/20 to-gray-600/20 rounded-full blur-xl opacity-50 -z-10" />
-          </div>
-          <div className="space-y-4">
-            <div className="h-4 bg-gray-700 rounded w-3/4 mx-auto animate-pulse"></div>
-            <div className="h-4 bg-gray-700 rounded w-1/2 mx-auto animate-pulse"></div>
-            <div className="h-4 bg-gray-700 rounded w-2/3 mx-auto animate-pulse"></div>
-          </div>
-          <p className="text-gray-400 text-sm mt-6">
-            Loading developer wisdom...
-          </p>
-        </div>
-      </DashboardCard>
-    );
-  }
+  const item = developerContent[currentItem] || {
+    content: "Loading developer insights...",
+    emoji: "⚡"
+  };
 
   return (
-    <DashboardCard title="Developer's Corner" className="lg:col-span-2">
-      <div
-        className="text-center py-8"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div
-          className={`relative inline-block mb-6 transform hover:scale-110 transition-transform duration-500`}
-        >
-          <div
-            className={`text-6xl mb-2 animate-bounce hover:animate-spin transition-all duration-1000`}
+    <DashboardCard title="Developer's Corner">
+      <div className="bg-[#252422] border border-[#4A4A4A] p-6 text-center">
+        <div className="text-3xl mb-3">{item.emoji}</div>
+        <p className="text-sm text-[#FFFFFF] italic font-mono mb-3">
+          "{item.content}"
+        </p>
+        {item.punchline && (
+          <p className="text-xs font-bold text-[#FFC300] font-mono mb-2">
+            {item.punchline}
+          </p>
+        )}
+        {item.author && (
+          <p className="text-xs text-[#FF6A2A] font-bold font-mono">
+            — {item.author}
+          </p>
+        )}
+
+        <div className="flex justify-center items-center gap-3 mt-6 pt-4 border-t border-[#4A4A4A]">
+          <button
+            onClick={() => setCurrentItem((prev) => (prev + 1) % developerContent.length)}
+            className="bytecode-btn-secondary text-xs py-1.5 px-3"
           >
-            {item.emoji}
-          </div>
-          <div
-            className={`absolute inset-0 bg-gradient-to-r ${item.gradient} rounded-full blur-xl opacity-50 -z-10`}
-          />
-        </div>
-
-        <div className="relative">
-          <div
-            className={`bg-gradient-to-r ${item.gradient} p-8 rounded-2xl backdrop-blur-sm border border-gray-700/50 transform hover:scale-102 transition-all duration-500`}
-          >
-            <p className="text-xl text-white font-light italic mb-4 leading-relaxed">
-              "{item.content}"
-            </p>
-
-            {item.punchline && (
-              <p className="text-lg font-semibold text-yellow-300 mb-4 animate-pulse">
-                {item.punchline}
-              </p>
-            )}
-
-            {item.author && (
-              <p className="text-lg font-semibold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                — {item.author}
-              </p>
-            )}
-          </div>
-
-          <div className="mt-6 flex justify-center items-center gap-4">
-            {/* <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm border ${
-              item.type === 'quote' 
-                ? 'bg-blue-500/20 text-blue-300 border-blue-500/30' 
-                : item.type === 'wisdom'
-                ? 'bg-green-500/20 text-green-300 border-green-500/30'
-                : 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30'
-            }`}>
-              <span>
-                {item.type === 'quote' ? '💭' : 
-                 item.type === 'wisdom' ? '🌟' : '😂'}
-              </span>
-              {item.type === 'quote' ? 'Inspirational Quote' : 
-               item.type === 'wisdom' ? 'Developer Wisdom' : 'Programming Joke'}
-            </span> */}
-          </div>
-        </div>
-
-        <div className="flex justify-center space-x-3 mt-8">
-          {developerContent.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentItem(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-500 transform hover:scale-150 ${
-                index === currentItem
-                  ? "bg-gradient-to-r from-purple-500 to-blue-500 shadow-lg shadow-purple-500/50"
-                  : "bg-gray-600 hover:bg-gray-500"
-              }`}
-            />
-          ))}
-        </div>
-
-        <div className="mt-6 text-sm text-gray-400 flex items-center justify-center gap-2 flex-wrap">
-          <span className="bg-gray-800 px-3 py-1 rounded-full border border-gray-700">
-            {currentItem + 1} / {developerContent.length}
-          </span>
-          <span>✨ Hover to pause • Click dots to navigate</span>
+            <span>Next Insight</span>
+          </button>
           <button
             onClick={fetchJokes}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded-full text-xs transition-all duration-300 transform hover:scale-105"
+            className="bytecode-btn-secondary text-xs py-1.5 px-3"
           >
-            🔄 New Jokes
+            <IconRefresh size={14} />
+            <span>Refresh Jokes</span>
           </button>
         </div>
       </div>
@@ -611,63 +393,44 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   const QUICK_ACTIONS = [
-    { icon: "🚀", label: "Online Compiler", path: "/editor" },
-    { icon: "🤖", label: "Byte-AI", path: "/byteai" },
-    { icon: "👥", label: "Dev-Den", path: "/devden" },
-    { icon: "⚙️", label: "Edit Profile", path: "/profile" },
+    { icon: <IconCode size={22} />, label: "Code Editor", path: "/editor" },
+    { icon: <IconRobot size={22} />, label: "ByteAI Assistant", path: "/byteai" },
+    { icon: <IconUsers size={22} />, label: "Dev Den", path: "/devden" },
+    { icon: <IconSettings size={22} />, label: "Edit Profile", path: "/profile" },
   ];
 
-  // Fetch enrolled courses
   const fetchEnrolledCourses = async () => {
     try {
       const token = localStorage.getItem("token");
-      console.log("🔄 Fetching enrolled courses for dashboard...");
-
-      if (!token) {
-        console.error("❌ No token found in localStorage");
-        return;
-      }
+      if (!token) return;
 
       const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.VITE_BACKEND_URL ? `${import.meta.env.VITE_BACKEND_URL}/api` : 'http://localhost:5000/api');
-      const response = await fetch(
-        `${apiBase}/courses/user/enrolled`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${apiBase}/courses/user/enrolled`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
 
-      console.log("📡 Response status:", response.status);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      if (response.ok) {
+        const data = await response.json();
+        setEnrolledCourses(data);
       }
-
-      const data = await response.json();
-      console.log("✅ Enrolled courses data received:", data);
-
-      setEnrolledCourses(data);
     } catch (error) {
-      console.error("❌ Error fetching enrolled courses:", error);
+      console.error("Error fetching enrolled courses:", error);
     }
   };
 
-  // Fetch user stats
   const fetchUserStats = async () => {
     try {
       const token = localStorage.getItem("token");
       const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.VITE_BACKEND_URL ? `${import.meta.env.VITE_BACKEND_URL}/api` : 'http://localhost:5000/api');
-      const response = await fetch(
-        `${apiBase}/courses/user/stats`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${apiBase}/courses/user/stats`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
 
       if (response.ok) {
         const data = await response.json();
@@ -688,132 +451,115 @@ const Dashboard = () => {
     loadDashboardData();
   }, []);
 
-  // Fixed USER_STATS array - using user.xp from auth context
   const USER_STATS = [
     {
       label: "Courses Enrolled",
       value: userStats.totalCourses,
       unit: "",
       emoji: "📚",
-      color: "bg-gradient-to-r from-blue-500 to-cyan-500",
     },
     {
       label: "Average Progress",
       value: userStats.averageProgress,
       unit: "%",
       emoji: "📈",
-      color: "bg-gradient-to-r from-orange-500 to-red-500",
     },
     {
-      label: "Courses Completed",
+      label: "Completed Tracks",
       value: userStats.completedCourses,
       unit: "",
       emoji: "✅",
-      color: "bg-gradient-to-r from-yellow-500 to-amber-500",
     },
     {
-      label: "XP Earned",
-      value: userStats.totalHours , // Prefer server-provided stats, fallback to auth user.xp
+      label: "Total XP",
+      value: userStats.totalHours || (user?.xp || 0),
       unit: " XP",
       emoji: "⭐",
-      color: "bg-gradient-to-r from-purple-500 to-pink-500",
     },
   ];
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-white text-xl flex items-center gap-3">
-          <div className="w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full animate-spin" />
-          Loading your dashboard...
+      <div className="min-h-screen bg-[#1B1B1B] text-white font-jetbrains p-8 max-w-6xl mx-auto space-y-6">
+        <SkeletonCard className="h-48" />
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-purple-900/20 text-white">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-        {/* Enhanced Welcome Section */}
-
-        <div className=" w-full bg-gradient-to-r from-purple-900 via-gray-800 to-gray-900 rounded-2xl p-8 text-white mb-8 shadow-2xl border border-gray-800">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-6">
+    <div className="min-h-screen bg-[#1B1B1B] text-white font-jetbrains flex flex-col justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        {/* Welcome Section */}
+        <div className="bytecode-card p-6 sm:p-8 mb-8 relative">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
             <div className="flex-1">
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-4 mb-3">
                 <img
                   src={logo}
                   alt="ByteCode Logo"
-                  className="w-20 h-20 md:w-25 md:h-25 lg:w-30 lg:h-30 drop-shadow-2xl"
+                  className="w-14 h-14 object-contain filter drop-shadow-[0_0_12px_rgba(255,106,42,0.4)]"
                 />
                 <div>
-                  <p className="text-blue-400 text-5xl mb-1 font-transformer">
-                    Welcome to ByteCode
-                  </p>
-                  <h1 className="text-3xl md:text-4xl font-bold">
-                    Hello, {user?.name}!
+                  <h1 className="text-3xl font-bebas text-[#FFFFFF] tracking-wide">
+                    WELCOME BACK, {user?.name?.toUpperCase()}
                   </h1>
+                  <p className="text-xs text-[#8E8E8E] font-mono">
+                    Session active • Role: Developer
+                  </p>
                 </div>
               </div>
-              <p className="text-purple-200 text-6xl font-transformer">
-                &lt;<span className="font-ice">Learn By Doing</span>/&gt;
-              </p>
+              <div className="inline-block bg-[#252422] border border-[#FF6A2A] px-3 py-1 text-xs text-[#FF6A2A] font-mono">
+                &lt;Learn_By_Doing /&gt;
+              </div>
             </div>
 
-            {/* <div className="lg:col-span-2"> */}
             <GitHubProfileCard />
-            {/* </div> */}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-            <div className="space-y-2">
-              <p className="font-semibold text-gray-300">Email</p>
-              <p className="text-purple-200 truncate">{user?.email}</p>
-
-              {/* <p className="font-semibold text-gray-300 mt-4">Member Since</p> */}
-              {/* <p className="text-purple-200">
-                {new Date(user?.createdAt || Date.now()).toLocaleDateString()}
-              </p> */}
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3 mt-6 pt-6 border-t border-[#4A4A4A]">
             <Link
               to="/profile"
-              className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-200 shadow-lg"
+              className="bytecode-btn-secondary text-xs"
             >
-              Edit Profile
+              <IconUser size={16} />
+              <span>Edit Profile</span>
             </Link>
             <Link
               to="/courses"
-              className="border-2 border-purple-500 text-purple-300 px-6 py-3 rounded-lg font-semibold hover:bg-purple-500 hover:text-white transition duration-200"
+              className="bytecode-btn-primary text-xs"
             >
-              Browse Courses
+              <IconBook size={16} />
+              <span>Browse Catalog</span>
             </Link>
-            <LogoutButton onClick={logout} />
+            <button
+              onClick={logout}
+              className="bytecode-btn-secondary text-xs border-[#FF4D4F] text-[#FF4D4F] hover:bg-[#FF4D4F]/10 hover:text-[#FF4D4F]"
+            >
+              <IconLogout size={16} />
+              <span>Logout</span>
+            </button>
           </div>
         </div>
 
-        {/* Enhanced Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {USER_STATS.map((stat) => (
             <StatCard key={stat.label} stat={stat} />
           ))}
         </div>
 
-        {/* Enhanced Dashboard Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10 h-100">
-          <div
-            className="overflow-y-scroll 
-  [&::-webkit-scrollbar]:hidden 
-  [-ms-overflow-style:none] 
-  [scrollbar-width:none]"
-          >
-            <CoursesSection enrolledCourses={enrolledCourses} />
-          </div>
+        {/* Courses & Quick Actions Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <CoursesSection enrolledCourses={enrolledCourses} />
 
-          {/* Enhanced Quick Actions */}
           <DashboardCard title="Quick Actions">
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-2 gap-4">
               {QUICK_ACTIONS.map((action, index) => (
                 <QuickActionItem key={index} action={action} />
               ))}
@@ -821,9 +567,10 @@ const Dashboard = () => {
           </DashboardCard>
         </div>
 
-        {/* Enhanced Developer's Corner with API Jokes */}
+        {/* Developer's Corner */}
         <DeveloperCornerCard />
       </div>
+
       <Footer />
     </div>
   );

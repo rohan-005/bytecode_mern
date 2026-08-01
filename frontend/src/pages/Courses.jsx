@@ -2,15 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Footer from "../components/Footer";
-// import PillNav from "../components/FloatingNavbar";
-// import logo from "../assets/logo.png";
 import { FloatingNavbar } from "../components/FloatingNavbar";
+import { SkeletonCard } from "../components/SkeletonLoader";
 import {
   IconHome,
   IconBooks,
   IconCode,
   IconCpu,
   IconEdit,
+  IconSearch,
+  IconCheck,
+  IconArrowRight,
+  IconFilter
 } from "@tabler/icons-react";
 
 const Courses = () => {
@@ -21,7 +24,6 @@ const Courses = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
   const [sortBy, setSortBy] = useState("popular");
-  // eslint-disable-next-line no-unused-vars
   const { user } = useAuth();
 
   const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.VITE_BACKEND_URL ? `${import.meta.env.VITE_BACKEND_URL}/api` : 'http://localhost:5000/api');
@@ -78,19 +80,14 @@ const Courses = () => {
       });
 
       if (response.ok) {
-        // Show success animation
         const button = document.getElementById(`enroll-btn-${courseId}`);
         if (button) {
-          button.innerHTML = "✅ Enrolled!";
-          button.classList.remove("bg-purple-600", "hover:bg-purple-700");
-          button.classList.add("bg-green-600", "cursor-default");
+          button.innerHTML = "✅ ENROLLED!";
+          button.className = "bytecode-btn-secondary w-full text-xs text-[#35C759] border-[#35C759]";
           setTimeout(() => {
             fetchEnrolledCourses();
-          }, 1500);
+          }, 1200);
         }
-      } else {
-        // eslint-disable-next-line no-unused-vars
-        const error = await response.json();
       }
     } catch (error) {
       console.error("Error enrolling in course:", error);
@@ -108,7 +105,6 @@ const Courses = () => {
     return enrollment ? enrollment.enrollment.progress : 0;
   };
 
-  // Get unique categories from courses
   const categories = [
     "all",
     ...new Set(courses.map((course) => course.category).filter(Boolean)),
@@ -141,50 +137,27 @@ const Courses = () => {
       }
     });
 
-  const CourseSkeleton = () => (
-    <div className="bg-gray-800 rounded-2xl p-6 border border-gray-700 animate-pulse">
-      <div className="flex justify-between items-start mb-4">
-        <div className="h-6 bg-gray-700 rounded w-3/4"></div>
-        <div className="h-6 bg-gray-700 rounded w-16"></div>
-      </div>
-      <div className="h-4 bg-gray-700 rounded w-full mb-2"></div>
-      <div className="h-4 bg-gray-700 rounded w-2/3 mb-4"></div>
-      <div className="flex justify-between mb-4">
-        <div className="h-4 bg-gray-700 rounded w-20"></div>
-        <div className="h-4 bg-gray-700 rounded w-16"></div>
-      </div>
-      <div className="h-10 bg-gray-700 rounded w-full"></div>
-    </div>
-  );
   const navItems = [
-  { title: "Dashboard", href: "/dashboard", icon: <IconHome /> },
-  { title: "Courses", href: "/courses", icon: <IconBooks /> },
-  { title: "Byte-Compiler", href: "/editor", icon: <IconEdit size={20} /> },
-  { title: "Dev Den", href: "/code", icon: <IconCode /> },
-  { title: "AI", href: "/byteai", icon: <IconCpu /> },
-
-  // { title: "Tools", href: "/tools", icon: <IconTools /> },
-  // { title: "GitHub", href: "https://github.com", icon: <IconBrandGithub /> },
-];
+    { title: "Dashboard", href: "/dashboard", icon: <IconHome /> },
+    { title: "Courses", href: "/courses", icon: <IconBooks /> },
+    { title: "Byte-Compiler", href: "/editor", icon: <IconEdit size={20} /> },
+    { title: "Dev Den", href: "/devden", icon: <IconCode /> },
+    { title: "AI", href: "/byteai", icon: <IconCpu /> },
+  ];
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
+      <div className="min-h-screen bg-[#1B1B1B] text-white font-jetbrains">
         <FloatingNavbar items={navItems} />
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center py-12">
-            <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <h2 className="text-2xl font-bold text-white mb-2">
-              Loading Pathways
-            </h2>
-            <p className="text-gray-400">
-              Discovering amazing learning opportunities...
-            </p>
+        <div className="max-w-6xl mx-auto px-4 py-16">
+          <div className="text-center py-10">
+            <h2 className="text-3xl font-bebas text-white tracking-wide mb-2">LOADING CURRICULUM</h2>
+            <p className="text-xs text-[#8E8E8E] font-mono">Fetching course tracks...</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[...Array(6)].map((_, i) => (
-              <CourseSkeleton key={i} />
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
           </div>
         </div>
       </div>
@@ -192,82 +165,57 @@ const Courses = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
-      {/* Navigation */}
+    <div className="min-h-screen bg-[#1B1B1B] text-white font-jetbrains flex flex-col justify-between">
       <FloatingNavbar items={navItems} />
 
-      {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 "></div>
-        <div className="container mx-auto px-4 py-16 relative">
-          <div className="text-center max-w-3xl ">
-            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-6 font-transformer">
-              Learning Pathways
-            </h1>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Embark on your coding journey with curated pathways designed to
-              transform beginners into skilled developers
-            </p>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+        {/* Header */}
+        <div className="text-center mb-10">
+          <h1 className="text-5xl sm:text-6xl font-bebas text-white tracking-wider mb-2">
+            LEARNING PATHWAYS
+          </h1>
+          <p className="text-xs sm:text-sm text-[#CFCFCF] font-mono max-w-xl mx-auto leading-relaxed">
+            Curated developer curriculum designed to transform beginners into senior engineers.
+          </p>
 
-            {/* Search Bar */}
-            <div className="relative max-w-2xl mx-auto mb-8">
-              <input
-                type="text"
-                placeholder="Search pathways, technologies, or concepts..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl px-6 py-4 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300"
-              />
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
-                  <svg
-                    className="w-3 h-3 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </div>
-              </div>
+          {/* Search Bar */}
+          <div className="relative max-w-xl mx-auto mt-6">
+            <input
+              type="text"
+              placeholder="Search tracks, technologies, or keywords..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="bytecode-input w-full pl-10 pr-4 text-xs py-3"
+            />
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#8E8E8E]">
+              <IconSearch size={16} />
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Filters & Controls */}
-      <div className="container mx-auto px-4 pb-8">
-        <div className="flex flex-col lg:flex-row gap-4 mb-8">
-          {/* Category Filter */}
-          <div className="flex-1">
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    activeCategory === category
-                      ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/25"
-                      : "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white border border-gray-700"
-                  }`}
-                >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </button>
-              ))}
-            </div>
+        {/* Filters */}
+        <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-6 pb-6 border-b border-[#4A4A4A]">
+          <div className="flex flex-wrap gap-2 w-full md:w-auto">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors ${
+                  activeCategory === category
+                    ? "bg-[#FF6A2A] text-white border border-[#FF6A2A]"
+                    : "bg-[#252422] text-[#CFCFCF] border border-[#4A4A4A] hover:border-[#FF6A2A]"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
           </div>
 
-          {/* Sort & Level Filters */}
-          <div className="flex gap-4">
+          <div className="flex gap-3 w-full md:w-auto">
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-gray-800 border border-gray-700 rounded-xl px-4 py-2 text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300"
+              className="bytecode-input text-xs py-1.5 flex-1"
             >
               <option value="popular">Most Popular</option>
               <option value="rating">Highest Rated</option>
@@ -278,7 +226,7 @@ const Courses = () => {
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              className="bg-gray-800 border border-gray-700 rounded-xl px-4 py-2 text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300"
+              className="bytecode-input text-xs py-1.5 flex-1"
             >
               <option value="all">All Levels</option>
               <option value="Beginner">Beginner</option>
@@ -288,19 +236,10 @@ const Courses = () => {
           </div>
         </div>
 
-        {/* Results Count */}
-        <div className="flex justify-between items-center mb-6">
-          <p className="text-gray-400">
-            Showing{" "}
-            <span className="text-white font-semibold">
-              {filteredCourses.length}
-            </span>{" "}
-            pathways
-          </p>
-          <div className="flex items-center gap-2 text-sm text-gray-400">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span>{enrolledCourses.length} pathways enrolled</span>
-          </div>
+        {/* Results Counter */}
+        <div className="flex justify-between items-center mb-6 text-xs text-[#8E8E8E] font-mono">
+          <span>SHOWING {filteredCourses.length} PATHWAY TRACKS</span>
+          <span className="text-[#35C759]">{enrolledCourses.length} ENROLLED</span>
         </div>
 
         {/* Courses Grid */}
@@ -312,169 +251,76 @@ const Courses = () => {
             return (
               <div
                 key={course.id}
-                className="h-80 group bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 hover:border-purple-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10 hover:scale-105"
+                className="bytecode-card p-6 flex flex-col justify-between hover:border-[#FF6A2A] transition-colors relative"
               >
-                {/* Course Header */}
-                <div className="flex justify-between items-start mb-4">
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-blue-400 group-hover:bg-clip-text transition-all duration-300 line-clamp-2">
+                <div>
+                  <div className="flex justify-between items-start mb-3 gap-2">
+                    <h3 className="text-xl font-bebas text-white tracking-wide leading-snug">
                       {course.name}
                     </h3>
+                    <span className="text-[10px] font-mono uppercase px-2 py-0.5 bg-[#252422] border border-[#4A4A4A] text-[#FF6A2A] whitespace-nowrap">
+                      {course.level}
+                    </span>
                   </div>
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      course.level === "Beginner"
-                        ? "bg-green-500/20 text-green-300 border border-green-500/30"
-                        : course.level === "Intermediate"
-                        ? "bg-yellow-500/20 text-yellow-300 border border-yellow-500/30"
-                        : "bg-red-500/20 text-red-300 border border-red-500/30"
-                    }`}
-                  >
-                    {course.level}
-                  </span>
+
+                  <p className="text-xs text-[#CFCFCF] mb-6 line-clamp-3 leading-relaxed">
+                    {course.description}
+                  </p>
                 </div>
 
-                {/* Course Description */}
-                <p className="text-gray-400 text-sm mb-4 line-clamp-3 leading-relaxed">
-                  {course.description}
-                </p>
+                <div>
+                  {enrolled && (
+                    <div className="mb-4">
+                      <div className="flex justify-between text-[11px] font-mono text-[#CFCFCF] mb-1">
+                        <span>Track Progress</span>
+                        <span className="text-[#35C759] font-bold">{Math.round(progress)}%</span>
+                      </div>
+                      <div className="w-full bg-[#252422] h-1.5 border border-[#4A4A4A]">
+                        <div
+                          className="h-full bg-[#35C759]"
+                          style={{ width: `${progress}%` }}
+                        />
+                      </div>
+                    </div>
+                  )}
 
-                {/* Course Meta */}
-                {/* <div className="flex items-center justify-between text-sm text-gray-300 mb-4">
-                  <div className="flex items-center gap-4">
-                    <span className="flex items-center gap-1">
-                      <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
-                        <span className="text-xs font-bold">👨‍🏫</span>
-                      </div>
-                      {course.instructor}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <div className="w-5 h-5 bg-gray-700 rounded flex items-center justify-center">
-                        <span className="text-xs">⏱️</span>
-                      </div>
-                      {course.duration}
-                    </span>
-                  </div>
+                  {enrolled ? (
+                    <Link
+                      to={`/course/${course.id}`}
+                      className="bytecode-btn-secondary w-full text-xs py-2.5 flex items-center justify-center gap-2 text-[#35C759] border-[#35C759]"
+                    >
+                      <span>{progress === 100 ? "🎉 Completed" : "Continue Learning"}</span>
+                      <IconArrowRight size={14} />
+                    </Link>
+                  ) : (
+                    <button
+                      id={`enroll-btn-${course.id}`}
+                      onClick={() => enrollInCourse(course.id)}
+                      className="bytecode-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2"
+                    >
+                      <span>Start Learning Track</span>
+                      <IconArrowRight size={14} />
+                    </button>
+                  )}
                 </div>
-
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-1">
-                      <span className="text-yellow-400">⭐</span>
-                      <span className="text-white font-semibold">
-                        {course.rating || "4.5"}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <span className="text-gray-400">👥</span>
-                      <span className="text-white font-semibold">
-                        {course.students || "0"}
-                      </span>
-                    </div>
-                  </div>
-                  <span
-                    className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                      course.price === 0
-                        ? "bg-green-500/20 text-green-300 border border-green-500/30"
-                        : "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/25"
-                    }`}
-                  >
-                    {course.price === 0 ? "FREE" : `$${course.price}`}
-                  </span>
-                </div> */}
-
-                {/* Progress for enrolled courses */}
-                {enrolled && (
-                  <div className="mb-4">
-                    <div className="flex justify-between text-sm text-gray-300 mb-2">
-                      <span>Your Progress</span>
-                      <span className="font-semibold">
-                        {Math.round(progress)}%
-                      </span>
-                    </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
-                      <div
-                        className="bg-gradient-to-r from-green-500 to-emerald-400 h-2 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${progress}%` }}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {/* Action Button */}
-                {enrolled ? (
-                  <Link
-                    to={`/course/${course.id}`}
-                    className=" absolute bottom-5 bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-green-500/25 hover:shadow-green-500/40 flex items-center justify-center gap-2 group/btn"
-                  >
-                    <span>
-                      {progress === 100
-                        ? "🎉 Completed"
-                        : "🚀 Continue Learning"}
-                    </span>
-                    <svg
-                      className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      />
-                    </svg>
-                  </Link>
-                ) : (
-                  <button
-                    id={`enroll-btn-${course.id}`}
-                    onClick={() => enrollInCourse(course.id)}
-                    className=" absolute bottom-5  bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 flex items-center justify-center gap-2 group/btn"
-                  >
-                    <span>Start Learning</span>
-                    <svg
-                      className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      />
-                    </svg>
-                  </button>
-                )}
               </div>
             );
           })}
         </div>
 
-        {/* Empty State */}
         {filteredCourses.length === 0 && !loading && (
-          <div className="text-center py-16">
-            <div className="w-24 h-24 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <div className="text-4xl">🔍</div>
-            </div>
-            <h3 className="text-2xl font-bold text-white mb-3">
-              No pathways found
-            </h3>
-            <p className="text-gray-400 mb-6 max-w-md mx-auto">
-              We couldn't find any pathways matching your criteria. Try
-              adjusting your search or filters.
-            </p>
+          <div className="bytecode-card p-12 text-center my-8">
+            <h3 className="text-2xl font-bebas text-white tracking-wide mb-2">NO PATHWAYS MATCHED</h3>
+            <p className="text-xs text-[#8E8E8E] font-mono mb-4">Try clearing filters or search queries.</p>
             <button
               onClick={() => {
                 setSearchQuery("");
                 setFilter("all");
                 setActiveCategory("all");
               }}
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-purple-500/25"
+              className="bytecode-btn-primary text-xs"
             >
-              Clear Filters
+              Reset Filters
             </button>
           </div>
         )}

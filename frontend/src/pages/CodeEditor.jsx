@@ -290,17 +290,18 @@ useEffect(() => {
       base: 'vs-dark',
       inherit: true,
       rules: [
-        { token: 'comment', foreground: '64748b', fontStyle: 'italic' },
-        { token: 'keyword', foreground: '06b6d4' },
-        { token: 'string', foreground: '14b8a6' },
-        { token: 'number', foreground: 'f59e0b' },
+        { token: 'comment', foreground: '8E8E8E', fontStyle: 'italic' },
+        { token: 'keyword', foreground: 'FF6A2A' },
+        { token: 'string', foreground: '35C759' },
+        { token: 'number', foreground: 'FFC300' },
+        { token: 'function', foreground: 'FF8C42' },
       ],
       colors: {
-        'editor.background': '#000000',
-        'editor.foreground': '#e2e8f0',
-        'editor.lineHighlightBackground': '#1a1a1a',
-        'editor.selectionBackground': '#334155',
-        'editor.inactiveSelectionBackground': '#1a1a1a',
+        'editor.background': '#1B1B1B',
+        'editor.foreground': '#FFFFFF',
+        'editor.lineHighlightBackground': '#252422',
+        'editor.selectionBackground': '#4A4A4A',
+        'editor.inactiveSelectionBackground': '#2D2D2D',
       }
     });
     monaco.editor.setTheme('bytecode-elegant');
@@ -691,22 +692,22 @@ useEffect(() => {
       </div>
 
       {/* Header */}
-      <div className="flex-shrink-0 px-6 py-4 border-b border-gray-800 bg-black mt-2">
+      <div className="flex-shrink-0 px-6 py-3 border-b border-[#4A4A4A] bg-[#252422] mt-2 font-jetbrains">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <img src={logo} alt="ByteCode Logo" className="w-15 h-15" />
-            <h1 className="text-blue-400 text-5xl font-semibold bg-gradient-to-r from-slate-100 to-purple-200 bg-clip-text font-transformer">
-              Byte Compiler
+            <img src={logo} alt="ByteCode Logo" className="w-10 h-10 object-contain filter drop-shadow-[0_0_10px_rgba(255,106,42,0.4)]" />
+            <h1 className="text-[#FFFFFF] text-3xl font-bebas tracking-wide">
+              BYTE COMPILER
             </h1>
           </div>
 
           {/* Centered Controls */}
-          <div className="flex items-center gap-4 absolute left-1/2 transform -translate-x-1/2">
+          <div className="flex items-center gap-3">
             <select
               value={getActiveTab()?.language || "javascript"}
               onChange={(e) => handleLanguageChange(e.target.value)}
-              className="bg-gray-800 text-slate-100 px-3 py-2 rounded border border-gray-700 focus:outline-none focus:border-cyan-500 text-sm"
+              className="bytecode-input text-xs py-1.5 px-3"
             >
               <option value="javascript">JavaScript</option>
               <option value="html">HTML</option>
@@ -718,43 +719,42 @@ useEffect(() => {
             <button
               onClick={runCode}
               disabled={isLoading || isRunning}
-              className="bg-cyan-600 hover:bg-cyan-500 px-4 py-2 rounded font-medium text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-sm"
+              className="bytecode-btn-primary text-xs py-1.5 px-4"
             >
               {isRunning ? (
-                <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <div className="w-3 h-3 border-2 border-white border-t-transparent animate-spin" />
               ) : (
                 "▶"
               )}
-              Run
+              Run Code
             </button>
 
             <button
               onClick={formatCode}
-              className="bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded font-medium text-white transition-colors text-sm"
+              className="bytecode-btn-secondary text-xs py-1.5 px-3"
             >
               Format
             </button>
 
             <button
               onClick={resetCode}
-              className="bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded font-medium text-white transition-colors text-sm"
+              className="bytecode-btn-secondary text-xs py-1.5 px-3"
             >
               Reset
             </button>
 
             <button
               onClick={clearConsole}
-              className="bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded font-medium text-white transition-colors text-sm"
+              className="bytecode-btn-secondary text-xs py-1.5 px-3"
             >
               Clear
             </button>
 
-            {/* Download Button */}
             <button
               onClick={downloadCode}
-              className="bg-green-600 hover:bg-green-500 px-3 py-2 rounded font-medium text-white transition-colors text-sm flex items-center gap-2"
+              className="bytecode-btn-secondary text-xs py-1.5 px-3 text-[#35C759] border-[#35C759]"
             >
-              <IconDownload size={16} />
+              <IconDownload size={14} />
               Download
             </button>
           </div>

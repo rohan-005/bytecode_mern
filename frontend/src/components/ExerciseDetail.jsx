@@ -542,58 +542,58 @@ const ExerciseDetail = () => {
       )}
 
       {/* Header */}
-      <div className="relative bg-gradient-to-r from-purple-900/30 to-blue-900/30 backdrop-blur-sm border-b border-white/10">
-        <div className="container  px-4 py-7">
+      <div className="relative bg-[#252422] border-b border-[#4A4A4A] font-jetbrains">
+        <div className="container px-4 py-4">
           <div className="flex items-center gap-4">
             <button
               onClick={() => navigate(`/course/${courseId}`)}
-              className="flex items-center gap-2 text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-105 hover:-translate-x-1"
+              className="text-xs text-[#FF8C42] hover:text-[#FF6A2A] transition-colors flex items-center gap-1 font-mono uppercase tracking-wider"
             >
-              <IconArrowLeft size={20} />
-              Back to Course
+              <IconArrowLeft size={16} />
+              Back to Track
             </button>
             <div className="flex-1">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bebas text-white tracking-wide">
                 {typingEffect}
-                <span className="animate-pulse">|</span>
+                <span className="text-[#FF6A2A] animate-pulse">|</span>
               </h1>
-              <p className="text-gray-400 flex items-center gap-2">
-                <IconBook size={16} />
+              <p className="text-xs text-[#8E8E8E] flex items-center gap-1.5 font-mono">
+                <IconBook size={14} />
                 {course.name}
               </p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               {/* Output Mode Toggle */}
               {canShowPreview(exercise.language) && (
-                <div className="flex items-center gap-2 bg-gray-800/50 rounded-lg p-1 border border-gray-700">
+                <div className="flex items-center gap-1 bg-[#1B1B1B] p-1 border border-[#4A4A4A]">
                   <button
                     onClick={() => setOutputMode("preview")}
-                    className={`flex items-center gap-2 px-3 py-2 rounded-md transition-all duration-300 ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors ${
                       outputMode === "preview"
-                        ? "bg-purple-600 text-white shadow-lg"
-                        : "text-gray-400 hover:text-white"
+                        ? "bg-[#FF6A2A] text-white font-bold"
+                        : "text-[#8E8E8E] hover:text-white"
                     }`}
                   >
-                    <IconScreenShare size={16} />
+                    <IconScreenShare size={14} />
                     Preview
                   </button>
                   <button
                     onClick={() => setOutputMode("console")}
-                    className={`flex items-center gap-2 px-3 py-2 rounded-md transition-all duration-300 ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors ${
                       outputMode === "console"
-                        ? "bg-blue-600 text-white shadow-lg"
-                        : "text-gray-400 hover:text-white"
+                        ? "bg-[#FF6A2A] text-white font-bold"
+                        : "text-[#8E8E8E] hover:text-white"
                     }`}
                   >
-                    <IconTerminal2 size={16} />
+                    <IconTerminal2 size={14} />
                     Console
                   </button>
                 </div>
               )}
 
-              <div className="flex items-center gap-2 bg-blue-500/20 px-3 py-1 rounded-full border border-blue-500/30">
+              <div className="flex items-center gap-1.5 bg-[#1B1B1B] px-3 py-1 border border-[#FF6A2A] text-xs font-mono">
                 <span>{getDifficultyIcon(exercise.difficulty)}</span>
-                <span className="text-blue-300 font-semibold">
+                <span className="text-[#FF6A2A] font-bold">
                   {getLanguageDisplayName(exercise.language)}
                 </span>
               </div>
@@ -602,20 +602,20 @@ const ExerciseDetail = () => {
                 <button
                   onClick={markExerciseComplete}
                   disabled={isExerciseCompleted()}
-                  className={`px-6 py-2 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${
+                  className={`px-4 py-1.5 text-xs font-mono uppercase font-bold tracking-wider transition-colors ${
                     isExerciseCompleted()
-                      ? "bg-gradient-to-r from-green-600 to-emerald-600 text-white opacity-50 cursor-not-allowed"
-                      : "bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-lg hover:shadow-purple-500/25"
+                      ? "bg-[#35C759]/20 text-[#35C759] border border-[#35C759] opacity-60 cursor-not-allowed"
+                      : "bytecode-btn-primary"
                   }`}
                 >
                   {isExerciseCompleted() ? (
-                    <span className="flex items-center gap-2">
-                      <IconCheck size={18} />
+                    <span className="flex items-center gap-1.5">
+                      <IconCheck size={16} />
                       Completed
                     </span>
                   ) : (
-                    <span className="flex items-center gap-2">
-                      <IconTrophy size={18} />
+                    <span className="flex items-center gap-1.5">
+                      <IconTrophy size={16} />
                       Mark Complete
                     </span>
                   )}

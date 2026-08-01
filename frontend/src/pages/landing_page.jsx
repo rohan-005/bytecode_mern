@@ -2,202 +2,193 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png"; // Place your logo in /src/assets/
-import Footer from '../components/Footer'
+import logo from "../assets/logo.png";
+import Footer from '../components/Footer';
+import { IconTerminal2, IconCode, IconCpu, IconRocket, IconBrandGithub, IconCheck, IconChevronRight } from "@tabler/icons-react";
 
 const whyByteCode = [
-  { title: "Interactive Learning", description: "Practice coding while learning concepts, no passive reading.", icon: "💻" },
-  { title: "Step-by-Step Courses", description: "Topics unlocked sequentially, building skills gradually.", icon: "📚" },
-  { title: "Gamified Progress", description: "Earn XP, badges, and rewards while mastering coding.", icon: "🏆" },
-  { title: "Expert-Verified Content", description: "Courses designed by experienced developers.", icon: "👨‍💼" },
+  { title: "Interactive Execution", description: "Execute real code in browser without passive reading.", icon: "⚡" },
+  { title: "Sequenced Tracks", description: "Unlock topics sequentially as skills build progressively.", icon: "🎯" },
+  { title: "Dev Leaderboards", description: "Earn XP, badges, and rank up across developer challenges.", icon: "🏆" },
+  { title: "Verified Syllabus", description: "Curriculum designed by active software engineering practitioners.", icon: "🛠️" },
 ];
 
 const languages = [
-  { title: "Frontend", description: "HTML, CSS, JavaScript, React", color: "from-blue-900 to-cyan-700" },
-  { title: "Backend", description: "Node.js, Python, Java", color: "from-green-900 to-emerald-700" },
-  { title: "Mobile", description: "React Native, Flutter", color: "from-purple-900 to-pink-700" },
-  { title: "Database", description: "SQL, MongoDB, PostgreSQL", color: "from-orange-900 to-red-700" },
+  { title: "Frontend Stack", description: "HTML, CSS, JavaScript, React", bg: "bg-[#252422]", border: "border-[#FF6A2A]" },
+  { title: "Backend Systems", description: "Node.js, Express, Python, Java", bg: "bg-[#252422]", border: "border-[#35C759]" },
+  { title: "Mobile Dev", description: "React Native, Flutter", bg: "bg-[#252422]", border: "border-[#FFC300]" },
+  { title: "Database Systems", description: "SQL, MongoDB, PostgreSQL", bg: "bg-[#252422]", border: "border-[#FF8C42]" },
 ];
 
 const features = [
-  { title: "In-Site Coding Support", description: "Practice exercises and challenges directly in your browser.", gradient: "from-blue-500/20 to-cyan-500/20" },
-  { title: "AI-Powered Assistance", description: "Get hints, explanations, and guided feedback without giving answers away.", gradient: "from-purple-500/20 to-pink-500/20" },
-  { title: "Discussion & Collaboration", description: "Ask questions, pair program, and learn with peers in real-time rooms.", gradient: "from-green-500/20 to-emerald-500/20" },
-  { title: "Gamified Progress", description: "Earn XP, unlock badges, and track your achievements as you progress.", gradient: "from-orange-500/20 to-red-500/20" },
-  { title: "Reference Library", description: "Access official docs, cheat sheets, and curated tutorials per topic.", gradient: "from-indigo-500/20 to-purple-500/20" },
-  { title: "Career Paths", description: "Structured learning paths for specific developer roles and goals.", gradient: "from-teal-500/20 to-blue-500/20" },
+  { title: "In-Browser IDE", description: "Practice exercises and test algorithms directly in full Monaco editor environment." },
+  { title: "ByteAI Companion", description: "Get real-time hints and explanations without giving solutions away." },
+  { title: "Developer Den", description: "Collaborate, discuss solution approaches, and review peer code." },
+  { title: "Gamified XP System", description: "Track streak counters, unlock retro badges, and build your dev profile." },
+  { title: "Reference Docs", description: "Instant access to syntax cheatsheets and curated developer guides." },
+  { title: "Career Pathways", description: "Structured tracks tailored for Full-Stack, Backend, and Frontend roles." },
 ];
 
 const LandingPage = () => {
   const [showContent, setShowContent] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const containerRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowContent(true), 1200);
+    const timer = setTimeout(() => setShowContent(true), 600);
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
   return (
-    <div
-      ref={containerRef}
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white px-4"
-    >
-      {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="absolute w-96 h-96 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"
-          style={{
-            left: `${mousePosition.x / 20}px`,
-            top: `${mousePosition.y / 20}px`,
-            transform: "translate(-50%, -50%)",
-          }}
-        />
-        <div
-          className="absolute w-80 h-80 bg-gradient-to-r from-cyan-500/10 to-green-500/10 rounded-full blur-3xl"
-          style={{
-            right: `${mousePosition.x / 25}px`,
-            bottom: `${mousePosition.y / 25}px`,
-            transform: "translate(50%, 50%)",
-          }}
-        />
+    <div className="relative min-h-screen flex flex-col items-center justify-between bg-[#1B1B1B] text-[#FFFFFF] font-jetbrains grid-bg overflow-x-hidden">
+      {/* Top Banner Status */}
+      <div className="w-full bg-[#252422] border-b border-[#4A4A4A] py-2 px-4 flex items-center justify-between text-xs text-[#8E8E8E] z-20">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 bg-[#35C759] animate-pulse"></span>
+          <span className="text-[#35C759] font-mono font-bold">SYS_ONLINE</span>
+          <span className="text-[#4A4A4A]">|</span>
+          <span className="font-mono">BYTECODE DEV PLATFORM V2.0</span>
+        </div>
+        <div className="hidden sm:flex items-center gap-4 text-[11px]">
+          <span className="text-[#FF6A2A]">PRIMARY_ACCENT: #FF6A2A</span>
+          <span className="text-[#CFCFCF]">STRICT_SHARP_MODE</span>
+        </div>
       </div>
 
-      {/* Logo + App Name */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.7 }}
-        animate={{ opacity: 1, scale: 1, y: showContent ? 50 : 0 }}
-        transition={{ duration: 1.2, ease: "easeOut", type: "spring", stiffness: 100 }}
-        className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 z-10 py-20 font-transformer"
-      >
-        <motion.img
-          src={logo}
-          alt="ByteCode Logo"
-          className="w-24 h-24 md:w-28 md:h-28 lg:w-40 lg:h-40 drop-shadow-2xl"
-          initial={{ y: 30, opacity: 0, rotate: -180 }}
-          animate={{ y: 0, opacity: 1, rotate: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          whileHover={{ scale: 1.1, rotate: 5 }}
-        />
-        <motion.h1
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
-          className="text-6xl md:text-7xl lg:text-8xl font-bold text-amber-200"
+      {/* Main Container */}
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-12 z-10 flex flex-col items-center">
+        {/* Logo + Hero Branding */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="flex flex-col items-center text-center my-6"
         >
-          ByteCode
-        </motion.h1>
-      </motion.div>
+          <div className="relative mb-4">
+            <img
+              src={logo}
+              alt="ByteCode Logo"
+              className="w-24 h-24 sm:w-32 sm:h-32 object-contain filter drop-shadow-[0_0_20px_rgba(255,106,42,0.4)]"
+            />
+          </div>
+          <h1 className="text-6xl sm:text-8xl font-bebas text-[#FFFFFF] tracking-wider mb-2">
+            BYTECODE
+          </h1>
+          <div className="inline-flex items-center gap-2 bg-[#252422] border border-[#FF6A2A] px-4 py-1">
+            <IconTerminal2 size={16} className="text-[#FF6A2A]" />
+            <span className="text-xs font-mono font-bold text-[#FF6A2A] uppercase tracking-widest">
+              NEXT-GEN DEVELOPER LEARNING PLATFORM
+            </span>
+          </div>
+        </motion.div>
 
-      {/* Main Content */}
-      <AnimatePresence>
-        {showContent && (
-          <>
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1, type: "spring" }}
-            className="flex flex-col items-center text-center max-w-6xl space-y-20 mt-20 z-10 "
-          >
-            {/* Hero Section */}
-            <div className="space-y-6 py-20">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold animate-pulse font-ice">
-                Code-<span className="text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text">Practice</span>-Master
-              </h2>
-              <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                Transform how you learn to code with our interactive, gamified platform.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                  onClick={() => navigate("/login")}
-                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300"
-                >
-                  Login
-                </button>
-                <button
-                  onClick={() => navigate("/register")}
-                  className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-2xl border border-white/20 shadow-2xl hover:bg-white/20 transition-all duration-300"
-                >
-                  Register
-                </button>
-              </div>
-            </div>
-
-            {/* Why ByteCode Section */}
-            <div className="w-full space-y-12">
-              <h3 className="text-3xl font-bold text-white">
-                Why <span className="text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text">ByteCode</span>?
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {whyByteCode.map((item, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.08, y: -8, rotate: 2 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                    className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-white/20"
+        {/* Hero Actions */}
+        <AnimatePresence>
+          {showContent && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="w-full space-y-16 mt-6 text-center"
+            >
+              {/* Hero CTA Box */}
+              <div className="bg-[#303030] border border-[#4A4A4A] p-8 sm:p-12 shadow-2xl relative">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-[#FF6A2A]" />
+                <h2 className="text-4xl sm:text-6xl font-bebas text-[#FFFFFF] tracking-wide mb-4">
+                  CODE. PRACTICE. MASTER.
+                </h2>
+                <p className="text-sm sm:text-base text-[#CFCFCF] max-w-2xl mx-auto leading-relaxed mb-8 font-mono">
+                  Supercharge your developer skills with hands-on coding challenges, real-time code evaluation, and structured curriculum.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <button
+                    onClick={() => navigate("/login")}
+                    className="bytecode-btn-primary text-sm px-8 py-3.5 sm:w-auto w-full"
                   >
-                    <div className="text-3xl mb-4">{item.icon}</div>
-                    <h4 className="text-xl font-semibold text-white mb-3">{item.title}</h4>
-                    <p className="text-gray-300 leading-relaxed">{item.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Languages & Features Section */}
-            <div className="w-full space-y-12">
-              <h3 className="text-3xl font-bold text-white">
-                Languages & <span className="text-transparent bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text">Frameworks</span>
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {languages.map((item, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.08, y: -8, rotate: 2 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                    className={`p-6 bg-gradient-to-br ${item.color} rounded-2xl shadow-2xl text-white group cursor-pointer hover:shadow-xl`}
+                    <IconTerminal2 size={18} />
+                    <span>LAUNCH TERMINAL LOGIN</span>
+                  </button>
+                  <button
+                    onClick={() => navigate("/register")}
+                    className="bytecode-btn-secondary text-sm px-8 py-3.5 sm:w-auto w-full"
                   >
-                    <h4 className="text-3xl font-bold mb-3">{item.title}</h4>
-                    <p>{item.description}</p>
-                  </motion.div>
-                ))}
+                    <IconRocket size={18} />
+                    <span>CREATE DEV ACCOUNT</span>
+                  </button>
+                </div>
               </div>
-            </div>
 
-            {/* Features Section */}
-            <div className="w-full space-y-12">
-              <h3 className="text-3xl font-bold text-white">
-                All-in-One <span className="text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text">Learning Experience</span>
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {features.map((item, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.08, y: -8, rotate: 2 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                    className={`p-6 bg-gradient-to-br ${item.gradient} backdrop-blur-sm rounded-2xl border border-white/10 hover:border-white/20`}
-                  >
-                    <h4 className="text-xl font-semibold text-white mb-3">{item.title}</h4>
-                    <p className="text-gray-200 leading-relaxed">{item.description}</p>
-                  </motion.div>
-                ))}
+              {/* Why ByteCode Grid */}
+              <div className="space-y-6">
+                <div className="flex items-center justify-between border-b border-[#4A4A4A] pb-3">
+                  <h3 className="text-2xl font-bebas text-[#FFFFFF] tracking-wide flex items-center gap-2">
+                    <span className="text-[#FF6A2A]">//</span> WHY BYTECODE?
+                  </h3>
+                  <span className="text-xs text-[#8E8E8E] font-mono">[PLATFORM_FEATURES]</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+                  {whyByteCode.map((item, i) => (
+                    <div
+                      key={i}
+                      className="bytecode-card-hover p-5"
+                    >
+                      <div className="text-2xl mb-3">{item.icon}</div>
+                      <h4 className="text-base font-bold text-[#FFFFFF] mb-2 font-mono">{item.title}</h4>
+                      <p className="text-xs text-[#CFCFCF] leading-relaxed">{item.description}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          </motion.div>
-        <Footer/>
-        </>
-        )}
-      </AnimatePresence>
+
+              {/* Languages & Frameworks */}
+              <div className="space-y-6">
+                <div className="flex items-center justify-between border-b border-[#4A4A4A] pb-3">
+                  <h3 className="text-2xl font-bebas text-[#FFFFFF] tracking-wide flex items-center gap-2">
+                    <span className="text-[#FF6A2A]">//</span> SUPPORTED TECH STACKS
+                  </h3>
+                  <span className="text-xs text-[#8E8E8E] font-mono">[STACK_MATRICES]</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+                  {languages.map((item, i) => (
+                    <div
+                      key={i}
+                      className={`p-6 ${item.bg} border ${item.border} bytecode-card-hover`}
+                    >
+                      <h4 className="text-2xl font-bebas text-[#FFFFFF] tracking-wide mb-2">{item.title}</h4>
+                      <p className="text-xs text-[#CFCFCF] font-mono">{item.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* All-in-One Experience */}
+              <div className="space-y-6">
+                <div className="flex items-center justify-between border-b border-[#4A4A4A] pb-3">
+                  <h3 className="text-2xl font-bebas text-[#FFFFFF] tracking-wide flex items-center gap-2">
+                    <span className="text-[#FF6A2A]">//</span> ALL-IN-ONE DEVELOPER TOOLING
+                  </h3>
+                  <span className="text-xs text-[#8E8E8E] font-mono">[DEV_SUITE]</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+                  {features.map((item, i) => (
+                    <div
+                      key={i}
+                      className="bytecode-card-hover p-6"
+                    >
+                      <h4 className="text-sm font-bold text-[#FF6A2A] mb-2 font-mono flex items-center gap-2">
+                        <IconChevronRight size={16} />
+                        {item.title}
+                      </h4>
+                      <p className="text-xs text-[#CFCFCF] leading-relaxed">{item.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      <Footer />
     </div>
   );
 };
