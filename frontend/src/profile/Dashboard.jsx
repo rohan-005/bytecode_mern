@@ -21,7 +21,8 @@ const GitHubProfileCard = React.memo(() => {
     try {
       setLoading(true);
       setError(null);
-      const response = await fetch(`https://api.github.com/users/${username}`);
+      const githubApi = import.meta.env.VITE_GITHUB_API || 'https://api.github.com';
+      const response = await fetch(`${githubApi}/users/${username}`);
       if (!response.ok) {
         throw new Error("GitHub profile not found");
       }
@@ -375,9 +376,8 @@ const DeveloperCornerCard = React.memo(() => {
 
       // Fetch multiple jokes to have enough content
       for (let i = 0; i < 8; i++) {
-        const response = await fetch(
-          "https://official-joke-api.appspot.com/jokes/programming/random"
-        );
+        const jokeApiUrl = import.meta.env.VITE_JOKE_API_URL || "https://official-joke-api.appspot.com/jokes/programming/random";
+        const response = await fetch(jokeApiUrl);
         if (response.ok) {
           const jokeData = await response.json();
           const joke = jokeData[0];
@@ -628,8 +628,9 @@ const Dashboard = () => {
         return;
       }
 
+      const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.VITE_BACKEND_URL ? `${import.meta.env.VITE_BACKEND_URL}/api` : 'http://localhost:5000/api');
       const response = await fetch(
-        `https://bytecode-backend.vercel.app/api/courses/user/enrolled`,
+        `${apiBase}/courses/user/enrolled`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -657,8 +658,9 @@ const Dashboard = () => {
   const fetchUserStats = async () => {
     try {
       const token = localStorage.getItem("token");
+      const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.VITE_BACKEND_URL ? `${import.meta.env.VITE_BACKEND_URL}/api` : 'http://localhost:5000/api');
       const response = await fetch(
-        "https://bytecode-backend.vercel.app/api/courses/user/stats",
+        `${apiBase}/courses/user/stats`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

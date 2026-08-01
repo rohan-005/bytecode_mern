@@ -58,8 +58,8 @@ const ExerciseDetail = () => {
   const codeEditorRef = useRef(null);
   
 
-  // API base URL - use the same as your CodeEditor
-  const API_BASE = import.meta.env.VITE_API_URL || "https://bytecode-backend.vercel.app/";
+  // API base URL - environment variable configured
+  const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.VITE_BACKEND_URL ? `${import.meta.env.VITE_BACKEND_URL}/api` : 'http://localhost:5000/api');
 
   // Default code templates - matching your backend expectations
   const defaultCode = {

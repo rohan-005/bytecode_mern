@@ -226,7 +226,7 @@ export default function CodeEditor() {
   const iframeRefs = useRef({});
   const editorRef = useRef(null);
 
-  const API_BASE = import.meta.env.REACT_APP_API_URL || "https://bytecode-backend.vercel.app/";
+  const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.VITE_BACKEND_URL ? `${import.meta.env.VITE_BACKEND_URL}/api` : 'http://localhost:5000/api');
   // course
   // Add this function to CodeEditor.jsx
 const initializeExerciseMode = () => {

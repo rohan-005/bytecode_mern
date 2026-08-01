@@ -20,18 +20,21 @@ const connectdb = require('./config/connectdb');
 connectdb();
 
 // Middleware
+const allowedOrigins = (
+    process.env.ALLOWED_ORIGIN ||
+    process.env.CLIENT_URL ||
+    process.env.FRONTEND_URL ||
+    'http://localhost:5173'
+).split(',').map(url => url.trim()).filter(Boolean);
+
 app.use(cors({
-    origin: [
-        'https://bytecode.vercel.app',
-        'https://www.bytecode.vercel.app',
-        'https://bytecode-mern.vercel.app',
-        process.env.NODE_ENV === 'development' ? 'http://localhost:5173' : null
-    ].filter(Boolean),
+    origin: allowedOrigins.length === 1 ? allowedOrigins[0] : allowedOrigins,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
-app.use(express.json());// Routes
+app.use(express.json());
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/otp', otpRoutes);
 app.use('/api/courses', courseRoutes);

@@ -9,9 +9,9 @@ const Footer = () => {
           <span className="text-gray-400">© {new Date().getFullYear()}</span>
         </div>
         <div className="flex gap-6 text-gray-300 text-m">
-          <a href="https://www.instagram.com/_rohan.005/" target='blank' className="hover:text-cyan-400 transition-colors">Contact</a>
-          <a href="https://github.com/rohan-005" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">GitHub</a>
-          <a href="https://twitter.com/rohandhanerwal" target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition-colors">Twitter</a>
+          <a href={import.meta.env.VITE_INSTAGRAM_URL || "https://www.instagram.com/_rohan.005/"} target='_blank' rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">Contact</a>
+          <a href={import.meta.env.VITE_GITHUB_URL || "https://github.com/rohan-005"} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">GitHub</a>
+          <a href={import.meta.env.VITE_TWITTER_URL || "https://twitter.com/rohandhanerwal"} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition-colors">Twitter</a>
         </div>
       </div>
     </footer>

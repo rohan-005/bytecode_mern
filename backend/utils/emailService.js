@@ -8,8 +8,20 @@ const createTransporter = () => {
   console.log('Email:', process.env.EMAIL_USER);
   console.log('Password length:', cleanPassword.length);
 
+  if (process.env.EMAIL_HOST) {
+    return nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT, 10) : 587,
+      secure: process.env.EMAIL_SECURE === 'true',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: cleanPassword,
+      },
+    });
+  }
+
   return nodemailer.createTransport({
-    service: 'gmail',
+    service: process.env.EMAIL_SERVICE || 'gmail',
     auth: {
       user: process.env.EMAIL_USER,
       pass: cleanPassword,
@@ -26,8 +38,8 @@ const sendOTPEmail = async (email, otp, name) => {
 
     const mailOptions = {
       from: {
-        name: 'ByteCode Auth',
-        address: process.env.EMAIL_USER
+        name: process.env.EMAIL_FROM_NAME || 'ByteCode Auth',
+        address: process.env.EMAIL_FROM || process.env.EMAIL_USER
       },
       to: email,
       subject: 'Email Verification OTP - ByteCode',
@@ -140,8 +152,8 @@ const sendPasswordResetOTPEmail = async (email, otp, name) => {
 
     const mailOptions = {
       from: {
-        name: 'ByteCode Auth',
-        address: process.env.EMAIL_USER
+        name: process.env.EMAIL_FROM_NAME || 'ByteCode Auth',
+        address: process.env.EMAIL_FROM || process.env.EMAIL_USER
       },
       to: email,
       subject: 'Password Reset OTP - ByteCode',
@@ -262,8 +274,8 @@ const sendPasswordResetEmail = async (email, resetToken, name) => {
 
     const mailOptions = {
       from: {
-        name: 'ByteCode Auth',
-        address: process.env.EMAIL_USER
+        name: process.env.EMAIL_FROM_NAME || 'ByteCode Auth',
+        address: process.env.EMAIL_FROM || process.env.EMAIL_USER
       },
       to: email,
       subject: 'Password Reset Request - ByteCode',
