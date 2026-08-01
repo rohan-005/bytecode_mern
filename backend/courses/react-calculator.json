@@ -4,14 +4,22 @@
   "description": "A hands-on, project-based tutorial to build a fully functional, stylish calculator web app. Master React fundamentals (state, hooks, components) and modern CSS with Tailwind while implementing core features like keyboard support and safe math evaluation.",
   "instructor": "Michael Roberts",
   "duration": "5 weeks",
-  "level": "Beginner → Intermediate",
+  "level": "Beginner \u2192 Intermediate",
   "price": 0,
   "image": "/logos/react.png",
   "category": "Frontend Development",
   "rating": 4.9,
   "ratingCount": 1800,
   "students": 1800,
-  "tags": ["react", "tailwind", "frontend", "webapp", "calculator", "hooks", "vite"],
+  "tags": [
+    "react",
+    "tailwind",
+    "frontend",
+    "webapp",
+    "calculator",
+    "hooks",
+    "vite"
+  ],
   "projectOverview": "You will build a calculator that supports basic arithmetic operations (+, -, *, /), features a clear and delete functionality, handles user input from both mouse and keyboard, and displays a clean, responsive interface. The final app will be deployed live on the web.",
   "whatYouLearn": [
     "Set up a modern React development environment with Vite",
@@ -40,8 +48,15 @@
       "objective": "Create a new React project and configure Tailwind CSS.",
       "initialCode": "# Let's create the project scaffold. Run this in your terminal:\nnpm create vite@latest react-calculator -- --template react\ncd react-calculator\nnpm install",
       "solutionCode": "# 1. Create Project\nnpm create vite@latest react-calculator -- --template react\ncd react-calculator\n\n# 2. Install Dependencies\nnpm install\n\n# 3. Install and Configure Tailwind CSS\nnpm install -D tailwindcss postcss autoprefixer\nnpx tailwindcss init -p\n\n# 4. Configure tailwind.config.js\n# Replace its content with:\n/** @type {import('tailwindcss').Config} */\nexport default {\n  content: [\n    \"./index.html\",\n    \"./src/**/*.{js,ts,jsx,tsx}\",\n  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}\n\n# 5. Add Tailwind Directives to src/index.css\n# Replace the file content with:\n@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n# 6. Start the Development Server\nnpm run dev",
-      "requirements": ["Initialize a Vite React project", "Install and configure Tailwind CSS", "Start the development server"],
-      "hints": ["Vite's `create` command is the modern equivalent of Create React App.", "The `content` array in `tailwind.config.js` tells Tailwind which files to scan for class names."]
+      "requirements": [
+        "Initialize a Vite React project",
+        "Install and configure Tailwind CSS",
+        "Start the development server"
+      ],
+      "hints": [
+        "Vite's `create` command is the modern equivalent of Create React App.",
+        "The `content` array in `tailwind.config.js` tells Tailwind which files to scan for class names."
+      ]
     },
     {
       "id": "ex2",
@@ -50,12 +65,19 @@
       "duration": "45 min",
       "difficulty": "Easy",
       "language": "jsx",
-      "theory": "React applications are built using components—reusable, self-contained pieces of UI. We'll structure our calculator with a main `App` component that houses a `Display` component and a `Button` component.",
+      "theory": "React applications are built using components\u2014reusable, self-contained pieces of UI. We'll structure our calculator with a main `App` component that houses a `Display` component and a `Button` component.",
       "objective": "Create the Display and Button components and assemble them in App.jsx.",
       "initialCode": "// src/App.jsx - Start here\nexport default function App() {\n  return (\n    <div>\n      {/* We'll build our calculator here */}\n      <h1>Calculator</h1>\n    </div>\n  );\n}",
       "solutionCode": "// src/App.jsx\nimport Display from './components/Display';\nimport Button from './components/Button';\n\nexport default function App() {\n  // Placeholder data - we'll manage state in the next exercise\n  const displayValue = '0';\n  \n  return (\n    <div className=\"min-h-screen bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center p-4\">\n      <div className=\"bg-gray-800 p-6 rounded-3xl shadow-2xl w-full max-w-xs\">\n        {/* Display Component at the top */}\n        <Display value={displayValue} />\n        \n        {/* Button Grid */}\n        <div className=\"grid grid-cols-4 gap-3 mt-4\">\n          {/* We'll map over an array of buttons later */}\n          <Button value=\"C\" />\n          <Button value=\"DEL\" />\n          <Button value=\"%\" />\n          <Button value=\"/\" />\n          {/* ... more buttons */}\n        </div>\n      </div>\n    </div>\n  );\n}\n\n// src/components/Display.jsx\nexport default function Display({ value }) {\n  return (\n    <div className=\"bg-gray-900 text-white text-right p-5 rounded-2xl mb-4 font-mono text-3xl font-light overflow-x-auto\">\n      {value}\n    </div>\n  );\n}\n\n// src/components/Button.jsx\nexport default function Button({ value }) {\n  return (\n    <button \n      className=\"bg-gray-700 hover:bg-gray-600 text-white text-xl font-medium p-4 rounded-2xl transition-colors duration-200 active:scale-95\"\n    >\n      {value}\n    </button>\n  );\n}",
-      "requirements": ["Create Display and Button components", "Build the main calculator layout in App.jsx", "Apply initial Tailwind CSS styles for a clean look"],
-      "hints": ["Use CSS Grid (`grid grid-cols-4`) for the button layout. It's perfect for this use case.", "The `font-mono` class on the display gives it a classic calculator font."]
+      "requirements": [
+        "Create Display and Button components",
+        "Build the main calculator layout in App.jsx",
+        "Apply initial Tailwind CSS styles for a clean look"
+      ],
+      "hints": [
+        "Use CSS Grid (`grid grid-cols-4`) for the button layout. It's perfect for this use case.",
+        "The `font-mono` class on the display gives it a classic calculator font."
+      ]
     },
     {
       "id": "ex3",
@@ -68,8 +90,16 @@
       "objective": "Use useState to manage the calculator's display and handle button click events.",
       "initialCode": "// src/App.jsx - We'll add state here\nimport { useState } from 'react';\nimport Display from './components/Display';\nimport Button from './components/Button';\n\n// ... (rest of the component)",
       "solutionCode": "// src/App.jsx\nimport { useState } from 'react';\nimport Display from './components/Display';\nimport Button from './components/Button';\n\n// Define our button layout in a 2D array for clarity\nconst buttonLayout = [\n  ['C', 'DEL', '%', '/'],\n  ['7', '8', '9', '*'],\n  ['4', '5', '6', '-'],\n  ['1', '2', '3', '+'],\n  ['0', '.', '=']\n];\n\nexport default function App() {\n  const [input, setInput] = useState('');\n  const [result, setResult] = useState('');\n\n  const handleButtonClick = (value) => {\n    if (value === '=') {\n      // Calculate result - we'll improve this logic later\n      try {\n        // A safer alternative to eval for basic operations\n        const calcResult = Function('\"use strict\";return (' + input + ')')();\n        setResult(calcResult.toString());\n        setInput(calcResult.toString()); // Show result, ready for next operation\n      } catch (error) {\n        setResult('Error');\n      }\n    } else if (value === 'C') {\n      // Clear everything\n      setInput('');\n      setResult('');\n    } else if (value === 'DEL') {\n      // Delete the last character\n      setInput((prev) => prev.slice(0, -1));\n    } else {\n      // Append the clicked value to the input\n      setInput((prev) => prev + value);\n    }\n  };\n\n  return (\n    <div className=\"min-h-screen bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center p-4\">\n      <div className=\"bg-gray-800 p-6 rounded-3xl shadow-2xl w-full max-w-xs\">\n        <Display value={input || result || '0'} />\n        <div className=\"grid grid-cols-4 gap-3 mt-4\">\n          {buttonLayout.flat().map((btn) => (\n            <Button \n              key={btn} \n              value={btn} \n              onClick={() => handleButtonClick(btn)}\n              // Span the '0' and '=' buttons for better layout\n              className={btn === '0' ? 'col-span-2' : btn === '=' ? 'col-span-2 bg-orange-500 hover:bg-orange-400' : ''}\n            />\n          ))}\n        </div>\n      </div>\n    </div>\n  );\n}\n\n// src/components/Button.jsx - Updated to handle onClick and className props\nexport default function Button({ value, onClick, className = '' }) {\n  // Determine button style based on value\n  const isOperator = ['/', '*', '-', '+', '='].includes(value);\n  const isFunction = ['C', 'DEL', '%'].includes(value);\n  \n  let bgColor = 'bg-gray-700';\n  if (isOperator) bgColor = 'bg-orange-500 hover:bg-orange-400';\n  if (isFunction) bgColor = 'bg-gray-600 hover:bg-gray-500';\n  \n  return (\n    <button \n      onClick={onClick}\n      className={`${bgColor} text-white text-xl font-medium p-4 rounded-2xl transition-colors duration-200 active:scale-95 ${className}`}\n    >\n      {value}\n    </button>\n  );\n}",
-      "requirements": ["Implement useState to manage input and result", "Create a handleButtonClick function to process user input", "Pass click handlers and props down to child components", "Differentiate button styles based on their function (number, operator, etc.)"],
-      "hints": ["Use functional updates (`setInput(prev => prev + value)`) for state that depends on the previous state.", "The `buttonLayout` array makes the JSX cleaner and easier to modify."]
+      "requirements": [
+        "Implement useState to manage input and result",
+        "Create a handleButtonClick function to process user input",
+        "Pass click handlers and props down to child components",
+        "Differentiate button styles based on their function (number, operator, etc.)"
+      ],
+      "hints": [
+        "Use functional updates (`setInput(prev => prev + value)`) for state that depends on the previous state.",
+        "The `buttonLayout` array makes the JSX cleaner and easier to modify."
+      ]
     },
     {
       "id": "ex4",
@@ -82,8 +112,16 @@
       "objective": "Create a safe calculation function and integrate it into the app.",
       "initialCode": "// Let's create a utility function for calculations\n// Create a new file: src/utils/calculate.js",
       "solutionCode": "// src/utils/calculate.js\n\nexport const calculate = (input) => {\n  // Remove any spaces and validate input\n  const expression = input.replace(/\\s+/g, '');\n  \n  // Basic validation: expression should only contain numbers, operators, and decimal point\n  if (!/^[\\d+\\-*/.()]+$/.test(expression)) {\n    throw new Error('Invalid characters');\n  }\n\n  // Use a safer evaluation method\n  try {\n    // This is a simple approach. For a more robust solution, consider a library like 'mathjs' or 'expr-eval'.\n    // We're using Function constructor but in a more controlled way than eval.\n    const result = Function('\"use strict\";return (' + expression + ')')();\n    \n    // Handle division by zero and other edge cases\n    if (!isFinite(result)) {\n      throw new Error('Invalid operation');\n    }\n    \n    return result.toString();\n  } catch (error) {\n    throw new Error('Calculation error');\n  }\n};\n\n// src/App.jsx - Update the handleButtonClick function\nimport { calculate } from './utils/calculate';\n\n// Inside the App component, update the handleButtonClick function:\nconst handleButtonClick = (value) => {\n  if (value === '=') {\n    if (!input) return; // Don't calculate if input is empty\n    try {\n      const calcResult = calculate(input);\n      setResult(calcResult);\n      setInput(calcResult); // Set input to result for continuous calculation\n    } catch (error) {\n      setResult('Error');\n      setInput(''); // Clear input on error\n    }\n  } else if (value === 'C') {\n    setInput('');\n    setResult('');\n  } else if (value === 'DEL') {\n    setInput((prev) => prev.slice(0, -1));\n  } else if (value === '%') {\n    // Percentage functionality\n    try {\n      const percentageValue = (parseFloat(input) / 100).toString();\n      setInput(percentageValue);\n    } catch {\n      setInput('Error');\n    }\n  } else {\n    // Prevent multiple decimal points in a number\n    if (value === '.' && input.split(/[+\\-*/]/).pop().includes('.')) {\n      return;\n    }\n    setInput((prev) => prev + value);\n  }\n};",
-      "requirements": ["Create a safe calculate function in a separate utility file", "Implement input validation and error handling", "Add percentage functionality", "Prevent invalid input patterns (like multiple decimal points)"],
-      "hints": ["The regex `/^[\\d+\\-*/.()]+$/` ensures only valid calculator characters are used.", "For a real-world app, consider using a library like `mathjs` for advanced and safe mathematical operations."]
+      "requirements": [
+        "Create a safe calculate function in a separate utility file",
+        "Implement input validation and error handling",
+        "Add percentage functionality",
+        "Prevent invalid input patterns (like multiple decimal points)"
+      ],
+      "hints": [
+        "The regex `/^[\\d+\\-*/.()]+$/` ensures only valid calculator characters are used.",
+        "For a real-world app, consider using a library like `mathjs` for advanced and safe mathematical operations."
+      ]
     },
     {
       "id": "ex5",
@@ -96,8 +134,16 @@
       "objective": "Implement keyboard input support and refine button animations.",
       "initialCode": "// We'll use the useEffect hook to add keyboard support\nimport { useState, useEffect } from 'react';",
       "solutionCode": "// src/App.jsx\nimport { useState, useEffect } from 'react';\nimport Display from './components/Display';\nimport Button from './components/Button';\nimport { calculate } from './utils/calculate';\n\n// ... (buttonLayout array remains the same)\n\nexport default function App() {\n  const [input, setInput] = useState('');\n  const [result, setResult] = useState('');\n\n  // Map keyboard keys to calculator functions\n  const handleKeyDown = (event) => {\n    const { key } = event;\n    \n    // Prevent default for keys we're handling to avoid unintended behavior\n    if (['Enter', 'Escape', 'Backspace', ...'0123456789/*-+.%'].includes(key)) {\n      event.preventDefault();\n    }\n\n    if (key === 'Enter' || key === '=') {\n      handleButtonClick('=');\n    } else if (key === 'Escape' || key === 'c' || key === 'C') {\n      handleButtonClick('C');\n    } else if (key === 'Backspace') {\n      handleButtonClick('DEL');\n    } else if ('0123456789/*-+.%'.includes(key)) {\n      handleButtonClick(key);\n    }\n  };\n\n  // Add and cleanup the event listener\n  useEffect(() => {\n    window.addEventListener('keydown', handleKeyDown);\n    return () => {\n      window.removeEventListener('keydown', handleKeyDown);\n    };\n  }, [input, result]); // Re-attach if input/result changes\n\n  // handleButtonClick function from previous exercise remains the same\n  const handleButtonClick = (value) => {\n    // ... (previous implementation)\n  };\n\n  return (\n    <div className=\"min-h-screen bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center p-4\">\n      <div className=\"bg-gray-800 p-6 rounded-3xl shadow-2xl w-full max-w-xs transition-all duration-300 hover:shadow-xl\">\n        <Display value={input || result || '0'} />\n        <div className=\"grid grid-cols-4 gap-3 mt-4\">\n          {buttonLayout.flat().map((btn) => (\n            <Button \n              key={btn} \n              value={btn} \n              onClick={() => handleButtonClick(btn)}\n              className={btn === '0' ? 'col-span-2' : btn === '=' ? 'col-span-2 bg-orange-500 hover:bg-orange-400' : ''}\n            />\n          ))}\n        </div>\n      </div>\n    </div>\n  );\n}\n\n// src/components/Button.jsx - Enhanced with better animation\nexport default function Button({ value, onClick, className = '' }) {\n  const isOperator = ['/', '*', '-', '+', '='].includes(value);\n  const isFunction = ['C', 'DEL', '%'].includes(value);\n  \n  let bgColor = 'bg-gray-700';\n  if (isOperator) bgColor = 'bg-orange-500 hover:bg-orange-400';\n  if (isFunction) bgColor = 'bg-gray-600 hover:bg-gray-500';\n  \n  return (\n    <button \n      onClick={onClick}\n      className={`\n        ${bgColor} \n        text-white text-xl font-medium p-4 \n        rounded-2xl \n        transition-all duration-150 \n        active:scale-95 active:brightness-90\n        hover:scale-105\n        focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50\n        ${className}\n      `}\n    >\n      {value}\n    </button>\n  );\n}",
-      "requirements": ["Use useEffect to add keyboard event listeners", "Map common keyboard keys (Enter, Escape, Backspace) to calculator functions", "Enhance button animations with hover and active states", "Add focus styles for accessibility"],
-      "hints": ["The dependency array in `useEffect` ensures our event listener has the latest state.", "The `active:scale-95` and `hover:scale-105` classes provide satisfying tactile feedback."]
+      "requirements": [
+        "Use useEffect to add keyboard event listeners",
+        "Map common keyboard keys (Enter, Escape, Backspace) to calculator functions",
+        "Enhance button animations with hover and active states",
+        "Add focus styles for accessibility"
+      ],
+      "hints": [
+        "The dependency array in `useEffect` ensures our event listener has the latest state.",
+        "The `active:scale-95` and `hover:scale-105` classes provide satisfying tactile feedback."
+      ]
     },
     {
       "id": "ex6",
@@ -110,8 +156,15 @@
       "objective": "Create a production build and deploy it online.",
       "initialCode": "# First, let's create a production build\nnpm run build",
       "solutionCode": "# 1. Create a production build\nnpm run build\n\n# This creates a `dist` folder with optimized production files.\n\n# 2. Deploy using Vercel (easiest method):\n# Option A: Using the Vercel CLI\nnpm install -g vercel\nvercel --prod\n\n# Option B: Using Git (Recommended)\n# - Push your code to a GitHub repository.\n# - Go to vercel.com and sign up with your GitHub account.\n# - Click \"New Project\" and import your calculator repository.\n# - Vercel will automatically detect it's a Vite app and configure the settings.\n# - Click \"Deploy\". Your app will be live in seconds!\n\n# 3. Alternatively, deploy to Netlify:\n# - Push your code to GitHub.\n# - Go to netlify.com, sign up, and click \"Add new site\" -> \"Import an existing project\".\n# - Connect your GitHub repo.\n# - Set the build command to `npm run build` and publish directory to `dist`.\n# - Click \"Deploy site`.",
-      "requirements": ["Run a production build", "Deploy the application to a live URL", "Verify the deployed application works correctly"],
-      "hints": ["The `dist` folder is all you need to host your app. Don't upload your `src` or `node_modules`.", "If your app doesn't load on Vercel/Netlify, check if you need a `vite.config.js` file with the correct base setting: `export default { base: './' }`"]
+      "requirements": [
+        "Run a production build",
+        "Deploy the application to a live URL",
+        "Verify the deployed application works correctly"
+      ],
+      "hints": [
+        "The `dist` folder is all you need to host your app. Don't upload your `src` or `node_modules`.",
+        "If your app doesn't load on Vercel/Netlify, check if you need a `vite.config.js` file with the correct base setting: `export default { base: './' }`"
+      ]
     }
   ],
   "nextSteps": [

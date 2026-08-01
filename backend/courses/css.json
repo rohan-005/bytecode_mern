@@ -11,7 +11,15 @@
   "rating": 4.9,
   "ratingCount": 3120,
   "students": 5620,
-  "tags": ["css", "css3", "flexbox", "grid", "animations", "responsive", "ui"],
+  "tags": [
+    "css",
+    "css3",
+    "flexbox",
+    "grid",
+    "animations",
+    "responsive",
+    "ui"
+  ],
   "whatYouLearn": [
     "Master CSS specificity, cascade, and inheritance",
     "Engineer complex layouts with Flexbox and 2D CSS Grid",
@@ -20,7 +28,9 @@
     "Craft glassmorphism overlays and micro-animations",
     "Build a production-grade Netflix Landing Page UI"
   ],
-  "prerequisites": ["HTML5 Complete Track"],
+  "prerequisites": [
+    "HTML5 Complete Track"
+  ],
   "exercises": [
     {
       "id": "css-ex1",
@@ -247,11 +257,11 @@
       "theory": "Pseudo-classes (:hover, :focus) target dynamic element states. Pseudo-elements (::before, ::after) generate cosmetic DOM nodes without extra HTML elements.",
       "objective": "Create styled button hover/focus effects and custom list bullet badges.",
       "initialCode": ".btn {\n    /* Add pseudo selector styles */\n}",
-      "solutionCode": ".btn {\n    background-color: #FF6A2A;\n    color: #FFFFFF;\n    padding: 12px 24px;\n    border: none;\n    transition: background-color 0.2s ease;\n}\n\n.btn:hover {\n    background-color: #FF8C42;\n}\n\n.btn:focus-visible {\n    outline: 2px solid #35C759;\n    outline-offset: 2px;\n}\n\n.custom-list li {\n    position: relative;\n    padding-left: 20px;\n    list-style: none;\n}\n\n.custom-list li::before {\n    content: \"•\";\n    position: absolute;\n    left: 0;\n    color: #FF6A2A;\n}",
+      "solutionCode": ".btn {\n    background-color: #FF6A2A;\n    color: #FFFFFF;\n    padding: 12px 24px;\n    border: none;\n    transition: background-color 0.2s ease;\n}\n\n.btn:hover {\n    background-color: #FF8C42;\n}\n\n.btn:focus-visible {\n    outline: 2px solid #35C759;\n    outline-offset: 2px;\n}\n\n.custom-list li {\n    position: relative;\n    padding-left: 20px;\n    list-style: none;\n}\n\n.custom-list li::before {\n    content: \"\u2022\";\n    position: absolute;\n    left: 0;\n    color: #FF6A2A;\n}",
       "requirements": [
         "Add :hover background color change to button",
         "Add :focus-visible outline styling",
-        "Use ::before on list items with content: '•'"
+        "Use ::before on list items with content: '\u2022'"
       ],
       "hints": [
         "::before requires content property to render"

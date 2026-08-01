@@ -11,7 +11,15 @@
   "rating": 4.9,
   "ratingCount": 4820,
   "students": 8940,
-  "tags": ["javascript", "js", "es6", "async", "dom", "promises", "frontend"],
+  "tags": [
+    "javascript",
+    "js",
+    "es6",
+    "async",
+    "dom",
+    "promises",
+    "frontend"
+  ],
   "whatYouLearn": [
     "Master JavaScript syntax, scope, and execution context",
     "Harness ES6+ destructuring, spread, modules, and arrow functions",
@@ -20,7 +28,10 @@
     "Manipulate the DOM dynamically and respond to user events",
     "Build a production Expense Tracker and Weather Dashboard"
   ],
-  "prerequisites": ["HTML5 Complete Track", "CSS3 Modern Design Systems"],
+  "prerequisites": [
+    "HTML5 Complete Track",
+    "CSS3 Modern Design Systems"
+  ],
   "exercises": [
     {
       "id": "js-ex1",
@@ -323,8 +334,7 @@
       "theory": "fetch() sends HTTP requests and returns a Promise resolving to a Response object. Parse JSON payloads using response.json().",
       "objective": "Send a POST JSON payload using fetch API.",
       "initialCode": "async function submitData(payload) {\n    // Fetch POST request\n}",
-      "solutionCode": "const submitData = async (payload) => {\n    try {\n        const response = await fetch('https://jsonplaceholder.typicode.com/posts', {\n            method: 'POST',\n            headers: {\n                'Content-Type': 'application/json'\n            },\n            body: JSON.stringify(payload)\n        });\n        \n        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);\n        const data = await response.json();
-        console.log('Server Created Resource:', data);\n        return data;\n    } catch (err) {\n        console.error('Fetch error:', err.message);\n    }\n};\n\nsubmitData({ title: 'ByteCode Test', body: 'JS Fetch Exercise' });",
+      "solutionCode": "const submitData = async (payload) => {\n    try {\n        const response = await fetch('https://jsonplaceholder.typicode.com/posts', {\n            method: 'POST',\n            headers: {\n                'Content-Type': 'application/json'\n            },\n            body: JSON.stringify(payload)\n        });\n        \n        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);\n        const data = await response.json();\n        console.log('Server Created Resource:', data);\n        return data;\n    } catch (err) {\n        console.error('Fetch error:', err.message);\n    }\n};\n\nsubmitData({ title: 'ByteCode Test', body: 'JS Fetch Exercise' });",
       "requirements": [
         "Send fetch request with method: 'POST'",
         "Include Content-Type: application/json header",

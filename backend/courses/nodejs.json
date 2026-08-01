@@ -11,7 +11,14 @@
   "rating": 4.9,
   "ratingCount": 4210,
   "students": 7650,
-  "tags": ["node", "nodejs", "express", "backend", "eventloop", "api"],
+  "tags": [
+    "node",
+    "nodejs",
+    "express",
+    "backend",
+    "eventloop",
+    "api"
+  ],
   "whatYouLearn": [
     "Master the Node.js Event Loop architecture and non-blocking I/O",
     "Interact with local file systems using fs/promises module",
@@ -20,7 +27,9 @@
     "Handle process signals, environment configuration, and cluster workers",
     "Build a production REST API Server Engine"
   ],
-  "prerequisites": ["JavaScript ES6+ Full Stack Engine Track"],
+  "prerequisites": [
+    "JavaScript ES6+ Full Stack Engine Track"
+  ],
   "exercises": [
     {
       "id": "node-ex1",

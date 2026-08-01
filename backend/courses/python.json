@@ -11,7 +11,14 @@
   "rating": 4.9,
   "ratingCount": 5420,
   "students": 9820,
-  "tags": ["python", "python3", "oop", "cli", "backend", "algorithms"],
+  "tags": [
+    "python",
+    "python3",
+    "oop",
+    "cli",
+    "backend",
+    "algorithms"
+  ],
   "whatYouLearn": [
     "Master Python 3 syntax, dynamic typing, and control flow",
     "Manipulate native data structures: lists, tuples, sets, dictionaries",
@@ -20,7 +27,9 @@
     "Handle file I/O operations and context managers (with statement)",
     "Build a production Student Management System CLI"
   ],
-  "prerequisites": ["Basic computer operating system usage"],
+  "prerequisites": [
+    "Basic computer operating system usage"
+  ],
   "exercises": [
     {
       "id": "python-ex1",
@@ -358,7 +367,7 @@
       "theory": "@property transforms class methods into readable attributes, while @name.setter defines validation logic for attribute mutations.",
       "objective": "Build a Temperature class with Celsius and Fahrenheit property getters/setters.",
       "initialCode": "class Temperature:\n    # Add @property getters and setters",
-      "solutionCode": "class Temperature:\n    def __init__(self, celsius: float = 0.0):\n        self._celsius = celsius\n    \n    @property\n    def celsius(self) -> float:\n        return self._celsius\n    \n    @celsius.setter\n    def celsius(self, value: float):\n        if value < -273.15:\n            raise ValueError(\"Temperature below absolute zero is impossible.\")\n        self._celsius = value\n    \n    @property\n    def fahrenheit(self) -> float:\n        return (self._celsius * 9/5) + 32\n\ntemp = Temperature(25.0)\nprint(f\"Celsius: {temp.celsius}°C | Fahrenheit: {temp.fahrenheit}°F\")",
+      "solutionCode": "class Temperature:\n    def __init__(self, celsius: float = 0.0):\n        self._celsius = celsius\n    \n    @property\n    def celsius(self) -> float:\n        return self._celsius\n    \n    @celsius.setter\n    def celsius(self, value: float):\n        if value < -273.15:\n            raise ValueError(\"Temperature below absolute zero is impossible.\")\n        self._celsius = value\n    \n    @property\n    def fahrenheit(self) -> float:\n        return (self._celsius * 9/5) + 32\n\ntemp = Temperature(25.0)\nprint(f\"Celsius: {temp.celsius}\u00b0C | Fahrenheit: {temp.fahrenheit}\u00b0F\")",
       "requirements": [
         "Use @property getter for celsius and fahrenheit",
         "Use @celsius.setter with validation for absolute zero check"

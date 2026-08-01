@@ -11,7 +11,14 @@
   "rating": 4.9,
   "ratingCount": 4920,
   "students": 9120,
-  "tags": ["git", "github", "versioncontrol", "branching", "rebase", "devops"],
+  "tags": [
+    "git",
+    "github",
+    "versioncontrol",
+    "branching",
+    "rebase",
+    "devops"
+  ],
   "whatYouLearn": [
     "Initialize local Git repositories and configure user identity",
     "Track file state stages (untracked, modified, staged, committed)",
@@ -20,7 +27,9 @@
     "Utilize git stash to temporarily store uncommitted working changes",
     "Execute team GitHub Pull Request code review workflows"
   ],
-  "prerequisites": ["Basic terminal command line usage"],
+  "prerequisites": [
+    "Basic terminal command line usage"
+  ],
   "exercises": [
     {
       "id": "git-ex1",

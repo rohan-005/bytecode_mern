@@ -11,7 +11,14 @@
   "rating": 4.9,
   "ratingCount": 3610,
   "students": 6120,
-  "tags": ["c", "c-programming", "pointers", "memory", "systems", "low-level"],
+  "tags": [
+    "c",
+    "c-programming",
+    "pointers",
+    "memory",
+    "systems",
+    "low-level"
+  ],
   "whatYouLearn": [
     "Understand C memory layout (Stack vs Heap)",
     "Master pointer arithmetic, dereferencing, and memory addresses",
@@ -20,7 +27,9 @@
     "Manipulate binary data with bitwise operators (&, |, ^, ~, <<, >>)",
     "Build a production Bank Management System CLI"
   ],
-  "prerequisites": ["Basic computer operating system usage"],
+  "prerequisites": [
+    "Basic computer operating system usage"
+  ],
   "exercises": [
     {
       "id": "c-ex1",

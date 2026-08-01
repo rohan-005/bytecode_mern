@@ -11,7 +11,14 @@
   "rating": 4.9,
   "ratingCount": 3520,
   "students": 6420,
-  "tags": ["express", "expressjs", "nodejs", "rest", "api", "middleware"],
+  "tags": [
+    "express",
+    "expressjs",
+    "nodejs",
+    "rest",
+    "api",
+    "middleware"
+  ],
   "whatYouLearn": [
     "Architect modular Express app routing structures",
     "Write custom request processing middleware functions",
@@ -20,7 +27,9 @@
     "Handle file uploads using Multer multipart middleware",
     "Build a production Blog Engine REST API"
   ],
-  "prerequisites": ["Node.js Server Systems Track"],
+  "prerequisites": [
+    "Node.js Server Systems Track"
+  ],
   "exercises": [
     {
       "id": "express-ex1",

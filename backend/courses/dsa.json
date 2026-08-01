@@ -11,7 +11,14 @@
   "rating": 4.9,
   "ratingCount": 5820,
   "students": 10400,
-  "tags": ["dsa", "algorithms", "datastructures", "big-o", "binarysearch", "trees"],
+  "tags": [
+    "dsa",
+    "algorithms",
+    "datastructures",
+    "big-o",
+    "binarysearch",
+    "trees"
+  ],
   "whatYouLearn": [
     "Analyze time and space complexities using asymptotic Big-O notation",
     "Implement fundamental linear data structures: Stacks, Queues, Linked Lists",
@@ -20,7 +27,9 @@
     "Apply Graph traversal algorithms (BFS and DFS)",
     "Build a production Algorithm Visualizer & Execution Engine"
   ],
-  "prerequisites": ["Programming Fundamentals in JavaScript, Python, or C++"],
+  "prerequisites": [
+    "Programming Fundamentals in JavaScript, Python, or C++"
+  ],
   "exercises": [
     {
       "id": "dsa-ex1",

@@ -11,7 +11,14 @@
   "rating": 4.9,
   "ratingCount": 3810,
   "students": 6740,
-  "tags": ["cpp", "c++", "oop", "stl", "templates", "smart-pointers"],
+  "tags": [
+    "cpp",
+    "c++",
+    "oop",
+    "stl",
+    "templates",
+    "smart-pointers"
+  ],
   "whatYouLearn": [
     "Master C++ Class architecture, encapsulation, and initializer lists",
     "Implement Inheritance, virtual functions, and runtime Polymorphism",
@@ -20,7 +27,9 @@
     "Prevent memory leaks using RAII and Smart Pointers (std::unique_ptr, std::shared_ptr)",
     "Build a production Game Engine Logic Core"
   ],
-  "prerequisites": ["C Programming & Systems Engineering Track"],
+  "prerequisites": [
+    "C Programming & Systems Engineering Track"
+  ],
   "exercises": [
     {
       "id": "cpp-ex1",

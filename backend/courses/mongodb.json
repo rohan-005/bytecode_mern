@@ -11,7 +11,14 @@
   "rating": 4.9,
   "ratingCount": 3890,
   "students": 6940,
-  "tags": ["mongodb", "nosql", "database", "aggregation", "crud", "bson"],
+  "tags": [
+    "mongodb",
+    "nosql",
+    "database",
+    "aggregation",
+    "crud",
+    "bson"
+  ],
   "whatYouLearn": [
     "Design flexible JSON/BSON document schemas",
     "Execute complex CRUD operations with query operators ($gt, $in, $elemMatch)",
@@ -20,7 +27,9 @@
     "Model relationships using embedding vs referencing patterns",
     "Build an Inventory Management System Database"
   ],
-  "prerequisites": ["Backend Engineering Fundamentals"],
+  "prerequisites": [
+    "Backend Engineering Fundamentals"
+  ],
   "exercises": [
     {
       "id": "mongo-ex1",

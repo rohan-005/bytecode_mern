@@ -11,7 +11,14 @@
   "rating": 4.9,
   "ratingCount": 2180,
   "students": 4120,
-  "tags": ["typescript", "ts", "types", "generics", "interfaces", "javascript"],
+  "tags": [
+    "typescript",
+    "ts",
+    "types",
+    "generics",
+    "interfaces",
+    "javascript"
+  ],
   "whatYouLearn": [
     "Master static type annotations and type inference",
     "Define strict contract models with Interfaces and Type Aliases",
@@ -20,7 +27,9 @@
     "Perform runtime type narrowing using custom type guards",
     "Build a production-grade Type-Safe CLI Application"
   ],
-  "prerequisites": ["JavaScript ES6+ Full Stack Engine Track"],
+  "prerequisites": [
+    "JavaScript ES6+ Full Stack Engine Track"
+  ],
   "exercises": [
     {
       "id": "ts-ex1",

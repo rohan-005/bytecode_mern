@@ -11,7 +11,14 @@
   "rating": 4.9,
   "ratingCount": 4120,
   "students": 7820,
-  "tags": ["sql", "database", "relational", "postgres", "mysql", "joins"],
+  "tags": [
+    "sql",
+    "database",
+    "relational",
+    "postgres",
+    "mysql",
+    "joins"
+  ],
   "whatYouLearn": [
     "Design normalized relational database schemas (1NF, 2NF, 3NF)",
     "Execute DDL statements (CREATE TABLE, ALTER, DROP, FOREIGN KEY)",
@@ -20,7 +27,9 @@
     "Optimize query performance with B-Tree Indexes and EXPLAIN ANALYZE",
     "Build an E-Commerce Analytics Relational Database"
   ],
-  "prerequisites": ["Basic computer operating system usage"],
+  "prerequisites": [
+    "Basic computer operating system usage"
+  ],
   "exercises": [
     {
       "id": "sql-ex1",

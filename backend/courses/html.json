@@ -11,7 +11,15 @@
   "rating": 4.9,
   "ratingCount": 2450,
   "students": 4890,
-  "tags": ["html", "html5", "web", "frontend", "semantic", "seo", "accessibility"],
+  "tags": [
+    "html",
+    "html5",
+    "web",
+    "frontend",
+    "semantic",
+    "seo",
+    "accessibility"
+  ],
   "whatYouLearn": [
     "Construct modern HTML5 document trees",
     "Architect accessible layouts with semantic markup",
@@ -21,7 +29,9 @@
     "Optimize SEO with OpenGraph and Schema microdata",
     "Build a production Personal Developer Portfolio"
   ],
-  "prerequisites": ["Basic computer operating system usage"],
+  "prerequisites": [
+    "Basic computer operating system usage"
+  ],
   "exercises": [
     {
       "id": "html-ex1",
@@ -316,8 +326,7 @@
       "theory": "Data attributes (data-name) store custom private payload information on HTML elements, which CSS selectors and JavaScript dataset APIs can query.",
       "objective": "Create a product card list using data attributes for category, price, and status.",
       "initialCode": "<div>\n    <!-- Add elements with data attributes -->\n</div>",
-      "solutionCode": "<ul class=\"product-grid\">\n    <li data-product-id=\"p-101\" data-category=\"courses\" data-price=\"0\" data-status=\"active\">\n        <h3>HTML5 Fundamentals</h3>\n        <span>Free Track</span>\n    </li>
-    <li data-product-id=\"p-102\" data-category=\"certifications\" data-price=\"49\" data-status=\"featured\">\n        <h3>Full Stack License</h3>\n        <span>Pro Track</span>\n    </li>\n</ul>",
+      "solutionCode": "<ul class=\"product-grid\">\n    <li data-product-id=\"p-101\" data-category=\"courses\" data-price=\"0\" data-status=\"active\">\n        <h3>HTML5 Fundamentals</h3>\n        <span>Free Track</span>\n    </li>\n    <li data-product-id=\"p-102\" data-category=\"certifications\" data-price=\"49\" data-status=\"featured\">\n        <h3>Full Stack License</h3>\n        <span>Pro Track</span>\n    </li>\n</ul>",
       "requirements": [
         "Add data-product-id, data-category, and data-price attributes",
         "Store structured string metadata on list items"

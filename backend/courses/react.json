@@ -11,7 +11,14 @@
   "rating": 4.9,
   "ratingCount": 6120,
   "students": 11400,
-  "tags": ["react", "jsx", "hooks", "state", "frontend", "context"],
+  "tags": [
+    "react",
+    "jsx",
+    "hooks",
+    "state",
+    "frontend",
+    "context"
+  ],
   "whatYouLearn": [
     "Understand React virtual DOM and component rendering trees",
     "Pass data via immutable Props and manage local State with useState",
@@ -20,7 +27,9 @@
     "Eliminate prop drilling with Context API and state dispatchers",
     "Build a production Shopping Cart and Movie Search Web App"
   ],
-  "prerequisites": ["JavaScript ES6+ Full Stack Engine Track"],
+  "prerequisites": [
+    "JavaScript ES6+ Full Stack Engine Track"
+  ],
   "exercises": [
     {
       "id": "react-ex1",
@@ -402,7 +411,7 @@
       "theory": "Optimistic UI renders changes instantly to enhance perceived performance, rolling back state if the network request fails.",
       "objective": "Build an optimistic Like button with rollback on failure.",
       "initialCode": "function LikeButton({ initialLikes }) {\n    // Implement optimistic update with rollback\n}",
-      "solutionCode": "import React, { useState } from 'react';\n\nconst LikeButton = ({ initialLikes = 10, onLikeApi }) => {\n    const [likes, setLikes] = useState(initialLikes);\n    const [isLiked, setIsLiked] = useState(false);\n    \n    const handleLike = async () => {\n        const prevLikes = likes;\n        const prevLiked = isLiked;\n        \n        // Optimistic update\n        setLikes(prev => prevLiked ? prev - 1 : prev + 1);\n        setIsLiked(!prevLiked);\n        \n        try {\n            await onLikeApi(!prevLiked);\n        } catch (error) {\n            // Rollback on failure\n            setLikes(prevLikes);\n            setIsLiked(prevLiked);\n            console.error('Like failed, rolled back state.');\n        }\n    };\n    \n    return (\n        <button onClick={handleLike} className={isLiked ? 'liked' : ''}>\n            {isLiked ? '♥ Liked' : '♡ Like'} ({likes})\n        </button>\n    );\n};\n\nexport default LikeButton;",
+      "solutionCode": "import React, { useState } from 'react';\n\nconst LikeButton = ({ initialLikes = 10, onLikeApi }) => {\n    const [likes, setLikes] = useState(initialLikes);\n    const [isLiked, setIsLiked] = useState(false);\n    \n    const handleLike = async () => {\n        const prevLikes = likes;\n        const prevLiked = isLiked;\n        \n        // Optimistic update\n        setLikes(prev => prevLiked ? prev - 1 : prev + 1);\n        setIsLiked(!prevLiked);\n        \n        try {\n            await onLikeApi(!prevLiked);\n        } catch (error) {\n            // Rollback on failure\n            setLikes(prevLikes);\n            setIsLiked(prevLiked);\n            console.error('Like failed, rolled back state.');\n        }\n    };\n    \n    return (\n        <button onClick={handleLike} className={isLiked ? 'liked' : ''}>\n            {isLiked ? '\u2665 Liked' : '\u2661 Like'} ({likes})\n        </button>\n    );\n};\n\nexport default LikeButton;",
       "requirements": [
         "Update state optimistically before API promise resolves",
         "Rollback state to initial values inside catch block on failure"
