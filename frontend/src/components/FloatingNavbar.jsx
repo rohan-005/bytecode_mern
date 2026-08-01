@@ -13,7 +13,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { cn } from "../lib/utils";
-import { IconLayoutNavbarCollapse, IconTerminal2 } from "@tabler/icons-react";
+import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
 
 export const FloatingNavbar = ({ items, className }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -22,7 +22,7 @@ export const FloatingNavbar = ({ items, className }) => {
   return (
     <div
       className={cn(
-        "fixed top-5 right-6 md:right-8 flex items-center justify-center z-50 font-jetbrains",
+        "fixed top-6 right-8 md:right-12 flex items-center justify-center z-50 font-jetbrains",
         className
       )}
     >
@@ -30,7 +30,7 @@ export const FloatingNavbar = ({ items, className }) => {
       <motion.div
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}
-        className="hidden md:flex gap-3 px-3 py-2.5 bg-[#1B1B1B]/90 backdrop-blur-md border border-[#4A4A4A] shadow-2xl shadow-black/80"
+        className="hidden md:flex gap-4 px-4 py-3 bg-[#1B1B1B]/95 backdrop-blur-md border border-[#4A4A4A] shadow-2xl shadow-black/90"
       >
         {items.map((item) => (
           <IconButton key={item.title} {...item} mouseX={mouseX} />
@@ -46,16 +46,16 @@ export const FloatingNavbar = ({ items, className }) => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="absolute top-14 right-0 flex flex-col gap-2 p-2 bg-[#1B1B1B] border border-[#4A4A4A] shadow-2xl min-w-[160px]"
+              className="absolute top-16 right-0 flex flex-col gap-2 p-3 bg-[#1B1B1B] border border-[#4A4A4A] shadow-2xl min-w-[180px]"
             >
               {items.map((item) => (
                 <a
                   key={item.title}
                   href={item.href}
-                  className="flex items-center gap-3 px-3 py-2 bg-[#2D2D2D] hover:bg-[#303030] border border-[#4A4A4A] text-white hover:text-[#FF6A2A] transition-colors"
+                  className="flex items-center gap-3 px-4 py-2.5 bg-[#2D2D2D] hover:bg-[#303030] border border-[#4A4A4A] text-white hover:text-[#FF6A2A] transition-colors"
                 >
                   <span className="text-[#FF6A2A]">{item.icon}</span>
-                  <span className="text-xs font-semibold uppercase tracking-wider font-jetbrains">
+                  <span className="text-sm font-semibold uppercase tracking-wider font-jetbrains">
                     {item.title}
                   </span>
                 </a>
@@ -66,10 +66,10 @@ export const FloatingNavbar = ({ items, className }) => {
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="flex h-11 w-11 items-center justify-center bg-[#1B1B1B] border border-[#4A4A4A] text-white hover:border-[#FF6A2A] hover:text-[#FF6A2A] transition-all shadow-lg active:scale-95"
+          className="flex h-12 w-12 items-center justify-center bg-[#1B1B1B] border border-[#4A4A4A] text-white hover:border-[#FF6A2A] hover:text-[#FF6A2A] transition-all shadow-lg active:scale-95"
           aria-label="Toggle menu"
         >
-          <IconLayoutNavbarCollapse size={20} />
+          <IconLayoutNavbarCollapse size={22} />
         </button>
       </div>
     </div>
@@ -85,8 +85,8 @@ const IconButton = ({ icon, title, href, mouseX }) => {
     return val - bounds.x - bounds.width / 2;
   });
 
-  const size = useTransform(distance, [-100, 0, 100], [42, 54, 42]);
-  const iconSize = useTransform(distance, [-100, 0, 100], [20, 26, 20]);
+  const size = useTransform(distance, [-100, 0, 100], [48, 62, 48]);
+  const iconSize = useTransform(distance, [-100, 0, 100], [22, 28, 22]);
 
   const springSize = useSpring(size, { stiffness: 450, damping: 22 });
   const springIcon = useSpring(iconSize, { stiffness: 450, damping: 22 });
@@ -114,7 +114,7 @@ const IconButton = ({ icon, title, href, mouseX }) => {
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 8, x: "-50%" }}
               transition={{ duration: 0.1 }}
-              className="absolute -top-10 left-1/2 px-2.5 py-1 bg-[#303030] text-[11px] font-semibold text-[#FFFFFF] border border-[#FF6A2A] uppercase tracking-wider whitespace-nowrap shadow-xl z-50 pointer-events-none"
+              className="absolute -top-11 left-1/2 px-3 py-1 bg-[#303030] text-xs font-semibold text-[#FFFFFF] border border-[#FF6A2A] uppercase tracking-wider whitespace-nowrap shadow-xl z-50 pointer-events-none"
             >
               {title}
             </motion.div>

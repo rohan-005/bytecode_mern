@@ -692,7 +692,7 @@ useEffect(() => {
       </div>
 
       {/* Header */}
-      <div className="flex-shrink-0 px-6 py-3 border-b border-[#4A4A4A] bg-[#252422] mt-2 font-jetbrains">
+      <div className="flex-shrink-0 px-8 py-3.5 border-b border-[#4A4A4A] bg-[#252422] font-jetbrains">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">

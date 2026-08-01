@@ -146,76 +146,77 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1B1B1B] text-[#FFFFFF] font-jetbrains flex flex-col justify-between">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+    <div className="min-h-screen bg-[#1B1B1B] text-[#FFFFFF] font-outfit flex flex-col justify-between">
+      {/* Widescreen Container */}
+      <div className="w-full max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-16 py-12">
         {/* Navigation Link */}
-        <div className="mb-6">
+        <div className="mb-8">
           <Link 
             to="/dashboard" 
-            className="inline-flex items-center gap-2 text-xs font-semibold text-[#FF8C42] hover:text-[#FF6A2A] uppercase tracking-wider transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#FF8C42] hover:text-[#FF6A2A] uppercase tracking-wider transition-colors font-mono"
           >
-            <IconArrowLeft size={16} />
+            <IconArrowLeft size={18} />
             <span>Return to Dashboard</span>
           </Link>
         </div>
 
         {/* Header */}
-        <div className="bg-[#303030] border border-[#4A4A4A] p-6 mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 bg-[#252422] border border-[#FF6A2A] flex items-center justify-center font-bebas text-2xl text-[#FF6A2A]">
+        <div className="bytecode-card p-8 mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="flex items-center gap-5">
+            <div className="w-20 h-20 bg-[#252422] border border-[#FF6A2A] flex items-center justify-center font-bebas text-3xl text-[#FF6A2A]">
               {user?.name ? user.name.substring(0, 2).toUpperCase() : "BC"}
             </div>
             <div>
-              <h1 className="text-3xl font-bebas tracking-wide text-[#FFFFFF]">
+              <h1 className="text-4xl font-bebas tracking-wide text-[#FFFFFF]">
                 ACCOUNT SETTINGS
               </h1>
-              <p className="text-xs text-[#8E8E8E] font-mono">
+              <p className="text-sm text-[#8E8E8E] font-mono">
                 Developer Profile & Security Preferences
               </p>
             </div>
           </div>
-          <div className="px-3 py-1 bg-[#252422] border border-[#4A4A4A] text-xs font-mono text-[#CFCFCF] self-start md:self-auto">
-            UID: <span className="text-[#FF6A2A]">{user?._id || "BYTECODE_USER"}</span>
+          <div className="px-4 py-2 bg-[#252422] border border-[#4A4A4A] text-sm font-mono text-[#CFCFCF] self-start md:self-auto">
+            UID: <span className="text-[#FF6A2A] font-bold">{user?._id || "BYTECODE_USER"}</span>
           </div>
         </div>
 
         {/* Message Alert */}
         {message.text && (
-          <div className={`mb-6 p-4 border text-xs flex items-center gap-2 ${
+          <div className={`mb-8 p-5 border text-sm font-outfit flex items-center gap-3 ${
             message.type === "success" 
               ? "bg-[#35C759]/10 border-[#35C759] text-[#35C759]" 
               : "bg-[#FF4D4F]/10 border-[#FF4D4F] text-[#FF4D4F]"
           }`}>
-            {message.type === "success" ? <IconCheck size={18} /> : <IconAlertTriangle size={18} />}
+            {message.type === "success" ? <IconCheck size={20} /> : <IconAlertTriangle size={20} />}
             <span>{message.text}</span>
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
           {/* Sidebar Tabs */}
           <div className="lg:col-span-1">
-            <div className="bg-[#303030] border border-[#4A4A4A] p-2 space-y-1">
+            <div className="bytecode-card p-3 space-y-2">
               <button
                 onClick={() => setActiveTab("profile")}
-                className={`w-full text-left px-4 py-3 font-semibold text-xs uppercase tracking-wider flex items-center gap-3 transition-colors ${
+                className={`w-full text-left px-5 py-4 font-semibold text-sm uppercase tracking-wider flex items-center gap-3 transition-colors ${
                   activeTab === "profile"
                     ? "bg-[#FF6A2A] text-[#FFFFFF]"
                     : "bg-[#252422] text-[#CFCFCF] hover:text-[#FFFFFF] border border-[#4A4A4A]"
                 }`}
               >
-                <IconUser size={16} />
+                <IconUser size={18} />
                 <span>Profile Info</span>
               </button>
 
               <button
                 onClick={() => setActiveTab("password")}
-                className={`w-full text-left px-4 py-3 font-semibold text-xs uppercase tracking-wider flex items-center gap-3 transition-colors ${
+                className={`w-full text-left px-5 py-4 font-semibold text-sm uppercase tracking-wider flex items-center gap-3 transition-colors ${
                   activeTab === "password"
                     ? "bg-[#FF6A2A] text-[#FFFFFF]"
                     : "bg-[#252422] text-[#CFCFCF] hover:text-[#FFFFFF] border border-[#4A4A4A]"
                 }`}
               >
-                <IconLock size={16} />
+                <IconLock size={18} />
                 <span>Security</span>
               </button>
             </div>
@@ -224,15 +225,15 @@ const Profile = () => {
           {/* Tab Content */}
           <div className="lg:col-span-3">
             {activeTab === "profile" && (
-              <div className="bg-[#303030] border border-[#4A4A4A] p-8">
-                <h2 className="text-xl font-bebas tracking-wide text-[#FFFFFF] mb-6 pb-2 border-b border-[#4A4A4A]">
+              <div className="bytecode-card p-10">
+                <h2 className="text-3xl font-cinzel tracking-wide text-[#FFFFFF] mb-8 pb-3 border-b border-[#4A4A4A]">
                   PERSONAL INFORMATION
                 </h2>
                 
-                <form onSubmit={updateProfile} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form onSubmit={updateProfile} className="space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-2">
+                      <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-3 font-mono">
                         Full Name
                       </label>
                       <input
@@ -247,7 +248,7 @@ const Profile = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-[#8E8E8E] uppercase tracking-wider mb-2">
+                      <label className="block text-xs font-semibold text-[#8E8E8E] uppercase tracking-wider mb-3 font-mono">
                         Email Address (Read-only)
                       </label>
                       <input
@@ -259,15 +260,15 @@ const Profile = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 pt-4 border-t border-[#4A4A4A]">
+                  <div className="flex items-center gap-5 pt-6 border-t border-[#4A4A4A]">
                     <button
                       type="submit"
                       disabled={loading}
-                      className="bytecode-btn-primary"
+                      className="bytecode-btn-primary text-base"
                     >
                       {loading ? (
                         <>
-                          <IconLoader2 size={16} className="animate-spin text-white" />
+                          <IconLoader2 size={18} className="animate-spin text-white" />
                           <span>Saving Changes...</span>
                         </>
                       ) : (
@@ -277,7 +278,7 @@ const Profile = () => {
 
                     <Link
                       to="/dashboard"
-                      className="bytecode-btn-secondary"
+                      className="bytecode-btn-secondary text-base"
                     >
                       Cancel
                     </Link>
@@ -287,14 +288,14 @@ const Profile = () => {
             )}
 
             {activeTab === "password" && (
-              <div className="bg-[#303030] border border-[#4A4A4A] p-8">
-                <h2 className="text-xl font-bebas tracking-wide text-[#FFFFFF] mb-6 pb-2 border-b border-[#4A4A4A]">
+              <div className="bytecode-card p-10">
+                <h2 className="text-3xl font-cinzel tracking-wide text-[#FFFFFF] mb-8 pb-3 border-b border-[#4A4A4A]">
                   CHANGE SECURITY PASSWORD
                 </h2>
                 
-                <form onSubmit={changePassword} className="space-y-5">
+                <form onSubmit={changePassword} className="space-y-6">
                   <div>
-                    <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-2">
+                    <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-3 font-mono">
                       Current Password
                     </label>
                     <input
@@ -308,9 +309,9 @@ const Profile = () => {
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-2">
+                      <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-3 font-mono">
                         New Password
                       </label>
                       <input
@@ -326,7 +327,7 @@ const Profile = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-2">
+                      <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-3 font-mono">
                         Confirm New Password
                       </label>
                       <input
@@ -342,20 +343,20 @@ const Profile = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 pt-4 border-t border-[#4A4A4A]">
+                  <div className="flex items-center gap-5 pt-6 border-t border-[#4A4A4A]">
                     <button
                       type="submit"
                       disabled={loading}
-                      className="bytecode-btn-primary"
+                      className="bytecode-btn-primary text-base"
                     >
                       {loading ? (
                         <>
-                          <IconLoader2 size={16} className="animate-spin text-white" />
+                          <IconLoader2 size={18} className="animate-spin text-white" />
                           <span>Changing Password...</span>
                         </>
                       ) : (
                         <>
-                          <IconShieldLock size={16} />
+                          <IconShieldLock size={18} />
                           <span>Update Password</span>
                         </>
                       )}

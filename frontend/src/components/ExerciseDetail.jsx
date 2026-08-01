@@ -543,7 +543,7 @@ const ExerciseDetail = () => {
 
       {/* Header */}
       <div className="relative bg-[#252422] border-b border-[#4A4A4A] font-jetbrains">
-        <div className="container px-4 py-4">
+        <div className="w-full max-w-[1800px] mx-auto px-6 sm:px-12 py-5">
           <div className="flex items-center gap-4">
             <button
               onClick={() => navigate(`/course/${courseId}`)}

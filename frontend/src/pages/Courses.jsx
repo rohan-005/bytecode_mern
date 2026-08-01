@@ -83,7 +83,7 @@ const Courses = () => {
         const button = document.getElementById(`enroll-btn-${courseId}`);
         if (button) {
           button.innerHTML = "✅ ENROLLED!";
-          button.className = "bytecode-btn-secondary w-full text-xs text-[#35C759] border-[#35C759]";
+          button.className = "bytecode-btn-secondary w-full text-sm text-[#35C759] border-[#35C759]";
           setTimeout(() => {
             fetchEnrolledCourses();
           }, 1200);
@@ -147,14 +147,14 @@ const Courses = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#1B1B1B] text-white font-jetbrains">
+      <div className="min-h-screen bg-[#1B1B1B] text-white font-outfit">
         <FloatingNavbar items={navItems} />
-        <div className="max-w-6xl mx-auto px-4 py-16">
-          <div className="text-center py-10">
-            <h2 className="text-3xl font-bebas text-white tracking-wide mb-2">LOADING CURRICULUM</h2>
-            <p className="text-xs text-[#8E8E8E] font-mono">Fetching course tracks...</p>
+        <div className="max-w-[1800px] mx-auto px-8 py-20">
+          <div className="text-center py-12">
+            <h2 className="text-4xl font-bebas text-white tracking-wide mb-3">LOADING CURRICULUM</h2>
+            <p className="text-sm text-[#8E8E8E] font-mono">Fetching course tracks...</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <SkeletonCard />
             <SkeletonCard />
             <SkeletonCard />
@@ -165,42 +165,43 @@ const Courses = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#1B1B1B] text-white font-jetbrains flex flex-col justify-between">
+    <div className="min-h-screen bg-[#1B1B1B] text-white font-outfit flex flex-col justify-between">
       <FloatingNavbar items={navItems} />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+      {/* Widescreen Main Container */}
+      <div className="w-full max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-16 py-16">
         {/* Header */}
-        <div className="text-center mb-10">
-          <h1 className="text-5xl sm:text-6xl font-bebas text-white tracking-wider mb-2">
+        <div className="text-center mb-12">
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bebas text-white tracking-wider mb-3">
             LEARNING PATHWAYS
           </h1>
-          <p className="text-xs sm:text-sm text-[#CFCFCF] font-mono max-w-xl mx-auto leading-relaxed">
+          <p className="text-lg text-[#CFCFCF] font-outfit max-w-2xl mx-auto leading-relaxed">
             Curated developer curriculum designed to transform beginners into senior engineers.
           </p>
 
           {/* Search Bar */}
-          <div className="relative max-w-xl mx-auto mt-6">
+          <div className="relative max-w-2xl mx-auto mt-8">
             <input
               type="text"
               placeholder="Search tracks, technologies, or keywords..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="bytecode-input w-full pl-10 pr-4 text-xs py-3"
+              className="bytecode-input w-full pl-12 pr-6 text-base py-4"
             />
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#8E8E8E]">
-              <IconSearch size={16} />
+            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#8E8E8E]">
+              <IconSearch size={20} />
             </div>
           </div>
         </div>
 
         {/* Filters */}
-        <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-6 pb-6 border-b border-[#4A4A4A]">
-          <div className="flex flex-wrap gap-2 w-full md:w-auto">
+        <div className="flex flex-col md:flex-row gap-6 justify-between items-center mb-8 pb-6 border-b border-[#4A4A4A]">
+          <div className="flex flex-wrap gap-3 w-full md:w-auto">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors ${
+                className={`px-4 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors font-mono ${
                   activeCategory === category
                     ? "bg-[#FF6A2A] text-white border border-[#FF6A2A]"
                     : "bg-[#252422] text-[#CFCFCF] border border-[#4A4A4A] hover:border-[#FF6A2A]"
@@ -211,11 +212,11 @@ const Courses = () => {
             ))}
           </div>
 
-          <div className="flex gap-3 w-full md:w-auto">
+          <div className="flex gap-4 w-full md:w-auto">
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bytecode-input text-xs py-1.5 flex-1"
+              className="bytecode-input text-xs py-2 px-4 flex-1"
             >
               <option value="popular">Most Popular</option>
               <option value="rating">Highest Rated</option>
@@ -226,7 +227,7 @@ const Courses = () => {
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              className="bytecode-input text-xs py-1.5 flex-1"
+              className="bytecode-input text-xs py-2 px-4 flex-1"
             >
               <option value="all">All Levels</option>
               <option value="Beginner">Beginner</option>
@@ -237,13 +238,13 @@ const Courses = () => {
         </div>
 
         {/* Results Counter */}
-        <div className="flex justify-between items-center mb-6 text-xs text-[#8E8E8E] font-mono">
+        <div className="flex justify-between items-center mb-8 text-sm text-[#8E8E8E] font-mono">
           <span>SHOWING {filteredCourses.length} PATHWAY TRACKS</span>
-          <span className="text-[#35C759]">{enrolledCourses.length} ENROLLED</span>
+          <span className="text-[#35C759] font-bold">{enrolledCourses.length} ENROLLED</span>
         </div>
 
         {/* Courses Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {filteredCourses.map((course) => {
             const enrolled = isEnrolled(course.id);
             const progress = getEnrollmentProgress(course.id);
@@ -251,31 +252,31 @@ const Courses = () => {
             return (
               <div
                 key={course.id}
-                className="bytecode-card p-6 flex flex-col justify-between hover:border-[#FF6A2A] transition-colors relative"
+                className="bytecode-card p-8 flex flex-col justify-between hover:border-[#FF6A2A] transition-colors relative"
               >
                 <div>
-                  <div className="flex justify-between items-start mb-3 gap-2">
-                    <h3 className="text-xl font-bebas text-white tracking-wide leading-snug">
+                  <div className="flex justify-between items-start mb-4 gap-3">
+                    <h3 className="text-2xl font-bebas text-white tracking-wide leading-snug">
                       {course.name}
                     </h3>
-                    <span className="text-[10px] font-mono uppercase px-2 py-0.5 bg-[#252422] border border-[#4A4A4A] text-[#FF6A2A] whitespace-nowrap">
+                    <span className="text-xs font-mono uppercase px-2.5 py-1 bg-[#252422] border border-[#4A4A4A] text-[#FF6A2A] whitespace-nowrap">
                       {course.level}
                     </span>
                   </div>
 
-                  <p className="text-xs text-[#CFCFCF] mb-6 line-clamp-3 leading-relaxed">
+                  <p className="text-sm text-[#CFCFCF] mb-8 line-clamp-3 leading-relaxed font-outfit">
                     {course.description}
                   </p>
                 </div>
 
                 <div>
                   {enrolled && (
-                    <div className="mb-4">
-                      <div className="flex justify-between text-[11px] font-mono text-[#CFCFCF] mb-1">
+                    <div className="mb-6">
+                      <div className="flex justify-between text-xs font-mono text-[#CFCFCF] mb-1.5">
                         <span>Track Progress</span>
                         <span className="text-[#35C759] font-bold">{Math.round(progress)}%</span>
                       </div>
-                      <div className="w-full bg-[#252422] h-1.5 border border-[#4A4A4A]">
+                      <div className="w-full bg-[#252422] h-2 border border-[#4A4A4A]">
                         <div
                           className="h-full bg-[#35C759]"
                           style={{ width: `${progress}%` }}
@@ -287,19 +288,19 @@ const Courses = () => {
                   {enrolled ? (
                     <Link
                       to={`/course/${course.id}`}
-                      className="bytecode-btn-secondary w-full text-xs py-2.5 flex items-center justify-center gap-2 text-[#35C759] border-[#35C759]"
+                      className="bytecode-btn-secondary w-full text-sm py-3 flex items-center justify-center gap-2 text-[#35C759] border-[#35C759]"
                     >
                       <span>{progress === 100 ? "🎉 Completed" : "Continue Learning"}</span>
-                      <IconArrowRight size={14} />
+                      <IconArrowRight size={16} />
                     </Link>
                   ) : (
                     <button
                       id={`enroll-btn-${course.id}`}
                       onClick={() => enrollInCourse(course.id)}
-                      className="bytecode-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2"
+                      className="bytecode-btn-primary w-full text-sm py-3 flex items-center justify-center gap-2"
                     >
                       <span>Start Learning Track</span>
-                      <IconArrowRight size={14} />
+                      <IconArrowRight size={16} />
                     </button>
                   )}
                 </div>
@@ -309,16 +310,16 @@ const Courses = () => {
         </div>
 
         {filteredCourses.length === 0 && !loading && (
-          <div className="bytecode-card p-12 text-center my-8">
-            <h3 className="text-2xl font-bebas text-white tracking-wide mb-2">NO PATHWAYS MATCHED</h3>
-            <p className="text-xs text-[#8E8E8E] font-mono mb-4">Try clearing filters or search queries.</p>
+          <div className="bytecode-card p-16 text-center my-12">
+            <h3 className="text-3xl font-bebas text-white tracking-wide mb-3">NO PATHWAYS MATCHED</h3>
+            <p className="text-sm text-[#8E8E8E] font-mono mb-6">Try clearing filters or search queries.</p>
             <button
               onClick={() => {
                 setSearchQuery("");
                 setFilter("all");
                 setActiveCategory("all");
               }}
-              className="bytecode-btn-primary text-xs"
+              className="bytecode-btn-primary text-sm"
             >
               Reset Filters
             </button>
