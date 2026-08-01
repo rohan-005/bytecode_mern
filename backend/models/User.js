@@ -69,7 +69,39 @@ const userSchema = new mongoose.Schema(
         completedAt: { type: Date, default: Date.now },
       },
     ],
-    
+    streak: {
+      type: Number,
+      default: 0,
+    },
+    longestStreak: {
+      type: Number,
+      default: 0,
+    },
+    lastActiveDate: {
+      type: Date,
+      default: Date.now,
+    },
+    dailyGoalXP: {
+      type: Number,
+      default: 500,
+    },
+    todayXP: {
+      type: Number,
+      default: 0,
+    },
+    todayXPDate: {
+      type: Date,
+      default: Date.now,
+    },
+    activities: [
+      {
+        type: { type: String, required: true },
+        title: { type: String, required: true },
+        description: String,
+        xpEarned: { type: Number, default: 0 },
+        createdAt: { type: Date, default: Date.now },
+      },
+    ],
   },
   {
     timestamps: true,

@@ -14,6 +14,7 @@ const otpRoutes = require('./routes/otp');
 const courseRoutes = require('./routes/courses');
 const codeRoutes = require('./routes/code');
 const courseProgressRoutes = require('./routes/courseProgress');
+const dashboardRoutes = require('./routes/dashboard');
 
 // Connect to database
 const connectdb = require('./config/connectdb');
@@ -40,6 +41,7 @@ app.use('/api/otp', otpRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/code', codeRoutes);
 app.use('/api/progress', courseProgressRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Test route
 app.get('/api/health', (req, res) => {
