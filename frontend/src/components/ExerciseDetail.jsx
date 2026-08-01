@@ -565,10 +565,10 @@ const ExerciseDetail = () => {
             <div className="flex items-center gap-3">
               {/* Output Mode Toggle */}
               {canShowPreview(exercise.language) && (
-                <div className="flex items-center gap-1 bg-[#1B1B1B] p-1 border border-[#4A4A4A]">
+                <div className="flex items-center gap-1 bg-[#1B1B1B] p-1 border border-[#4A4A4A] h-10">
                   <button
                     onClick={() => setOutputMode("preview")}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors ${
+                    className={`flex items-center gap-1.5 px-3 h-8 text-xs font-mono uppercase tracking-wider transition-colors ${
                       outputMode === "preview"
                         ? "bg-[#FF6A2A] text-white font-bold"
                         : "text-[#8E8E8E] hover:text-white"
@@ -579,7 +579,7 @@ const ExerciseDetail = () => {
                   </button>
                   <button
                     onClick={() => setOutputMode("console")}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors ${
+                    className={`flex items-center gap-1.5 px-3 h-8 text-xs font-mono uppercase tracking-wider transition-colors ${
                       outputMode === "console"
                         ? "bg-[#FF6A2A] text-white font-bold"
                         : "text-[#8E8E8E] hover:text-white"
@@ -591,7 +591,7 @@ const ExerciseDetail = () => {
                 </div>
               )}
 
-              <div className="flex items-center gap-1.5 bg-[#1B1B1B] px-3 py-1 border border-[#FF6A2A] text-xs font-mono">
+              <div className="flex items-center gap-1.5 bg-[#1B1B1B] px-3.5 h-10 border border-[#FF6A2A] text-xs font-mono">
                 <span>{getDifficultyIcon(exercise.difficulty)}</span>
                 <span className="text-[#FF6A2A] font-bold">
                   {getLanguageDisplayName(exercise.language)}
@@ -602,22 +602,22 @@ const ExerciseDetail = () => {
                 <button
                   onClick={markExerciseComplete}
                   disabled={isExerciseCompleted()}
-                  className={`px-4 py-1.5 text-xs font-mono uppercase font-bold tracking-wider transition-colors ${
+                  className={`px-4 h-10 text-xs font-mono uppercase font-bold tracking-wider transition-colors inline-flex items-center justify-center gap-1.5 ${
                     isExerciseCompleted()
                       ? "bg-[#35C759]/20 text-[#35C759] border border-[#35C759] opacity-60 cursor-not-allowed"
-                      : "bytecode-btn-primary"
+                      : "bytecode-btn-primary h-10 py-0"
                   }`}
                 >
                   {isExerciseCompleted() ? (
-                    <span className="flex items-center gap-1.5">
+                    <>
                       <IconCheck size={16} />
-                      Completed
-                    </span>
+                      <span>Completed</span>
+                    </>
                   ) : (
-                    <span className="flex items-center gap-1.5">
+                    <>
                       <IconTrophy size={16} />
-                      Mark Complete
-                    </span>
+                      <span>Mark Complete</span>
+                    </>
                   )}
                 </button>
               )}

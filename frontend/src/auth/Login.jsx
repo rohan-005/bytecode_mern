@@ -112,7 +112,7 @@ const Login = () => {
                   value={email}
                   onChange={onChange}
                   required
-                  className="bytecode-input w-full pl-12 pr-4 text-base py-3.5"
+                  className="bytecode-input w-full h-12 pl-12 pr-4 text-base"
                   placeholder="developer@bytecode.dev"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#8E8E8E]">
@@ -133,7 +133,7 @@ const Login = () => {
                   value={password}
                   onChange={onChange}
                   required
-                  className="bytecode-input w-full pl-12 pr-12 text-base py-3.5"
+                  className="bytecode-input w-full h-12 pl-12 pr-12 text-base"
                   placeholder="••••••••••••"
                 />
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#8E8E8E]">
@@ -153,7 +153,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="bytecode-btn-primary w-full text-base py-3.5 mt-3"
+              className="bytecode-btn-primary w-full h-12 text-base mt-3"
             >
               {loading ? (
                 <>

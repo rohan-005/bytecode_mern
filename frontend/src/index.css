@@ -91,23 +91,26 @@
   color: #FFFFFF;
   border: 1px solid #FF8C42;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 600;
-  padding: 0.875rem 1.75rem;
+  height: 2.75rem;
+  padding: 0 1.5rem;
   transition: all 0.15s ease-in-out;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.625rem;
+  box-sizing: border-box;
+  white-space: nowrap;
 }
 .bytecode-btn-primary:hover:not(:disabled) {
   background-color: #FF8C42;
   box-shadow: 0 0 20px rgba(255, 106, 42, 0.45);
-  transform: scale(1.02);
+  transform: translateY(-1px);
 }
 .bytecode-btn-primary:active:not(:disabled) {
-  transform: scale(0.98);
+  transform: translateY(0);
 }
 .bytecode-btn-primary:disabled {
   opacity: 0.6;
@@ -119,21 +122,25 @@
   color: #FFFFFF;
   border: 1px solid #4A4A4A;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 500;
-  padding: 0.875rem 1.75rem;
+  height: 2.75rem;
+  padding: 0 1.5rem;
   transition: all 0.15s ease-in-out;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.625rem;
+  box-sizing: border-box;
+  white-space: nowrap;
 }
 .bytecode-btn-secondary:hover:not(:disabled) {
   border-color: #FF6A2A;
   color: #FF6A2A;
   background-color: #303030;
   box-shadow: 0 0 15px rgba(255, 106, 42, 0.25);
+  transform: translateY(-1px);
 }
 .bytecode-btn-secondary:disabled {
   opacity: 0.6;
@@ -145,9 +152,11 @@
   border: 1px solid #4A4A4A;
   color: #FFFFFF;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 16px;
-  padding: 0.875rem 1.125rem;
+  font-size: 15px;
+  height: 2.75rem;
+  padding: 0 1.125rem;
   outline: none;
+  box-sizing: border-box;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .bytecode-input:focus {

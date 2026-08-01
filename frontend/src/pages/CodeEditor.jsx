@@ -692,22 +692,22 @@ useEffect(() => {
       </div>
 
       {/* Header */}
-      <div className="flex-shrink-0 px-8 py-3.5 border-b border-[#4A4A4A] bg-[#252422] font-jetbrains">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <img src={logo} alt="ByteCode Logo" className="w-10 h-10 object-contain filter drop-shadow-[0_0_10px_rgba(255,106,42,0.4)]" />
-            <h1 className="text-[#FFFFFF] text-3xl font-bebas tracking-wide">
+      <div className="flex-shrink-0 px-8 py-3 border-b border-[#4A4A4A] bg-[#252422] font-jetbrains relative">
+        <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-4">
+          {/* Left: Logo */}
+          <div className="flex items-center gap-3 justify-center lg:justify-start">
+            <img src={logo} alt="ByteCode Logo" className="w-9 h-9 object-contain filter drop-shadow-[0_0_10px_rgba(255,106,42,0.4)]" />
+            <h1 className="text-[#FFFFFF] text-2xl font-bebas tracking-wide">
               BYTE COMPILER
             </h1>
           </div>
 
           {/* Centered Controls */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-center gap-2.5 flex-wrap">
             <select
               value={getActiveTab()?.language || "javascript"}
               onChange={(e) => handleLanguageChange(e.target.value)}
-              className="bytecode-input text-xs py-1.5 px-3"
+              className="bytecode-input text-xs h-10 px-3 py-0 border-[#4A4A4A]"
             >
               <option value="javascript">JavaScript</option>
               <option value="html">HTML</option>
@@ -719,44 +719,50 @@ useEffect(() => {
             <button
               onClick={runCode}
               disabled={isLoading || isRunning}
-              className="bytecode-btn-primary text-xs py-1.5 px-4"
+              className="bytecode-btn-primary text-xs h-10 px-4 py-0"
             >
               {isRunning ? (
-                <div className="w-3 h-3 border-2 border-white border-t-transparent animate-spin" />
+                <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent animate-spin" />
               ) : (
                 "▶"
               )}
-              Run Code
+              <span>Run Code</span>
             </button>
 
             <button
               onClick={formatCode}
-              className="bytecode-btn-secondary text-xs py-1.5 px-3"
+              className="bytecode-btn-secondary text-xs h-10 px-3 py-0"
             >
               Format
             </button>
 
             <button
               onClick={resetCode}
-              className="bytecode-btn-secondary text-xs py-1.5 px-3"
+              className="bytecode-btn-secondary text-xs h-10 px-3 py-0"
             >
               Reset
             </button>
 
             <button
               onClick={clearConsole}
-              className="bytecode-btn-secondary text-xs py-1.5 px-3"
+              className="bytecode-btn-secondary text-xs h-10 px-3 py-0"
             >
               Clear
             </button>
 
             <button
               onClick={downloadCode}
-              className="bytecode-btn-secondary text-xs py-1.5 px-3 text-[#35C759] border-[#35C759]"
+              className="bytecode-btn-secondary text-xs h-10 px-3 py-0 text-[#35C759] border-[#35C759]"
             >
               <IconDownload size={14} />
-              Download
+              <span>Download</span>
             </button>
+          </div>
+
+          {/* Right: Status Badge */}
+          <div className="hidden lg:flex items-center justify-end gap-3 text-xs text-[#8E8E8E] font-mono">
+            <span className="w-2 h-2 bg-[#35C759] animate-pulse"></span>
+            <span>MONACO_ENGINE_READY</span>
           </div>
         </div>
       </div>
