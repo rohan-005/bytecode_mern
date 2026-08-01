@@ -72,6 +72,7 @@ router.post('/:courseId/exercises/:exerciseId/complete', protect, async (req, re
 
     // Update user XP and level
     user.xp = (user.xp || 0) + xpEarned;
+    user.todayXP = (user.todayXP || 0) + xpEarned;
     user.level = Math.floor((user.xp || 0) / 100) + 1;
     
     if (!user.completedExercises) user.completedExercises = [];
@@ -80,6 +81,15 @@ router.post('/:courseId/exercises/:exerciseId/complete', protect, async (req, re
       exerciseId,
       xpEarned,
       completedAt: new Date()
+    });
+
+    if (!user.activities) user.activities = [];
+    user.activities.unshift({
+      type: 'exercise',
+      title: `Solved ${exercise.title || 'Challenge'}`,
+      description: `Completed ${exercise.difficulty || 'standard'} exercise in course track`,
+      xpEarned,
+      createdAt: new Date()
     });
 
     // Update course progress
@@ -117,8 +127,19 @@ router.post('/:courseId/exercises/:exerciseId/complete', protect, async (req, re
     const completedCount = userCourse.completedExercises.length;
     userCourse.progress = Math.round((completedCount / totalExercises) * 100);
 
-    if (userCourse.progress === 100) {
+    if (userCourse.progress === 100 && !userCourse.completed) {
       userCourse.completed = true;
+      const courseBonusXP = 100;
+      user.xp += courseBonusXP;
+      user.todayXP += courseBonusXP;
+      user.level = Math.floor(user.xp / 100) + 1;
+      user.activities.unshift({
+        type: 'course',
+        title: `Completed Course Track`,
+        description: `Achieved 100% completion on course curriculum!`,
+        xpEarned: courseBonusXP,
+        createdAt: new Date()
+      });
     }
 
     userCourse.lastAccessed = new Date();
@@ -154,12 +175,26 @@ router.post('/:courseId/lessons/:lessonId/complete', protect, async (req, res) =
       return res.status(400).json({ message: 'Lesson already completed' });
     }
 
+    const lessonXP = 10;
+    user.xp = (user.xp || 0) + lessonXP;
+    user.todayXP = (user.todayXP || 0) + lessonXP;
+    user.level = Math.floor(user.xp / 100) + 1;
+
     // Update user
     if (!user.completedLessons) user.completedLessons = [];
     user.completedLessons.push({
       courseId,
       lessonId,
       completedAt: new Date()
+    });
+
+    if (!user.activities) user.activities = [];
+    user.activities.unshift({
+      type: 'lesson',
+      title: 'Completed Lesson Unit',
+      description: 'Finished lesson topic unit',
+      xpEarned: lessonXP,
+      createdAt: new Date()
     });
 
     // Update course progress
@@ -195,7 +230,12 @@ router.post('/:courseId/lessons/:lessonId/complete', protect, async (req, res) =
     await user.save();
     await userCourse.save();
 
-    res.json({ message: 'Lesson completed!' });
+    res.json({ 
+      message: 'Lesson completed!',
+      xpEarned: lessonXP,
+      totalXP: user.xp,
+      level: user.level
+    });
   } catch (error) {
     console.error('Error completing lesson:', error);
     res.status(500).json({ message: error.message });
