@@ -19,10 +19,30 @@ services:
       - BACKEND_URL=${BACKEND_URL:-http://localhost:5000}
       - CLIENT_URL=${CLIENT_URL:-http://localhost:5173}
       - ALLOWED_ORIGIN=${ALLOWED_ORIGIN:-http://localhost:5173}
-      - EMAIL_SERVICE_URL=${EMAIL_SERVICE_URL:-http://localhost:5001}
+      - EMAIL_SERVICE_URL=${EMAIL_SERVICE_URL:-http://email-service:5001}
     depends_on:
       - mongodb
       - redis
+      - email-service
+    restart: unless-stopped
+
+  email-service:
+    build:
+      context: ./email-service
+      dockerfile: Dockerfile
+    ports:
+      - "${EMAIL_SERVICE_PORT:-5001}:5001"
+    environment:
+      - PORT=5001
+      - NODE_ENV=production
+      - EMAIL_SERVICE=${EMAIL_SERVICE:-gmail}
+      - EMAIL_HOST=${EMAIL_HOST:-smtp.gmail.com}
+      - EMAIL_PORT=${EMAIL_PORT:-587}
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
+      - EMAIL_FROM=${EMAIL_FROM}
+      - EMAIL_FROM_NAME=${EMAIL_FROM_NAME:-"ByteCode Auth"}
+      - CLIENT_URL=${CLIENT_URL:-http://localhost:5173}
     restart: unless-stopped
 
   mongodb:
