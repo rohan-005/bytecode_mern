@@ -631,61 +631,65 @@ const ExerciseDetail = () => {
         {/* Left Panel - Theory & Instructions */}
         <div className="flex-1 flex flex-col border-r border-gray-700 min-w-[400px] overflow-hidden bg-gray-900/50 backdrop-blur-sm">
           {/* Theory Tabs */}
-          <div className="flex-shrink-0 bg-gray-800/50 border-b border-gray-700">
+          <div className="flex-shrink-0 bg-[#252422] border-b border-[#4A4A4A]">
             <div className="flex overflow-x-auto">
               {[
-                { id: "problem", label: "🧩 Problem" },
-                { id: "theory", label: "📚 Explanation" },
-                { id: "hints", label: "💡 Hints" },
-                { id: "references", label: "🔗 References" },
-                { id: "solution", label: "🎯 Solution" },
+                { id: "problem", label: "Problem", icon: <IconCode size={16} /> },
+                { id: "theory", label: "Explanation", icon: <IconBook size={16} /> },
+                { id: "hints", label: "Hints", icon: <IconSparkles size={16} /> },
+                { id: "references", label: "References", icon: <IconExternalLink size={16} /> },
+                { id: "solution", label: "Solution", icon: <IconCheck size={16} /> },
               ].map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTheoryTab(tab.id)}
-                  className={`flex items-center gap-2 px-6 py-4 font-semibold text-sm border-b-2 transition-all duration-300 whitespace-nowrap ${
+                  className={`flex items-center gap-2 px-6 py-3.5 font-mono text-xs font-semibold border-b-2 transition-colors whitespace-nowrap uppercase tracking-wider ${
                     activeTheoryTab === tab.id
-                      ? "border-purple-500 text-purple-400 bg-purple-500/10"
-                      : "border-transparent text-gray-400 hover:text-gray-300 hover:bg-gray-700/50"
+                      ? "border-[#FF6A2A] text-[#FF6A2A] bg-[#1B1B1B]"
+                      : "border-transparent text-[#8E8E8E] hover:text-white hover:bg-[#303030]"
                   }`}
                 >
-                  {tab.label}
+                  {tab.icon}
+                  <span>{tab.label}</span>
                 </button>
               ))}
             </div>
           </div>
 
           {/* Theory Content */}
-          <div className="flex-1 overflow-y-auto p-6">
+          <div className="flex-1 overflow-y-auto p-6 font-outfit">
             {activeTheoryTab === "problem" && (
               <div className="space-y-6">
                 <div className="bytecode-card p-6">
-                  <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
-                    🎯 Challenge Description
+                  <h2 className="text-xl font-cinzel text-white tracking-wide mb-3 flex items-center gap-2.5">
+                    <IconTarget size={20} className="text-[#FF6A2A]" />
+                    <span>Challenge Description</span>
                   </h2>
-                  <p className="text-gray-300 text-lg leading-relaxed">
+                  <p className="text-[#CFCFCF] text-base leading-relaxed">
                     {exercise.description || "No description available."}
                   </p>
                 </div>
 
-                <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
-                  <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                    🚀 Your Mission
+                <div className="bg-[#252422] border border-[#4A4A4A] p-6">
+                  <h3 className="text-lg font-bebas text-white tracking-wide mb-2 flex items-center gap-2">
+                    <IconSparkles size={18} className="text-[#FF8C42]" />
+                    <span>Objective</span>
                   </h3>
-                  <p className="text-gray-300">{exercise.objective || "Complete the coding challenge."}</p>
+                  <p className="text-[#CFCFCF] text-sm font-outfit">{exercise.objective || "Complete the coding challenge."}</p>
                 </div>
 
                 {exercise.requirements && exercise.requirements.length > 0 && (
-                  <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
-                    <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                      ✅ Requirements
+                  <div className="bg-[#252422] border border-[#4A4A4A] p-6">
+                    <h3 className="text-lg font-bebas text-white tracking-wide mb-3 flex items-center gap-2">
+                      <IconCheck size={18} className="text-[#35C759]" />
+                      <span>Requirements</span>
                     </h3>
-                    <ul className="text-gray-300 space-y-2">
+                    <ul className="text-[#CFCFCF] text-sm space-y-2 font-mono">
                       {exercise.requirements.map((req, index) => (
                         <li key={index} className="flex items-start gap-2">
                           <IconChevronRight
                             size={16}
-                            className="text-green-400 mt-1 flex-shrink-0"
+                            className="text-[#FF6A2A] mt-0.5 flex-shrink-0"
                           />
                           <span>{req}</span>
                         </li>
