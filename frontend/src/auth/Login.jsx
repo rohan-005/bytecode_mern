@@ -61,7 +61,7 @@ const Login = () => {
     <div className="min-h-screen bg-[#2F3437] text-[#F5F7F5] flex items-center justify-center p-6 font-outfit grid-bg">
       <div className="max-w-lg w-full">
         {/* Terminal Window Header */}
-        <div className="bg-[#2F3437] border border-[#626A6E] border-b-0 px-5 py-3.5 flex items-center justify-between font-jetbrains">
+        <div className="bg-[#3A4044] border border-[#626A6E] border-b-0 px-5 py-3.5 flex items-center justify-between font-jetbrains">
           <div className="flex items-center gap-2">
             <span className="w-3 h-3 bg-[#E53935] inline-block"></span>
             <span className="w-3 h-3 bg-[#FBC02D] inline-block"></span>

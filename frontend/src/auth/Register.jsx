@@ -107,7 +107,7 @@ const Register = () => {
     <div className="min-h-screen bg-[#2F3437] text-[#F5F7F5] flex items-center justify-center p-4 font-jetbrains grid-bg">
       <div className="max-w-md w-full my-8">
         {/* Terminal Window Header */}
-        <div className="bg-[#2F3437] border border-[#626A6E] border-b-0 px-4 py-3 flex items-center justify-between">
+        <div className="bg-[#3A4044] border border-[#626A6E] border-b-0 px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="w-3 h-3 bg-[#E53935] inline-block"></span>
             <span className="w-3 h-3 bg-[#FBC02D] inline-block"></span>

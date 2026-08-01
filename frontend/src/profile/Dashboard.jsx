@@ -206,7 +206,7 @@ const Dashboard = () => {
                 <span className="font-geist-pixel text-xl sm:text-2xl text-[#66BB6A]">
                   BYTECODE // DEV_ENVIRONMENT
                 </span>
-                <span className="px-2.5 py-0.5 bg-[#2F3437] border border-[#66BB6A] text-[#66BB6A] text-xs font-mono font-bold">
+                <span className="px-2.5 py-0.5 bg-[#66BB6A]/10 border border-[#66BB6A] text-[#66BB6A] text-xs font-mono font-bold">
                    ACTIVE_SESSION
                 </span>
               </div>
@@ -277,7 +277,7 @@ const Dashboard = () => {
             
             {/* Resume Last Course Feature Card */}
             {activeCourse ? (
-              <div className="bytecode-card p-8 border border-[#66BB6A] relative bg-[#2F3437]">
+              <div className="bg-[#3A4044] p-8 border border-[#66BB6A] relative">
                 <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#626A6E]">
                   <span className="font-geist-pixel text-xs text-[#66BB6A] uppercase tracking-wider flex items-center gap-2">
                     <IconPlayerPlay size={16} />
@@ -313,7 +313,7 @@ const Dashboard = () => {
                     <span className="text-[#D5DBD6]">Progress Completed</span>
                     <span className="text-[#66BB6A] font-bold">{Math.round(activeCourse.enrollment.progress)}%</span>
                   </div>
-                  <div className="w-full bg-[#2F3437] h-3 border border-[#626A6E]">
+                  <div className="w-full bg-[#3A4044] h-3 border border-[#626A6E]">
                     <div
                       className="h-full bg-[#66BB6A] transition-all duration-700"
                       style={{ width: `${activeCourse.enrollment.progress}%` }}
@@ -358,14 +358,14 @@ const Dashboard = () => {
                   filteredCourses.map((item) => (
                     <div
                       key={item.enrollment._id}
-                      className="p-5 bg-[#2F3437] border border-[#626A6E] hover:border-[#66BB6A] transition-colors flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+                      className="p-5 bg-[#3A4044] border border-[#626A6E] hover:border-[#66BB6A] hover:bg-[#454C50] transition-colors flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
                     >
                       <div className="flex-1 min-w-0">
                         <h4 className="font-bold text-white text-lg truncate mb-1">
                           {item.course.name}
                         </h4>
                         <div className="flex items-center gap-3 text-xs text-[#AAB2AD] font-mono">
-                          <span className="px-2 py-0.5 bg-[#2F3437] border border-[#626A6E] text-[#D5DBD6]">
+                          <span className="px-2 py-0.5 bg-[#454C50] border border-[#626A6E] text-[#D5DBD6]">
                             {item.course.level}
                           </span>
                           <span>•</span>
@@ -378,7 +378,7 @@ const Dashboard = () => {
                           <div className="text-sm font-bold text-[#66BB6A] font-mono">
                             {Math.round(item.enrollment.progress)}%
                           </div>
-                          <div className="w-28 bg-[#2F3437] h-2 border border-[#626A6E] mt-1">
+                          <div className="w-28 bg-[#3A4044] h-2 border border-[#626A6E] mt-1">
                             <div
                               className="h-full bg-[#66BB6A]"
                               style={{ width: `${item.enrollment.progress}%` }}
@@ -410,7 +410,7 @@ const Dashboard = () => {
 
               <div className="space-y-4 font-mono text-xs">
                 {activities.length === 0 ? (
-                  <div className="flex items-center gap-4 p-4 bg-[#2F3437] border border-[#626A6E]">
+                  <div className="flex items-center gap-4 p-4 bg-[#3A4044] border border-[#626A6E]">
                     <IconActivity size={18} className="text-[#66BB6A] flex-shrink-0" />
                     <div className="flex-1">
                       <span className="text-white font-bold">Platform Session Active: </span>
@@ -421,7 +421,7 @@ const Dashboard = () => {
                   </div>
                 ) : (
                   activities.map((act, index) => (
-                    <div key={index} className="flex items-center gap-4 p-4 bg-[#2F3437] border border-[#626A6E]">
+                    <div key={index} className="flex items-center gap-4 p-4 bg-[#3A4044] border border-[#626A6E]">
                       {act.type === 'streak' ? (
                         <IconCalendarCheck size={18} className="text-[#FBC02D] flex-shrink-0" />
                       ) : act.type === 'course' ? (
@@ -463,7 +463,7 @@ const Dashboard = () => {
                   <span className="text-xs text-[#FBC02D] font-bold">Target: {dailyGoalXP} XP</span>
                 </div>
 
-                <div className="w-full bg-[#2F3437] h-3 border border-[#626A6E]">
+                <div className="w-full bg-[#3A4044] h-3 border border-[#626A6E]">
                   <div
                     className="h-full bg-[#66BB6A] transition-all duration-500"
                     style={{ width: `${dailyProgress}%` }}
@@ -497,7 +497,7 @@ const Dashboard = () => {
                       className="w-full bg-[#66BB6A] hover:bg-[#A5D6A7] transition-all relative group"
                       style={{ height: bar.height }}
                     >
-                      <div className="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-[#2F3437] border border-[#66BB6A] text-[10px] font-mono px-1.5 py-0.5 text-white whitespace-nowrap z-10 transition-opacity">
+                      <div className="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-[#454C50] border border-[#66BB6A] text-[10px] font-mono px-1.5 py-0.5 text-white whitespace-nowrap z-10 transition-opacity">
                         {bar.xp} XP
                       </div>
                     </div>
@@ -518,7 +518,7 @@ const Dashboard = () => {
                   <Link
                     key={i}
                     to={act.path}
-                    className="p-3 bg-[#2F3437] border border-[#626A6E] hover:border-[#66BB6A] hover:bg-[#454C50] transition-all flex flex-col items-start gap-1 group"
+                    className="p-3 bg-[#3A4044] border border-[#626A6E] hover:border-[#66BB6A] hover:bg-[#454C50] transition-all flex flex-col items-start gap-1 group"
                   >
                     <div className="text-[#66BB6A] group-hover:scale-110 transition-transform">
                       {act.icon}
