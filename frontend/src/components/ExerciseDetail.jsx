@@ -57,6 +57,7 @@ const ExerciseDetail = () => {
   const [activeHint, setActiveHint] = useState(null);
   const [copied, setCopied] = useState(false);
   const [outputMode, setOutputMode] = useState("preview");
+  const [prevExercise, setPrevExercise] = useState(null);
   const [nextExercise, setNextExercise] = useState(null);
   const [isCompleting, setIsCompleting] = useState(false);
   const codeEditorRef = useRef(null);
@@ -125,10 +126,12 @@ const ExerciseDetail = () => {
       if (foundExercise) {
         setExercise(foundExercise);
         
-        // Find next exercise
+        // Find prev and next exercise
         const exercises = courseRes.data.exercises || [];
         const currentIndex = exercises.findIndex(ex => ex.id === exerciseId);
-        const nextEx = currentIndex < exercises.length - 1 ? exercises[currentIndex + 1] : null;
+        const prevEx = currentIndex > 0 ? exercises[currentIndex - 1] : null;
+        const nextEx = currentIndex >= 0 && currentIndex < exercises.length - 1 ? exercises[currentIndex + 1] : null;
+        setPrevExercise(prevEx);
         setNextExercise(nextEx);
 
         // Set initial output mode based on exercise type
@@ -202,13 +205,19 @@ const ExerciseDetail = () => {
     }
   };
 
-  // Navigate to next exercise
+  // Navigate to prev/next exercise
+  const goToPrevExercise = () => {
+    if (prevExercise) {
+      navigate(`/courses/${courseId}/exercises/${prevExercise.id}`);
+    }
+  };
+
   const goToNextExercise = () => {
     if (nextExercise) {
       navigate(`/courses/${courseId}/exercises/${nextExercise.id}`);
     } else {
-      // If no next exercise, go back to course page
-      navigate(`/courses/${courseId}`);
+      toast.success("Congratulations! Course completed!");
+      navigate(`/course/${courseId}`);
     }
   };
 
@@ -243,7 +252,7 @@ const ExerciseDetail = () => {
         <h1>CSS Playground</h1>
         <p>Your CSS styles are applied to this page. Modify the CSS code to see changes.</p>
         <div class="feature">
-            <h3>✨ Feature Card</h3>
+            <h3> Feature Card</h3>
             <p>This demonstrates your CSS styling skills</p>
         </div>
     </div>
@@ -283,10 +292,10 @@ const ExerciseDetail = () => {
         returnValue = func();
 
         if (returnValue !== undefined) {
-          logs.push(`🎯 Return: ${returnValue}`);
+          logs.push(` Return: ${returnValue}`);
         }
       } catch (executionError) {
-        logs.push(`❌ Error: ${executionError.toString()}`);
+        logs.push(` Error: ${executionError.toString()}`);
       }
 
       // Restore original console methods
@@ -296,13 +305,13 @@ const ExerciseDetail = () => {
 
       return {
         success: true,
-        output: logs.join("\n") || "✅ Code executed successfully (no output)",
+        output: logs.join("\n") || " Code executed successfully (no output)",
         type: "console",
       };
     } catch (error) {
       return {
         success: false,
-        output: `💥 Execution error: ${error.message}`,
+        output: ` Execution error: ${error.message}`,
         type: "error",
       };
     }
@@ -313,16 +322,16 @@ const ExerciseDetail = () => {
     setIsRunning(true);
     
     if (outputMode === 'preview') {
-      setOutput('🔄 Updating preview...');
+      setOutput(' Updating preview...');
       setTimeout(() => {
         setIframeKey(prev => prev + 1);
-        setOutput('✅ Preview updated!');
+        setOutput(' Preview updated!');
         setIsRunning(false);
       }, 500);
       return;
     }
 
-    setOutput('🚀 Running your code...');
+    setOutput(' Running your code...');
     
     try {
       // For JavaScript, run in browser
@@ -335,7 +344,7 @@ const ExerciseDetail = () => {
 
       // For HTML/CSS in console mode, show message
       if (exercise?.language === 'html' || exercise?.language === 'css') {
-        setOutput('🌐 This language is better viewed in Preview mode. Switch to Preview to see the output.');
+        setOutput(' This language is better viewed in Preview mode. Switch to Preview to see the output.');
         setIsRunning(false);
         return;
       }
@@ -356,31 +365,31 @@ const ExerciseDetail = () => {
         console.log('Backend response:', response.data);
         
         if (response.data.success) {
-          setOutput(`✅ ${response.data.output}`);
+          setOutput(` ${response.data.output}`);
         } else {
-          setOutput(`❌ ${response.data.output}`);
+          setOutput(` ${response.data.output}`);
         }
         setIsRunning(false);
         return;
       }
 
       // Fallback for unsupported languages
-      setOutput(`❌ Language "${exercise?.language}" is not supported for execution`);
+      setOutput(` Language "${exercise?.language}" is not supported for execution`);
       setIsRunning(false);
       
     } catch (error) {
       console.error('Error running code:', error);
       
       if (error.code === 'NETWORK_ERROR' || error.message.includes('Network Error')) {
-        setOutput(`🌐 Network Error: Cannot connect to code execution service\n\nMake sure the backend server is running on:\n${API_BASE}/code/execute`);
+        setOutput(` Network Error: Cannot connect to code execution service\n\nMake sure the backend server is running on:\n${API_BASE}/code/execute`);
       } else if (error.response?.status === 404) {
-        setOutput(`🔧 Backend Service Not Found\n\nThe code execution endpoint is not available at:\n${API_BASE}/code/execute`);
+        setOutput(` Backend Service Not Found\n\nThe code execution endpoint is not available at:\n${API_BASE}/code/execute`);
       } else if (error.response?.status === 500) {
-        setOutput(`⚙️ Server Error\n\nThe code execution service encountered an internal error.\n\nCheck the backend server logs for details.`);
+        setOutput(` Server Error\n\nThe code execution service encountered an internal error.\n\nCheck the backend server logs for details.`);
       } else if (error.message.includes('timeout')) {
         setOutput(`⏰ Timeout Error\n\nThe code execution took too long.\n\nTry simplifying your code.`);
       } else {
-        setOutput(`💥 Unexpected Error: ${error.message}`);
+        setOutput(` Unexpected Error: ${error.message}`);
       }
       setIsRunning(false);
     }
@@ -452,9 +461,9 @@ const ExerciseDetail = () => {
       case "medium":
         return "🟡";
       case "hard":
-        return "🔴";
+        return "";
       default:
-        return "⚪";
+        return "";
     }
   };
 
@@ -544,7 +553,7 @@ const ExerciseDetail = () => {
         <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-50">
           <div className="text-center animate-bounce">
             <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-4xl font-bold px-8 py-4 rounded-2xl shadow-2xl transform rotate-6">
-              🎉 +{xpEarned} XP Earned!
+               +{xpEarned} XP Earned!
             </div>
           </div>
         </div>
@@ -600,41 +609,12 @@ const ExerciseDetail = () => {
                 </div>
               )}
 
-              <div className="flex items-center gap-1.5 bg-[#1B1B1B] px-20 h-10 border border-[#FF6A2A] text-xs font-mono mr-50">
+              <div className="flex items-center gap-1.5 bg-[#1B1B1B] px-4 h-10 border border-[#FF6A2A] text-xs font-mono">
                 <span>{getDifficultyIcon(exercise.difficulty)}</span>
                 <span className="text-[#FF6A2A] font-bold">
                   {getLanguageDisplayName(exercise.language)}
                 </span>
               </div>
-
-              {user && (
-                <button
-                  onClick={markExerciseComplete}
-                  disabled={isExerciseCompleted() || isCompleting}
-                  className={`px-4 h-10 text-xs font-mono uppercase font-bold tracking-wider transition-colors inline-flex items-center justify-center gap-1.5 ${
-                    isExerciseCompleted()
-                      ? "bg-[#35C759]/20 text-[#35C759] border border-[#35C759] opacity-75 cursor-not-allowed"
-                      : "bytecode-btn-primary h-10 py-0"
-                  }`}
-                >
-                  {isCompleting ? (
-                    <>
-                      <IconLoader2 size={16} className="animate-spin text-white" />
-                      <span>Saving...</span>
-                    </>
-                  ) : isExerciseCompleted() ? (
-                    <>
-                      <IconCheck size={16} />
-                      <span>Completed</span>
-                    </>
-                  ) : (
-                    <>
-                      <IconTarget size={16} />
-                      <span>Mark Complete</span>
-                    </>
-                  )}
-                </button>
-              )}
             </div>
           </div>
         </div>
@@ -732,7 +712,7 @@ const ExerciseDetail = () => {
                   </div>
                   {/* <div className="bg-gray-800/50 rounded-2xl p-4 border border-gray-700">
                     <div className="text-gray-400 flex items-center gap-2">
-                      ⏱️ Duration
+                       Duration
                     </div>
                     <div className="font-semibold text-lg text-white">
                       {exercise.duration || "Not specified"}
@@ -746,7 +726,7 @@ const ExerciseDetail = () => {
               <div className="space-y-6">
                 <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-2xl p-6 border border-purple-500/20">
                   <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
-                    🧠 Theory & Concepts
+                     Theory & Concepts
                   </h2>
                   <div className="prose prose-invert max-w-none">
                     <p className="text-gray-300 text-lg leading-relaxed whitespace-pre-line">
@@ -825,7 +805,7 @@ const ExerciseDetail = () => {
             {activeTheoryTab === "references" && (
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
-                  🔗 Learning Resources
+                   Learning Resources
                 </h2>
                 {exercise.references && exercise.references.length > 0 ? (
                   <div className="space-y-4">
@@ -867,7 +847,7 @@ const ExerciseDetail = () => {
                 <div className="bg-gradient-to-r from-red-500/10 to-orange-500/10 rounded-2xl p-6 border border-red-500/20">
                   <div className="flex items-center justify-between">
                     <h2 className="text-2xl font-bold flex items-center gap-3">
-                      🎯 Solution
+                       Solution
                     </h2>
                     <button
                       onClick={() => setShowSolution(!showSolution)}
@@ -912,7 +892,7 @@ const ExerciseDetail = () => {
                       </div>
                       <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-4">
                         <p className="text-green-300 text-sm">
-                          <strong>🎯 Pro Tip:</strong> Study this solution
+                          <strong> Pro Tip:</strong> Study this solution
                           carefully and try to understand the concepts. Then
                           close it and implement your own version!
                         </p>
@@ -925,12 +905,12 @@ const ExerciseDetail = () => {
                         className="mx-auto mb-3 text-yellow-400"
                       />
                       <h3 className="text-lg font-semibold text-yellow-200 mb-2">
-                        Solution Locked 🔒
+                        Solution Locked 
                       </h3>
                       <p className="text-yellow-100">
                         Try solving the challenge yourself first! The real
                         learning happens when you struggle and overcome
-                        obstacles. 💪
+                        obstacles. 
                       </p>
                     </div>
                   )}
@@ -1045,7 +1025,7 @@ const ExerciseDetail = () => {
                 <div className="bg-black/50 rounded-2xl p-4 h-full border border-gray-700">
                   <pre className="font-mono text-sm text-slate-200 h-full overflow-auto whitespace-pre-wrap">
                     {output ||
-                      `✨ Run your ${getLanguageDisplayName(
+                      ` Run your ${getLanguageDisplayName(
                         exercise.language
                       )} code to see the output here...`}
                   </pre>
@@ -1056,33 +1036,95 @@ const ExerciseDetail = () => {
         </div>
       </div>
 
-      {/* Next Exercise Button - Only shows when exercise is completed */}
-      {isExerciseCompleted() && (
-        <div className="fixed bottom-6 right-6 z-40 animate-bounce">
+      {/* Dedicated Sticky Bottom Action Bar */}
+      <div className="w-full bg-[#141414]/95 backdrop-blur-md border-t border-[#2A2A2A] px-6 py-4 mt-8 sticky bottom-0 z-40">
+        {/* Progress & Lesson Count Header */}
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 mb-4">
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-mono tracking-wider text-[#A0A0A0] uppercase">
+              Lesson {(() => {
+                const exs = course?.exercises || [];
+                const idx = exs.findIndex((ex) => ex.id === exerciseId);
+                return idx >= 0 ? idx + 1 : 1;
+              })()} of {course?.exercises?.length || 1}
+            </span>
+            <span className="text-xs text-[#4A4A4A]">•</span>
+            <span className="text-xs font-mono text-[#FF6A2A] font-semibold">
+              {(() => {
+                const exs = course?.exercises || [];
+                const idx = exs.findIndex((ex) => ex.id === exerciseId);
+                const total = exs.length || 1;
+                return Math.round(((idx >= 0 ? idx + 1 : 1) / total) * 100);
+              })()}% Complete
+            </span>
+          </div>
+
+          {/* Progress Bar */}
+          <div className="w-full md:w-64 h-2 bg-[#262626] border border-[#3A3A3A] overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-[#FF6A2A] to-[#FF8853] transition-all duration-500"
+              style={{
+                width: `${(() => {
+                  const exs = course?.exercises || [];
+                  const idx = exs.findIndex((ex) => ex.id === exerciseId);
+                  const total = exs.length || 1;
+                  return Math.round(((idx >= 0 ? idx + 1 : 1) / total) * 100);
+                })()}%`
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Centered Action Bar Buttons */}
+        <div className="max-w-3xl mx-auto flex items-center justify-center gap-4 sm:gap-6">
+          {/* Previous Button */}
           <button
-            onClick={goToNextExercise}
-            className="bytecode-btn-primary text-xs py-3 px-6 shadow-2xl uppercase tracking-wider font-mono flex items-center gap-2"
+            onClick={goToPrevExercise}
+            disabled={!prevExercise}
+            className="bytecode-btn-secondary text-xs sm:text-sm px-5 py-2.5 flex items-center gap-2 uppercase tracking-wider font-mono min-w-[120px] justify-center disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-[#4A4A4A] transition-all"
           >
-            {nextExercise ? (
+            <IconArrowLeft size={16} />
+            <span>Previous</span>
+          </button>
+
+          {/* Mark as Complete Button */}
+          <button
+            onClick={markExerciseComplete}
+            disabled={isCompleting || isExerciseCompleted()}
+            className={`text-xs sm:text-sm px-6 py-2.5 flex items-center gap-2 uppercase tracking-wider font-mono font-bold min-w-[180px] justify-center transition-all duration-300 ${
+              isExerciseCompleted()
+                ? "bg-[#35C759]/20 text-[#35C759] border border-[#35C759] cursor-default opacity-90"
+                : "bytecode-btn-primary"
+            }`}
+          >
+            {isCompleting ? (
               <>
-                <span>Next Exercise</span>
-                <IconArrowRight 
-                  size={20} 
-                  className="group-hover:translate-x-1 transition-transform duration-300" 
-                />
+                <IconLoader2 size={16} className="animate-spin text-white" />
+                <span>Saving...</span>
+              </>
+            ) : isExerciseCompleted() ? (
+              <>
+                <IconCheck size={16} />
+                <span>Completed</span>
               </>
             ) : (
               <>
-                <span>Back to Course</span>
-                <IconArrowRight 
-                  size={20} 
-                  className="group-hover:translate-x-1 transition-transform duration-300" 
-                />
+                <IconCheck size={16} />
+                <span>Mark Complete</span>
               </>
             )}
           </button>
+
+          {/* Next Button */}
+          <button
+            onClick={goToNextExercise}
+            className="bytecode-btn-secondary text-xs sm:text-sm px-5 py-2.5 flex items-center gap-2 uppercase tracking-wider font-mono min-w-[120px] justify-center transition-all"
+          >
+            <span>{nextExercise ? "Next" : "Finish"}</span>
+            <IconArrowRight size={16} />
+          </button>
         </div>
-      )}
+      </div>
 
       <style jsx>{`
         @keyframes float {
