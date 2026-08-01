@@ -1079,52 +1079,61 @@ const ExerciseDetail = () => {
         </div>
 
         {/* Centered Action Bar Buttons */}
-        <div className="max-w-3xl mx-auto flex items-center justify-center gap-4 sm:gap-6">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 font-jetbrains">
           {/* Previous Button */}
           <button
+            type="button"
             onClick={goToPrevExercise}
             disabled={!prevExercise}
-            className="bytecode-btn-secondary text-xs sm:text-sm px-5 py-2.5 flex items-center gap-2 uppercase tracking-wider font-mono min-w-[120px] justify-center disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-[#626A6E] transition-all"
+            className={`h-11 sm:h-12 px-6 py-2.5 min-w-[140px] flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all border ${
+              !prevExercise
+                ? "bg-[#2F3437] text-[#626A6E] border-[#626A6E]/40 cursor-not-allowed opacity-50"
+                : "bg-[#3A4044] hover:bg-[#454C50] text-[#D5DBD6] hover:text-white border-[#626A6E] hover:border-[#66BB6A] cursor-pointer"
+            }`}
           >
-            <IconArrowLeft size={16} />
+            <IconArrowLeft size={18} />
             <span>Previous</span>
           </button>
 
           {/* Mark as Complete Button */}
           <button
+            type="button"
             onClick={markExerciseComplete}
             disabled={isCompleting || isExerciseCompleted()}
-            className={`text-xs sm:text-sm px-6 py-2.5 flex items-center gap-2 uppercase tracking-wider font-mono font-bold min-w-[180px] justify-center transition-all duration-300 ${
+            className={`h-11 sm:h-12 px-6 py-2.5 min-w-[200px] flex items-center justify-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all border ${
               isExerciseCompleted()
-                ? "bg-[#66BB6A]/20 text-[#66BB6A] border border-[#66BB6A] cursor-default opacity-90"
-                : "bytecode-btn-primary"
+                ? "bg-[#66BB6A]/10 text-[#66BB6A] border-[#66BB6A] cursor-default"
+                : isCompleting
+                ? "bg-[#3A4044] text-[#D5DBD6] border-[#66BB6A] cursor-wait"
+                : "bg-[#66BB6A] hover:bg-[#52B256] text-[#1E2224] border-[#66BB6A] shadow-[0_0_12px_rgba(102,187,106,0.3)] hover:shadow-[0_0_18px_rgba(102,187,106,0.5)] cursor-pointer"
             }`}
           >
             {isCompleting ? (
               <>
-                <IconLoader2 size={16} className="animate-spin text-white" />
+                <IconLoader2 size={18} className="animate-spin text-[#66BB6A]" />
                 <span>Saving...</span>
               </>
             ) : isExerciseCompleted() ? (
               <>
-                <IconCheck size={16} />
+                <IconCheck size={18} className="text-[#66BB6A]" />
                 <span>Completed</span>
               </>
             ) : (
               <>
-                <IconCheck size={16} />
-                <span>Mark Complete</span>
+                <IconCheck size={18} />
+                <span>Mark as Complete</span>
               </>
             )}
           </button>
 
           {/* Next Button */}
           <button
+            type="button"
             onClick={goToNextExercise}
-            className="bytecode-btn-secondary text-xs sm:text-sm px-5 py-2.5 flex items-center gap-2 uppercase tracking-wider font-mono min-w-[120px] justify-center transition-all"
+            className="h-11 sm:h-12 px-6 py-2.5 min-w-[140px] flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all border bg-[#3A4044] hover:bg-[#454C50] text-[#D5DBD6] hover:text-white border-[#626A6E] hover:border-[#66BB6A] cursor-pointer"
           >
             <span>{nextExercise ? "Next" : "Finish"}</span>
-            <IconArrowRight size={16} />
+            {nextExercise ? <IconArrowRight size={18} /> : <IconCheck size={18} className="text-[#66BB6A]" />}
           </button>
         </div>
       </div>
