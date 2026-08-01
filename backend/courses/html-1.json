@@ -1,0 +1,437 @@
+{
+  "id": "html-1",
+  "name": "HTML I \u2014 Fundamentals",
+  "description": "Master foundational HTML5 document structure, headings, copy formatting, lists, links, images, and build your Personal Developer Portfolio.",
+  "instructor": "ByteCode Engineering Curriculum Team",
+  "duration": "4 weeks",
+  "level": "Beginner",
+  "price": 0,
+  "image": "/logos/html.png",
+  "category": "Web Development",
+  "rating": 4.9,
+  "ratingCount": 1840,
+  "students": 4920,
+  "tags": [
+    "html",
+    "learning-path",
+    "bytecode"
+  ],
+  "whatYouLearn": [
+    "Construct modern HTML5 document trees",
+    "Format copy with headings, lists, and semantic tags",
+    "Create links, images, and tabular data",
+    "Build a production Personal Developer Portfolio"
+  ],
+  "prerequisites": [
+    "Basic computer operating system usage"
+  ],
+  "exercises": [
+    {
+      "id": "html1-ex1",
+      "title": "DOCTYPE & Document Shell",
+      "description": "Build a valid HTML5 document shell with DOCTYPE, html, head, title, and body.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "Every HTML5 document starts with <!DOCTYPE html> to trigger standard browser rendering.",
+      "objective": "Create an HTML5 shell.",
+      "initialCode": "<!DOCTYPE html>\n<html>\n<head></head>\n<body></body>\n</html>",
+      "solutionCode": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>My Webpage</title>\n</head>\n<body>\n    <h1>Welcome to Web Development</h1>\n</body>\n</html>",
+      "requirements": [
+        "Include <!DOCTYPE html>",
+        "Add lang='en' attribute",
+        "Add charset UTF-8"
+      ],
+      "hints": [
+        "Doctype must be the first line"
+      ],
+      "codeExample": "<!DOCTYPE html><html lang=\"en\"><head><title>T</title></head><body></body></html>"
+    },
+    {
+      "id": "html1-ex2",
+      "title": "Headings Hierarchy",
+      "description": "Structure page headers using H1 through H6 tags.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "Headings define document outline. Use H1 for main page title and H2-H6 for sub-sections.",
+      "objective": "Build heading hierarchy.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <h1>Main Platform Title</h1>\n    <h2>Core Modules</h2>\n    <h3>HTML Architecture</h3>\n</body>",
+      "requirements": [
+        "Use single h1 tag",
+        "Include h2 and h3"
+      ],
+      "hints": [
+        "Do not skip heading levels"
+      ],
+      "codeExample": "<h1>Title</h1><h2>Section</h2>"
+    },
+    {
+      "id": "html1-ex3",
+      "title": "Paragraphs & Formatting",
+      "description": "Format text copy with p, strong, and em elements.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "<p> defines paragraphs. <strong> denotes semantic importance; <em> denotes emphasis.",
+      "objective": "Format copy with p, strong, and em.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <p>ByteCode provides <strong>interactive learning</strong> for developers.</p>\n    <p>Practice <em>directly in your browser</em>.</p>\n</body>",
+      "requirements": [
+        "Wrap blocks in p tags",
+        "Use strong for bold",
+        "Use em for italics"
+      ],
+      "hints": [
+        "strong indicates semantic importance"
+      ],
+      "codeExample": "<p>Text <strong>bold</strong> <em>italic</em></p>"
+    },
+    {
+      "id": "html1-ex4",
+      "title": "Lists (ul & ol)",
+      "description": "Create unordered bulleted and ordered numbered lists.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "<ul> creates bulleted lists, <ol> creates numbered lists, and <li> wraps items.",
+      "objective": "Create unordered and ordered lists.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <h2>Skill Stack</h2>\n    <ul>\n        <li>HTML5 Core</li>\n        <li>CSS3 Layout</li>\n    </ul>\n</body>",
+      "requirements": [
+        "Create ul list",
+        "Wrap items in li tags"
+      ],
+      "hints": [
+        "li must be child of ul or ol"
+      ],
+      "codeExample": "<ul><li>Item 1</li></ul>"
+    },
+    {
+      "id": "html1-ex5",
+      "title": "Hyperlinks & Target",
+      "description": "Create clickable links using anchor tags and href attributes.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "<a> tags create hyperlinks. Use target='_blank' for external links.",
+      "objective": "Create internal and external links.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <a href=\"https://bytecode.dev\" target=\"_blank\" rel=\"noopener\">ByteCode</a>\n    <a href=\"#contact\">Contact</a>\n</body>",
+      "requirements": [
+        "Include href attribute",
+        "Add target='_blank' and rel='noopener'"
+      ],
+      "hints": [
+        "rel='noopener' is required for target='_blank'"
+      ],
+      "codeExample": "<a href=\"https://example.com\" target=\"_blank\" rel=\"noopener\">Link</a>"
+    },
+    {
+      "id": "html1-ex6",
+      "title": "Image Embedding & Alt Text",
+      "description": "Embed images using img tag, src, and descriptive alt text.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "The <img> tag embeds images. alt supplies fallback text for accessibility.",
+      "objective": "Embed image with src and alt.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <img src=\"/logos/html.png\" alt=\"HTML5 Logo\" width=\"200\" height=\"200\">\n</body>",
+      "requirements": [
+        "Use img tag",
+        "Include alt text",
+        "Set width and height"
+      ],
+      "hints": [
+        "alt text describes image content"
+      ],
+      "codeExample": "<img src=\"logo.png\" alt=\"Logo\" width=\"100\">"
+    },
+    {
+      "id": "html1-ex7",
+      "title": "Line Breaks & Divider Lines",
+      "description": "Format line separation using br and hr self-closing tags.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "<br> inserts inline line breaks; <hr> creates horizontal thematic dividers.",
+      "objective": "Add line break and divider line.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <p>ByteCode Engine<br>San Francisco, CA</p>\n    <hr>\n    <p>Copyright 2026</p>\n</body>",
+      "requirements": [
+        "Use br for address break",
+        "Use hr for horizontal line"
+      ],
+      "hints": [
+        "br is self-closing"
+      ],
+      "codeExample": "<p>Line 1<br>Line 2</p><hr>"
+    },
+    {
+      "id": "html1-ex8",
+      "title": "Generic Containers (div)",
+      "description": "Group elements into block-level div containers.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "<div> is a generic block container used to group elements for layout styling.",
+      "objective": "Wrap card elements inside a div container.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <div class=\"card\">\n        <h2>Profile</h2>\n        <p>Full Stack Engineer</p>\n    </div>\n</body>",
+      "requirements": [
+        "Create div block",
+        "Add class attribute"
+      ],
+      "hints": [
+        "div is block-level by default"
+      ],
+      "codeExample": "<div class=\"box\"><p>Text</p></div>"
+    },
+    {
+      "id": "html1-ex9",
+      "title": "Inline Containers (span)",
+      "description": "Format specific inline text words using span elements.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "<span> is an inline container used to style specific words within text without creating new lines.",
+      "objective": "Format inline text using span.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <p>Status: <span class=\"active\">Online</span></p>\n</body>",
+      "requirements": [
+        "Wrap text in span",
+        "Add class attribute"
+      ],
+      "hints": [
+        "span does not cause line breaks"
+      ],
+      "codeExample": "<p>Status: <span>Active</span></p>"
+    },
+    {
+      "id": "html1-ex10",
+      "title": "HTML Comments",
+      "description": "Write developer documentation comments using <!-- comment --> syntax.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "Comments <!-- comment --> are ignored by browser rendering engines.",
+      "objective": "Add HTML comments.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <!-- Main Navigation Header -->\n    <header>\n        <h1>ByteCode</h1>\n    </header>\n</body>",
+      "requirements": [
+        "Use <!-- --> comment syntax"
+      ],
+      "hints": [
+        "Comments are visible in View Source"
+      ],
+      "codeExample": "<!-- Comment note -->"
+    },
+    {
+      "id": "html1-ex11",
+      "title": "Preformatted Code Blocks",
+      "description": "Render monospaced code blocks using pre and code tags.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "<pre> preserves whitespace formatting; <code> formats text monospaced.",
+      "objective": "Render formatted code snippet.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <pre><code>\nconst msg = \"Hello\";\nconsole.log(msg);\n    </code></pre>\n</body>",
+      "requirements": [
+        "Wrap code tag in pre tag"
+      ],
+      "hints": [
+        "pre preserves indentation"
+      ],
+      "codeExample": "<pre><code>const a = 1;</code></pre>"
+    },
+    {
+      "id": "html1-ex12",
+      "title": "Quotes & Citations",
+      "description": "Format block quotes and citations using blockquote and cite.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "<blockquote> formats multi-line quotes; <cite> attributes the citation source.",
+      "objective": "Format quotation with citation.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <blockquote cite=\"https://bytecode.dev\">\n        <p>Simplicity is prerequisite for reliability.</p>\n    </blockquote>\n    <p><cite>Edsger Dijkstra</cite></p>\n</body>",
+      "requirements": [
+        "Use blockquote tag with cite attribute",
+        "Use cite tag for author"
+      ],
+      "hints": [
+        "cite tag italicizes citation text"
+      ],
+      "codeExample": "<blockquote><p>Quote</p></blockquote>"
+    },
+    {
+      "id": "html1-ex13",
+      "title": "Superscript & Subscript",
+      "description": "Format exponents and chemical formulas using sup and sub.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "<sub> renders subscript lower; <sup> renders superscript higher.",
+      "objective": "Format H2O formula and E=mc2 equation.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <p>Water: H<sub>2</sub>O</p>\n    <p>Energy: E = mc<sup>2</sup></p>\n</body>",
+      "requirements": [
+        "Use sub for subscript 2",
+        "Use sup for exponent 2"
+      ],
+      "hints": [
+        "Aligns inline with text"
+      ],
+      "codeExample": "<p>H<sub>2</sub>O and x<sup>2</sup></p>"
+    },
+    {
+      "id": "html1-ex14",
+      "title": "Buttons & Action Controls",
+      "description": "Create action buttons using button tags.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "<button> creates interactive buttons with type='button' or 'submit'.",
+      "objective": "Create submit and action buttons.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <button type=\"button\">Click Me</button>\n    <button type=\"submit\">Submit Form</button>\n</body>",
+      "requirements": [
+        "Set type attribute explicitly"
+      ],
+      "hints": [
+        "Always specify button type"
+      ],
+      "codeExample": "<button type=\"button\">Click</button>"
+    },
+    {
+      "id": "html1-ex15",
+      "title": "Abbreviations & Tooltips",
+      "description": "Format acronyms with hover tooltips using abbr tag.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "<abbr> formats acronyms; the title attribute displays hover tooltips.",
+      "objective": "Format acronym using abbr tag.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <p>Built with <abbr title=\"HyperText Markup Language\">HTML</abbr>5.</p>\n</body>",
+      "requirements": [
+        "Use abbr tag",
+        "Add title attribute"
+      ],
+      "hints": [
+        "title displays hover text"
+      ],
+      "codeExample": "<abbr title=\"Application Programming Interface\">API</abbr>"
+    },
+    {
+      "id": "html1-ex16",
+      "title": "Basic Data Tables",
+      "description": "Create data tables using table, tr, th, and td tags.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "Tables format tabular data row-by-row with <tr> rows, <th> headers, and <td> cells.",
+      "objective": "Build 2x2 data table.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <table>\n        <tr>\n            <th>Student</th>\n            <th>Score</th>\n        </tr>\n        <tr>\n            <td>Alex</td>\n            <td>95</td>\n        </tr>\n    </table>\n</body>",
+      "requirements": [
+        "Create table tag",
+        "Use tr, th, and td tags"
+      ],
+      "hints": [
+        "th headers are bold by default"
+      ],
+      "codeExample": "<table><tr><th>H</th></tr><tr><td>D</td></tr></table>"
+    },
+    {
+      "id": "html1-ex17",
+      "title": "Semantic Header & Footer",
+      "description": "Structure top branding and bottom copyright with header and footer tags.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "<header> holds intro content; <footer> contains copyright and contact info.",
+      "objective": "Add header and footer blocks.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <header>\n        <h1>ByteCode Platform</h1>\n    </header>\n    <footer>\n        <p>&copy; 2026 ByteCode</p>\n    </footer>\n</body>",
+      "requirements": [
+        "Use header tag",
+        "Use footer tag with &copy;"
+      ],
+      "hints": [
+        "&copy; renders \u00a9 symbol"
+      ],
+      "codeExample": "<header><h1>Title</h1></header><footer>&copy; 2026</footer>"
+    },
+    {
+      "id": "html1-ex18",
+      "title": "HTML Entities & Escaping",
+      "description": "Render reserved symbols (<, >, &) using HTML entities.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "Use &lt; for <, &gt; for >, and &amp; for & to render reserved characters.",
+      "objective": "Render escaped HTML tag text.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <p>Use &lt;div&gt; tags to group content &amp; layout elements.</p>\n</body>",
+      "requirements": [
+        "Use &lt; and &gt;"
+      ],
+      "hints": [
+        "Entities prevent HTML parsing"
+      ],
+      "codeExample": "<p>&lt;h1&gt;Tag&lt;/h1&gt;</p>"
+    },
+    {
+      "id": "html1-ex19",
+      "title": "Iframe Page Embedding",
+      "description": "Embed external documents securely using iframe tag.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "<iframe> embeds external content. Always supply title for accessibility.",
+      "objective": "Embed iframe document.",
+      "initialCode": "<body></body>",
+      "solutionCode": "<body>\n    <iframe src=\"about:blank\" title=\"Embedded Frame\" width=\"400\" height=\"300\"></iframe>\n</body>",
+      "requirements": [
+        "Include iframe tag",
+        "Set title, width, and height"
+      ],
+      "hints": [
+        "Always supply title attribute"
+      ],
+      "codeExample": "<iframe src=\"url\" title=\"Widget\"></iframe>"
+    },
+    {
+      "id": "html1-ex20",
+      "title": "Capstone Project: Developer Personal Portfolio Website",
+      "description": "Build a complete Personal Portfolio Website featuring header, bio, project lists, tables, and contact links.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "html",
+      "theory": "Combines all HTML I fundamentals into a complete production developer portfolio.",
+      "objective": "Build complete developer portfolio page.",
+      "initialCode": "<!DOCTYPE html>\n<html><body></body></html>",
+      "solutionCode": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Alex River - Portfolio</title>\n</head>\n<body>\n    <header>\n        <h1>Alex River</h1>\n        <p>Full Stack Software Engineer</p>\n    </header>\n    <main>\n        <section>\n            <h2>About Me</h2>\n            <p>Building <strong>scalable developer tools</strong> and web platforms.</p>\n        </section>\n        <section>\n            <h2>Projects</h2>\n            <ul>\n                <li><a href=\"https://bytecode.dev\" target=\"_blank\" rel=\"noopener\">ByteCode Engine</a></li>\n            </ul>\n        </section>\n    </main>\n    <footer>\n        <p>&copy; 2026 Alex River. All rights reserved.</p>\n    </footer>\n</body>\n</html>",
+      "requirements": [
+        "Include HTML5 doctype and head tags",
+        "Use header, main, section, and footer",
+        "Include project list and links"
+      ],
+      "hints": [
+        "Ensure valid HTML5 document structure"
+      ],
+      "codeExample": "<!DOCTYPE html><html><body><header><h1>Portfolio</h1></header></body></html>"
+    }
+  ],
+  "references": [
+    {
+      "title": "HTML I \u2014 Fundamentals Reference",
+      "description": "Official documentation and guide",
+      "url": "https://developer.mozilla.org"
+    }
+  ]
+}

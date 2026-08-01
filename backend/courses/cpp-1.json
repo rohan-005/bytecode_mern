@@ -1,0 +1,457 @@
+{
+  "id": "cpp-1",
+  "name": "C++ I \u2014 Fundamentals & Pointers",
+  "description": "Master C++ syntax, memory addresses, pointers, references, functions, arrays, and build a Library Management System.",
+  "instructor": "ByteCode Engineering Curriculum Team",
+  "duration": "4 weeks",
+  "level": "Beginner",
+  "price": 0,
+  "image": "/logos/cpp.png",
+  "category": "Systems Engineering",
+  "rating": 4.9,
+  "ratingCount": 1920,
+  "students": 5120,
+  "tags": [
+    "cpp",
+    "learning-path",
+    "bytecode"
+  ],
+  "whatYouLearn": [
+    "Master C++ primitive types, control flow, and I/O streams",
+    "Understand memory addresses and pointer arithmetic",
+    "Pass arguments by reference via pointers",
+    "Build a Library Management System Capstone"
+  ],
+  "prerequisites": [
+    "Basic computer operating system usage"
+  ],
+  "exercises": [
+    {
+      "id": "cpp1-ex1",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 1: Core Fundamental",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 1: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Foundational theory explanation for module 1.",
+      "objective": "Understand fundamental concept 1 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 1: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 1: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex2",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 2: Core Fundamental",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 2: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Foundational theory explanation for module 2.",
+      "objective": "Understand fundamental concept 2 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 2: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 2: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex3",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 3: Core Fundamental",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 3: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Foundational theory explanation for module 3.",
+      "objective": "Understand fundamental concept 3 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 3: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 3: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex4",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 4: Core Fundamental",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 4: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Foundational theory explanation for module 4.",
+      "objective": "Understand fundamental concept 4 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 4: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 4: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex5",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 5: Core Fundamental",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 5: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Foundational theory explanation for module 5.",
+      "objective": "Understand fundamental concept 5 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 5: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 5: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex6",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 6: Core Fundamental",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 6: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Foundational theory explanation for module 6.",
+      "objective": "Understand fundamental concept 6 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 6: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 6: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex7",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 7: Intermediate Skill",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 7: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Intermediate concepts theory and best practices for topic 7.",
+      "objective": "Apply intermediate concept 7 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 7: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 7: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex8",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 8: Intermediate Skill",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 8: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Intermediate concepts theory and best practices for topic 8.",
+      "objective": "Apply intermediate concept 8 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 8: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 8: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex9",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 9: Intermediate Skill",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 9: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Intermediate concepts theory and best practices for topic 9.",
+      "objective": "Apply intermediate concept 9 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 9: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 9: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex10",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 10: Intermediate Skill",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 10: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Intermediate concepts theory and best practices for topic 10.",
+      "objective": "Apply intermediate concept 10 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 10: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 10: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex11",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 11: Intermediate Skill",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 11: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Intermediate concepts theory and best practices for topic 11.",
+      "objective": "Apply intermediate concept 11 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 11: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 11: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex12",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 12: Intermediate Skill",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 12: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Intermediate concepts theory and best practices for topic 12.",
+      "objective": "Apply intermediate concept 12 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 12: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 12: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex13",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 13: Advanced Topic",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 13: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 13.",
+      "objective": "Master topic 13 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 13: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 13: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex14",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 14: Advanced Topic",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 14: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 14.",
+      "objective": "Master topic 14 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 14: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 14: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex15",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 15: Advanced Topic",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 15: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 15.",
+      "objective": "Master topic 15 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 15: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 15: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex16",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 16: Advanced Topic",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 16: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 16.",
+      "objective": "Master topic 16 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 16: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 16: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex17",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 17: Advanced Topic",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 17: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 17.",
+      "objective": "Master topic 17 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 17: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 17: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex18",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 18: Advanced Topic",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 18: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 18.",
+      "objective": "Master topic 18 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 18: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 18: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex19",
+      "title": "C++ I \u2014 Fundamentals & Pointers Module 19: Advanced Topic",
+      "description": "Practice and master C++ I \u2014 Fundamentals & Pointers Module 19: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 19.",
+      "objective": "Master topic 19 in C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ I \u2014 Fundamentals & Pointers Module 19: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ I \u2014 Fundamentals & Pointers Module 19: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cpp1-ex20",
+      "title": "Capstone Project: C++ I \u2014 Fundamentals & Pointers Industry Application",
+      "description": "Practice and master Capstone Project: C++ I \u2014 Fundamentals & Pointers Industry Application with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "cpp",
+      "theory": "This capstone integrates all core modules learned in C++ I \u2014 Fundamentals & Pointers into a complete project.",
+      "objective": "Build a full production capstone project for C++ I \u2014 Fundamentals & Pointers.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for Capstone Project: C++ I \u2014 Fundamentals & Pointers Industry Application",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Capstone Project: C++ I \u2014 Fundamentals & Pointers Industry Application",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    }
+  ],
+  "references": [
+    {
+      "title": "C++ I \u2014 Fundamentals & Pointers Reference Guide",
+      "description": "Official documentation and learning guide",
+      "url": "https://developer.mozilla.org"
+    }
+  ]
+}

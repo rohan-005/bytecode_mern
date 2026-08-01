@@ -1,0 +1,457 @@
+{
+  "id": "html-2",
+  "name": "HTML II \u2014 Intermediate & Semantics",
+  "description": "Master HTML5 semantic layout architecture, tables, media players, forms, and SVG graphics to build a Restaurant Website.",
+  "instructor": "ByteCode Engineering Curriculum Team",
+  "duration": "4 weeks",
+  "level": "Intermediate",
+  "price": 0,
+  "image": "/logos/html.png",
+  "category": "Web Development",
+  "rating": 4.9,
+  "ratingCount": 1920,
+  "students": 5120,
+  "tags": [
+    "html",
+    "learning-path",
+    "bytecode"
+  ],
+  "whatYouLearn": [
+    "Master HTML5 semantic elements (article, section, nav)",
+    "Build accessible tables and media players",
+    "Construct user input forms with validation",
+    "Build a Restaurant Website Capstone"
+  ],
+  "prerequisites": [
+    "HTML I \u2014 Fundamentals"
+  ],
+  "exercises": [
+    {
+      "id": "html2-ex1",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 1: Core Fundamental",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 1: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "Foundational theory explanation for module 1.",
+      "objective": "Understand fundamental concept 1 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 1: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 1: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex2",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 2: Core Fundamental",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 2: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "Foundational theory explanation for module 2.",
+      "objective": "Understand fundamental concept 2 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 2: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 2: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex3",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 3: Core Fundamental",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 3: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "Foundational theory explanation for module 3.",
+      "objective": "Understand fundamental concept 3 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 3: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 3: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex4",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 4: Core Fundamental",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 4: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "Foundational theory explanation for module 4.",
+      "objective": "Understand fundamental concept 4 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 4: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 4: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex5",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 5: Core Fundamental",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 5: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "Foundational theory explanation for module 5.",
+      "objective": "Understand fundamental concept 5 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 5: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 5: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex6",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 6: Core Fundamental",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 6: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "html",
+      "theory": "Foundational theory explanation for module 6.",
+      "objective": "Understand fundamental concept 6 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 6: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 6: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex7",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 7: Intermediate Skill",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 7: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "html",
+      "theory": "Intermediate concepts theory and best practices for topic 7.",
+      "objective": "Apply intermediate concept 7 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 7: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 7: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex8",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 8: Intermediate Skill",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 8: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "html",
+      "theory": "Intermediate concepts theory and best practices for topic 8.",
+      "objective": "Apply intermediate concept 8 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 8: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 8: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex9",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 9: Intermediate Skill",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 9: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "html",
+      "theory": "Intermediate concepts theory and best practices for topic 9.",
+      "objective": "Apply intermediate concept 9 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 9: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 9: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex10",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 10: Intermediate Skill",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 10: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "html",
+      "theory": "Intermediate concepts theory and best practices for topic 10.",
+      "objective": "Apply intermediate concept 10 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 10: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 10: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex11",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 11: Intermediate Skill",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 11: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "html",
+      "theory": "Intermediate concepts theory and best practices for topic 11.",
+      "objective": "Apply intermediate concept 11 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 11: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 11: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex12",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 12: Intermediate Skill",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 12: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "html",
+      "theory": "Intermediate concepts theory and best practices for topic 12.",
+      "objective": "Apply intermediate concept 12 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 12: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 12: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex13",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 13: Advanced Topic",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 13: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "html",
+      "theory": "Detailed theory and architecture explanation for topic 13.",
+      "objective": "Master topic 13 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 13: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 13: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex14",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 14: Advanced Topic",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 14: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "html",
+      "theory": "Detailed theory and architecture explanation for topic 14.",
+      "objective": "Master topic 14 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 14: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 14: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex15",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 15: Advanced Topic",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 15: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "html",
+      "theory": "Detailed theory and architecture explanation for topic 15.",
+      "objective": "Master topic 15 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 15: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 15: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex16",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 16: Advanced Topic",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 16: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "html",
+      "theory": "Detailed theory and architecture explanation for topic 16.",
+      "objective": "Master topic 16 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 16: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 16: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex17",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 17: Advanced Topic",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 17: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "html",
+      "theory": "Detailed theory and architecture explanation for topic 17.",
+      "objective": "Master topic 17 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 17: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 17: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex18",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 18: Advanced Topic",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 18: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "html",
+      "theory": "Detailed theory and architecture explanation for topic 18.",
+      "objective": "Master topic 18 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 18: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 18: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex19",
+      "title": "HTML II \u2014 Intermediate & Semantics Module 19: Advanced Topic",
+      "description": "Practice and master HTML II \u2014 Intermediate & Semantics Module 19: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "html",
+      "theory": "Detailed theory and architecture explanation for topic 19.",
+      "objective": "Master topic 19 in HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for HTML II \u2014 Intermediate & Semantics Module 19: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for HTML II \u2014 Intermediate & Semantics Module 19: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    },
+    {
+      "id": "html2-ex20",
+      "title": "Capstone Project: HTML II \u2014 Intermediate & Semantics Industry Application",
+      "description": "Practice and master Capstone Project: HTML II \u2014 Intermediate & Semantics Industry Application with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "html",
+      "theory": "This capstone integrates all core modules learned in HTML II \u2014 Intermediate & Semantics into a complete project.",
+      "objective": "Build a full production capstone project for HTML II \u2014 Intermediate & Semantics.",
+      "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
+      "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
+      "requirements": [
+        "Implement requirement 1 for Capstone Project: HTML II \u2014 Intermediate & Semantics Industry Application",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Capstone Project: HTML II \u2014 Intermediate & Semantics Industry Application",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "<div><p>Sample</p></div>"
+    }
+  ],
+  "references": [
+    {
+      "title": "HTML II \u2014 Intermediate & Semantics Reference Guide",
+      "description": "Official documentation and learning guide",
+      "url": "https://developer.mozilla.org"
+    }
+  ]
+}

@@ -508,7 +508,7 @@ const ExerciseDetail = () => {
           </h1>
           <button
             onClick={() => navigate(`/course/${courseId}`)}
-            className="bytecode-btn-primary text-xs py-2.5 px-6"
+            className="bytecode-btn-primary text-xs py-2.5 px-2"
           >
             Back to Track
           </button>
@@ -552,7 +552,7 @@ const ExerciseDetail = () => {
 
       {/* Header */}
       <div className="relative bg-[#252422] border-b border-[#4A4A4A] font-jetbrains">
-        <div className="w-full max-w-[1800px] mx-auto px-6 sm:px-12 py-5">
+        <div className="w-full max-w-[2000px] mx-auto px-6 sm:px-12 py-5">
           <div className="flex items-center gap-4">
             <button
               onClick={() => navigate(`/course/${courseId}`)}
@@ -600,7 +600,7 @@ const ExerciseDetail = () => {
                 </div>
               )}
 
-              <div className="flex items-center gap-1.5 bg-[#1B1B1B] px-3.5 h-10 border border-[#FF6A2A] text-xs font-mono">
+              <div className="flex items-center gap-1.5 bg-[#1B1B1B] px-20 h-10 border border-[#FF6A2A] text-xs font-mono mr-50">
                 <span>{getDifficultyIcon(exercise.difficulty)}</span>
                 <span className="text-[#FF6A2A] font-bold">
                   {getLanguageDisplayName(exercise.language)}

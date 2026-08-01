@@ -1,0 +1,457 @@
+{
+  "id": "python-3",
+  "name": "Python III \u2014 Advanced Python, Files & Decorators",
+  "description": "Master higher-order function decorators, generators, property accessors, JSON parsing, unit testing, and build a Password Manager.",
+  "instructor": "ByteCode Engineering Curriculum Team",
+  "duration": "4 weeks",
+  "level": "Advanced",
+  "price": 0,
+  "image": "/logos/python.png",
+  "category": "Backend Engineering",
+  "rating": 4.9,
+  "ratingCount": 1920,
+  "students": 5120,
+  "tags": [
+    "python",
+    "learning-path",
+    "bytecode"
+  ],
+  "whatYouLearn": [
+    "Create function decorators using @decorator syntax",
+    "Build memory-efficient iterator generators with yield",
+    "Validate attributes with @property getters and setters",
+    "Build a Password Manager & File Organizer Capstone"
+  ],
+  "prerequisites": [
+    "Python II \u2014 Intermediate Programming & OOP"
+  ],
+  "exercises": [
+    {
+      "id": "py3-ex1",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 1: Core Fundamental",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 1: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Foundational theory explanation for module 1.",
+      "objective": "Understand fundamental concept 1 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 1: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 1: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex2",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 2: Core Fundamental",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 2: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Foundational theory explanation for module 2.",
+      "objective": "Understand fundamental concept 2 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 2: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 2: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex3",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 3: Core Fundamental",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 3: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Foundational theory explanation for module 3.",
+      "objective": "Understand fundamental concept 3 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 3: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 3: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex4",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 4: Core Fundamental",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 4: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Foundational theory explanation for module 4.",
+      "objective": "Understand fundamental concept 4 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 4: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 4: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex5",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 5: Core Fundamental",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 5: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Foundational theory explanation for module 5.",
+      "objective": "Understand fundamental concept 5 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 5: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 5: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex6",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 6: Core Fundamental",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 6: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Foundational theory explanation for module 6.",
+      "objective": "Understand fundamental concept 6 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 6: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 6: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex7",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 7: Intermediate Skill",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 7: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Intermediate concepts theory and best practices for topic 7.",
+      "objective": "Apply intermediate concept 7 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 7: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 7: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex8",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 8: Intermediate Skill",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 8: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Intermediate concepts theory and best practices for topic 8.",
+      "objective": "Apply intermediate concept 8 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 8: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 8: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex9",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 9: Intermediate Skill",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 9: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Intermediate concepts theory and best practices for topic 9.",
+      "objective": "Apply intermediate concept 9 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 9: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 9: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex10",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 10: Intermediate Skill",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 10: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Intermediate concepts theory and best practices for topic 10.",
+      "objective": "Apply intermediate concept 10 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 10: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 10: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex11",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 11: Intermediate Skill",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 11: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Intermediate concepts theory and best practices for topic 11.",
+      "objective": "Apply intermediate concept 11 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 11: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 11: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex12",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 12: Intermediate Skill",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 12: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Intermediate concepts theory and best practices for topic 12.",
+      "objective": "Apply intermediate concept 12 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 12: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 12: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex13",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 13: Advanced Topic",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 13: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 13.",
+      "objective": "Master topic 13 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 13: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 13: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex14",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 14: Advanced Topic",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 14: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 14.",
+      "objective": "Master topic 14 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 14: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 14: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex15",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 15: Advanced Topic",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 15: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 15.",
+      "objective": "Master topic 15 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 15: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 15: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex16",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 16: Advanced Topic",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 16: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 16.",
+      "objective": "Master topic 16 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 16: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 16: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex17",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 17: Advanced Topic",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 17: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 17.",
+      "objective": "Master topic 17 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 17: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 17: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex18",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 18: Advanced Topic",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 18: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 18.",
+      "objective": "Master topic 18 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 18: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 18: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex19",
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Module 19: Advanced Topic",
+      "description": "Practice and master Python III \u2014 Advanced Python, Files & Decorators Module 19: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 19.",
+      "objective": "Master topic 19 in Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python III \u2014 Advanced Python, Files & Decorators Module 19: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python III \u2014 Advanced Python, Files & Decorators Module 19: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py3-ex20",
+      "title": "Capstone Project: Python III \u2014 Advanced Python, Files & Decorators Industry Application",
+      "description": "Practice and master Capstone Project: Python III \u2014 Advanced Python, Files & Decorators Industry Application with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "python",
+      "theory": "This capstone integrates all core modules learned in Python III \u2014 Advanced Python, Files & Decorators into a complete project.",
+      "objective": "Build a full production capstone project for Python III \u2014 Advanced Python, Files & Decorators.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Capstone Project: Python III \u2014 Advanced Python, Files & Decorators Industry Application",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Capstone Project: Python III \u2014 Advanced Python, Files & Decorators Industry Application",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    }
+  ],
+  "references": [
+    {
+      "title": "Python III \u2014 Advanced Python, Files & Decorators Reference Guide",
+      "description": "Official documentation and learning guide",
+      "url": "https://developer.mozilla.org"
+    }
+  ]
+}

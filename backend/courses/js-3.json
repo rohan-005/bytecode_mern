@@ -1,0 +1,457 @@
+{
+  "id": "js-3",
+  "name": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine",
+  "description": "Master closures, prototypes, ES6 classes, async/await, custom EventEmitters, and build an Interactive Expense Tracker App.",
+  "instructor": "ByteCode Engineering Curriculum Team",
+  "duration": "4 weeks",
+  "level": "Advanced",
+  "price": 0,
+  "image": "/logos/js.png",
+  "category": "Web Development",
+  "rating": 4.9,
+  "ratingCount": 1920,
+  "students": 5120,
+  "tags": [
+    "js",
+    "learning-path",
+    "bytecode"
+  ],
+  "whatYouLearn": [
+    "Encapsulate private state using lexical closures",
+    "Master OOP classes and prototype inheritance",
+    "Handle async workflows with async/await and Promises",
+    "Build an Interactive Expense Tracker Capstone"
+  ],
+  "prerequisites": [
+    "JavaScript II \u2014 DOM Manipulation & Browser APIs"
+  ],
+  "exercises": [
+    {
+      "id": "js3-ex1",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 1: Core Fundamental",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 1: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Foundational theory explanation for module 1.",
+      "objective": "Understand fundamental concept 1 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 1: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 1: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex2",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 2: Core Fundamental",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 2: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Foundational theory explanation for module 2.",
+      "objective": "Understand fundamental concept 2 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 2: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 2: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex3",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 3: Core Fundamental",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 3: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Foundational theory explanation for module 3.",
+      "objective": "Understand fundamental concept 3 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 3: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 3: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex4",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 4: Core Fundamental",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 4: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Foundational theory explanation for module 4.",
+      "objective": "Understand fundamental concept 4 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 4: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 4: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex5",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 5: Core Fundamental",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 5: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Foundational theory explanation for module 5.",
+      "objective": "Understand fundamental concept 5 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 5: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 5: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex6",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 6: Core Fundamental",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 6: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "javascript",
+      "theory": "Foundational theory explanation for module 6.",
+      "objective": "Understand fundamental concept 6 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 6: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 6: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex7",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 7: Intermediate Skill",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 7: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Intermediate concepts theory and best practices for topic 7.",
+      "objective": "Apply intermediate concept 7 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 7: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 7: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex8",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 8: Intermediate Skill",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 8: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Intermediate concepts theory and best practices for topic 8.",
+      "objective": "Apply intermediate concept 8 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 8: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 8: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex9",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 9: Intermediate Skill",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 9: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Intermediate concepts theory and best practices for topic 9.",
+      "objective": "Apply intermediate concept 9 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 9: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 9: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex10",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 10: Intermediate Skill",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 10: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Intermediate concepts theory and best practices for topic 10.",
+      "objective": "Apply intermediate concept 10 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 10: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 10: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex11",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 11: Intermediate Skill",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 11: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Intermediate concepts theory and best practices for topic 11.",
+      "objective": "Apply intermediate concept 11 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 11: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 11: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex12",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 12: Intermediate Skill",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 12: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Intermediate concepts theory and best practices for topic 12.",
+      "objective": "Apply intermediate concept 12 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 12: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 12: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex13",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 13: Advanced Topic",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 13: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Detailed theory and architecture explanation for topic 13.",
+      "objective": "Master topic 13 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 13: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 13: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex14",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 14: Advanced Topic",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 14: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Detailed theory and architecture explanation for topic 14.",
+      "objective": "Master topic 14 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 14: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 14: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex15",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 15: Advanced Topic",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 15: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Detailed theory and architecture explanation for topic 15.",
+      "objective": "Master topic 15 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 15: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 15: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex16",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 16: Advanced Topic",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 16: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "javascript",
+      "theory": "Detailed theory and architecture explanation for topic 16.",
+      "objective": "Master topic 16 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 16: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 16: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex17",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 17: Advanced Topic",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 17: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Detailed theory and architecture explanation for topic 17.",
+      "objective": "Master topic 17 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 17: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 17: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex18",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 18: Advanced Topic",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 18: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Detailed theory and architecture explanation for topic 18.",
+      "objective": "Master topic 18 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 18: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 18: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex19",
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 19: Advanced Topic",
+      "description": "Practice and master JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 19: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "Detailed theory and architecture explanation for topic 19.",
+      "objective": "Master topic 19 in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 19: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Module 19: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    },
+    {
+      "id": "js3-ex20",
+      "title": "Capstone Project: JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Industry Application",
+      "description": "Practice and master Capstone Project: JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Industry Application with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "javascript",
+      "theory": "This capstone integrates all core modules learned in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine into a complete project.",
+      "objective": "Build a full production capstone project for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
+      "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
+      "requirements": [
+        "Implement requirement 1 for Capstone Project: JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Industry Application",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Capstone Project: JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Industry Application",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "const add = (a, b) => a + b;"
+    }
+  ],
+  "references": [
+    {
+      "title": "JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Reference Guide",
+      "description": "Official documentation and learning guide",
+      "url": "https://developer.mozilla.org"
+    }
+  ]
+}

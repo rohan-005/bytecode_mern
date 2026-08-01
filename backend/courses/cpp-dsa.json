@@ -1,0 +1,457 @@
+{
+  "id": "cpp-dsa",
+  "name": "C++ DSA \u2014 Data Structures & Algorithms using C++",
+  "description": "Master Big-O complexity, custom Linked Lists, Stacks, Queues, Binary Search Trees, Graphs, and build a Maze Solver.",
+  "instructor": "ByteCode Engineering Curriculum Team",
+  "duration": "4 weeks",
+  "level": "Advanced",
+  "price": 0,
+  "image": "/logos/cpp.png",
+  "category": "Computer Science",
+  "rating": 4.9,
+  "ratingCount": 1920,
+  "students": 5120,
+  "tags": [
+    "cpp",
+    "learning-path",
+    "bytecode"
+  ],
+  "whatYouLearn": [
+    "Analyze asymptotic Big-O bounds for algorithms",
+    "Implement linear structures (Stacks, Queues, Linked Lists)",
+    "Master Binary Search Trees, Heaps, and Graphs in C++",
+    "Build a Maze Solver & Algo Engine Capstone"
+  ],
+  "prerequisites": [
+    "C++ II \u2014 Object-Oriented Programming & Templates"
+  ],
+  "exercises": [
+    {
+      "id": "cppdsa-ex1",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 1: Core Fundamental",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 1: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Foundational theory explanation for module 1.",
+      "objective": "Understand fundamental concept 1 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 1: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 1: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex2",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 2: Core Fundamental",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 2: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Foundational theory explanation for module 2.",
+      "objective": "Understand fundamental concept 2 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 2: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 2: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex3",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 3: Core Fundamental",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 3: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Foundational theory explanation for module 3.",
+      "objective": "Understand fundamental concept 3 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 3: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 3: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex4",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 4: Core Fundamental",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 4: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Foundational theory explanation for module 4.",
+      "objective": "Understand fundamental concept 4 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 4: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 4: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex5",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 5: Core Fundamental",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 5: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Foundational theory explanation for module 5.",
+      "objective": "Understand fundamental concept 5 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 5: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 5: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex6",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 6: Core Fundamental",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 6: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "cpp",
+      "theory": "Foundational theory explanation for module 6.",
+      "objective": "Understand fundamental concept 6 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 6: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 6: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex7",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 7: Intermediate Skill",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 7: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Intermediate concepts theory and best practices for topic 7.",
+      "objective": "Apply intermediate concept 7 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 7: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 7: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex8",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 8: Intermediate Skill",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 8: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Intermediate concepts theory and best practices for topic 8.",
+      "objective": "Apply intermediate concept 8 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 8: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 8: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex9",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 9: Intermediate Skill",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 9: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Intermediate concepts theory and best practices for topic 9.",
+      "objective": "Apply intermediate concept 9 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 9: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 9: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex10",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 10: Intermediate Skill",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 10: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Intermediate concepts theory and best practices for topic 10.",
+      "objective": "Apply intermediate concept 10 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 10: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 10: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex11",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 11: Intermediate Skill",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 11: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Intermediate concepts theory and best practices for topic 11.",
+      "objective": "Apply intermediate concept 11 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 11: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 11: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex12",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 12: Intermediate Skill",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 12: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Intermediate concepts theory and best practices for topic 12.",
+      "objective": "Apply intermediate concept 12 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 12: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 12: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex13",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 13: Advanced Topic",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 13: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 13.",
+      "objective": "Master topic 13 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 13: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 13: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex14",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 14: Advanced Topic",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 14: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 14.",
+      "objective": "Master topic 14 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 14: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 14: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex15",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 15: Advanced Topic",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 15: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 15.",
+      "objective": "Master topic 15 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 15: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 15: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex16",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 16: Advanced Topic",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 16: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 16.",
+      "objective": "Master topic 16 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 16: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 16: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex17",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 17: Advanced Topic",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 17: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 17.",
+      "objective": "Master topic 17 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 17: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 17: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex18",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 18: Advanced Topic",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 18: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 18.",
+      "objective": "Master topic 18 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 18: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 18: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex19",
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Module 19: Advanced Topic",
+      "description": "Practice and master C++ DSA \u2014 Data Structures & Algorithms using C++ Module 19: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "cpp",
+      "theory": "Detailed theory and architecture explanation for topic 19.",
+      "objective": "Master topic 19 in C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 19: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for C++ DSA \u2014 Data Structures & Algorithms using C++ Module 19: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    },
+    {
+      "id": "cppdsa-ex20",
+      "title": "Capstone Project: C++ DSA \u2014 Data Structures & Algorithms using C++ Industry Application",
+      "description": "Practice and master Capstone Project: C++ DSA \u2014 Data Structures & Algorithms using C++ Industry Application with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "cpp",
+      "theory": "This capstone integrates all core modules learned in C++ DSA \u2014 Data Structures & Algorithms using C++ into a complete project.",
+      "objective": "Build a full production capstone project for C++ DSA \u2014 Data Structures & Algorithms using C++.",
+      "initialCode": "#include <iostream>\n\nint main() {\n    return 0;\n}",
+      "solutionCode": "#include <iostream>\n\nint main() {\n    std::cout << \"ByteCode C++ Output\" << std::endl;\n    return 0;\n}",
+      "requirements": [
+        "Implement requirement 1 for Capstone Project: C++ DSA \u2014 Data Structures & Algorithms using C++ Industry Application",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Capstone Project: C++ DSA \u2014 Data Structures & Algorithms using C++ Industry Application",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "int add(int a, int b) { return a + b; }"
+    }
+  ],
+  "references": [
+    {
+      "title": "C++ DSA \u2014 Data Structures & Algorithms using C++ Reference Guide",
+      "description": "Official documentation and learning guide",
+      "url": "https://developer.mozilla.org"
+    }
+  ]
+}

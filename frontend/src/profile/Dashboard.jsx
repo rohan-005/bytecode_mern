@@ -225,7 +225,7 @@ const Dashboard = () => {
 
             {/* Top Action Buttons & Search */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full lg:w-auto">
-              <div className="relative flex-1 sm:w-64">
+              <div className="relative flex-1 sm:w-">
                 <input
                   type="text"
                   placeholder="Filter courses..."

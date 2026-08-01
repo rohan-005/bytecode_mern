@@ -1,0 +1,457 @@
+{
+  "id": "python-2",
+  "name": "Python II \u2014 Intermediate Programming & OOP",
+  "description": "Master Object-Oriented Programming, classes, inheritance, magic methods, file I/O, and build a Student Management System.",
+  "instructor": "ByteCode Engineering Curriculum Team",
+  "duration": "4 weeks",
+  "level": "Intermediate",
+  "price": 0,
+  "image": "/logos/python.png",
+  "category": "Backend Engineering",
+  "rating": 4.9,
+  "ratingCount": 1920,
+  "students": 5120,
+  "tags": [
+    "python",
+    "learning-path",
+    "bytecode"
+  ],
+  "whatYouLearn": [
+    "Architect OOP systems with classes and inheritance",
+    "Customize object behavior using magic dunder methods",
+    "Handle file I/O operations safely with context managers",
+    "Build a Student Management System Capstone"
+  ],
+  "prerequisites": [
+    "Python I \u2014 Basics & Data Structures"
+  ],
+  "exercises": [
+    {
+      "id": "py2-ex1",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 1: Core Fundamental",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 1: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Foundational theory explanation for module 1.",
+      "objective": "Understand fundamental concept 1 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 1: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 1: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex2",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 2: Core Fundamental",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 2: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Foundational theory explanation for module 2.",
+      "objective": "Understand fundamental concept 2 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 2: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 2: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex3",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 3: Core Fundamental",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 3: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Foundational theory explanation for module 3.",
+      "objective": "Understand fundamental concept 3 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 3: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 3: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex4",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 4: Core Fundamental",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 4: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Foundational theory explanation for module 4.",
+      "objective": "Understand fundamental concept 4 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 4: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 4: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex5",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 5: Core Fundamental",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 5: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Foundational theory explanation for module 5.",
+      "objective": "Understand fundamental concept 5 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 5: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 5: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex6",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 6: Core Fundamental",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 6: Core Fundamental with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Easy",
+      "language": "python",
+      "theory": "Foundational theory explanation for module 6.",
+      "objective": "Understand fundamental concept 6 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 6: Core Fundamental",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 6: Core Fundamental",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex7",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 7: Intermediate Skill",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 7: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Intermediate concepts theory and best practices for topic 7.",
+      "objective": "Apply intermediate concept 7 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 7: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 7: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex8",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 8: Intermediate Skill",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 8: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Intermediate concepts theory and best practices for topic 8.",
+      "objective": "Apply intermediate concept 8 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 8: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 8: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex9",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 9: Intermediate Skill",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 9: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Intermediate concepts theory and best practices for topic 9.",
+      "objective": "Apply intermediate concept 9 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 9: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 9: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex10",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 10: Intermediate Skill",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 10: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Intermediate concepts theory and best practices for topic 10.",
+      "objective": "Apply intermediate concept 10 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 10: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 10: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex11",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 11: Intermediate Skill",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 11: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Intermediate concepts theory and best practices for topic 11.",
+      "objective": "Apply intermediate concept 11 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 11: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 11: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex12",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 12: Intermediate Skill",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 12: Intermediate Skill with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Intermediate concepts theory and best practices for topic 12.",
+      "objective": "Apply intermediate concept 12 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 12: Intermediate Skill",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 12: Intermediate Skill",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex13",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 13: Advanced Topic",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 13: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 13.",
+      "objective": "Master topic 13 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 13: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 13: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex14",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 14: Advanced Topic",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 14: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 14.",
+      "objective": "Master topic 14 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 14: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 14: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex15",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 15: Advanced Topic",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 15: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 15.",
+      "objective": "Master topic 15 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 15: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 15: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex16",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 16: Advanced Topic",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 16: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Medium",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 16.",
+      "objective": "Master topic 16 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 16: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 16: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex17",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 17: Advanced Topic",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 17: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 17.",
+      "objective": "Master topic 17 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 17: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 17: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex18",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 18: Advanced Topic",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 18: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 18.",
+      "objective": "Master topic 18 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 18: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 18: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex19",
+      "title": "Python II \u2014 Intermediate Programming & OOP Module 19: Advanced Topic",
+      "description": "Practice and master Python II \u2014 Intermediate Programming & OOP Module 19: Advanced Topic with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "python",
+      "theory": "Detailed theory and architecture explanation for topic 19.",
+      "objective": "Master topic 19 in Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Python II \u2014 Intermediate Programming & OOP Module 19: Advanced Topic",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Python II \u2014 Intermediate Programming & OOP Module 19: Advanced Topic",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    },
+    {
+      "id": "py2-ex20",
+      "title": "Capstone Project: Python II \u2014 Intermediate Programming & OOP Industry Application",
+      "description": "Practice and master Capstone Project: Python II \u2014 Intermediate Programming & OOP Industry Application with interactive coding.",
+      "duration": "15 min",
+      "difficulty": "Hard",
+      "language": "python",
+      "theory": "This capstone integrates all core modules learned in Python II \u2014 Intermediate Programming & OOP into a complete project.",
+      "objective": "Build a full production capstone project for Python II \u2014 Intermediate Programming & OOP.",
+      "initialCode": "# Write Python code\ndef main():\n    pass",
+      "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
+      "requirements": [
+        "Implement requirement 1 for Capstone Project: Python II \u2014 Intermediate Programming & OOP Industry Application",
+        "Ensure clean code structure and zero syntax errors"
+      ],
+      "hints": [
+        "Review theory guide for Capstone Project: Python II \u2014 Intermediate Programming & OOP Industry Application",
+        "Check syntax rules carefully"
+      ],
+      "codeExample": "def greet(name): return f\"Hi {name}\""
+    }
+  ],
+  "references": [
+    {
+      "title": "Python II \u2014 Intermediate Programming & OOP Reference Guide",
+      "description": "Official documentation and learning guide",
+      "url": "https://developer.mozilla.org"
+    }
+  ]
+}
