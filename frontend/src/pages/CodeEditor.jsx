@@ -422,24 +422,24 @@ useEffect(() => {
       line.includes('void ') || line.includes('class ')
     );
     
-    let mockOutput = `🔧 ${lang.toUpperCase()} Code Analysis (Mock Execution)\n`;
+    let mockOutput = ` ${lang.toUpperCase()} Code Analysis (Mock Execution)\n`;
     mockOutput += "=".repeat(40) + "\n\n";
-    mockOutput += `📊 Code Statistics:\n`;
+    mockOutput += ` Code Statistics:\n`;
     mockOutput += `   • Lines of code: ${lines.length}\n`;
     mockOutput += `   • Functions/Classes found: ${functions.length}\n\n`;
     
     if (functions.length > 0) {
-      mockOutput += `📝 Detected Functions/Classes:\n`;
+      mockOutput += ` Detected Functions/Classes:\n`;
       functions.slice(0, 5).forEach((func, index) => {
         mockOutput += `   ${index + 1}. ${func.trim().substring(0, 50)}${func.trim().length > 50 ? '...' : ''}\n`;
       });
     }
     
-    mockOutput += `\n💡 Note: To execute ${lang.toUpperCase()} code, you need:\n`;
+    mockOutput += `\n Note: To execute ${lang.toUpperCase()} code, you need:\n`;
     mockOutput += `   • A backend server with ${lang.toUpperCase()} runtime\n`;
     mockOutput += `   • Proper compilation environment\n`;
     mockOutput += `   • Security measures for code execution\n\n`;
-    mockOutput += `🚀 Try JavaScript for immediate browser execution!`;
+    mockOutput += ` Try JavaScript for immediate browser execution!`;
     
     return mockOutput;
   };
@@ -486,16 +486,16 @@ useEffect(() => {
     const originalInfo = console.info;
 
     // Capture console output
-    console.log = (...args) => logs.push(`📝 ${args.join(' ')}`);
-    console.error = (...args) => errors.push(`❌ ${args.join(' ')}`);
-    console.warn = (...args) => logs.push(`⚠️ ${args.join(' ')}`);
-    console.info = (...args) => logs.push(`ℹ️ ${args.join(' ')}`);
+    console.log = (...args) => logs.push(` ${args.join(' ')}`);
+    console.error = (...args) => errors.push(` ${args.join(' ')}`);
+    console.warn = (...args) => logs.push(` ${args.join(' ')}`);
+    console.info = (...args) => logs.push(`ℹ ${args.join(' ')}`);
 
     try {
       // Use Function constructor to safely run isolated code
       const result = new Function(tab.code)();
       if (result !== undefined) {
-        logs.push(`🎯 Return: ${result}`);
+        logs.push(` Return: ${result}`);
       }
       
       const allOutput = [...logs, ...errors].join('\n');
@@ -505,7 +505,7 @@ useEffect(() => {
       });
     } catch (err) {
       updateTab(tab.id, { 
-        output: `❌ Error: ${err.toString()}`,
+        output: ` Error: ${err.toString()}`,
         activeView: "console"
       });
     } finally {
@@ -724,7 +724,7 @@ useEffect(() => {
               {isRunning ? (
                 <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent animate-spin" />
               ) : (
-                "▶"
+                ""
               )}
               <span>Run Code</span>
             </button>
@@ -943,7 +943,7 @@ useEffect(() => {
                     : "text-slate-400 hover:text-slate-200"
                 }`}
               >
-                <span>👁️</span> Preview
+                <span></span> Preview
               </button>
               <button
                 onClick={() => handleTabViewChange("console")}
@@ -953,7 +953,7 @@ useEffect(() => {
                     : "text-slate-400 hover:text-slate-200"
                 }`}
               >
-                <span>📟</span> Console
+                <span></span> Console
               </button>
             </div>
           </div>
@@ -1011,13 +1011,13 @@ function getDefaultFileName(lang) {
 function getFileIcon(lang) {
   const icons = {
     javascript: '🟨',
-    html: '🌐',
-    css: '🎨',
-    python: '🐍',
-    java: '☕',
-    cpp: '⚙️'
+    html: '',
+    css: '',
+    python: '',
+    java: '',
+    cpp: ''
   };
-  return icons[lang] || '📄';
+  return icons[lang] || '';
 }
 
 function getLanguageStatus(lang) {
@@ -1029,7 +1029,7 @@ function getLanguageStatus(lang) {
     java: '🟡 Mock Execution',
     cpp: '🟡 Mock Execution'
   };
-  return status[lang] || '⚪ Unknown';
+  return status[lang] || ' Unknown';
 }
 
 function getConsoleMessage(lang) {

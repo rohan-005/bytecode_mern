@@ -118,7 +118,7 @@ const OTPVerification = () => {
     try {
       const response = await api.post('/otp/resend-otp', { email });
       setMessage('OTP resent successfully!');
-      toast.success('📧 New OTP sent to your email!');
+      toast.success(' New OTP sent to your email!');
       setCountdown(60);
       setOtp(['', '', '', '', '', '']);
       inputRefs.current[0]?.focus();

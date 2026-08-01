@@ -207,7 +207,7 @@ const Dashboard = () => {
                   BYTECODE // DEV_ENVIRONMENT
                 </span>
                 <span className="px-2.5 py-0.5 bg-[#252422] border border-[#35C759] text-[#35C759] text-xs font-mono font-bold">
-                  ● ACTIVE_SESSION
+                   ACTIVE_SESSION
                 </span>
               </div>
 
@@ -225,15 +225,15 @@ const Dashboard = () => {
 
             {/* Top Action Buttons & Search */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full lg:w-auto">
-              <div className="relative flex-1 sm:w-">
+              <div className="relative flex-1 sm:w-70">
                 <input
                   type="text"
                   placeholder="Filter courses..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="bytecode-input w-full h-11 pl-10 pr-4 text-sm"
+                  className="bytecode-input w-full h-11 pl-2 pr-4 text-sm"
                 />
-                <IconSearch size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8E8E8E]" />
+                <IconSearch size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8E8E8E]" />
               </div>
 
               {activeCourse && (
@@ -472,7 +472,7 @@ const Dashboard = () => {
 
                 <p className="text-xs text-[#CFCFCF] font-inter">
                   {dailyProgress >= 100 ? (
-                    <span className="text-[#35C759] font-bold">🎉 Daily XP Goal achieved! Keep building tracks.</span>
+                    <span className="text-[#35C759] font-bold"> Daily XP Goal achieved! Keep building tracks.</span>
                   ) : (
                     <>Earn <span className="text-[#FF6A2A] font-bold">{Math.max(0, dailyGoalXP - todayXP)} more XP</span> today to reach your goal!</>
                   )}
