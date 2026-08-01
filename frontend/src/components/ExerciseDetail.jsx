@@ -900,18 +900,18 @@ const ExerciseDetail = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-2xl p-6 text-center mt-4">
+                    <div className="bg-[#161A17] border border-[#2E3A33] p-6 text-center mt-4">
                       <IconEyeOff
                         size={48}
-                        className="mx-auto mb-3 text-yellow-400"
+                        className="mx-auto mb-3 text-[#9CA3AF]"
                       />
-                      <h3 className="text-lg font-semibold text-yellow-200 mb-2">
-                        Solution Locked 
+                      <h3 className="text-sm font-mono font-semibold text-[#D7D7D7] uppercase tracking-wider mb-2">
+                        Solution Locked
                       </h3>
-                      <p className="text-yellow-100">
-                        Try solving the challenge yourself first! The real
+                      <p className="text-[#9CA3AF] text-sm font-outfit">
+                        Try solving the challenge yourself first. The real
                         learning happens when you struggle and overcome
-                        obstacles. 
+                        obstacles.
                       </p>
                     </div>
                   )}

@@ -789,7 +789,7 @@ useEffect(() => {
               </button>
               <button
                 onClick={handleDisclaimerClose}
-                className="text-[#FBC02D] hover:text-amber-100 text-xs font-medium"
+                className="text-[#9CA3AF] hover:text-[#D7D7D7] text-xs font-medium"
               >
                 Dismiss
               </button>
@@ -852,13 +852,13 @@ useEffect(() => {
 
       {/* Persistent Warning for Unsaved Work */}
       {tabs.some(tab => tab.isDirty) && (
-        <div className="bg-rose-500/10 border-b border-rose-500/20 px-4 py-2">
-          <div className="flex items-center justify-center gap-2 text-xs text-rose-200">
+        <div className="bg-[#161A17] border-b border-[#FBC02D]/30 px-4 py-2">
+          <div className="flex items-center justify-center gap-2 text-xs text-[#FBC02D]">
             <IconAlertTriangle size={14} />
             <span>You have unsaved work. Download your code to prevent data loss.</span>
             <button
               onClick={downloadAllTabs}
-              className="bg-rose-600 hover:bg-rose-500 px-2 py-1 rounded text-xs font-medium text-white transition-colors flex items-center gap-1 ml-2"
+              className="bg-[#2E3A33] hover:bg-[#1D2420] border border-[#FBC02D]/50 px-2 py-1 text-xs font-medium text-[#D7D7D7] transition-colors flex items-center gap-1 ml-2"
             >
               <IconDownload size={12} />
               Save All
@@ -866,6 +866,7 @@ useEffect(() => {
           </div>
         </div>
       )}
+
 
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
