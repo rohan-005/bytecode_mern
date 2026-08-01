@@ -2,9 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import axios from "../utils/axiosConfig";
-import { FloatingNavbar } from "../components/FloatingNavbar";
-
+import toast from "react-hot-toast";
 import {
   IconHome,
   IconBook,
@@ -23,6 +21,9 @@ import {
   IconScreenShare,
   IconTerminal2,
   IconArrowRight,
+  IconLoader2,
+  IconSparkles,
+  IconTarget
 } from "@tabler/icons-react";
 
 const navItems = [
@@ -55,6 +56,7 @@ const ExerciseDetail = () => {
   const [copied, setCopied] = useState(false);
   const [outputMode, setOutputMode] = useState("preview");
   const [nextExercise, setNextExercise] = useState(null);
+  const [isCompleting, setIsCompleting] = useState(false);
   const codeEditorRef = useRef(null);
   
 
@@ -165,11 +167,13 @@ const ExerciseDetail = () => {
       return;
     }
 
+    if (isCompleting) return;
+
+    setIsCompleting(true);
     try {
       if (!progress) {
         try {
           await axios.post(`/courses/${courseId}/enroll`);
-          console.log("Successfully enrolled in course");
         } catch (enrollError) {
           console.error("Error enrolling in course:", enrollError);
         }
@@ -184,12 +188,15 @@ const ExerciseDetail = () => {
         setXpEarned(response.data.xpEarned);
         setShowXpAnimation(true);
         setTimeout(() => setShowXpAnimation(false), 3000);
+        toast.success(`Exercise completed! +${response.data.xpEarned} XP earned!`);
+      } else {
+        toast.success("Exercise completed!");
       }
-
-      
     } catch (error) {
       console.error("Error completing exercise:", error);
-      
+      toast.error("Failed to mark exercise as complete.");
+    } finally {
+      setIsCompleting(false);
     }
   };
 
@@ -601,21 +608,26 @@ const ExerciseDetail = () => {
               {user && (
                 <button
                   onClick={markExerciseComplete}
-                  disabled={isExerciseCompleted()}
+                  disabled={isExerciseCompleted() || isCompleting}
                   className={`px-4 h-10 text-xs font-mono uppercase font-bold tracking-wider transition-colors inline-flex items-center justify-center gap-1.5 ${
                     isExerciseCompleted()
-                      ? "bg-[#35C759]/20 text-[#35C759] border border-[#35C759] opacity-60 cursor-not-allowed"
+                      ? "bg-[#35C759]/20 text-[#35C759] border border-[#35C759] opacity-75 cursor-not-allowed"
                       : "bytecode-btn-primary h-10 py-0"
                   }`}
                 >
-                  {isExerciseCompleted() ? (
+                  {isCompleting ? (
+                    <>
+                      <IconLoader2 size={16} className="animate-spin text-white" />
+                      <span>Saving...</span>
+                    </>
+                  ) : isExerciseCompleted() ? (
                     <>
                       <IconCheck size={16} />
                       <span>Completed</span>
                     </>
                   ) : (
                     <>
-                      <IconTrophy size={16} />
+                      <IconTarget size={16} />
                       <span>Mark Complete</span>
                     </>
                   )}

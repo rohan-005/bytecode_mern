@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import axios from '../utils/axiosConfig';
 import { FloatingNavbar } from '../components/FloatingNavbar';
 import { SkeletonCard } from '../components/SkeletonLoader';
+import toast from 'react-hot-toast';
 import {
   IconHome,
   IconBook,
@@ -18,7 +19,8 @@ import {
   IconTrophy,
   IconClock,
   IconUser,
-  IconArrowLeft
+  IconArrowLeft,
+  IconLoader2
 } from '@tabler/icons-react';
 import Footer from '../components/Footer';
 
@@ -103,9 +105,10 @@ const CourseDetail = () => {
       await axios.post(`/courses/${courseId}/rate`, { rating });
       setUserRating(rating);
       await fetchCourseData();
+      toast.success(`Submitted ${rating}-star rating!`);
     } catch (error) {
       console.error('Error submitting rating:', error);
-      alert('Error submitting rating. Please try again.');
+      toast.error('Error submitting rating. Please try again.');
     } finally {
       setRatingLoading(false);
     }
@@ -119,9 +122,11 @@ const CourseDetail = () => {
 
     try {
       await axios.post(`/courses/${courseId}/enroll`);
+      toast.success('Enrolled in course track successfully!');
       fetchCourseData();
     } catch (error) {
       console.error('Error enrolling in course:', error);
+      toast.error('Failed to enroll in course track.');
     }
   };
 
@@ -141,14 +146,16 @@ const CourseDetail = () => {
       await fetchUserStats();
       
       if (response.data.xpEarned) {
-        alert(`🎉 Exercise completed! +${response.data.xpEarned} XP earned!`);
+        toast.success(`Exercise completed! +${response.data.xpEarned} XP earned!`);
+      } else {
+        toast.success('Exercise completed!');
       }
     } catch (error) {
       console.error('Error completing exercise:', error);
       if (error.response?.status === 404) {
-        alert('Error: Course progress system not available. Please try again later.');
+        toast.error('Course progress system not available. Please try again later.');
       } else {
-        alert('Error completing exercise. Please try again.');
+        toast.error('Error completing exercise. Please try again.');
       }
     }
   };
