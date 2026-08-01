@@ -7,8 +7,8 @@ const ComingSoon = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#1B1B1B] text-[#FFFFFF] text-center px-6 font-jetbrains grid-bg">
-      <div className="bg-[#303030] border border-[#4A4A4A] p-8 max-w-md w-full shadow-2xl relative">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#0F1110] text-[#FFFFFF] text-center px-6 font-jetbrains grid-bg">
+      <div className="bg-[#1D2420] border border-[#2E3A33] p-8 max-w-md w-full shadow-2xl relative">
         <div className="flex justify-center mb-4">
           <img
             src={logo}
@@ -21,11 +21,11 @@ const ComingSoon = () => {
           FEATURE UNDER DEVELOPMENT
         </h1>
 
-        <p className="text-xs text-[#FF6A2A] font-mono mb-4 bg-[#252422] p-2 border border-[#4A4A4A]">
+        <p className="text-xs text-[#66BB6A] font-mono mb-4 bg-[#0F1110] p-2 border border-[#2E3A33]">
           {"<"}STATUS: FEATURE_DEPLOYMENT_PENDING{"/>"}
         </p>
 
-        <p className="text-xs text-[#CFCFCF] font-mono leading-relaxed mb-6">
+        <p className="text-xs text-[#D7D7D7] font-mono leading-relaxed mb-6">
           This developer suite module is undergoing final validation and will be available in the upcoming build release.
         </p>
 

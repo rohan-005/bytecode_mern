@@ -130,12 +130,12 @@ const Dashboard = () => {
     (enrolledCourses.length > 0 ? enrolledCourses[0] : null);
 
   const STATS_BAR = [
-    { label: "TOTAL XP", value: `${currentXP}`, icon: <IconStar size={20} className="text-[#FFC300]" />, accent: "border-[#FFC300]" },
-    { label: "LEVEL", value: `0${currentLevel}`, icon: <IconTrophy size={20} className="text-[#FF6A2A]" />, accent: "border-[#FF6A2A]" },
-    { label: "ENROLLED", value: `${enrolledCount}`, icon: <IconBook size={20} className="text-[#FF8C42]" />, accent: "border-[#FF8C42]" },
-    { label: "COMPLETED", value: `${completedCount}`, icon: <IconCheck size={20} className="text-[#35C759]" />, accent: "border-[#35C759]" },
-    { label: "EXERCISES", value: `${solvedCount}`, icon: <IconCode size={20} className="text-[#FF6A2A]" />, accent: "border-[#FF6A2A]" },
-    { label: "STREAK", value: `${streakDays} DAYS`, icon: <IconFlame size={20} className="text-[#FFC300]" />, accent: "border-[#FFC300]" },
+    { label: "TOTAL XP", value: `${currentXP}`, icon: <IconStar size={20} className="text-[#FBC02D]" />, accent: "border-[#FBC02D]" },
+    { label: "LEVEL", value: `0${currentLevel}`, icon: <IconTrophy size={20} className="text-[#66BB6A]" />, accent: "border-[#66BB6A]" },
+    { label: "ENROLLED", value: `${enrolledCount}`, icon: <IconBook size={20} className="text-[#A5D6A7]" />, accent: "border-[#A5D6A7]" },
+    { label: "COMPLETED", value: `${completedCount}`, icon: <IconCheck size={20} className="text-[#66BB6A]" />, accent: "border-[#66BB6A]" },
+    { label: "EXERCISES", value: `${solvedCount}`, icon: <IconCode size={20} className="text-[#66BB6A]" />, accent: "border-[#66BB6A]" },
+    { label: "STREAK", value: `${streakDays} DAYS`, icon: <IconFlame size={20} className="text-[#FBC02D]" />, accent: "border-[#FBC02D]" },
   ];
 
   const QUICK_ACTIONS = [
@@ -175,7 +175,7 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#1B1B1B] text-white font-inter p-10 max-w-[1800px] mx-auto space-y-8">
+      <div className="min-h-screen bg-[#0F1110] text-white font-inter p-10 max-w-[1800px] mx-auto space-y-8">
         <SkeletonCard className="h-48 w-full" />
         <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
           {[...Array(6)].map((_, i) => <SkeletonCard key={i} className="h-28" />)}
@@ -189,12 +189,12 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#1B1B1B] text-[#FFFFFF] font-inter flex flex-col justify-between grid-bg">
+    <div className="min-h-screen bg-[#0F1110] text-[#FFFFFF] font-inter flex flex-col justify-between grid-bg">
       {/* Widescreen Main Container */}
       <div className="w-full max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-16 py-10">
         
         {/* Top Header & Greeting Section */}
-        <div className="bytecode-card p-8 sm:p-10 mb-8 border border-[#4A4A4A] relative shadow-2xl">
+        <div className="bytecode-card p-8 sm:p-10 mb-8 border border-[#2E3A33] relative shadow-2xl">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
             <div className="space-y-3">
               <div className="flex items-center gap-3">
@@ -203,10 +203,10 @@ const Dashboard = () => {
                   alt="ByteCode Logo"
                   className="w-12 h-12 object-contain filter drop-shadow-[0_0_12px_rgba(255,106,42,0.5)]"
                 />
-                <span className="font-geist-pixel text-xl sm:text-2xl text-[#FF6A2A]">
+                <span className="font-geist-pixel text-xl sm:text-2xl text-[#66BB6A]">
                   BYTECODE // DEV_ENVIRONMENT
                 </span>
-                <span className="px-2.5 py-0.5 bg-[#252422] border border-[#35C759] text-[#35C759] text-xs font-mono font-bold">
+                <span className="px-2.5 py-0.5 bg-[#0F1110] border border-[#66BB6A] text-[#66BB6A] text-xs font-mono font-bold">
                    ACTIVE_SESSION
                 </span>
               </div>
@@ -215,9 +215,9 @@ const Dashboard = () => {
                 GOOD MORNING, {user?.name?.toUpperCase() || "DEVELOPER"}
               </h1>
 
-              <p className="text-base text-[#CFCFCF] font-inter max-w-3xl">
+              <p className="text-base text-[#D7D7D7] font-inter max-w-3xl">
                 Ready to continue your software engineering pathway? You have active progress in{" "}
-                <span className="text-[#FF6A2A] font-bold font-mono">
+                <span className="text-[#66BB6A] font-bold font-mono">
                   {activeCourse ? activeCourse.course.name : "learning tracks"}
                 </span>.
               </p>
@@ -233,7 +233,7 @@ const Dashboard = () => {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="bytecode-input w-full h-11 pl-2 pr-4 text-sm"
                 />
-                <IconSearch size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8E8E8E]" />
+                {/* <IconSearch size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9CA3AF]" /> */}
               </div>
 
               {activeCourse && (
@@ -254,10 +254,10 @@ const Dashboard = () => {
           {STATS_BAR.map((stat, idx) => (
             <div
               key={idx}
-              className={`bytecode-card p-5 border-l-4 ${stat.accent} flex flex-col justify-between hover:border-[#FF6A2A] transition-colors`}
+              className={`bytecode-card p-5 border-l-4 ${stat.accent} flex flex-col justify-between hover:border-[#66BB6A] transition-colors`}
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="font-geist-pixel text-xs text-[#8E8E8E] tracking-wider">
+                <span className="font-geist-pixel text-xs text-[#9CA3AF] tracking-wider">
                   {stat.label}
                 </span>
                 {stat.icon}
@@ -277,13 +277,13 @@ const Dashboard = () => {
             
             {/* Resume Last Course Feature Card */}
             {activeCourse ? (
-              <div className="bytecode-card p-8 border border-[#FF6A2A] relative bg-[#252422]">
-                <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#4A4A4A]">
-                  <span className="font-geist-pixel text-xs text-[#FF6A2A] uppercase tracking-wider flex items-center gap-2">
+              <div className="bytecode-card p-8 border border-[#66BB6A] relative bg-[#0F1110]">
+                <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#2E3A33]">
+                  <span className="font-geist-pixel text-xs text-[#66BB6A] uppercase tracking-wider flex items-center gap-2">
                     <IconPlayerPlay size={16} />
                     RESUME_LAST_TRACK
                   </span>
-                  <span className="text-xs font-mono text-[#8E8E8E]">
+                  <span className="text-xs font-mono text-[#9CA3AF]">
                     {activeCourse.course.level} • {activeCourse.course.duration}
                   </span>
                 </div>
@@ -293,7 +293,7 @@ const Dashboard = () => {
                     <h2 className="font-geist-pixel text-2xl sm:text-3xl text-white mb-2">
                       {activeCourse.course.name}
                     </h2>
-                    <p className="text-sm text-[#CFCFCF] font-inter max-w-xl line-clamp-2">
+                    <p className="text-sm text-[#D7D7D7] font-inter max-w-xl line-clamp-2">
                       {activeCourse.course.description}
                     </p>
                   </div>
@@ -310,22 +310,22 @@ const Dashboard = () => {
                 {/* Progress Bar */}
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs font-mono">
-                    <span className="text-[#CFCFCF]">Progress Completed</span>
-                    <span className="text-[#FF6A2A] font-bold">{Math.round(activeCourse.enrollment.progress)}%</span>
+                    <span className="text-[#D7D7D7]">Progress Completed</span>
+                    <span className="text-[#66BB6A] font-bold">{Math.round(activeCourse.enrollment.progress)}%</span>
                   </div>
-                  <div className="w-full bg-[#1B1B1B] h-3 border border-[#4A4A4A]">
+                  <div className="w-full bg-[#0F1110] h-3 border border-[#2E3A33]">
                     <div
-                      className="h-full bg-[#FF6A2A] transition-all duration-700"
+                      className="h-full bg-[#66BB6A] transition-all duration-700"
                       style={{ width: `${activeCourse.enrollment.progress}%` }}
                     />
                   </div>
                 </div>
               </div>
             ) : (
-              <div className="bytecode-card p-10 text-center border border-[#4A4A4A]">
-                <IconBook size={48} className="mx-auto mb-4 text-[#FF6A2A]" />
+              <div className="bytecode-card p-10 text-center border border-[#2E3A33]">
+                <IconBook size={48} className="mx-auto mb-4 text-[#66BB6A]" />
                 <h2 className="font-geist-pixel text-2xl text-white mb-2">// NO_ACTIVE_COURSES</h2>
-                <p className="text-sm text-[#CFCFCF] max-w-md mx-auto mb-6">
+                <p className="text-sm text-[#D7D7D7] max-w-md mx-auto mb-6">
                   Explore our curated developer learning tracks to start building production apps.
                 </p>
                 <Link to="/courses" className="bytecode-btn-primary h-11 text-sm">
@@ -336,13 +336,13 @@ const Dashboard = () => {
 
             {/* Enrolled Pathways Section */}
             <div className="bytecode-card p-8">
-              <div className="flex justify-between items-center mb-6 pb-3 border-b border-[#4A4A4A]">
+              <div className="flex justify-between items-center mb-6 pb-3 border-b border-[#2E3A33]">
                 <h3 className="font-geist-pixel text-xl sm:text-2xl text-white flex items-center gap-3">
-                  <span className="text-[#FF6A2A] font-mono">//</span> MY_LEARNING_PATHWAYS
+                  <span className="text-[#66BB6A] font-mono">//</span> MY_LEARNING_PATHWAYS
                 </h3>
                 <Link
                   to="/courses"
-                  className="text-xs font-mono font-semibold text-[#FF8C42] hover:text-[#FF6A2A] flex items-center gap-1 uppercase tracking-wider transition-colors"
+                  className="text-xs font-mono font-semibold text-[#A5D6A7] hover:text-[#66BB6A] flex items-center gap-1 uppercase tracking-wider transition-colors"
                 >
                   <span>ALL PATHWAYS</span>
                   <IconArrowRight size={16} />
@@ -351,21 +351,21 @@ const Dashboard = () => {
 
               <div className="space-y-4">
                 {filteredCourses.length === 0 ? (
-                  <p className="text-sm text-[#8E8E8E] font-mono text-center py-6">
+                  <p className="text-sm text-[#9CA3AF] font-mono text-center py-6">
                     No enrolled courses matched your search query.
                   </p>
                 ) : (
                   filteredCourses.map((item) => (
                     <div
                       key={item.enrollment._id}
-                      className="p-5 bg-[#252422] border border-[#4A4A4A] hover:border-[#FF6A2A] transition-colors flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+                      className="p-5 bg-[#0F1110] border border-[#2E3A33] hover:border-[#66BB6A] transition-colors flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
                     >
                       <div className="flex-1 min-w-0">
                         <h4 className="font-bold text-white text-lg truncate mb-1">
                           {item.course.name}
                         </h4>
-                        <div className="flex items-center gap-3 text-xs text-[#8E8E8E] font-mono">
-                          <span className="px-2 py-0.5 bg-[#1B1B1B] border border-[#4A4A4A] text-[#CFCFCF]">
+                        <div className="flex items-center gap-3 text-xs text-[#9CA3AF] font-mono">
+                          <span className="px-2 py-0.5 bg-[#0F1110] border border-[#2E3A33] text-[#D7D7D7]">
                             {item.course.level}
                           </span>
                           <span>•</span>
@@ -375,12 +375,12 @@ const Dashboard = () => {
 
                       <div className="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end">
                         <div className="text-right">
-                          <div className="text-sm font-bold text-[#35C759] font-mono">
+                          <div className="text-sm font-bold text-[#66BB6A] font-mono">
                             {Math.round(item.enrollment.progress)}%
                           </div>
-                          <div className="w-28 bg-[#1B1B1B] h-2 border border-[#4A4A4A] mt-1">
+                          <div className="w-28 bg-[#0F1110] h-2 border border-[#2E3A33] mt-1">
                             <div
-                              className="h-full bg-[#35C759]"
+                              className="h-full bg-[#66BB6A]"
                               style={{ width: `${item.enrollment.progress}%` }}
                             />
                           </div>
@@ -401,42 +401,42 @@ const Dashboard = () => {
 
             {/* Recent Activity Timeline (Live MongoDB Data) */}
             <div className="bytecode-card p-8">
-              <div className="flex justify-between items-center mb-6 pb-3 border-b border-[#4A4A4A]">
+              <div className="flex justify-between items-center mb-6 pb-3 border-b border-[#2E3A33]">
                 <h3 className="font-geist-pixel text-xl sm:text-2xl text-white flex items-center gap-3">
-                  <span className="text-[#FF6A2A] font-mono">//</span> RECENT_ACTIVITY_LOGS
+                  <span className="text-[#66BB6A] font-mono">//</span> RECENT_ACTIVITY_LOGS
                 </h3>
-                <span className="text-xs font-mono text-[#35C759] font-bold">[LIVE_DB_LOGS]</span>
+                <span className="text-xs font-mono text-[#66BB6A] font-bold">[LIVE_DB_LOGS]</span>
               </div>
 
               <div className="space-y-4 font-mono text-xs">
                 {activities.length === 0 ? (
-                  <div className="flex items-center gap-4 p-4 bg-[#252422] border border-[#4A4A4A]">
-                    <IconActivity size={18} className="text-[#FF6A2A] flex-shrink-0" />
+                  <div className="flex items-center gap-4 p-4 bg-[#0F1110] border border-[#2E3A33]">
+                    <IconActivity size={18} className="text-[#66BB6A] flex-shrink-0" />
                     <div className="flex-1">
                       <span className="text-white font-bold">Platform Session Active: </span>
-                      <span className="text-[#CFCFCF]">Start exercises or lessons to build your timeline</span>
+                      <span className="text-[#D7D7D7]">Start exercises or lessons to build your timeline</span>
                     </div>
-                    <span className="text-[#35C759] font-bold">+5 XP</span>
-                    <span className="text-[#8E8E8E]">today</span>
+                    <span className="text-[#66BB6A] font-bold">+5 XP</span>
+                    <span className="text-[#9CA3AF]">today</span>
                   </div>
                 ) : (
                   activities.map((act, index) => (
-                    <div key={index} className="flex items-center gap-4 p-4 bg-[#252422] border border-[#4A4A4A]">
+                    <div key={index} className="flex items-center gap-4 p-4 bg-[#0F1110] border border-[#2E3A33]">
                       {act.type === 'streak' ? (
-                        <IconCalendarCheck size={18} className="text-[#FFC300] flex-shrink-0" />
+                        <IconCalendarCheck size={18} className="text-[#FBC02D] flex-shrink-0" />
                       ) : act.type === 'course' ? (
-                        <IconBook size={18} className="text-[#FF8C42] flex-shrink-0" />
+                        <IconBook size={18} className="text-[#A5D6A7] flex-shrink-0" />
                       ) : (
-                        <IconActivity size={18} className="text-[#FF6A2A] flex-shrink-0" />
+                        <IconActivity size={18} className="text-[#66BB6A] flex-shrink-0" />
                       )}
                       <div className="flex-1">
                         <span className="text-white font-bold">{act.title}: </span>
-                        <span className="text-[#CFCFCF]">{act.description}</span>
+                        <span className="text-[#D7D7D7]">{act.description}</span>
                       </div>
                       {act.xpEarned > 0 && (
-                        <span className="text-[#35C759] font-bold">+{act.xpEarned} XP</span>
+                        <span className="text-[#66BB6A] font-bold">+{act.xpEarned} XP</span>
                       )}
-                      <span className="text-[#8E8E8E]">{formatActivityTime(act.createdAt)}</span>
+                      <span className="text-[#9CA3AF]">{formatActivityTime(act.createdAt)}</span>
                     </div>
                   ))
                 )}
@@ -448,68 +448,68 @@ const Dashboard = () => {
           <div className="space-y-8">
             
             {/* Daily Goal & Progress Widget */}
-            <div className="bytecode-card p-6 border border-[#4A4A4A]">
-              <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#4A4A4A]">
+            <div className="bytecode-card p-6 border border-[#2E3A33]">
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#2E3A33]">
                 <h3 className="font-geist-pixel text-lg text-white flex items-center gap-2">
-                  <IconTarget size={18} className="text-[#FF6A2A]" />
+                  <IconTarget size={18} className="text-[#66BB6A]" />
                   DAILY_XP_GOAL
                 </h3>
-                <span className="text-xs font-mono text-[#35C759] font-bold">{dailyProgress}%</span>
+                <span className="text-xs font-mono text-[#66BB6A] font-bold">{dailyProgress}%</span>
               </div>
 
               <div className="space-y-4">
                 <div className="flex justify-between items-baseline font-mono">
-                  <span className="text-2xl font-geist-pixel text-white">{todayXP} <span className="text-xs text-[#8E8E8E]">/ {dailyGoalXP} XP</span></span>
-                  <span className="text-xs text-[#FFC300] font-bold">Target: {dailyGoalXP} XP</span>
+                  <span className="text-2xl font-geist-pixel text-white">{todayXP} <span className="text-xs text-[#9CA3AF]">/ {dailyGoalXP} XP</span></span>
+                  <span className="text-xs text-[#FBC02D] font-bold">Target: {dailyGoalXP} XP</span>
                 </div>
 
-                <div className="w-full bg-[#252422] h-3 border border-[#4A4A4A]">
+                <div className="w-full bg-[#0F1110] h-3 border border-[#2E3A33]">
                   <div
-                    className="h-full bg-[#FF6A2A] transition-all duration-500"
+                    className="h-full bg-[#66BB6A] transition-all duration-500"
                     style={{ width: `${dailyProgress}%` }}
                   />
                 </div>
 
-                <p className="text-xs text-[#CFCFCF] font-inter">
+                <p className="text-xs text-[#D7D7D7] font-inter">
                   {dailyProgress >= 100 ? (
-                    <span className="text-[#35C759] font-bold"> Daily XP Goal achieved! Keep building tracks.</span>
+                    <span className="text-[#66BB6A] font-bold"> Daily XP Goal achieved! Keep building tracks.</span>
                   ) : (
-                    <>Earn <span className="text-[#FF6A2A] font-bold">{Math.max(0, dailyGoalXP - todayXP)} more XP</span> today to reach your goal!</>
+                    <>Earn <span className="text-[#66BB6A] font-bold">{Math.max(0, dailyGoalXP - todayXP)} more XP</span> today to reach your goal!</>
                   )}
                 </p>
               </div>
             </div>
 
             {/* Weekly XP Bar Chart Matrix */}
-            <div className="bytecode-card p-6 border border-[#4A4A4A]">
-              <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#4A4A4A]">
+            <div className="bytecode-card p-6 border border-[#2E3A33]">
+              <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#2E3A33]">
                 <h3 className="font-geist-pixel text-lg text-white flex items-center gap-2">
-                  <IconTrendingUp size={18} className="text-[#35C759]" />
+                  <IconTrendingUp size={18} className="text-[#66BB6A]" />
                   WEEKLY_XP_MATRIX
                 </h3>
-                <span className="text-xs font-mono text-[#8E8E8E]">LIVE_DATA</span>
+                <span className="text-xs font-mono text-[#9CA3AF]">LIVE_DATA</span>
               </div>
 
               <div className="flex items-end justify-between h-40 pt-4 gap-2">
                 {WEEKLY_XP.map((bar, idx) => (
                   <div key={idx} className="flex flex-col items-center gap-2 flex-1 h-full justify-end">
                     <div
-                      className="w-full bg-[#FF6A2A] hover:bg-[#FF8C42] transition-all relative group"
+                      className="w-full bg-[#66BB6A] hover:bg-[#A5D6A7] transition-all relative group"
                       style={{ height: bar.height }}
                     >
-                      <div className="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-[#252422] border border-[#FF6A2A] text-[10px] font-mono px-1.5 py-0.5 text-white whitespace-nowrap z-10 transition-opacity">
+                      <div className="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-[#0F1110] border border-[#66BB6A] text-[10px] font-mono px-1.5 py-0.5 text-white whitespace-nowrap z-10 transition-opacity">
                         {bar.xp} XP
                       </div>
                     </div>
-                    <span className="text-[11px] font-mono text-[#8E8E8E]">{bar.day}</span>
+                    <span className="text-[11px] font-mono text-[#9CA3AF]">{bar.day}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Quick Actions 6-Tile Cluster */}
-            <div className="bytecode-card p-6 border border-[#4A4A4A]">
-              <h3 className="font-geist-pixel text-lg text-white mb-4 pb-3 border-b border-[#4A4A4A]">
+            <div className="bytecode-card p-6 border border-[#2E3A33]">
+              <h3 className="font-geist-pixel text-lg text-white mb-4 pb-3 border-b border-[#2E3A33]">
                 QUICK_ACTIONS
               </h3>
 
@@ -518,15 +518,15 @@ const Dashboard = () => {
                   <Link
                     key={i}
                     to={act.path}
-                    className="p-3 bg-[#252422] border border-[#4A4A4A] hover:border-[#FF6A2A] hover:bg-[#303030] transition-all flex flex-col items-start gap-1 group"
+                    className="p-3 bg-[#0F1110] border border-[#2E3A33] hover:border-[#66BB6A] hover:bg-[#1D2420] transition-all flex flex-col items-start gap-1 group"
                   >
-                    <div className="text-[#FF6A2A] group-hover:scale-110 transition-transform">
+                    <div className="text-[#66BB6A] group-hover:scale-110 transition-transform">
                       {act.icon}
                     </div>
-                    <span className="font-geist-pixel text-xs text-white group-hover:text-[#FF6A2A]">
+                    <span className="font-geist-pixel text-xs text-white group-hover:text-[#66BB6A]">
                       {act.label}
                     </span>
-                    <span className="text-[10px] text-[#8E8E8E] font-mono">
+                    <span className="text-[10px] text-[#9CA3AF] font-mono">
                       {act.desc}
                     </span>
                   </Link>

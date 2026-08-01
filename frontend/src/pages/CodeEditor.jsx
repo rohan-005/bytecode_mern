@@ -290,18 +290,18 @@ useEffect(() => {
       base: 'vs-dark',
       inherit: true,
       rules: [
-        { token: 'comment', foreground: '8E8E8E', fontStyle: 'italic' },
-        { token: 'keyword', foreground: 'FF6A2A' },
-        { token: 'string', foreground: '35C759' },
-        { token: 'number', foreground: 'FFC300' },
-        { token: 'function', foreground: 'FF8C42' },
+        { token: 'comment', foreground: '9CA3AF', fontStyle: 'italic' },
+        { token: 'keyword', foreground: '66BB6A' },
+        { token: 'string', foreground: 'A5D6A7' },
+        { token: 'number', foreground: 'FBC02D' },
+        { token: 'function', foreground: 'E8F5E9' },
       ],
       colors: {
-        'editor.background': '#1B1B1B',
+        'editor.background': '#0F1110',
         'editor.foreground': '#FFFFFF',
-        'editor.lineHighlightBackground': '#252422',
-        'editor.selectionBackground': '#4A4A4A',
-        'editor.inactiveSelectionBackground': '#2D2D2D',
+        'editor.lineHighlightBackground': '#161A17',
+        'editor.selectionBackground': '#2E3A33',
+        'editor.inactiveSelectionBackground': '#161A17',
       }
     });
     monaco.editor.setTheme('bytecode-elegant');
@@ -666,7 +666,7 @@ useEffect(() => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-black text-slate-100 overflow-hidden">
+    <div className="flex flex-col h-screen bg-[#0F1110] text-[#FFFFFF] overflow-hidden">
       {/* Floating Navbar */}
       <FloatingNavbar items={navItems} />
 
@@ -678,12 +678,12 @@ useEffect(() => {
         {notifications.map(notif => (
           <div
             key={notif.id}
-            className={`px-4 py-3 rounded-lg border-l-4 shadow-lg backdrop-blur-sm ${
+            className={`px-4 py-3 border-l-4 shadow-lg backdrop-blur-sm font-mono text-sm ${
               notif.type === 'success' 
-                ? 'bg-emerald-500/10 border-emerald-400 text-emerald-100'
+                ? 'bg-[#1D2420] border-[#66BB6A] text-[#A5D6A7]'
                 : notif.type === 'error'
-                ? 'bg-rose-500/10 border-rose-400 text-rose-100'
-                : 'bg-slate-500/10 border-slate-400 text-slate-100'
+                ? 'bg-[#1D1414] border-[#E53935] text-[#FFCDD2]'
+                : 'bg-[#1D2420] border-[#2E3A33] text-[#D7D7D7]'
             }`}
           >
             {notif.message}
@@ -692,11 +692,11 @@ useEffect(() => {
       </div>
 
       {/* Header */}
-      <div className="flex-shrink-0 px-8 py-3 border-b border-[#4A4A4A] bg-[#252422] font-jetbrains relative">
+      <div className="flex-shrink-0 px-8 py-3 border-b border-[#2E3A33] bg-[#0F1110] font-jetbrains relative">
         <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-4">
           {/* Left: Logo */}
           <div className="flex items-center gap-3 justify-center lg:justify-start">
-            <img src={logo} alt="ByteCode Logo" className="w-9 h-9 object-contain filter drop-shadow-[0_0_10px_rgba(255,106,42,0.4)]" />
+            <img src={logo} alt="ByteCode Logo" className="w-9 h-9 object-contain filter drop-shadow-[0_0_10px_rgba(102,187,106,0.3)]" />
             <h1 className="text-[#FFFFFF] text-2xl font-bebas tracking-wide">
               BYTE COMPILER
             </h1>
@@ -707,7 +707,7 @@ useEffect(() => {
             <select
               value={getActiveTab()?.language || "javascript"}
               onChange={(e) => handleLanguageChange(e.target.value)}
-              className="bytecode-input text-xs h-10 px-3 py-0 border-[#4A4A4A]"
+              className="bytecode-input text-xs h-10 px-3 py-0 border-[#2E3A33]"
             >
               <option value="javascript">JavaScript</option>
               <option value="html">HTML</option>
@@ -752,7 +752,7 @@ useEffect(() => {
 
             <button
               onClick={downloadCode}
-              className="bytecode-btn-secondary text-xs h-10 px-3 py-0 text-[#35C759] border-[#35C759]"
+              className="bytecode-btn-secondary text-xs h-10 px-3 py-0 text-[#66BB6A] border-[#66BB6A]"
             >
               <IconDownload size={14} />
               <span>Download</span>
@@ -760,20 +760,20 @@ useEffect(() => {
           </div>
 
           {/* Right: Status Badge */}
-          <div className="hidden lg:flex items-center justify-end gap-3 text-xs text-[#8E8E8E] font-mono">
-            <span className="w-2 h-2 bg-[#35C759] animate-pulse"></span>
+          <div className="hidden lg:flex items-center justify-end gap-3 text-xs text-[#9CA3AF] font-mono">
+            <span className="w-2 h-2 bg-[#66BB6A] animate-pulse"></span>
             <span>MONACO_ENGINE_READY</span>
           </div>
         </div>
       </div>
       {showDisclaimer && (
-        <div className="bg-amber-500/20 border-b border-amber-500/30 px-4 py-3">
+        <div className="bg-[#161A17] border-b border-[#FBC02D]/30 px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <IconAlertTriangle size={20} className="text-amber-400" />
+              <IconAlertTriangle size={20} className="text-[#FBC02D]" />
               <div className="text-sm">
-                <strong className="text-amber-200">Warning:</strong> 
-                <span className="text-amber-100 ml-2">
+                <strong className="text-[#FBC02D]">Warning:</strong> 
+                <span className="text-[#D7D7D7] ml-2">
                   Your work will be lost if you reload or leave this page. 
                   For permanent storage and better performance, use a local development environment.
                 </span>
@@ -782,14 +782,14 @@ useEffect(() => {
             <div className="flex items-center gap-2">
               <button
                 onClick={downloadAllTabs}
-                className="bg-amber-600 hover:bg-amber-500 px-3 py-1 rounded text-xs font-medium text-white transition-colors flex items-center gap-1"
+                className="bg-[#2E3A33] hover:bg-[#1D2420] border border-[#FBC02D]/50 px-3 py-1 text-xs font-medium text-[#D7D7D7] transition-colors flex items-center gap-1"
               >
                 <IconDownload size={14} />
                 Download All
               </button>
               <button
                 onClick={handleDisclaimerClose}
-                className="text-amber-200 hover:text-amber-100 text-xs font-medium"
+                className="text-[#FBC02D] hover:text-amber-100 text-xs font-medium"
               >
                 Dismiss
               </button>
@@ -799,12 +799,12 @@ useEffect(() => {
       )}
 
       {/* Browser-style Tab Bar */}
-      <div className="flex-shrink-0 bg-gray-900 border-b border-gray-800">
+      <div className="flex-shrink-0 bg-[#0F1110] border-b border-[#2E3A33]">
         <div className="flex items-center">
           {/* New Tab Button */}
           <button
             onClick={() => addNewTab(getActiveTab()?.language || "javascript")}
-            className="px-3 py-2 text-slate-400 hover:text-slate-200 hover:bg-gray-800 transition-colors border-r border-gray-800"
+            className="px-3 py-2 text-[#9CA3AF] hover:text-[#D7D7D7] hover:bg-[#161A17] transition-colors border-r border-[#2E3A33]"
           >
             <IconPlus size={16} />
           </button>
@@ -815,10 +815,10 @@ useEffect(() => {
               <div
                 key={tab.id}
                 onClick={() => setActiveTabId(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2 border-r border-gray-800 transition-colors cursor-pointer group min-w-0 max-w-xs ${
+                className={`flex items-center gap-2 px-4 py-2 border-r border-[#2E3A33] transition-colors cursor-pointer group min-w-0 max-w-xs ${
                   tab.id === activeTabId
-                    ? 'bg-gray-800 text-slate-100'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-gray-800/50'
+                    ? 'bg-[#1D2420] text-[#FFFFFF] border-t border-t-[#66BB6A]'
+                    : 'text-[#9CA3AF] hover:text-[#D7D7D7] hover:bg-[#161A17]'
                 }`}
               >
                 {/* File Icon */}
@@ -835,7 +835,7 @@ useEffect(() => {
                 {/* Close Button */}
                 <button
                   onClick={(e) => closeTab(tab.id, e)}
-                  className="opacity-0 group-hover:opacity-100 hover:bg-gray-700 rounded p-1 transition-all"
+                  className="opacity-0 group-hover:opacity-100 hover:bg-[#2E3A33] p-1 transition-all"
                 >
                   <IconX size={14} />
                 </button>
@@ -844,7 +844,7 @@ useEffect(() => {
           </div>
 
           {/* Tab Counter */}
-          <div className="px-3 py-2 text-slate-500 text-xs border-l border-gray-800">
+          <div className="px-3 py-2 text-[#9CA3AF] text-xs border-l border-[#2E3A33]">
             {tabs.length} {tabs.length === 1 ? 'tab' : 'tabs'}
           </div>
         </div>
@@ -870,23 +870,23 @@ useEffect(() => {
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
         {/* Editor Section */}
-        <div className="flex-1 flex flex-col border-r border-gray-800">
-          <div className="flex-shrink-0 bg-black/40 px-4 py-3 border-b border-gray-800 flex items-center justify-between">
+        <div className="flex-1 flex flex-col border-r border-[#2E3A33]">
+          <div className="flex-shrink-0 bg-[#161A17]/90 px-4 py-3 border-b border-[#2E3A33] flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-[#FF6A2A] rounded-none"></div>
-                <span className="text-slate-400 text-sm font-mono">
+                <div className="w-2 h-2 bg-[#66BB6A] rounded-none"></div>
+                <span className="text-[#9CA3AF] text-sm font-mono">
                   {getActiveTab()?.name || "script.js"}
                 </span>
                 {getActiveTab()?.isDirty && (
-                  <span className="text-amber-400 text-xs">• Modified</span>
+                  <span className="text-[#FBC02D] text-xs">• Modified</span>
                 )}
               </div>
-              <div className="text-slate-500 text-xs">
+              <div className="text-[#9CA3AF] text-xs">
                 {getLanguageStatus(getActiveTab()?.language)}
               </div>
             </div>
-            <div className="text-slate-500 text-xs">
+            <div className="text-[#9CA3AF] text-xs">
               {getActiveTab()?.code.split('\n').length} lines • {getActiveTab()?.code.length} chars
             </div>
           </div>
@@ -933,14 +933,14 @@ useEffect(() => {
 
         {/* Output Section */}
         <div className="flex-1 flex flex-col">
-          <div className="flex-shrink-0 bg-black/40 px-4 py-3 border-b border-gray-800">
+          <div className="flex-shrink-0 bg-[#161A17]/90 px-4 py-3 border-b border-[#2E3A33]">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => handleTabViewChange("output")}
                 className={`px-4 py-2 rounded text-sm font-medium transition-colors flex items-center gap-2 ${
                   getActiveTab()?.activeView === "output" 
-                    ? "bg-gray-800 text-slate-100" 
-                    : "text-slate-400 hover:text-slate-200"
+                    ? "bg-[#1D2420] text-[#FFFFFF] border-t border-t-[#66BB6A]" 
+                    : "text-[#9CA3AF] hover:text-[#D7D7D7]"
                 }`}
               >
                 <span></span> Preview
@@ -949,8 +949,8 @@ useEffect(() => {
                 onClick={() => handleTabViewChange("console")}
                 className={`px-4 py-2 rounded text-sm font-medium transition-colors flex items-center gap-2 ${
                   getActiveTab()?.activeView === "console" 
-                    ? "bg-gray-800 text-slate-100" 
-                    : "text-slate-400 hover:text-slate-200"
+                    ? "bg-[#1D2420] text-[#FFFFFF] border-t border-t-[#66BB6A]" 
+                    : "text-[#9CA3AF] hover:text-[#D7D7D7]"
                 }`}
               >
                 <span></span> Console
@@ -958,7 +958,7 @@ useEffect(() => {
             </div>
           </div>
           
-          <div className="flex-1 bg-black/20">
+          <div className="flex-1 bg-[#0F1110]">
             {getActiveTab()?.activeView === "output" && (
               <iframe
                 ref={getIframeRef(activeTabId)}
@@ -971,7 +971,7 @@ useEffect(() => {
             
             {getActiveTab()?.activeView === "console" && (
               <div className="h-full p-4">
-                <pre className="font-mono text-sm text-slate-200 h-full overflow-auto whitespace-pre-wrap bg-black/50 p-4 rounded-lg">
+                <pre className="font-mono text-sm text-[#D7D7D7] h-full overflow-auto whitespace-pre-wrap bg-[#0F1110] p-4 rounded-lg">
                   {getActiveTab()?.output || `// ${getConsoleMessage(getActiveTab()?.language)}\n// Run your code to see the output!`}
                 </pre>
               </div>

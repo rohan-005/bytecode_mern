@@ -132,23 +132,23 @@ const OTPVerification = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1B1B1B] text-[#FFFFFF] flex items-center justify-center p-4 font-jetbrains grid-bg">
+    <div className="min-h-screen bg-[#0F1110] text-[#FFFFFF] flex items-center justify-center p-4 font-jetbrains grid-bg">
       <div className="max-w-md w-full">
         {/* Terminal Header */}
-        <div className="bg-[#252422] border border-[#4A4A4A] border-b-0 px-4 py-3 flex items-center justify-between">
+        <div className="bg-[#0F1110] border border-[#2E3A33] border-b-0 px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="w-3 h-3 bg-[#FF4D4F] inline-block"></span>
-            <span className="w-3 h-3 bg-[#FFC300] inline-block"></span>
-            <span className="w-3 h-3 bg-[#35C759] inline-block"></span>
-            <span className="text-xs text-[#8E8E8E] font-mono ml-2">[OTP_VERIFICATION]</span>
+            <span className="w-3 h-3 bg-[#E53935] inline-block"></span>
+            <span className="w-3 h-3 bg-[#FBC02D] inline-block"></span>
+            <span className="w-3 h-3 bg-[#66BB6A] inline-block"></span>
+            <span className="text-xs text-[#9CA3AF] font-mono ml-2">[OTP_VERIFICATION]</span>
           </div>
-          <span className="text-[10px] text-[#FF6A2A] font-bold tracking-wider uppercase bg-[#FF6A2A]/10 px-2 py-0.5 border border-[#FF6A2A]/30">
+          <span className="text-[10px] text-[#66BB6A] font-bold tracking-wider uppercase bg-[#66BB6A]/10 px-2 py-0.5 border border-[#66BB6A]/30">
             SECURITY CHECK
           </span>
         </div>
 
         {/* Card Body */}
-        <div className="bg-[#303030] border border-[#4A4A4A] p-8 shadow-2xl relative">
+        <div className="bg-[#1D2420] border border-[#2E3A33] p-8 shadow-2xl relative">
           <div className="text-center mb-6">
             <div className="flex justify-center mb-3">
               <img
@@ -160,26 +160,26 @@ const OTPVerification = () => {
             <h2 className="text-3xl font-bebas text-[#FFFFFF] tracking-wide mb-1">
               VERIFY YOUR EMAIL
             </h2>
-            <p className="text-xs text-[#CFCFCF] font-mono mb-1">We sent a 6-digit code to</p>
-            <p className="text-xs text-[#FF6A2A] font-bold font-mono bg-[#252422] py-1 px-3 border border-[#4A4A4A] inline-block">
+            <p className="text-xs text-[#D7D7D7] font-mono mb-1">We sent a 6-digit code to</p>
+            <p className="text-xs text-[#66BB6A] font-bold font-mono bg-[#0F1110] py-1 px-3 border border-[#2E3A33] inline-block">
               {email}
             </p>
           </div>
 
           {message && (
-            <div className="mb-4 p-3 bg-[#35C759]/10 border border-[#35C759] text-[#35C759] text-xs">
+            <div className="mb-4 p-3 bg-[#66BB6A]/10 border border-[#66BB6A] text-[#66BB6A] text-xs">
               {message}
             </div>
           )}
 
           {error && (
-            <div className="mb-4 p-3 bg-[#FF4D4F]/10 border border-[#FF4D4F] text-[#FF4D4F] text-xs">
+            <div className="mb-4 p-3 bg-[#E53935]/10 border border-[#E53935] text-[#E53935] text-xs">
               {error}
             </div>
           )}
 
           <div className="mb-6">
-            <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-4 text-center">
+            <label className="block text-xs font-semibold text-[#D7D7D7] uppercase tracking-wider mb-4 text-center">
               ENTER 6-DIGIT SECURITY CODE
             </label>
             <div className="flex justify-between gap-2 mb-6" onPaste={handlePaste}>
@@ -193,7 +193,7 @@ const OTPVerification = () => {
                   onChange={(e) => handleOtpChange(e.target.value, index)}
                   onKeyDown={(e) => handleKeyDown(e, index)}
                   onFocus={(e) => e.target.select()}
-                  className="w-11 h-12 text-center text-xl font-bold bg-[#252422] border border-[#4A4A4A] text-white focus:border-[#FF6A2A] focus:outline-none transition-colors"
+                  className="w-11 h-12 text-center text-xl font-bold bg-[#0F1110] border border-[#2E3A33] text-white focus:border-[#66BB6A] focus:outline-none transition-colors"
                   disabled={loading}
                 />
               ))}
@@ -218,13 +218,13 @@ const OTPVerification = () => {
             </button>
           </div>
 
-          <div className="text-center space-y-4 pt-4 border-t border-[#4A4A4A]">
-            <div className="text-xs text-[#8E8E8E]">
+          <div className="text-center space-y-4 pt-4 border-t border-[#2E3A33]">
+            <div className="text-xs text-[#9CA3AF]">
               <p>Didn't receive code?</p>
               <button
                 onClick={handleResendOTP}
                 disabled={resendLoading || countdown > 0}
-                className="text-[#FF6A2A] hover:text-[#FF8C42] font-semibold transition-colors disabled:text-[#8E8E8E] disabled:cursor-not-allowed mt-1.5 flex items-center justify-center gap-1 mx-auto"
+                className="text-[#66BB6A] hover:text-[#A5D6A7] font-semibold transition-colors disabled:text-[#9CA3AF] disabled:cursor-not-allowed mt-1.5 flex items-center justify-center gap-1 mx-auto"
               >
                 {resendLoading ? (
                   <>
@@ -244,7 +244,7 @@ const OTPVerification = () => {
 
             <button
               onClick={() => navigate('/register')}
-              className="text-xs text-[#CFCFCF] hover:text-[#FF6A2A] transition-colors flex items-center justify-center gap-1 mx-auto pt-2"
+              className="text-xs text-[#D7D7D7] hover:text-[#66BB6A] transition-colors flex items-center justify-center gap-1 mx-auto pt-2"
             >
               <IconArrowLeft size={14} />
               <span>Back to Register</span>

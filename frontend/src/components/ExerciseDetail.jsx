@@ -444,26 +444,26 @@ const ExerciseDetail = () => {
   const getDifficultyColor = (difficulty) => {
     switch (difficulty?.toLowerCase()) {
       case "easy":
-        return "from-green-500 to-emerald-400";
+        return "from-[#1B5E20] to-[#66BB6A]";
       case "medium":
-        return "from-yellow-500 to-orange-400";
+        return "from-[#FBC02D] to-[#F9A825]";
       case "hard":
-        return "from-red-500 to-pink-400";
+        return "from-[#E53935] to-[#E57373]";
       default:
-        return "from-gray-500 to-gray-400";
+        return "from-[#2E3A33] to-[#1D2420]";
     }
   };
 
   const getDifficultyIcon = (difficulty) => {
     switch (difficulty?.toLowerCase()) {
       case "easy":
-        return "🟢";
+        return null;
       case "medium":
-        return "🟡";
+        return null;
       case "hard":
-        return "";
+        return null;
       default:
-        return "";
+        return null;
     }
   };
 
@@ -488,7 +488,7 @@ const ExerciseDetail = () => {
         <FloatingNavbar items={navItems} />
         <div className="container mx-auto px-4 py-8">
           <div className="text-center py-12">
-            <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-16 h-16 border-4 border-[#66BB6A] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <h2 className="text-2xl font-bold text-white mb-2">
               Loading Exercise
             </h2>
@@ -496,7 +496,7 @@ const ExerciseDetail = () => {
               {[1, 2, 3].map((i) => (
                 <div
                   key={i}
-                  className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"
+                  className="w-2 h-2 bg-[#66BB6A] rounded-full animate-pulse"
                   style={{ animationDelay: `${i * 0.2}s` }}
                 />
               ))}
@@ -533,7 +533,7 @@ const ExerciseDetail = () => {
         {particles.map((particle) => (
           <div
             key={particle.id}
-            className="absolute rounded-full bg-purple-500/20"
+            className="absolute rounded-full bg-[#66BB6A]/20"
             style={{
               left: `${particle.x}%`,
               top: `${particle.y}%`,
@@ -552,20 +552,20 @@ const ExerciseDetail = () => {
       {showXpAnimation && (
         <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-50">
           <div className="text-center animate-bounce">
-            <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-4xl font-bold px-8 py-4 rounded-2xl shadow-2xl transform rotate-6">
-               +{xpEarned} XP Earned!
+            <div className="bg-[#1B5E20] border border-[#66BB6A] text-[#E8F5E9] text-4xl font-bebas tracking-widest px-8 py-4 shadow-2xl shadow-[#66BB6A]/20 transform rotate-3">
+              +{xpEarned} XP
             </div>
           </div>
         </div>
       )}
 
       {/* Header */}
-      <div className="relative bg-[#252422] border-b border-[#4A4A4A] font-jetbrains">
+      <div className="relative bg-[#0F1110] border-b border-[#2E3A33] font-jetbrains">
         <div className="w-full max-w-[2000px] mx-auto px-6 sm:px-12 py-5">
           <div className="flex items-center gap-4">
             <button
               onClick={() => navigate(`/course/${courseId}`)}
-              className="text-xs text-[#FF8C42] hover:text-[#FF6A2A] transition-colors flex items-center gap-1 font-mono uppercase tracking-wider"
+              className="text-xs text-[#A5D6A7] hover:text-[#66BB6A] transition-colors flex items-center gap-1 font-mono uppercase tracking-wider"
             >
               <IconArrowLeft size={16} />
               Back to Track
@@ -573,9 +573,9 @@ const ExerciseDetail = () => {
             <div className="flex-1">
               <h1 className="text-2xl font-bebas text-white tracking-wide">
                 {typingEffect}
-                <span className="text-[#FF6A2A] animate-pulse">|</span>
+                <span className="text-[#66BB6A] animate-pulse">|</span>
               </h1>
-              <p className="text-xs text-[#8E8E8E] flex items-center gap-1.5 font-mono">
+              <p className="text-xs text-[#9CA3AF] flex items-center gap-1.5 font-mono">
                 <IconBook size={14} />
                 {course.name}
               </p>
@@ -583,13 +583,13 @@ const ExerciseDetail = () => {
             <div className="flex items-center gap-3">
               {/* Output Mode Toggle */}
               {canShowPreview(exercise.language) && (
-                <div className="flex items-center gap-1 bg-[#1B1B1B] p-1 border border-[#4A4A4A] h-10">
+                <div className="flex items-center gap-1 bg-[#0F1110] p-1 border border-[#2E3A33] h-10">
                   <button
                     onClick={() => setOutputMode("preview")}
                     className={`flex items-center gap-1.5 px-3 h-8 text-xs font-mono uppercase tracking-wider transition-colors ${
                       outputMode === "preview"
-                        ? "bg-[#FF6A2A] text-white font-bold"
-                        : "text-[#8E8E8E] hover:text-white"
+                        ? "bg-[#66BB6A] text-white font-bold"
+                        : "text-[#9CA3AF] hover:text-white"
                     }`}
                   >
                     <IconScreenShare size={14} />
@@ -599,8 +599,8 @@ const ExerciseDetail = () => {
                     onClick={() => setOutputMode("console")}
                     className={`flex items-center gap-1.5 px-3 h-8 text-xs font-mono uppercase tracking-wider transition-colors ${
                       outputMode === "console"
-                        ? "bg-[#FF6A2A] text-white font-bold"
-                        : "text-[#8E8E8E] hover:text-white"
+                        ? "bg-[#66BB6A] text-white font-bold"
+                        : "text-[#9CA3AF] hover:text-white"
                     }`}
                   >
                     <IconTerminal2 size={14} />
@@ -609,9 +609,9 @@ const ExerciseDetail = () => {
                 </div>
               )}
 
-              <div className="flex items-center gap-1.5 bg-[#1B1B1B] px-4 h-10 border border-[#FF6A2A] text-xs font-mono">
+              <div className="flex items-center gap-1.5 bg-[#0F1110] px-4 h-10 border border-[#66BB6A] text-xs font-mono">
                 <span>{getDifficultyIcon(exercise.difficulty)}</span>
-                <span className="text-[#FF6A2A] font-bold">
+                <span className="text-[#66BB6A] font-bold">
                   {getLanguageDisplayName(exercise.language)}
                 </span>
               </div>
@@ -623,9 +623,9 @@ const ExerciseDetail = () => {
       {/* Main Content - Split Screen */}
       <div className="flex h-[calc(100vh-140px)] relative">
         {/* Left Panel - Theory & Instructions */}
-        <div className="flex-1 flex flex-col border-r border-gray-700 min-w-[400px] overflow-hidden bg-gray-900/50 backdrop-blur-sm">
+        <div className="flex-1 flex flex-col border-r border-[#2E3A33] min-w-[400px] overflow-hidden bg-[#0F1110]">
           {/* Theory Tabs */}
-          <div className="flex-shrink-0 bg-[#252422] border-b border-[#4A4A4A]">
+          <div className="flex-shrink-0 bg-[#0F1110] border-b border-[#2E3A33]">
             <div className="flex overflow-x-auto">
               {[
                 { id: "problem", label: "Problem", icon: <IconCode size={16} /> },
@@ -639,8 +639,8 @@ const ExerciseDetail = () => {
                   onClick={() => setActiveTheoryTab(tab.id)}
                   className={`flex items-center gap-2 px-6 py-3.5 font-mono text-xs font-semibold border-b-2 transition-colors whitespace-nowrap uppercase tracking-wider ${
                     activeTheoryTab === tab.id
-                      ? "border-[#FF6A2A] text-[#FF6A2A] bg-[#1B1B1B]"
-                      : "border-transparent text-[#8E8E8E] hover:text-white hover:bg-[#303030]"
+                      ? "border-[#66BB6A] text-[#66BB6A] bg-[#0F1110]"
+                      : "border-transparent text-[#9CA3AF] hover:text-white hover:bg-[#1D2420]"
                   }`}
                 >
                   {tab.icon}
@@ -656,34 +656,34 @@ const ExerciseDetail = () => {
               <div className="space-y-6">
                 <div className="bytecode-card p-6">
                   <h2 className="text-xl font-cinzel text-white tracking-wide mb-3 flex items-center gap-2.5">
-                    <IconTarget size={20} className="text-[#FF6A2A]" />
+                    <IconTarget size={20} className="text-[#66BB6A]" />
                     <span>Challenge Description</span>
                   </h2>
-                  <p className="text-[#CFCFCF] text-base leading-relaxed">
+                  <p className="text-[#D7D7D7] text-base leading-relaxed">
                     {exercise.description || "No description available."}
                   </p>
                 </div>
 
-                <div className="bg-[#252422] border border-[#4A4A4A] p-6">
+                <div className="bg-[#0F1110] border border-[#2E3A33] p-6">
                   <h3 className="text-lg font-bebas text-white tracking-wide mb-2 flex items-center gap-2">
-                    <IconSparkles size={18} className="text-[#FF8C42]" />
+                    <IconSparkles size={18} className="text-[#A5D6A7]" />
                     <span>Objective</span>
                   </h3>
-                  <p className="text-[#CFCFCF] text-sm font-outfit">{exercise.objective || "Complete the coding challenge."}</p>
+                  <p className="text-[#D7D7D7] text-sm font-outfit">{exercise.objective || "Complete the coding challenge."}</p>
                 </div>
 
                 {exercise.requirements && exercise.requirements.length > 0 && (
-                  <div className="bg-[#252422] border border-[#4A4A4A] p-6">
+                  <div className="bg-[#0F1110] border border-[#2E3A33] p-6">
                     <h3 className="text-lg font-bebas text-white tracking-wide mb-3 flex items-center gap-2">
-                      <IconCheck size={18} className="text-[#35C759]" />
+                      <IconCheck size={18} className="text-[#66BB6A]" />
                       <span>Requirements</span>
                     </h3>
-                    <ul className="text-[#CFCFCF] text-sm space-y-2 font-mono">
+                    <ul className="text-[#D7D7D7] text-sm space-y-2 font-mono">
                       {exercise.requirements.map((req, index) => (
                         <li key={index} className="flex items-start gap-2">
                           <IconChevronRight
                             size={16}
-                            className="text-[#FF6A2A] mt-0.5 flex-shrink-0"
+                            className="text-[#66BB6A] mt-0.5 flex-shrink-0"
                           />
                           <span>{req}</span>
                         </li>
@@ -696,9 +696,9 @@ const ExerciseDetail = () => {
                   <div
                     className={`bg-gradient-to-r ${getDifficultyColor(
                       exercise.difficulty
-                    )}/20 rounded-2xl p-4 border border-gray-700`}
+                    )}/20 rounded-2xl p-4 border border-[#2E3A33]`}
                   >
-                    <div className="text-gray-400 flex items-center gap-2">
+                    <div className="text-[#9CA3AF] flex items-center gap-2">
                       {getDifficultyIcon(exercise.difficulty)}
                       Difficulty
                     </div>
@@ -710,8 +710,8 @@ const ExerciseDetail = () => {
                       {exercise.difficulty || "Unknown"}
                     </div>
                   </div>
-                  {/* <div className="bg-gray-800/50 rounded-2xl p-4 border border-gray-700">
-                    <div className="text-gray-400 flex items-center gap-2">
+                  {/* <div className="bg-[#161A17] p-4 border border-[#2E3A33]">
+                    <div className="text-[#9CA3AF] flex items-center gap-2">
                        Duration
                     </div>
                     <div className="font-semibold text-lg text-white">
@@ -724,25 +724,25 @@ const ExerciseDetail = () => {
 
             {activeTheoryTab === "theory" && (
               <div className="space-y-6">
-                <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-2xl p-6 border border-purple-500/20">
+                <div className="bg-[#161A17] p-6 border border-[#2E3A33]">
                   <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
                      Theory & Concepts
                   </h2>
                   <div className="prose prose-invert max-w-none">
-                    <p className="text-gray-300 text-lg leading-relaxed whitespace-pre-line">
+                    <p className="text-[#D7D7D7] text-lg leading-relaxed whitespace-pre-line">
                       {exercise.theory || "No theory content available."}
                     </p>
                   </div>
                 </div>
 
                 {exercise.codeExample && (
-                  <div className="bg-[#252422] border border-[#4A4A4A] p-6">
+                  <div className="bg-[#0F1110] border border-[#2E3A33] p-6">
                     <h3 className="text-lg font-bebas text-white tracking-wide mb-3 flex items-center gap-2">
-                      <IconCode size={18} className="text-[#FF6A2A]" />
+                      <IconCode size={18} className="text-[#66BB6A]" />
                       <span>Code Example</span>
                     </h3>
                     <div className="relative">
-                      <pre className="bg-[#1B1B1B] p-4 text-xs font-mono border border-[#4A4A4A] overflow-x-auto text-[#CFCFCF]">
+                      <pre className="bg-[#0F1110] p-4 text-xs font-mono border border-[#2E3A33] overflow-x-auto text-[#D7D7D7]">
                         <code>
                           {exercise.codeExample}
                         </code>
@@ -754,10 +754,10 @@ const ExerciseDetail = () => {
                           toast.success("Code copied!");
                           setTimeout(() => setCopied(false), 2000);
                         }}
-                        className="absolute top-2 right-2 bg-[#252422] hover:bg-[#303030] p-1.5 border border-[#4A4A4A] text-white transition-colors"
+                        className="absolute top-2 right-2 bg-[#0F1110] hover:bg-[#1D2420] p-1.5 border border-[#2E3A33] text-white transition-colors"
                       >
                         {copied ? (
-                          <IconCheck size={14} className="text-[#35C759]" />
+                          <IconCheck size={14} className="text-[#66BB6A]" />
                         ) : (
                           <IconCopy size={14} />
                         )}
@@ -771,7 +771,7 @@ const ExerciseDetail = () => {
             {activeTheoryTab === "hints" && (
               <div className="space-y-6">
                 <h2 className="text-xl font-cinzel text-white tracking-wide mb-4 flex items-center gap-2.5">
-                  <IconSparkles size={20} className="text-[#FF8C42]" />
+                  <IconSparkles size={20} className="text-[#A5D6A7]" />
                   <span>Hints & Recommendations</span>
                 </h2>
                 {exercise.hints && exercise.hints.length > 0 ? (
@@ -782,21 +782,21 @@ const ExerciseDetail = () => {
                         onClick={() =>
                           setActiveHint(activeHint === index ? null : index)
                         }
-                        className="bg-[#252422] border border-[#FF6A2A]/40 p-5 cursor-pointer hover:border-[#FF6A2A] transition-colors"
+                        className="bg-[#0F1110] border border-[#66BB6A]/40 p-5 cursor-pointer hover:border-[#66BB6A] transition-colors"
                       >
                         <div className="flex items-start gap-3">
-                          <span className="bg-[#FF6A2A]/20 text-[#FF6A2A] px-2.5 py-0.5 font-mono text-xs font-bold border border-[#FF6A2A]/30 flex-shrink-0">
+                          <span className="bg-[#66BB6A]/20 text-[#66BB6A] px-2.5 py-0.5 font-mono text-xs font-bold border border-[#66BB6A]/30 flex-shrink-0">
                             Hint {index + 1}
                           </span>
-                          <p className="text-[#CFCFCF] text-sm font-outfit flex-1">{hint}</p>
+                          <p className="text-[#D7D7D7] text-sm font-outfit flex-1">{hint}</p>
                         </div>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="bg-[#252422] border border-[#4A4A4A] p-6 text-center">
-                    <IconSparkles size={32} className="mx-auto mb-2 text-[#8E8E8E]" />
-                    <p className="text-sm font-mono text-[#8E8E8E]">No specific hints for this challenge.</p>
+                  <div className="bg-[#0F1110] border border-[#2E3A33] p-6 text-center">
+                    <IconSparkles size={32} className="mx-auto mb-2 text-[#9CA3AF]" />
+                    <p className="text-sm font-mono text-[#9CA3AF]">No specific hints for this challenge.</p>
                   </div>
                 )}
               </div>
@@ -812,19 +812,19 @@ const ExerciseDetail = () => {
                     {exercise.references.map((reference, index) => (
                       <div
                         key={index}
-                        className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:scale-105"
+                        className="bg-[#161A17] p-6 border border-[#2E3A33] hover:border-[#66BB6A]/50 transition-all duration-300 hover:scale-105"
                       >
                         <h3 className="text-lg font-semibold mb-2">
                           {reference.title}
                         </h3>
-                        <p className="text-gray-300 mb-3">
+                        <p className="text-[#D7D7D7] mb-3">
                           {reference.description}
                         </p>
                         <a
                           href={reference.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+                          className="inline-flex items-center gap-2 bg-[#1B5E20] hover:bg-[#2E7D32] text-white px-4 py-2 font-semibold transition-all duration-300 transform hover:scale-105"
                         >
                           <IconExternalLink size={16} />
                           Explore Resource
@@ -833,8 +833,8 @@ const ExerciseDetail = () => {
                     ))}
                   </div>
                 ) : (
-                  <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700 text-center">
-                    <p className="text-gray-400">
+                  <div className="bg-[#161A17] p-6 border border-[#2E3A33] text-center">
+                    <p className="text-[#9CA3AF]">
                       No references available for this exercise.
                     </p>
                   </div>
@@ -844,19 +844,20 @@ const ExerciseDetail = () => {
 
             {activeTheoryTab === "solution" && (
               <div className="space-y-6">
-                <div className="bg-gradient-to-r from-red-500/10 to-orange-500/10 rounded-2xl p-6 border border-red-500/20">
+                <div className="bg-[#161A17] p-6 border border-[#2E3A33]">
                   <div className="flex items-center justify-between">
-                    <h2 className="text-2xl font-bold flex items-center gap-3">
-                       Solution
+                    <h2 className="text-xl font-cinzel text-white tracking-wide flex items-center gap-2.5">
+                      <IconCheck size={20} className="text-[#66BB6A]" />
+                      Solution
                     </h2>
                     <button
                       onClick={() => setShowSolution(!showSolution)}
-                      className="flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+                      className="flex items-center gap-2 bg-[#1D2420] hover:bg-[#1B5E20] border border-[#2E3A33] hover:border-[#66BB6A] text-[#D7D7D7] hover:text-white px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-200"
                     >
                       {showSolution ? (
-                        <IconEyeOff size={18} />
+                        <IconEyeOff size={16} />
                       ) : (
-                        <IconEye size={18} />
+                        <IconEye size={16} />
                       )}
                       {showSolution ? "Hide Solution" : "Reveal Solution"}
                     </button>
@@ -864,11 +865,11 @@ const ExerciseDetail = () => {
 
                   {showSolution ? (
                     <div className="space-y-4 mt-4">
-                      <p className="text-gray-300">
-                        Here's one way to solve this challenge:
+                      <p className="text-[#9CA3AF] text-sm font-mono">
+                        Here's one approach to solve this challenge:
                       </p>
                       <div className="relative">
-                        <pre className="bg-black/50 rounded-lg p-4 overflow-x-auto text-sm border border-green-500/30">
+                        <pre className="bg-[#0F1110] p-4 overflow-x-auto text-sm border border-[#2E3A33]">
                           <code className="text-gray-300">
                             {exercise.solutionCode || "No solution code available."}
                           </code>
@@ -881,7 +882,7 @@ const ExerciseDetail = () => {
                             setCopied(true);
                             setTimeout(() => setCopied(false), 2000);
                           }}
-                          className="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 p-2 rounded-lg transition-colors"
+                          className="absolute top-2 right-2 bg-[#1D2420] hover:bg-[#1D2420] p-2 rounded-lg transition-colors"
                         >
                           {copied ? (
                             <IconCheck size={16} />
@@ -890,8 +891,8 @@ const ExerciseDetail = () => {
                           )}
                         </button>
                       </div>
-                      <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-4">
-                        <p className="text-green-300 text-sm">
+                      <div className="bg-green-500/20 border border-[#2E3A33] rounded-lg p-4">
+                        <p className="text-[#A5D6A7] text-sm">
                           <strong> Pro Tip:</strong> Study this solution
                           carefully and try to understand the concepts. Then
                           close it and implement your own version!
@@ -921,40 +922,40 @@ const ExerciseDetail = () => {
         </div>
 
         {/* Right Panel - Code Editor & Output */}
-        <div className="flex-1 flex flex-col min-w-[500px] overflow-hidden bg-gray-900/50 backdrop-blur-sm">
+        <div className="flex-1 flex flex-col min-w-[500px] overflow-hidden bg-[#0F1110]/50 backdrop-blur-sm">
           {/* Code Editor */}
-          <div className="flex-1 border-b border-gray-700">
-            <div className="h-full bg-gray-900/80 flex flex-col">
-              <div className="flex-shrink-0 bg-gray-800/50 px-4 py-3 border-b border-gray-700 flex items-center justify-between">
+          <div className="flex-1 border-b border-[#2E3A33]">
+            <div className="h-full bg-[#0F1110]/80 flex flex-col">
+              <div className="flex-shrink-0 bg-[#161A17] px-4 py-3 border-b border-[#2E3A33] flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 bg-[#FF6A2A] animate-pulse"></div>
-                    <span className="text-slate-200 text-sm font-mono font-semibold">
+                    <div className="w-2.5 h-2.5 bg-[#66BB6A] animate-pulse"></div>
+                    <span className="text-[#D7D7D7] text-sm font-mono font-semibold">
                       challenge.{getFileExtension(exercise.language)}
                     </span>
                   </div>
-                  <span className="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded">
+                  <span className="text-xs text-[#9CA3AF] bg-[#1D2420] px-2 py-1 rounded">
                     {getLanguageDisplayName(exercise.language)} • {outputMode}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={copyCode}
-                    className="bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded font-medium text-white transition-colors flex items-center gap-2 text-sm"
+                    className="bg-[#1D2420] hover:bg-[#1D2420] px-3 py-2 rounded font-medium text-white transition-colors flex items-center gap-2 text-sm"
                   >
                     {copied ? <IconCheck size={14} /> : <IconCopy size={14} />}
                     {copied ? "Copied!" : "Copy"}
                   </button>
                   <button
                     onClick={resetCode}
-                    className="bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded font-medium text-white transition-colors text-sm"
+                    className="bg-[#1D2420] hover:bg-[#1D2420] px-3 py-2 rounded font-medium text-white transition-colors text-sm"
                   >
                     Reset
                   </button>
                   <button
                     onClick={runCode}
                     disabled={isRunning}
-                    className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 px-4 py-2 rounded font-medium text-white transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-sm shadow-lg hover:shadow-green-500/25"
+                    className="bg-[#1B5E20] hover:bg-[#2E7D32] px-4 py-2 font-medium text-white transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-sm shadow-lg hover:shadow-green-500/25"
                   >
                     {isRunning ? (
                       <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -973,7 +974,7 @@ const ExerciseDetail = () => {
                 ref={codeEditorRef}
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
-                className="w-full h-full bg-gray-900 text-white font-mono p-4 resize-none focus:outline-none text-sm leading-relaxed scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 code-editor-bg"
+                className="w-full h-full bg-[#0F1110] text-white font-mono p-4 resize-none focus:outline-none text-sm leading-relaxed scrollbar-thin scrollbar-thumb-[#2E3A33] scrollbar-track-[#0F1110] code-editor-bg"
                 spellCheck="false"
                 placeholder={`// Welcome to ${
                   exercise.title
@@ -986,7 +987,7 @@ const ExerciseDetail = () => {
 
           {/* Output Panel */}
           <div className="flex-1 flex flex-col">
-            <div className="flex-shrink-0 bg-gray-800/50 px-4 py-3 border-b border-gray-700 flex items-center justify-between">
+            <div className="flex-shrink-0 bg-[#161A17] px-4 py-3 border-b border-[#2E3A33] flex items-center justify-between">
               <h3 className="font-semibold flex items-center gap-2">
                 {outputMode === "preview" ? (
                   <>
@@ -1000,14 +1001,14 @@ const ExerciseDetail = () => {
                   </>
                 )}
               </h3>
-              <span className="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded">
+              <span className="text-xs text-[#9CA3AF] bg-[#1D2420] px-2 py-1 rounded">
                 {outputMode === "preview"
                   ? "Real-time Rendering"
                   : "Execution Results"}
               </span>
             </div>
 
-            <div className="flex-1 p-4 bg-black/30 overflow-auto">
+            <div className="flex-1 p-4 bg-[#0F1110] overflow-auto">
               {outputMode === "preview" ? (
                 <div className="relative w-full h-full bg-white rounded-2xl overflow-hidden shadow-2xl">
                   <iframe
@@ -1017,13 +1018,13 @@ const ExerciseDetail = () => {
                     className="w-full h-full"
                     sandbox="allow-scripts allow-same-origin"
                   />
-                  <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  <div className="absolute top-4 right-4 bg-[#161A17] text-[#D7D7D7] px-3 py-1 text-xs font-semibold">
                     Live Preview
                   </div>
                 </div>
               ) : (
-                <div className="bg-black/50 rounded-2xl p-4 h-full border border-gray-700">
-                  <pre className="font-mono text-sm text-slate-200 h-full overflow-auto whitespace-pre-wrap">
+                <div className="bg-[#0F1110] p-4 h-full border border-[#2E3A33]">
+                  <pre className="font-mono text-sm text-[#D7D7D7] h-full overflow-auto whitespace-pre-wrap">
                     {output ||
                       ` Run your ${getLanguageDisplayName(
                         exercise.language
@@ -1041,15 +1042,15 @@ const ExerciseDetail = () => {
         {/* Progress & Lesson Count Header */}
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 mb-4">
           <div className="flex items-center gap-3">
-            <span className="text-xs font-mono tracking-wider text-[#A0A0A0] uppercase">
+            <span className="text-xs font-mono tracking-wider text-[#9CA3AF] uppercase">
               Lesson {(() => {
                 const exs = course?.exercises || [];
                 const idx = exs.findIndex((ex) => ex.id === exerciseId);
                 return idx >= 0 ? idx + 1 : 1;
               })()} of {course?.exercises?.length || 1}
             </span>
-            <span className="text-xs text-[#4A4A4A]">•</span>
-            <span className="text-xs font-mono text-[#FF6A2A] font-semibold">
+            <span className="text-xs text-[#2E3A33]">•</span>
+            <span className="text-xs font-mono text-[#66BB6A] font-semibold">
               {(() => {
                 const exs = course?.exercises || [];
                 const idx = exs.findIndex((ex) => ex.id === exerciseId);
@@ -1062,7 +1063,7 @@ const ExerciseDetail = () => {
           {/* Progress Bar */}
           <div className="w-full md:w-64 h-2 bg-[#262626] border border-[#3A3A3A] overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-[#FF6A2A] to-[#FF8853] transition-all duration-500"
+              className="h-full bg-gradient-to-r from-[#66BB6A] to-[#66BB6A] transition-all duration-500"
               style={{
                 width: `${(() => {
                   const exs = course?.exercises || [];
@@ -1081,7 +1082,7 @@ const ExerciseDetail = () => {
           <button
             onClick={goToPrevExercise}
             disabled={!prevExercise}
-            className="bytecode-btn-secondary text-xs sm:text-sm px-5 py-2.5 flex items-center gap-2 uppercase tracking-wider font-mono min-w-[120px] justify-center disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-[#4A4A4A] transition-all"
+            className="bytecode-btn-secondary text-xs sm:text-sm px-5 py-2.5 flex items-center gap-2 uppercase tracking-wider font-mono min-w-[120px] justify-center disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-[#2E3A33] transition-all"
           >
             <IconArrowLeft size={16} />
             <span>Previous</span>
@@ -1093,7 +1094,7 @@ const ExerciseDetail = () => {
             disabled={isCompleting || isExerciseCompleted()}
             className={`text-xs sm:text-sm px-6 py-2.5 flex items-center gap-2 uppercase tracking-wider font-mono font-bold min-w-[180px] justify-center transition-all duration-300 ${
               isExerciseCompleted()
-                ? "bg-[#35C759]/20 text-[#35C759] border border-[#35C759] cursor-default opacity-90"
+                ? "bg-[#66BB6A]/20 text-[#66BB6A] border border-[#66BB6A] cursor-default opacity-90"
                 : "bytecode-btn-primary"
             }`}
           >
@@ -1141,12 +1142,12 @@ const ExerciseDetail = () => {
           width: 6px;
         }
 
-        .scrollbar-thumb-gray-700::-webkit-scrollbar-thumb {
+        .scrollbar-thumb-[#2E3A33]::-webkit-scrollbar-thumb {
           background-color: #374151;
           border-radius: 3px;
         }
 
-        .scrollbar-track-gray-900::-webkit-scrollbar-track {
+        .scrollbar-track-[#0F1110]::-webkit-scrollbar-track {
           background-color: #111827;
         }
 

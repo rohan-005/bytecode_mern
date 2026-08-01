@@ -32,7 +32,7 @@ export const FloatingNavbar = ({ items, className }) => {
       <motion.div
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}
-        className="hidden md:flex gap-4 px-4 py-3 bg-[#1B1B1B]/95 backdrop-blur-md border border-[#4A4A4A] shadow-2xl shadow-black/90"
+        className="hidden md:flex gap-4 px-4 py-3 bg-[#0F1110]/95 backdrop-blur-md border border-[#2E3A33] shadow-2xl shadow-black/90"
       >
         {items.map((item) => (
           <IconButton 
@@ -53,7 +53,7 @@ export const FloatingNavbar = ({ items, className }) => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="absolute top-16 right-0 flex flex-col gap-2 p-3 bg-[#1B1B1B] border border-[#4A4A4A] shadow-2xl min-w-[180px]"
+              className="absolute top-16 right-0 flex flex-col gap-2 p-3 bg-[#0F1110] border border-[#2E3A33] shadow-2xl min-w-[180px]"
             >
               {items.map((item) => {
                 const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
@@ -61,16 +61,16 @@ export const FloatingNavbar = ({ items, className }) => {
                   <a
                     key={item.title}
                     href={item.href}
-                    className={`flex items-center gap-3 px-4 py-2.5 bg-[#2D2D2D] hover:bg-[#303030] border transition-colors relative ${
-                      isActive ? "border-[#FF6A2A] text-white" : "border-[#4A4A4A] text-[#CFCFCF]"
+                    className={`flex items-center gap-3 px-4 py-2.5 bg-[#161A17] hover:bg-[#1D2420] border transition-colors relative ${
+                      isActive ? "border-[#66BB6A] text-white" : "border-[#2E3A33] text-[#D7D7D7]"
                     }`}
                   >
-                    <span className={isActive ? "text-[#FF6A2A]" : "text-[#8E8E8E]"}>{item.icon}</span>
+                    <span className={isActive ? "text-[#66BB6A]" : "text-[#9CA3AF]"}>{item.icon}</span>
                     <span className="text-sm font-semibold uppercase tracking-wider font-jetbrains">
                       {item.title}
                     </span>
                     {isActive && (
-                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#FF6A2A]" />
+                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#66BB6A]" />
                     )}
                   </a>
                 );
@@ -81,7 +81,7 @@ export const FloatingNavbar = ({ items, className }) => {
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="flex h-12 w-12 items-center justify-center bg-[#1B1B1B] border border-[#4A4A4A] text-white hover:border-[#FF6A2A] hover:text-[#FF6A2A] transition-all shadow-lg active:scale-95"
+          className="flex h-12 w-12 items-center justify-center bg-[#0F1110] border border-[#2E3A33] text-white hover:border-[#66BB6A] hover:text-[#66BB6A] transition-all shadow-lg active:scale-95"
           aria-label="Toggle menu"
         >
           <IconLayoutNavbarCollapse size={22} />
@@ -112,10 +112,10 @@ const IconButton = ({ icon, title, href, mouseX, isActive }) => {
         style={{ width: springSize, height: springSize }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className={`flex items-center justify-center bg-[#2D2D2D] border transition-all relative ${
+        className={`flex items-center justify-center bg-[#161A17] border transition-all relative ${
           isActive 
-            ? "border-[#FF6A2A] text-[#FFFFFF] bg-[#303030]" 
-            : "border-[#4A4A4A] text-[#CFCFCF] group-hover:border-[#FF6A2A] group-hover:text-[#FF6A2A] group-hover:bg-[#303030]"
+            ? "border-[#66BB6A] text-[#FFFFFF] bg-[#1D2420]" 
+            : "border-[#2E3A33] text-[#D7D7D7] group-hover:border-[#66BB6A] group-hover:text-[#66BB6A] group-hover:bg-[#1D2420]"
         }`}
       >
         <motion.div
@@ -129,7 +129,7 @@ const IconButton = ({ icon, title, href, mouseX, isActive }) => {
         {(isActive || hovered) && (
           <motion.div 
             layoutId="navbar-active-indicator"
-            className="absolute bottom-0 left-1 right-1 h-1 bg-[#FF6A2A]" 
+            className="absolute bottom-0 left-1 right-1 h-1 bg-[#66BB6A]" 
             transition={{ type: "spring", stiffness: 380, damping: 28 }}
           />
         )}
@@ -142,7 +142,7 @@ const IconButton = ({ icon, title, href, mouseX, isActive }) => {
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 6, x: "-50%" }}
               transition={{ duration: 0.1 }}
-              className="absolute top-12 left-1/2 px-3 py-1 bg-[#303030] text-xs font-semibold text-[#FFFFFF] border border-[#FF6A2A] uppercase tracking-wider whitespace-nowrap shadow-xl z-50 pointer-events-none"
+              className="absolute top-12 left-1/2 px-3 py-1 bg-[#1D2420] text-xs font-semibold text-[#FFFFFF] border border-[#66BB6A] uppercase tracking-wider whitespace-nowrap shadow-xl z-50 pointer-events-none"
             >
               {title}
             </motion.div>

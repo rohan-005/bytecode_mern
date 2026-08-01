@@ -58,23 +58,23 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1B1B1B] text-[#FFFFFF] flex items-center justify-center p-6 font-outfit grid-bg">
+    <div className="min-h-screen bg-[#0F1110] text-[#FFFFFF] flex items-center justify-center p-6 font-outfit grid-bg">
       <div className="max-w-lg w-full">
         {/* Terminal Window Header */}
-        <div className="bg-[#252422] border border-[#4A4A4A] border-b-0 px-5 py-3.5 flex items-center justify-between font-jetbrains">
+        <div className="bg-[#0F1110] border border-[#2E3A33] border-b-0 px-5 py-3.5 flex items-center justify-between font-jetbrains">
           <div className="flex items-center gap-2">
-            <span className="w-3 h-3 bg-[#FF4D4F] inline-block"></span>
-            <span className="w-3 h-3 bg-[#FFC300] inline-block"></span>
-            <span className="w-3 h-3 bg-[#35C759] inline-block"></span>
-            <span className="text-xs text-[#8E8E8E] font-mono ml-2">[AUTH_TERMINAL_V2]</span>
+            <span className="w-3 h-3 bg-[#E53935] inline-block"></span>
+            <span className="w-3 h-3 bg-[#FBC02D] inline-block"></span>
+            <span className="w-3 h-3 bg-[#66BB6A] inline-block"></span>
+            <span className="text-xs text-[#9CA3AF] font-mono ml-2">[AUTH_TERMINAL_V2]</span>
           </div>
-          <span className="text-xs text-[#FF6A2A] font-bold tracking-wider uppercase bg-[#FF6A2A]/10 px-2.5 py-1 border border-[#FF6A2A]/30">
+          <span className="text-xs text-[#66BB6A] font-bold tracking-wider uppercase bg-[#66BB6A]/10 px-2.5 py-1 border border-[#66BB6A]/30">
             SECURE ACCESS
           </span>
         </div>
 
         {/* Card Body */}
-        <div className="bg-[#303030] border border-[#4A4A4A] p-10 shadow-2xl relative font-outfit">
+        <div className="bg-[#1D2420] border border-[#2E3A33] p-10 shadow-2xl relative font-outfit">
           {/* Header Branding */}
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
@@ -87,12 +87,12 @@ const Login = () => {
             <h2 className="text-4xl font-bebas text-[#FFFFFF] tracking-wide mb-1">
               WELCOME BACK, DEVELOPER
             </h2>
-            <p className="text-sm text-[#CFCFCF] font-mono">Sign in to your ByteCode account</p>
+            <p className="text-sm text-[#D7D7D7] font-mono">Sign in to your ByteCode account</p>
           </div>
 
           {/* Error Banner */}
           {error && (
-            <div className="mb-6 p-4 bg-[#FF4D4F]/10 border border-[#FF4D4F] text-[#FF4D4F] text-sm flex items-center gap-3">
+            <div className="mb-6 p-4 bg-[#E53935]/10 border border-[#E53935] text-[#E53935] text-sm flex items-center gap-3">
               <IconAlertTriangle size={20} className="flex-shrink-0" />
               <span>{error}</span>
             </div>
@@ -101,7 +101,7 @@ const Login = () => {
           <form onSubmit={onSubmit} className="space-y-6">
             {/* Email Input */}
             <div>
-              <label className="block text-xs font-bold text-[#CFCFCF] uppercase tracking-wider mb-2 font-mono">
+              <label className="block text-xs font-bold text-[#D7D7D7] uppercase tracking-wider mb-2 font-mono">
                 Email Address
               </label>
               <div className="relative">
@@ -114,7 +114,7 @@ const Login = () => {
                   className="bytecode-input w-full h-12 pl-12 pr-4 text-base"
                   placeholder="developer@bytecode.dev"
                 />
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#8E8E8E]">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#9CA3AF]">
                   <IconMail size={20} />
                 </div>
               </div>
@@ -122,7 +122,7 @@ const Login = () => {
 
             {/* Password Input */}
             <div>
-              <label className="block text-xs font-bold text-[#CFCFCF] uppercase tracking-wider mb-2 font-mono">
+              <label className="block text-xs font-bold text-[#D7D7D7] uppercase tracking-wider mb-2 font-mono">
                 Password
               </label>
               <div className="relative">
@@ -135,12 +135,12 @@ const Login = () => {
                   className="bytecode-input w-full h-12 pl-12 pr-12 text-base"
                   placeholder="••••••••••••"
                 />
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#8E8E8E]">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#9CA3AF]">
                   <IconLock size={20} />
                 </div>
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#8E8E8E] hover:text-[#FF6A2A] transition-colors"
+                  className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#9CA3AF] hover:text-[#66BB6A] transition-colors"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? <IconEyeOff size={20} /> : <IconEye size={20} />}
@@ -169,18 +169,18 @@ const Login = () => {
           </form>
 
           {/* Links */}
-          <div className="text-center mt-8 pt-6 border-t border-[#4A4A4A]">
+          <div className="text-center mt-8 pt-6 border-t border-[#2E3A33]">
             <Link
               to="/forgot-password"
-              className="text-sm text-[#FF8C42] hover:text-[#FF6A2A] font-semibold transition-colors hover:underline block mb-3 font-mono"
+              className="text-sm text-[#A5D6A7] hover:text-[#66BB6A] font-semibold transition-colors hover:underline block mb-3 font-mono"
             >
               Forgot your password?
             </Link>
-            <p className="text-sm text-[#8E8E8E]">
+            <p className="text-sm text-[#9CA3AF]">
               New to ByteCode?{" "}
               <Link
                 to="/register"
-                className="text-[#FF6A2A] hover:text-[#FF8C42] font-bold transition-colors hover:underline ml-1"
+                className="text-[#66BB6A] hover:text-[#A5D6A7] font-bold transition-colors hover:underline ml-1"
               >
                 Create an account
               </Link>

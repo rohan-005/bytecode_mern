@@ -32,7 +32,7 @@
 }
 
 body {
-  background-color: #1B1B1B;
+  background-color: #e6f5ed;
   color: #FFFFFF;
   font-family: 'JetBrains Mono', monospace;
 }
@@ -53,6 +53,6 @@ body {
 }
 
 .code-editor-bg {
-  background: linear-gradient(45deg, #1B1B1B 25%, #252422 25%, #252422 50%, #1B1B1B 50%, #1B1B1B 75%, #252422 75%, #252422);
+  background: linear-gradient(45deg, #0F1110 25%, #0F1110 25%, #0F1110 50%, #0F1110 50%, #0F1110 75%, #0F1110 75%, #0F1110);
   background-size: 24px 24px;
 }

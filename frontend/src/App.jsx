@@ -99,9 +99,9 @@ function App() {
         toastOptions={{
           duration: 4000,
           style: {
-            background: "#2D2D2D",
+            background: "#161A17",
             color: "#FFFFFF",
-            border: "1px solid #4A4A4A",
+            border: "1px solid #2E3A33",
             borderRadius: "0px",
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "13px",
@@ -109,41 +109,41 @@ function App() {
           },
           success: {
             style: {
-              background: "#2D2D2D",
+              background: "#161A17",
               color: "#FFFFFF",
-              border: "1px solid #35C759",
-              borderLeft: "4px solid #35C759",
+              border: "1px solid #66BB6A",
+              borderLeft: "4px solid #66BB6A",
               borderRadius: "0px",
             },
             iconTheme: {
-              primary: "#35C759",
-              secondary: "#2D2D2D",
+              primary: "#66BB6A",
+              secondary: "#161A17",
             },
           },
           error: {
             style: {
-              background: "#2D2D2D",
+              background: "#161A17",
               color: "#FFFFFF",
-              border: "1px solid #FF4D4F",
-              borderLeft: "4px solid #FF4D4F",
+              border: "1px solid #E53935",
+              borderLeft: "4px solid #E53935",
               borderRadius: "0px",
             },
             iconTheme: {
-              primary: "#FF4D4F",
-              secondary: "#2D2D2D",
+              primary: "#E53935",
+              secondary: "#161A17",
             },
           },
           loading: {
             style: {
-              background: "#2D2D2D",
+              background: "#161A17",
               color: "#FFFFFF",
-              border: "1px solid #FF6A2A",
-              borderLeft: "4px solid #FF6A2A",
+              border: "1px solid #66BB6A",
+              borderLeft: "4px solid #66BB6A",
               borderRadius: "0px",
             },
             iconTheme: {
-              primary: "#FF6A2A",
-              secondary: "#2D2D2D",
+              primary: "#66BB6A",
+              secondary: "#161A17",
             },
           },
         }}

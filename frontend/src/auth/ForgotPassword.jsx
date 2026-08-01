@@ -154,23 +154,23 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1B1B1B] text-[#FFFFFF] flex items-center justify-center p-4 font-jetbrains grid-bg">
+    <div className="min-h-screen bg-[#0F1110] text-[#FFFFFF] flex items-center justify-center p-4 font-jetbrains grid-bg">
       <div className="max-w-md w-full">
         {/* Terminal Header */}
-        <div className="bg-[#252422] border border-[#4A4A4A] border-b-0 px-4 py-3 flex items-center justify-between">
+        <div className="bg-[#0F1110] border border-[#2E3A33] border-b-0 px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="w-3 h-3 bg-[#FF4D4F] inline-block"></span>
-            <span className="w-3 h-3 bg-[#FFC300] inline-block"></span>
-            <span className="w-3 h-3 bg-[#35C759] inline-block"></span>
-            <span className="text-xs text-[#8E8E8E] font-mono ml-2">[PASSWORD_RECOVERY]</span>
+            <span className="w-3 h-3 bg-[#E53935] inline-block"></span>
+            <span className="w-3 h-3 bg-[#FBC02D] inline-block"></span>
+            <span className="w-3 h-3 bg-[#66BB6A] inline-block"></span>
+            <span className="text-xs text-[#9CA3AF] font-mono ml-2">[PASSWORD_RECOVERY]</span>
           </div>
-          <span className="text-[10px] text-[#FF6A2A] font-bold tracking-wider uppercase bg-[#FF6A2A]/10 px-2 py-0.5 border border-[#FF6A2A]/30">
+          <span className="text-[10px] text-[#66BB6A] font-bold tracking-wider uppercase bg-[#66BB6A]/10 px-2 py-0.5 border border-[#66BB6A]/30">
             STEP {step}/3
           </span>
         </div>
 
         {/* Card Body */}
-        <div className="bg-[#303030] border border-[#4A4A4A] p-8 shadow-2xl relative">
+        <div className="bg-[#1D2420] border border-[#2E3A33] p-8 shadow-2xl relative">
           <div className="text-center mb-6">
             <div className="flex justify-center mb-3">
               <img
@@ -182,7 +182,7 @@ const ForgotPassword = () => {
             <h2 className="text-3xl font-bebas text-[#FFFFFF] tracking-wide mb-1">
               RESET PASSWORD
             </h2>
-            <p className="text-xs text-[#CFCFCF] font-mono">
+            <p className="text-xs text-[#D7D7D7] font-mono">
               {step === 1 && "Enter registered email to receive OTP token"}
               {step === 2 && `Enter 6-digit code sent to ${email}`}
               {step === 3 && "Construct your new secure password"}
@@ -193,7 +193,7 @@ const ForgotPassword = () => {
           {step === 1 && (
             <form onSubmit={handleRequestOTP} className="space-y-5">
               <div>
-                <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-2">
+                <label className="block text-xs font-semibold text-[#D7D7D7] uppercase tracking-wider mb-2">
                   Email Address
                 </label>
                 <div className="relative">
@@ -206,7 +206,7 @@ const ForgotPassword = () => {
                     className="bytecode-input w-full pl-10 pr-4"
                     placeholder="developer@bytecode.dev"
                   />
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#8E8E8E]">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9CA3AF]">
                     <IconMail size={18} />
                   </div>
                 </div>
@@ -236,7 +236,7 @@ const ForgotPassword = () => {
           {step === 2 && (
             <form onSubmit={handleVerifyOTP} className="space-y-5">
               <div>
-                <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-2">
+                <label className="block text-xs font-semibold text-[#D7D7D7] uppercase tracking-wider mb-2">
                   Verification Code (OTP)
                 </label>
                 <input
@@ -283,7 +283,7 @@ const ForgotPassword = () => {
           {step === 3 && (
             <form onSubmit={handleResetPassword} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-2">
+                <label className="block text-xs font-semibold text-[#D7D7D7] uppercase tracking-wider mb-2">
                   New Password
                 </label>
                 <div className="relative">
@@ -296,14 +296,14 @@ const ForgotPassword = () => {
                     className="bytecode-input w-full pl-10 pr-4"
                     placeholder="••••••••••••"
                   />
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#8E8E8E]">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9CA3AF]">
                     <IconLock size={18} />
                   </div>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#CFCFCF] uppercase tracking-wider mb-2">
+                <label className="block text-xs font-semibold text-[#D7D7D7] uppercase tracking-wider mb-2">
                   Confirm New Password
                 </label>
                 <div className="relative">
@@ -316,7 +316,7 @@ const ForgotPassword = () => {
                     className="bytecode-input w-full pl-10 pr-4"
                     placeholder="••••••••••••"
                   />
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#8E8E8E]">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9CA3AF]">
                     <IconLock size={18} />
                   </div>
                 </div>
@@ -339,12 +339,12 @@ const ForgotPassword = () => {
             </form>
           )}
 
-          <div className="mt-6 pt-4 border-t border-[#4A4A4A] text-center">
-            <p className="text-xs text-[#8E8E8E]">
+          <div className="mt-6 pt-4 border-t border-[#2E3A33] text-center">
+            <p className="text-xs text-[#9CA3AF]">
               Remember your credentials?{" "}
               <Link
                 to="/login"
-                className="text-[#FF6A2A] hover:text-[#FF8C42] font-semibold transition-colors hover:underline ml-1"
+                className="text-[#66BB6A] hover:text-[#A5D6A7] font-semibold transition-colors hover:underline ml-1"
               >
                 Sign in
               </Link>
