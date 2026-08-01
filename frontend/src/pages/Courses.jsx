@@ -257,57 +257,73 @@ const Courses = () => {
             return (
               <div
                 key={course.id}
-                className="bytecode-card p-8 flex flex-col justify-between hover:border-[#66BB6A] transition-colors relative"
+                className="bytecode-card group p-0 flex flex-col justify-between hover:border-[#66BB6A] transition-all duration-200 overflow-hidden shadow-xl relative"
               >
-                <div>
-                  <div className="flex justify-between items-start mb-4 gap-3">
-                    <h3 className="text-2xl font-bebas text-white tracking-wide leading-snug">
-                      {course.name}
-                    </h3>
-                    <span className="text-xs font-mono uppercase px-2.5 py-1 bg-[#2F3437] border border-[#626A6E] text-[#66BB6A] whitespace-nowrap">
-                      {course.level}
-                    </span>
-                  </div>
-
-                  <p className="text-sm text-[#D5DBD6] mb-8 line-clamp-3 leading-relaxed font-outfit">
-                    {course.description}
-                  </p>
+                {/* Top Official Technology Logo Header */}
+                <div className="h-44 bg-[#2F3437] flex items-center justify-center p-6 border-b border-[#626A6E] relative">
+                  <img
+                    src={course.image || "/logos/html.svg"}
+                    alt={course.name}
+                    className="w-20 h-20 sm:w-24 sm:h-24 object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] group-hover:scale-105 transition-transform duration-200"
+                  />
+                  <span className="absolute top-4 right-4 text-xs font-mono uppercase px-2.5 py-1 bg-[#3A4044] border border-[#626A6E] text-[#66BB6A]">
+                    {course.level}
+                  </span>
                 </div>
 
-                <div>
-                  {enrolled && (
-                    <div className="mb-6">
-                      <div className="flex justify-between text-xs font-mono text-[#D5DBD6] mb-1.5">
-                        <span>Track Progress</span>
-                        <span className="text-[#66BB6A] font-bold">{Math.round(progress)}%</span>
-                      </div>
-                      <div className="w-full bg-[#2F3437] h-2 border border-[#626A6E]">
-                        <div
-                          className="h-full bg-[#66BB6A]"
-                          style={{ width: `${progress}%` }}
-                        />
-                      </div>
-                    </div>
-                  )}
+                {/* Card Body */}
+                <div className="p-6 sm:p-8 flex flex-col justify-between flex-1">
+                  <div>
+                    <h3 className="text-2xl font-bebas text-white tracking-wide leading-snug mb-3">
+                      {course.name}
+                    </h3>
 
-                  {enrolled ? (
-                    <Link
-                      to={`/course/${course.id}`}
-                      className="bytecode-btn-secondary w-full text-sm py-3 flex items-center justify-center gap-2 text-[#66BB6A] border-[#66BB6A]"
-                    >
-                      <span>{progress === 100 ? "Completed Track" : "Continue Learning"}</span>
-                      <IconArrowRight size={16} />
-                    </Link>
-                  ) : (
-                    <button
-                      id={`enroll-btn-${course.id}`}
-                      onClick={() => enrollInCourse(course.id)}
-                      className="bytecode-btn-primary w-full text-sm py-3 flex items-center justify-center gap-2"
-                    >
-                      <span>Start Learning Track</span>
-                      <IconArrowRight size={16} />
-                    </button>
-                  )}
+                    <p className="text-sm text-[#D5DBD6] mb-6 line-clamp-3 leading-relaxed font-outfit">
+                      {course.description}
+                    </p>
+                  </div>
+
+                  <div>
+                    {enrolled && (
+                      <div className="mb-6">
+                        <div className="flex justify-between text-xs font-mono text-[#D5DBD6] mb-1.5">
+                          <span>Track Progress</span>
+                          <span className="text-[#66BB6A] font-bold">
+                            {Math.round(progress)}%
+                          </span>
+                        </div>
+                        <div className="w-full bg-[#2F3437] h-2 border border-[#626A6E]">
+                          <div
+                            className="h-full bg-[#66BB6A] transition-all duration-300"
+                            style={{ width: `${progress}%` }}
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {enrolled ? (
+                      <Link
+                        to={`/course/${course.id}`}
+                        className="bytecode-btn-secondary w-full text-sm py-3 flex items-center justify-center gap-2 text-[#66BB6A] border-[#66BB6A]"
+                      >
+                        <span>
+                          {progress === 100
+                            ? "Completed Track"
+                            : "Continue Learning"}
+                        </span>
+                        <IconArrowRight size={16} />
+                      </Link>
+                    ) : (
+                      <button
+                        id={`enroll-btn-${course.id}`}
+                        onClick={() => enrollInCourse(course.id)}
+                        className="bytecode-btn-primary w-full text-sm py-3 flex items-center justify-center gap-2"
+                      >
+                        <span>Start Learning Track</span>
+                        <IconArrowRight size={16} />
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             );

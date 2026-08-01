@@ -225,11 +225,13 @@ const CourseDetail = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center">
               <div className="lg:col-span-1">
-                <img 
-                  src={course.image || '/images/default-course.jpg'} 
-                  alt={course.name}
-                  className="w-full h-72 object-cover border border-[#626A6E]"
-                />
+                <div className="w-full h-64 bg-[#2F3437] border border-[#626A6E] flex items-center justify-center p-8 shadow-xl">
+                  <img 
+                    src={course.image || '/logos/html.svg'} 
+                    alt={course.name}
+                    className="w-32 h-32 sm:w-36 sm:h-36 object-contain filter drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]"
+                  />
+                </div>
               </div>
 
               <div className="lg:col-span-2 space-y-6">

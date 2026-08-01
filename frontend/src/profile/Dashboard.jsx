@@ -291,13 +291,22 @@ const Dashboard = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
-                  <div>
-                    <h2 className="font-geist-pixel text-2xl sm:text-3xl text-white mb-2">
-                      {activeCourse.course.name}
-                    </h2>
-                    <p className="text-sm text-[#D5DBD6] font-inter max-w-xl line-clamp-2">
-                      {activeCourse.course.description}
-                    </p>
+                  <div className="flex items-center gap-5">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#2F3437] border border-[#626A6E] flex items-center justify-center p-3 shrink-0">
+                      <img 
+                        src={activeCourse.course.image || '/logos/html.svg'} 
+                        alt={activeCourse.course.name}
+                        className="w-12 h-12 sm:w-14 sm:h-14 object-contain filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
+                      />
+                    </div>
+                    <div>
+                      <h2 className="font-geist-pixel text-2xl sm:text-3xl text-white mb-2">
+                        {activeCourse.course.name}
+                      </h2>
+                      <p className="text-sm text-[#D5DBD6] font-inter max-w-xl line-clamp-2">
+                        {activeCourse.course.description}
+                      </p>
+                    </div>
                   </div>
 
                   <button
