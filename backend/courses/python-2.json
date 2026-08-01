@@ -427,13 +427,13 @@
     },
     {
       "id": "py2-ex20",
-      "title": "Capstone Project: Python II \u2014 Intermediate Programming & OOP Industry Application",
-      "description": "Practice and master Capstone Project: Python II \u2014 Intermediate Programming & OOP Industry Application with interactive coding.",
+      "title": "Capstone Project: Student Management System",
+      "description": "Build a complete production-grade Student Management System integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "python",
-      "theory": "This capstone integrates all core modules learned in Python II \u2014 Intermediate Programming & OOP into a complete project.",
-      "objective": "Build a full production capstone project for Python II \u2014 Intermediate Programming & OOP.",
+      "theory": "This capstone project combines all curriculum concepts into a production Student Management System.",
+      "objective": "Construct a complete Student Management System application.",
       "initialCode": "# Write Python code\ndef main():\n    pass",
       "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
       "requirements": [

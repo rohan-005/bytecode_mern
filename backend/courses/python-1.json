@@ -427,13 +427,13 @@
     },
     {
       "id": "py1-ex20",
-      "title": "Capstone Project: Python I \u2014 Basics & Data Structures Industry Application",
-      "description": "Practice and master Capstone Project: Python I \u2014 Basics & Data Structures Industry Application with interactive coding.",
+      "title": "Capstone Project: CLI Expense Tracker",
+      "description": "Build a complete production-grade CLI Expense Tracker integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "python",
-      "theory": "This capstone integrates all core modules learned in Python I \u2014 Basics & Data Structures into a complete project.",
-      "objective": "Build a full production capstone project for Python I \u2014 Basics & Data Structures.",
+      "theory": "This capstone project combines all curriculum concepts into a production CLI Expense Tracker.",
+      "objective": "Construct a complete CLI Expense Tracker application.",
       "initialCode": "# Write Python code\ndef main():\n    pass",
       "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
       "requirements": [

@@ -427,13 +427,13 @@
     },
     {
       "id": "py3-ex20",
-      "title": "Capstone Project: Python III \u2014 Advanced Python, Files & Decorators Industry Application",
-      "description": "Practice and master Capstone Project: Python III \u2014 Advanced Python, Files & Decorators Industry Application with interactive coding.",
+      "title": "Capstone Project: Password Manager & File Organizer",
+      "description": "Build a complete production-grade Password Manager & File Organizer integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "python",
-      "theory": "This capstone integrates all core modules learned in Python III \u2014 Advanced Python, Files & Decorators into a complete project.",
-      "objective": "Build a full production capstone project for Python III \u2014 Advanced Python, Files & Decorators.",
+      "theory": "This capstone project combines all curriculum concepts into a production Password Manager & File Organizer.",
+      "objective": "Construct a complete Password Manager & File Organizer application.",
       "initialCode": "# Write Python code\ndef main():\n    pass",
       "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
       "requirements": [

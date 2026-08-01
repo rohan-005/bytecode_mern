@@ -427,13 +427,13 @@
     },
     {
       "id": "pydsa-ex20",
-      "title": "Capstone Project: Python DSA \u2014 Data Structures & Algorithms using Python Industry Application",
-      "description": "Practice and master Capstone Project: Python DSA \u2014 Data Structures & Algorithms using Python Industry Application with interactive coding.",
+      "title": "Capstone Project: Algorithm Visualizer Engine",
+      "description": "Build a complete production-grade Algorithm Visualizer Engine integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "python",
-      "theory": "This capstone integrates all core modules learned in Python DSA \u2014 Data Structures & Algorithms using Python into a complete project.",
-      "objective": "Build a full production capstone project for Python DSA \u2014 Data Structures & Algorithms using Python.",
+      "theory": "This capstone project combines all curriculum concepts into a production Algorithm Visualizer Engine.",
+      "objective": "Construct a complete Algorithm Visualizer Engine application.",
       "initialCode": "# Write Python code\ndef main():\n    pass",
       "solutionCode": "def main():\n    print(\"ByteCode Python Execution Output\")\n\nif __name__ == \"__main__\":\n    main()",
       "requirements": [
