@@ -754,13 +754,14 @@ const ExerciseDetail = () => {
                 </div>
 
                 {exercise.codeExample && (
-                  <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
-                    <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                      💻 Example Code
+                  <div className="bg-[#252422] border border-[#4A4A4A] p-6">
+                    <h3 className="text-lg font-bebas text-white tracking-wide mb-3 flex items-center gap-2">
+                      <IconCode size={18} className="text-[#FF6A2A]" />
+                      <span>Code Example</span>
                     </h3>
                     <div className="relative">
-                      <pre className="bg-black/50 rounded-lg p-4 overflow-x-auto text-sm border border-gray-700">
-                        <code className="text-gray-300">
+                      <pre className="bg-[#1B1B1B] p-4 text-xs font-mono border border-[#4A4A4A] overflow-x-auto text-[#CFCFCF]">
+                        <code>
                           {exercise.codeExample}
                         </code>
                       </pre>
@@ -768,14 +769,15 @@ const ExerciseDetail = () => {
                         onClick={() => {
                           navigator.clipboard.writeText(exercise.codeExample);
                           setCopied(true);
+                          toast.success("Code copied!");
                           setTimeout(() => setCopied(false), 2000);
                         }}
-                        className="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 p-2 rounded-lg transition-colors"
+                        className="absolute top-2 right-2 bg-[#252422] hover:bg-[#303030] p-1.5 border border-[#4A4A4A] text-white transition-colors"
                       >
                         {copied ? (
-                          <IconCheck size={16} />
+                          <IconCheck size={14} className="text-[#35C759]" />
                         ) : (
-                          <IconCopy size={16} />
+                          <IconCopy size={14} />
                         )}
                       </button>
                     </div>
@@ -786,8 +788,9 @@ const ExerciseDetail = () => {
 
             {activeTheoryTab === "hints" && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
-                  💡 Smart Hints & Tips
+                <h2 className="text-xl font-cinzel text-white tracking-wide mb-4 flex items-center gap-2.5">
+                  <IconSparkles size={20} className="text-[#FF8C42]" />
+                  <span>Hints & Recommendations</span>
                 </h2>
                 {exercise.hints && exercise.hints.length > 0 ? (
                   <div className="space-y-4">
@@ -797,32 +800,21 @@ const ExerciseDetail = () => {
                         onClick={() =>
                           setActiveHint(activeHint === index ? null : index)
                         }
-                        className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-2xl p-6 border border-yellow-500/20 cursor-pointer transition-all duration-300 hover:scale-105"
+                        className="bg-[#252422] border border-[#FF6A2A]/40 p-5 cursor-pointer hover:border-[#FF6A2A] transition-colors"
                       >
                         <div className="flex items-start gap-3">
-                          <span className="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm font-semibold flex-shrink-0">
+                          <span className="bg-[#FF6A2A]/20 text-[#FF6A2A] px-2.5 py-0.5 font-mono text-xs font-bold border border-[#FF6A2A]/30 flex-shrink-0">
                             Hint {index + 1}
                           </span>
-                          <p className="text-gray-300 flex-1">{hint}</p>
+                          <p className="text-[#CFCFCF] text-sm font-outfit flex-1">{hint}</p>
                         </div>
-                        {activeHint === index && (
-                          <div className="mt-3 p-3 bg-black/30 rounded-lg border border-yellow-500/30">
-                            <p className="text-yellow-200 text-sm">
-                              💡 This hint might help you think about the
-                              problem differently!
-                            </p>
-                          </div>
-                        )}
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700 text-center">
-                    <span className="text-4xl mb-3">💡</span>
-                    <p className="text-gray-400">
-                      No hints available for this exercise. Try to figure it out
-                      yourself! 🧠
-                    </p>
+                  <div className="bg-[#252422] border border-[#4A4A4A] p-6 text-center">
+                    <IconSparkles size={32} className="mx-auto mb-2 text-[#8E8E8E]" />
+                    <p className="text-sm font-mono text-[#8E8E8E]">No specific hints for this challenge.</p>
                   </div>
                 )}
               </div>
