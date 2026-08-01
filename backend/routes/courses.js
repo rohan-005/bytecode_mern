@@ -6,49 +6,7 @@ const { protect } = require('../middleware/auth');
 const User = require('../models/User');
 const router = express.Router();
 
-// Helper function to read course from JSON file
-const getCourseFromFile = async (courseId) => {
-  try {
-    const filePath = path.join(__dirname, '..', 'courses', `${courseId}.json`);
-    const content = await fs.readFile(filePath, 'utf8');
-    return JSON.parse(content);
-  } catch (error) {
-    console.error(`Error reading course file ${courseId}:`, error);
-    return null;
-  }
-};
-
-// Helper function to get all courses
-const getAllCourses = async () => {
-  try {
-    const coursesDir = path.join(__dirname, '..', 'courses');
-    
-    try {
-      await fs.access(coursesDir);
-    } catch (error) {
-      console.error('Courses directory does not exist:', coursesDir);
-      return [];
-    }
-    
-    const files = await fs.readdir(coursesDir);
-    
-    const courses = [];
-    for (const file of files) {
-      if (file.endsWith('.json')) {
-        const courseId = file.replace('.json', '');
-        const course = await getCourseFromFile(courseId);
-        if (course) {
-          courses.push(course);
-        }
-      }
-    }
-    
-    return courses;
-  } catch (error) {
-    console.error('Error reading courses directory:', error);
-    return [];
-  }
-};
+const { getCourseFromFile, getAllCourses, isValidCourseId } = require('../utils/courseRegistry');
 
 // @desc    Get all courses
 // @route   GET /api/courses
@@ -229,22 +187,23 @@ router.put('/:id/progress', protect, async (req, res) => {
 router.get('/user/stats', protect, async (req, res) => {
   try {
     const userCourses = await UserCourse.find({ user: req.user.id });
+    const validUserCourses = userCourses.filter(course => isValidCourseId(course.courseId));
     
-    const totalCourses = userCourses.length;
-    const completedCourses = userCourses.filter(course => course.completed).length;
-    const totalProgress = userCourses.reduce((sum, course) => sum + course.progress, 0);
+    const totalCourses = validUserCourses.length;
+    const completedCourses = validUserCourses.filter(course => course.completed).length;
+    const totalProgress = validUserCourses.reduce((sum, course) => sum + (course.progress || 0), 0);
     const averageProgress = totalCourses > 0 ? totalProgress / totalCourses : 0;
     
     // Calculate total hours (estimate based on progress and course duration)
     let totalHours = 0;
-    for (const enrollment of userCourses) {
+    for (const enrollment of validUserCourses) {
       const course = await getCourseFromFile(enrollment.courseId);
       if (course && course.duration) {
         const weeksMatch = course.duration.match(/(\d+)\s*weeks?/);
         if (weeksMatch) {
           const weeks = parseInt(weeksMatch[1]);
           // Estimate 5 hours per week
-          totalHours += weeks * 5 * (enrollment.progress / 100);
+          totalHours += weeks * 5 * ((enrollment.progress || 0) / 100);
         }
       }
     }

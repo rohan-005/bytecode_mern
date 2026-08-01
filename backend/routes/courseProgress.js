@@ -3,20 +3,7 @@ const router = express.Router();
 const User = require('../models/User');
 const UserCourse = require('../models/UserCourse');
 const { protect } = require('../middleware/auth');
-const fs = require('fs').promises;
-const path = require('path');
-
-// Helper function to read course from JSON file
-const getCourseFromFile = async (courseId) => {
-  try {
-    const filePath = path.join(__dirname, '..', 'courses', `${courseId}.json`);
-    const content = await fs.readFile(filePath, 'utf8');
-    return JSON.parse(content);
-  } catch (error) {
-    console.error(`Error reading course file ${courseId}:`, error);
-    return null;
-  }
-};
+const { getCourseFromFile, isValidCourseId } = require('../utils/courseRegistry');
 
 // Get user progress for a course
 router.get('/:courseId/progress', protect, async (req, res) => {

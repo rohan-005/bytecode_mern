@@ -4,19 +4,7 @@ const User = require('../models/User');
 const UserCourse = require('../models/UserCourse');
 const { protect } = require('../middleware/auth');
 const { updateDailyStreakAndXP } = require('../utils/streakHelper');
-const fs = require('fs').promises;
-const path = require('path');
-
-// Helper to read course JSON file
-const getCourseFromFile = async (courseId) => {
-  try {
-    const filePath = path.join(__dirname, '..', 'courses', `${courseId}.json`);
-    const content = await fs.readFile(filePath, 'utf8');
-    return JSON.parse(content);
-  } catch (error) {
-    return null;
-  }
-};
+const { getCourseFromFile, isValidCourseId } = require('../utils/courseRegistry');
 
 // @desc    Get dashboard aggregated statistics
 // @route   GET /api/dashboard/stats
@@ -31,12 +19,13 @@ router.get('/stats', protect, async (req, res) => {
     // Process daily streak and login XP update
     user = await updateDailyStreakAndXP(user);
 
-    // Fetch user enrolled courses
+    // Fetch user enrolled courses and filter out deleted/invalid course IDs
     const userCourses = await UserCourse.find({ user: req.user.id }).sort({ lastAccessed: -1 });
+    const validUserCourses = userCourses.filter(c => isValidCourseId(c.courseId));
 
-    const totalCourses = userCourses.length;
-    const completedCourses = userCourses.filter(c => c.completed).length;
-    const totalProgress = userCourses.reduce((sum, c) => sum + (c.progress || 0), 0);
+    const totalCourses = validUserCourses.length;
+    const completedCourses = validUserCourses.filter(c => c.completed).length;
+    const totalProgress = validUserCourses.reduce((sum, c) => sum + (c.progress || 0), 0);
     const averageProgress = totalCourses > 0 ? Math.round(totalProgress / totalCourses) : 0;
 
     const completedExercisesCount = user.completedExercises?.length || 0;
@@ -93,8 +82,8 @@ router.get('/stats', protect, async (req, res) => {
 
     // Determine Continue Learning course (most recently accessed)
     let continueLearning = null;
-    if (userCourses.length > 0) {
-      const recentEnrollment = userCourses[0];
+    if (validUserCourses.length > 0) {
+      const recentEnrollment = validUserCourses[0];
       const course = await getCourseFromFile(recentEnrollment.courseId);
       if (course) {
         continueLearning = {
