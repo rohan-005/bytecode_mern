@@ -24,7 +24,7 @@ export const FloatingNavbar = ({ items, className }) => {
   return (
     <div
       className={cn(
-        "fixed top-10 right-8 md:right-12 flex items-center justify-center z-50 font-jetbrains",
+        "fixed top-1 right-8 md:right-8 flex items-center justify-center z-50 font-jetbrains",
         className
       )}
     >
@@ -142,7 +142,7 @@ const IconButton = ({ icon, title, href, mouseX, isActive }) => {
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 6, x: "-50%" }}
               transition={{ duration: 0.1 }}
-              className="absolute -top-12 left-1/2 px-3 py-1 bg-[#303030] text-xs font-semibold text-[#FFFFFF] border border-[#FF6A2A] uppercase tracking-wider whitespace-nowrap shadow-xl z-50 pointer-events-none"
+              className="absolute top-12 left-1/2 px-3 py-1 bg-[#303030] text-xs font-semibold text-[#FFFFFF] border border-[#FF6A2A] uppercase tracking-wider whitespace-nowrap shadow-xl z-50 pointer-events-none"
             >
               {title}
             </motion.div>

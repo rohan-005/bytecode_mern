@@ -703,7 +703,7 @@ useEffect(() => {
           </div>
 
           {/* Centered Controls */}
-          <div className="flex items-center justify-center gap-2.5 flex-wrap">
+          <div className="flex items-center justify-center gap-2.5 h-15 ">
             <select
               value={getActiveTab()?.language || "javascript"}
               onChange={(e) => handleLanguageChange(e.target.value)}

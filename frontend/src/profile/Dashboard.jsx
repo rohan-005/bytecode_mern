@@ -5,19 +5,15 @@ import logo from "../assets/logo.png";
 import Footer from "../components/Footer";
 import { SkeletonCard } from "../components/SkeletonLoader";
 import {
-  IconTerminal,
   IconBook,
   IconTrendingUp,
   IconCheck,
   IconStar,
   IconArrowRight,
-  IconLogout,
   IconUser,
   IconCode,
   IconRobot,
   IconUsers,
-  IconSettings,
-  IconRefresh,
   IconTrophy,
   IconFlame,
   IconTarget,
@@ -29,15 +25,11 @@ import {
 } from "@tabler/icons-react";
 
 const Dashboard = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [enrolledCourses, setEnrolledCourses] = useState([]);
-  const [userStats, setUserStats] = useState({
-    totalCourses: 0,
-    completedCourses: 0,
-    averageProgress: 0,
-    totalHours: 0,
-  });
+  const [dashboardStats, setDashboardStats] = useState(null);
+  const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -67,12 +59,12 @@ const Dashboard = () => {
     }
   };
 
-  const fetchUserStats = async () => {
+  const fetchDashboardStats = async () => {
     try {
       const token = localStorage.getItem("token");
       if (!token) return;
 
-      const response = await fetch(`${API_BASE}/courses/user/stats`, {
+      const response = await fetch(`${API_BASE}/dashboard/stats`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -81,40 +73,69 @@ const Dashboard = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setUserStats(data);
+        setDashboardStats(data);
       }
     } catch (error) {
-      console.error("Error fetching user stats:", error);
+      console.error("Error fetching dashboard stats:", error);
+    }
+  };
+
+  const fetchActivityLogs = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const response = await fetch(`${API_BASE}/dashboard/activity`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setActivities(data);
+      }
+    } catch (error) {
+      console.error("Error fetching activity logs:", error);
     }
   };
 
   useEffect(() => {
     const loadDashboardData = async () => {
       setLoading(true);
-      await Promise.all([fetchEnrolledCourses(), fetchUserStats()]);
+      await Promise.all([
+        fetchEnrolledCourses(),
+        fetchDashboardStats(),
+        fetchActivityLogs()
+      ]);
       setLoading(false);
     };
 
     loadDashboardData();
   }, []);
 
-  // Compute calculated metrics
-  const activeCourse = enrolledCourses.length > 0 ? enrolledCourses[0] : null;
-  const currentXP = userStats.totalHours || (user?.xp || 450);
-  const currentLevel = Math.floor(currentXP / 250) + 1;
-  const levelXP = currentXP % 250;
-  const levelProgress = Math.round((levelXP / 250) * 100);
-  const dailyGoalXP = 750;
-  const todayXP = 520;
-  const dailyProgress = Math.round((todayXP / dailyGoalXP) * 100);
+  // Compute metrics from real backend database responses
+  const currentXP = dashboardStats?.totalXP ?? user?.xp ?? 0;
+  const currentLevel = dashboardStats?.level ?? Math.floor(currentXP / 100) + 1;
+  const streakDays = dashboardStats?.streak ?? 1;
+  const enrolledCount = dashboardStats?.totalCourses ?? enrolledCourses.length;
+  const completedCount = dashboardStats?.completedCourses ?? 0;
+  const solvedCount = dashboardStats?.completedExercisesCount ?? 0;
+  const todayXP = dashboardStats?.todayXP ?? 0;
+  const dailyGoalXP = dashboardStats?.dailyGoalXP ?? 500;
+  const dailyProgress = Math.min(Math.round((todayXP / dailyGoalXP) * 100), 100);
+
+  const activeCourse = dashboardStats?.continueLearning || 
+    (enrolledCourses.length > 0 ? enrolledCourses[0] : null);
 
   const STATS_BAR = [
     { label: "TOTAL XP", value: `${currentXP}`, icon: <IconStar size={20} className="text-[#FFC300]" />, accent: "border-[#FFC300]" },
     { label: "LEVEL", value: `0${currentLevel}`, icon: <IconTrophy size={20} className="text-[#FF6A2A]" />, accent: "border-[#FF6A2A]" },
-    { label: "ENROLLED", value: `${userStats.totalCourses}`, icon: <IconBook size={20} className="text-[#FF8C42]" />, accent: "border-[#FF8C42]" },
-    { label: "COMPLETED", value: `${userStats.completedCourses}`, icon: <IconCheck size={20} className="text-[#35C759]" />, accent: "border-[#35C759]" },
-    { label: "SOLVED", value: `${userStats.completedCourses * 4 + 7}`, icon: <IconCode size={20} className="text-[#FF6A2A]" />, accent: "border-[#FF6A2A]" },
-    { label: "STREAK", value: "5 DAYS", icon: <IconFlame size={20} className="text-[#FFC300]" />, accent: "border-[#FFC300]" },
+    { label: "ENROLLED", value: `${enrolledCount}`, icon: <IconBook size={20} className="text-[#FF8C42]" />, accent: "border-[#FF8C42]" },
+    { label: "COMPLETED", value: `${completedCount}`, icon: <IconCheck size={20} className="text-[#35C759]" />, accent: "border-[#35C759]" },
+    { label: "EXERCISES", value: `${solvedCount}`, icon: <IconCode size={20} className="text-[#FF6A2A]" />, accent: "border-[#FF6A2A]" },
+    { label: "STREAK", value: `${streakDays} DAYS`, icon: <IconFlame size={20} className="text-[#FFC300]" />, accent: "border-[#FFC300]" },
   ];
 
   const QUICK_ACTIONS = [
@@ -126,27 +147,31 @@ const Dashboard = () => {
     { label: "Certificates", icon: <IconAward size={22} />, path: "/profile", desc: "Verifications" },
   ];
 
-  const WEEKLY_XP = [
-    { day: "MON", xp: 120, height: "60%" },
-    { day: "TUE", xp: 200, height: "100%" },
-    { day: "WED", xp: 90, height: "45%" },
-    { day: "THU", xp: 150, height: "75%" },
-    { day: "FRI", xp: 180, height: "90%" },
-    { day: "SAT", xp: 60, height: "30%" },
-    { day: "SUN", xp: 110, height: "55%" },
-  ];
-
-  const ACHIEVEMENTS = [
-    { title: "FIRST_CODE", desc: "Completed initial exercise", unlocked: true, icon: "⚡" },
-    { title: "STREAK_BUILDER", desc: "5-day coding streak active", unlocked: true, icon: "🔥" },
-    { title: "SYNTAX_MASTER", desc: "Completed 10 algorithm problems", unlocked: true, icon: "🎯" },
-    { title: "ALGO_EXPERT", desc: "Solve 50 hard exercises", unlocked: false, icon: "🔒" },
+  const WEEKLY_XP = dashboardStats?.weeklyXP || [
+    { day: "MON", xp: 0, height: "10%" },
+    { day: "TUE", xp: 0, height: "10%" },
+    { day: "WED", xp: 0, height: "10%" },
+    { day: "THU", xp: 0, height: "10%" },
+    { day: "FRI", xp: 0, height: "10%" },
+    { day: "SAT", xp: 0, height: "10%" },
+    { day: "SUN", xp: 0, height: "10%" },
   ];
 
   const filteredCourses = enrolledCourses.filter(item => 
     item.course?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
     item.course?.category?.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const formatActivityTime = (dateStr) => {
+    if (!dateStr) return "recent";
+    const d = new Date(dateStr);
+    const now = new Date();
+    const diffHours = Math.floor((now - d) / (1000 * 60 * 60));
+    if (diffHours < 1) return "just now";
+    if (diffHours < 24) return `${diffHours}h ago`;
+    const diffDays = Math.floor(diffHours / 24);
+    return `${diffDays}d ago`;
+  };
 
   if (loading) {
     return (
@@ -181,7 +206,7 @@ const Dashboard = () => {
                 <span className="font-geist-pixel text-xl sm:text-2xl text-[#FF6A2A]">
                   BYTECODE // DEV_ENVIRONMENT
                 </span>
-                <span className="px-2.5 py-0.5 bg-[#252422] border border-[#FF35C759] text-[#35C759] text-xs font-mono font-bold">
+                <span className="px-2.5 py-0.5 bg-[#252422] border border-[#35C759] text-[#35C759] text-xs font-mono font-bold">
                   ● ACTIVE_SESSION
                 </span>
               </div>
@@ -224,7 +249,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* 6-Column Stats Row */}
+        {/* 6-Column Stats Row (Powered by MongoDB) */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
           {STATS_BAR.map((stat, idx) => (
             <div
@@ -374,50 +399,52 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Recent Activity Timeline */}
+            {/* Recent Activity Timeline (Live MongoDB Data) */}
             <div className="bytecode-card p-8">
               <div className="flex justify-between items-center mb-6 pb-3 border-b border-[#4A4A4A]">
                 <h3 className="font-geist-pixel text-xl sm:text-2xl text-white flex items-center gap-3">
                   <span className="text-[#FF6A2A] font-mono">//</span> RECENT_ACTIVITY_LOGS
                 </h3>
-                <span className="text-xs font-mono text-[#8E8E8E]">[REALTIME_AUDIT]</span>
+                <span className="text-xs font-mono text-[#35C759] font-bold">[LIVE_DB_LOGS]</span>
               </div>
 
               <div className="space-y-4 font-mono text-xs">
-                <div className="flex items-center gap-4 p-4 bg-[#252422] border border-[#4A4A4A]">
-                  <IconActivity size={18} className="text-[#FF6A2A] flex-shrink-0" />
-                  <div className="flex-1">
-                    <span className="text-white font-bold">Exercise Completed: </span>
-                    <span className="text-[#CFCFCF]">"Array Manipulation & Algorithms"</span>
+                {activities.length === 0 ? (
+                  <div className="flex items-center gap-4 p-4 bg-[#252422] border border-[#4A4A4A]">
+                    <IconActivity size={18} className="text-[#FF6A2A] flex-shrink-0" />
+                    <div className="flex-1">
+                      <span className="text-white font-bold">Platform Session Active: </span>
+                      <span className="text-[#CFCFCF]">Start exercises or lessons to build your timeline</span>
+                    </div>
+                    <span className="text-[#35C759] font-bold">+5 XP</span>
+                    <span className="text-[#8E8E8E]">today</span>
                   </div>
-                  <span className="text-[#35C759] font-bold">+25 XP</span>
-                  <span className="text-[#8E8E8E]">2h ago</span>
-                </div>
-
-                <div className="flex items-center gap-4 p-4 bg-[#252422] border border-[#4A4A4A]">
-                  <IconCalendarCheck size={18} className="text-[#35C759] flex-shrink-0" />
-                  <div className="flex-1">
-                    <span className="text-white font-bold">Daily Streak Extended: </span>
-                    <span className="text-[#CFCFCF]">5 consecutive days logged</span>
-                  </div>
-                  <span className="text-[#FFC300] font-bold">🔥 STREAK</span>
-                  <span className="text-[#8E8E8E]">1d ago</span>
-                </div>
-
-                <div className="flex items-center gap-4 p-4 bg-[#252422] border border-[#4A4A4A]">
-                  <IconBook size={18} className="text-[#FF8C42] flex-shrink-0" />
-                  <div className="flex-1">
-                    <span className="text-white font-bold">Enrolled Track: </span>
-                    <span className="text-[#CFCFCF]">"Full-Stack Web Engineering"</span>
-                  </div>
-                  <span className="text-[#FF8C42] font-bold">ENROLLED</span>
-                  <span className="text-[#8E8E8E]">3d ago</span>
-                </div>
+                ) : (
+                  activities.map((act, index) => (
+                    <div key={index} className="flex items-center gap-4 p-4 bg-[#252422] border border-[#4A4A4A]">
+                      {act.type === 'streak' ? (
+                        <IconCalendarCheck size={18} className="text-[#FFC300] flex-shrink-0" />
+                      ) : act.type === 'course' ? (
+                        <IconBook size={18} className="text-[#FF8C42] flex-shrink-0" />
+                      ) : (
+                        <IconActivity size={18} className="text-[#FF6A2A] flex-shrink-0" />
+                      )}
+                      <div className="flex-1">
+                        <span className="text-white font-bold">{act.title}: </span>
+                        <span className="text-[#CFCFCF]">{act.description}</span>
+                      </div>
+                      {act.xpEarned > 0 && (
+                        <span className="text-[#35C759] font-bold">+{act.xpEarned} XP</span>
+                      )}
+                      <span className="text-[#8E8E8E]">{formatActivityTime(act.createdAt)}</span>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           </div>
 
-          {/* Right Side Panel (35% Width) */}
+          {/* Right Side Panel (35% Width - No Achievements) */}
           <div className="space-y-8">
             
             {/* Daily Goal & Progress Widget */}
@@ -433,18 +460,22 @@ const Dashboard = () => {
               <div className="space-y-4">
                 <div className="flex justify-between items-baseline font-mono">
                   <span className="text-2xl font-geist-pixel text-white">{todayXP} <span className="text-xs text-[#8E8E8E]">/ {dailyGoalXP} XP</span></span>
-                  <span className="text-xs text-[#FFC300] font-bold">Target: 750 XP</span>
+                  <span className="text-xs text-[#FFC300] font-bold">Target: {dailyGoalXP} XP</span>
                 </div>
 
                 <div className="w-full bg-[#252422] h-3 border border-[#4A4A4A]">
                   <div
-                    className="h-full bg-[#FF6A2A]"
+                    className="h-full bg-[#FF6A2A] transition-all duration-500"
                     style={{ width: `${dailyProgress}%` }}
                   />
                 </div>
 
                 <p className="text-xs text-[#CFCFCF] font-inter">
-                  Earn <span className="text-[#FF6A2A] font-bold">230 more XP</span> today to complete your daily activity target!
+                  {dailyProgress >= 100 ? (
+                    <span className="text-[#35C759] font-bold">🎉 Daily XP Goal achieved! Keep building tracks.</span>
+                  ) : (
+                    <>Earn <span className="text-[#FF6A2A] font-bold">{Math.max(0, dailyGoalXP - todayXP)} more XP</span> today to reach your goal!</>
+                  )}
                 </p>
               </div>
             </div>
@@ -456,10 +487,10 @@ const Dashboard = () => {
                   <IconTrendingUp size={18} className="text-[#35C759]" />
                   WEEKLY_XP_MATRIX
                 </h3>
-                <span className="text-xs font-mono text-[#8E8E8E]">THIS WEEK</span>
+                <span className="text-xs font-mono text-[#8E8E8E]">LIVE_DATA</span>
               </div>
 
-              <div className="flex items-end justify-between h-36 pt-4 gap-2">
+              <div className="flex items-end justify-between h-40 pt-4 gap-2">
                 {WEEKLY_XP.map((bar, idx) => (
                   <div key={idx} className="flex flex-col items-center gap-2 flex-1 h-full justify-end">
                     <div
@@ -499,33 +530,6 @@ const Dashboard = () => {
                       {act.desc}
                     </span>
                   </Link>
-                ))}
-              </div>
-            </div>
-
-            {/* Achievement Showcase */}
-            <div className="bytecode-card p-6 border border-[#4A4A4A]">
-              <h3 className="font-geist-pixel text-lg text-white mb-4 pb-3 border-b border-[#4A4A4A] flex items-center justify-between">
-                <span>ACHIEVEMENTS</span>
-                <span className="text-xs font-mono text-[#35C759]">3/4 UNLOCKED</span>
-              </h3>
-
-              <div className="space-y-3">
-                {ACHIEVEMENTS.map((ach, i) => (
-                  <div
-                    key={i}
-                    className={`p-3 border flex items-center gap-3 ${
-                      ach.unlocked 
-                        ? "bg-[#252422] border-[#35C759]/40 text-white" 
-                        : "bg-[#1B1B1B] border-[#4A4A4A] text-[#8E8E8E] opacity-60"
-                    }`}
-                  >
-                    <span className="text-2xl">{ach.icon}</span>
-                    <div>
-                      <div className="font-geist-pixel text-xs text-white">{ach.title}</div>
-                      <div className="text-[11px] font-inter text-[#CFCFCF]">{ach.desc}</div>
-                    </div>
-                  </div>
                 ))}
               </div>
             </div>
