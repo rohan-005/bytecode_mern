@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { FloatingNavbar } from "./FloatingNavbar";
 import toast from "react-hot-toast";
 import {
   IconHome,
@@ -30,8 +31,8 @@ const navItems = [
   { title: "Dashboard", href: "/dashboard", icon: <IconHome size={20} /> },
   { title: "Courses", href: "/courses", icon: <IconBook size={20} /> },
   { title: "Byte-Compiler", href: "/editor", icon: <IconEdit size={20} /> },
-  { title: "Dev Den", href: "/code", icon: <IconCode size={20} /> },
-  { title: "AI", href: "/ai", icon: <IconCpu size={20} /> },
+  { title: "Dev Den", href: "/devden", icon: <IconCode size={20} /> },
+  { title: "AI", href: "/byteai", icon: <IconCpu size={20} /> },
 ];
 
 const ExerciseDetail = () => {
