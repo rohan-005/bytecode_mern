@@ -146,7 +146,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0F1110] text-[#FFFFFF] font-outfit flex flex-col justify-between">
+    <div className="min-h-screen bg-[#2F3437] text-[#F5F7F5] font-outfit flex flex-col justify-between">
       {/* Widescreen Container */}
       <div className="w-full max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-16 py-12">
         {/* Navigation Link */}
@@ -163,19 +163,19 @@ const Profile = () => {
         {/* Header */}
         <div className="bytecode-card p-8 mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
-            <div className="w-20 h-20 bg-[#0F1110] border border-[#66BB6A] flex items-center justify-center font-bebas text-3xl text-[#66BB6A]">
+            <div className="w-20 h-20 bg-[#2F3437] border border-[#66BB6A] flex items-center justify-center font-bebas text-3xl text-[#66BB6A]">
               {user?.name ? user.name.substring(0, 2).toUpperCase() : "BC"}
             </div>
             <div>
-              <h1 className="text-4xl font-bebas tracking-wide text-[#FFFFFF]">
+              <h1 className="text-4xl font-bebas tracking-wide text-[#F5F7F5]">
                 ACCOUNT SETTINGS
               </h1>
-              <p className="text-sm text-[#9CA3AF] font-mono">
+              <p className="text-sm text-[#AAB2AD] font-mono">
                 Developer Profile & Security Preferences
               </p>
             </div>
           </div>
-          <div className="px-4 py-2 bg-[#0F1110] border border-[#2E3A33] text-sm font-mono text-[#D7D7D7] self-start md:self-auto">
+          <div className="px-4 py-2 bg-[#2F3437] border border-[#626A6E] text-sm font-mono text-[#D5DBD6] self-start md:self-auto">
             UID: <span className="text-[#66BB6A] font-bold">{user?._id || "BYTECODE_USER"}</span>
           </div>
         </div>
@@ -200,8 +200,8 @@ const Profile = () => {
                 onClick={() => setActiveTab("profile")}
                 className={`w-full text-left px-5 py-4 font-semibold text-sm uppercase tracking-wider flex items-center gap-3 transition-colors ${
                   activeTab === "profile"
-                    ? "bg-[#66BB6A] text-[#FFFFFF]"
-                    : "bg-[#0F1110] text-[#D7D7D7] hover:text-[#FFFFFF] border border-[#2E3A33]"
+                    ? "bg-[#66BB6A] text-[#F5F7F5]"
+                    : "bg-[#2F3437] text-[#D5DBD6] hover:text-[#F5F7F5] border border-[#626A6E]"
                 }`}
               >
                 <IconUser size={18} />
@@ -212,8 +212,8 @@ const Profile = () => {
                 onClick={() => setActiveTab("password")}
                 className={`w-full text-left px-5 py-4 font-semibold text-sm uppercase tracking-wider flex items-center gap-3 transition-colors ${
                   activeTab === "password"
-                    ? "bg-[#66BB6A] text-[#FFFFFF]"
-                    : "bg-[#0F1110] text-[#D7D7D7] hover:text-[#FFFFFF] border border-[#2E3A33]"
+                    ? "bg-[#66BB6A] text-[#F5F7F5]"
+                    : "bg-[#2F3437] text-[#D5DBD6] hover:text-[#F5F7F5] border border-[#626A6E]"
                 }`}
               >
                 <IconLock size={18} />
@@ -226,14 +226,14 @@ const Profile = () => {
           <div className="lg:col-span-3">
             {activeTab === "profile" && (
               <div className="bytecode-card p-10">
-                <h2 className="text-3xl font-cinzel tracking-wide text-[#FFFFFF] mb-8 pb-3 border-b border-[#2E3A33]">
+                <h2 className="text-3xl font-cinzel tracking-wide text-[#F5F7F5] mb-8 pb-3 border-b border-[#626A6E]">
                   PERSONAL INFORMATION
                 </h2>
                 
                 <form onSubmit={updateProfile} className="space-y-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <label className="block text-xs font-semibold text-[#D7D7D7] uppercase tracking-wider mb-3 font-mono">
+                      <label className="block text-xs font-semibold text-[#D5DBD6] uppercase tracking-wider mb-3 font-mono">
                         Full Name
                       </label>
                       <input
@@ -248,19 +248,19 @@ const Profile = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-[#9CA3AF] uppercase tracking-wider mb-3 font-mono">
+                      <label className="block text-xs font-semibold text-[#AAB2AD] uppercase tracking-wider mb-3 font-mono">
                         Email Address (Read-only)
                       </label>
                       <input
                         type="email"
                         value={profileForm.email}
-                        className="bytecode-input w-full opacity-60 cursor-not-allowed bg-[#0F1110]"
+                        className="bytecode-input w-full opacity-60 cursor-not-allowed bg-[#2F3437]"
                         disabled
                       />
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-5 pt-6 border-t border-[#2E3A33]">
+                  <div className="flex items-center gap-5 pt-6 border-t border-[#626A6E]">
                     <button
                       type="submit"
                       disabled={loading}
@@ -289,13 +289,13 @@ const Profile = () => {
 
             {activeTab === "password" && (
               <div className="bytecode-card p-10">
-                <h2 className="text-3xl font-cinzel tracking-wide text-[#FFFFFF] mb-8 pb-3 border-b border-[#2E3A33]">
+                <h2 className="text-3xl font-cinzel tracking-wide text-[#F5F7F5] mb-8 pb-3 border-b border-[#626A6E]">
                   CHANGE SECURITY PASSWORD
                 </h2>
                 
                 <form onSubmit={changePassword} className="space-y-6">
                   <div>
-                    <label className="block text-xs font-semibold text-[#D7D7D7] uppercase tracking-wider mb-3 font-mono">
+                    <label className="block text-xs font-semibold text-[#D5DBD6] uppercase tracking-wider mb-3 font-mono">
                       Current Password
                     </label>
                     <input
@@ -311,7 +311,7 @@ const Profile = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-xs font-semibold text-[#D7D7D7] uppercase tracking-wider mb-3 font-mono">
+                      <label className="block text-xs font-semibold text-[#D5DBD6] uppercase tracking-wider mb-3 font-mono">
                         New Password
                       </label>
                       <input
@@ -327,7 +327,7 @@ const Profile = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-[#D7D7D7] uppercase tracking-wider mb-3 font-mono">
+                      <label className="block text-xs font-semibold text-[#D5DBD6] uppercase tracking-wider mb-3 font-mono">
                         Confirm New Password
                       </label>
                       <input
@@ -343,7 +343,7 @@ const Profile = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-5 pt-6 border-t border-[#2E3A33]">
+                  <div className="flex items-center gap-5 pt-6 border-t border-[#626A6E]">
                     <button
                       type="submit"
                       disabled={loading}

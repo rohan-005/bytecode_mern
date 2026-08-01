@@ -19,9 +19,9 @@ const CodeSidebar = () => {
 </html>`;
 
   return (
-    <div className="bg-[#1e1e1e] text-[#f8f8f2] rounded-lg p-4 shadow-lg font-mono text-xs leading-relaxed w-[320px] h-[90vh] overflow-hidden border border-[#2e2e2e]">
-      <div className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-[#333]">
-        <pre className="whitespace-pre-wrap text-[#f8f8f2]">
+    <div className="bg-[#2F3437] text-[#F5F7F5] rounded-lg p-4 shadow-lg font-mono text-xs leading-relaxed w-[320px] h-[90vh] overflow-hidden border border-[#454C50]">
+      <div className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-[#3A4044]">
+        <pre className="whitespace-pre-wrap text-[#F5F7F5]">
           <Typewriter
             words={[code]}
             cursor

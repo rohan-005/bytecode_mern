@@ -99,9 +99,9 @@ function App() {
         toastOptions={{
           duration: 4000,
           style: {
-            background: "#161A17",
-            color: "#FFFFFF",
-            border: "1px solid #2E3A33",
+            background: "#3A4044",
+            color: "#F5F7F5",
+            border: "1px solid #626A6E",
             borderRadius: "0px",
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "13px",
@@ -109,41 +109,41 @@ function App() {
           },
           success: {
             style: {
-              background: "#161A17",
-              color: "#FFFFFF",
+              background: "#3A4044",
+              color: "#F5F7F5",
               border: "1px solid #66BB6A",
               borderLeft: "4px solid #66BB6A",
               borderRadius: "0px",
             },
             iconTheme: {
               primary: "#66BB6A",
-              secondary: "#161A17",
+              secondary: "#3A4044",
             },
           },
           error: {
             style: {
-              background: "#161A17",
-              color: "#FFFFFF",
+              background: "#3A4044",
+              color: "#F5F7F5",
               border: "1px solid #E53935",
               borderLeft: "4px solid #E53935",
               borderRadius: "0px",
             },
             iconTheme: {
               primary: "#E53935",
-              secondary: "#161A17",
+              secondary: "#3A4044",
             },
           },
           loading: {
             style: {
-              background: "#161A17",
-              color: "#FFFFFF",
+              background: "#3A4044",
+              color: "#F5F7F5",
               border: "1px solid #66BB6A",
               borderLeft: "4px solid #66BB6A",
               borderRadius: "0px",
             },
             iconTheme: {
               primary: "#66BB6A",
-              secondary: "#161A17",
+              secondary: "#3A4044",
             },
           },
         }}

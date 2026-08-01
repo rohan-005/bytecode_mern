@@ -32,7 +32,7 @@ export const FloatingNavbar = ({ items, className }) => {
       <motion.div
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}
-        className="hidden md:flex gap-4 px-4 py-3 bg-[#0F1110]/95 backdrop-blur-md border border-[#2E3A33] shadow-2xl shadow-black/90"
+        className="hidden md:flex gap-4 px-4 py-3 bg-[#2F3437]/92 backdrop-blur-xl border border-[#626A6E]/70 shadow-xl shadow-black/40"
       >
         {items.map((item) => (
           <IconButton 
@@ -53,7 +53,7 @@ export const FloatingNavbar = ({ items, className }) => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="absolute top-16 right-0 flex flex-col gap-2 p-3 bg-[#0F1110] border border-[#2E3A33] shadow-2xl min-w-[180px]"
+              className="absolute top-16 right-0 flex flex-col gap-2 p-3 bg-[#2F3437] border border-[#626A6E] shadow-2xl min-w-[180px]"
             >
               {items.map((item) => {
                 const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
@@ -61,11 +61,11 @@ export const FloatingNavbar = ({ items, className }) => {
                   <a
                     key={item.title}
                     href={item.href}
-                    className={`flex items-center gap-3 px-4 py-2.5 bg-[#161A17] hover:bg-[#1D2420] border transition-colors relative ${
-                      isActive ? "border-[#66BB6A] text-white" : "border-[#2E3A33] text-[#D7D7D7]"
+                    className={`flex items-center gap-3 px-4 py-2.5 bg-[#3A4044] hover:bg-[#454C50] border transition-colors relative ${
+                      isActive ? "border-[#66BB6A] text-white" : "border-[#626A6E] text-[#D5DBD6]"
                     }`}
                   >
-                    <span className={isActive ? "text-[#66BB6A]" : "text-[#9CA3AF]"}>{item.icon}</span>
+                    <span className={isActive ? "text-[#66BB6A]" : "text-[#AAB2AD]"}>{item.icon}</span>
                     <span className="text-sm font-semibold uppercase tracking-wider font-jetbrains">
                       {item.title}
                     </span>
@@ -81,7 +81,7 @@ export const FloatingNavbar = ({ items, className }) => {
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="flex h-12 w-12 items-center justify-center bg-[#0F1110] border border-[#2E3A33] text-white hover:border-[#66BB6A] hover:text-[#66BB6A] transition-all shadow-lg active:scale-95"
+          className="flex h-12 w-12 items-center justify-center bg-[#2F3437] border border-[#626A6E] text-white hover:border-[#66BB6A] hover:text-[#66BB6A] transition-all shadow-lg active:scale-95"
           aria-label="Toggle menu"
         >
           <IconLayoutNavbarCollapse size={22} />
@@ -112,10 +112,10 @@ const IconButton = ({ icon, title, href, mouseX, isActive }) => {
         style={{ width: springSize, height: springSize }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className={`flex items-center justify-center bg-[#161A17] border transition-all relative ${
+        className={`flex items-center justify-center bg-[#3A4044] border transition-all relative ${
           isActive 
-            ? "border-[#66BB6A] text-[#FFFFFF] bg-[#1D2420]" 
-            : "border-[#2E3A33] text-[#D7D7D7] group-hover:border-[#66BB6A] group-hover:text-[#66BB6A] group-hover:bg-[#1D2420]"
+            ? "border-[#66BB6A] text-[#F5F7F5] bg-[#454C50]" 
+            : "border-[#626A6E] text-[#D5DBD6] group-hover:border-[#66BB6A] group-hover:text-[#66BB6A] group-hover:bg-[#454C50]"
         }`}
       >
         <motion.div
@@ -142,7 +142,7 @@ const IconButton = ({ icon, title, href, mouseX, isActive }) => {
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 6, x: "-50%" }}
               transition={{ duration: 0.1 }}
-              className="absolute top-12 left-1/2 px-3 py-1 bg-[#1D2420] text-xs font-semibold text-[#FFFFFF] border border-[#66BB6A] uppercase tracking-wider whitespace-nowrap shadow-xl z-50 pointer-events-none"
+              className="absolute top-12 left-1/2 px-3 py-1 bg-[#454C50] text-xs font-semibold text-[#F5F7F5] border border-[#66BB6A] uppercase tracking-wider whitespace-nowrap shadow-xl z-50 pointer-events-none"
             >
               {title}
             </motion.div>

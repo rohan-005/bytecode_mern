@@ -3,20 +3,20 @@ import { IconTerminal2, IconBrandGithub, IconBrandInstagram, IconBrandX } from '
 
 const Footer = () => {
   return (
-    <footer className="w-full py-6 px-6 bg-[#0F1110] border-t border-[#2E3A33] text-white font-jetbrains">
+    <footer className="w-full py-6 px-6 bg-[#2F3437] border-t border-[#626A6E] text-white font-jetbrains">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="p-1.5 bg-[#1D2420] border border-[#66BB6A]">
+          <div className="p-1.5 bg-[#454C50] border border-[#66BB6A]">
             <IconTerminal2 size={18} className="text-[#66BB6A]" />
           </div>
           <span className="text-[#66BB6A] font-bebas text-2xl tracking-wide">ByteCode</span>
-          <span className="text-[#9CA3AF] text-xs font-mono">v2.0.0</span>
-          <span className="text-[#2E3A33]">|</span>
-          <span className="text-[#D7D7D7] text-xs">© {new Date().getFullYear()} All rights reserved.</span>
+          <span className="text-[#AAB2AD] text-xs font-mono">v2.0.0</span>
+          <span className="text-[#626A6E]">|</span>
+          <span className="text-[#D5DBD6] text-xs">© {new Date().getFullYear()} All rights reserved.</span>
         </div>
 
-        <div className="flex items-center gap-6 text-xs uppercase tracking-wider text-[#D7D7D7]">
-          <div className="flex items-center gap-2 px-2.5 py-1 bg-[#0F1110] border border-[#2E3A33] text-[10px]">
+        <div className="flex items-center gap-6 text-xs uppercase tracking-wider text-[#D5DBD6]">
+          <div className="flex items-center gap-2 px-2.5 py-1 bg-[#2F3437] border border-[#626A6E] text-[10px]">
             <span className="w-2 h-2 bg-[#66BB6A] animate-pulse"></span>
             <span className="text-[#66BB6A] font-bold">SYSTEM ONLINE</span>
           </div>

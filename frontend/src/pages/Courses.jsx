@@ -150,12 +150,12 @@ const Courses = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0F1110] text-white font-outfit">
+      <div className="min-h-screen bg-[#2F3437] text-white font-outfit">
         <FloatingNavbar items={navItems} />
         <div className="max-w-[1800px] mx-auto px-8 py-20">
           <div className="text-center py-12">
             <h2 className="text-4xl font-bebas text-white tracking-wide mb-3">LOADING CURRICULUM</h2>
-            <p className="text-sm text-[#9CA3AF] font-mono">Fetching course tracks...</p>
+            <p className="text-sm text-[#AAB2AD] font-mono">Fetching course tracks...</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <SkeletonCard />
@@ -168,7 +168,7 @@ const Courses = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0F1110] text-white font-outfit flex flex-col justify-between">
+    <div className="min-h-screen bg-[#2F3437] text-white font-outfit flex flex-col justify-between">
       <FloatingNavbar items={navItems} />
 
       {/* Widescreen Main Container */}
@@ -178,7 +178,7 @@ const Courses = () => {
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bebas text-white tracking-wider mb-3">
             LEARNING PATHWAYS
           </h1>
-          <p className="text-lg text-[#D7D7D7] font-outfit max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-[#D5DBD6] font-outfit max-w-2xl mx-auto leading-relaxed">
             Curated developer curriculum designed to transform beginners into senior engineers.
           </p>
 
@@ -191,14 +191,14 @@ const Courses = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="bytecode-input w-full pl-12 pr-6 text-base py-4"
             />
-            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#9CA3AF]">
+            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#AAB2AD]">
               <IconSearch size={20} />
             </div>
           </div>
         </div>
 
         {/* Filters */}
-        <div className="flex flex-col md:flex-row gap-6 justify-between items-center mb-8 pb-6 border-b border-[#2E3A33]">
+        <div className="flex flex-col md:flex-row gap-6 justify-between items-center mb-8 pb-6 border-b border-[#626A6E]">
           <div className="flex flex-wrap gap-3 w-full md:w-auto">
             {categories.map((category) => (
               <button
@@ -207,7 +207,7 @@ const Courses = () => {
                 className={`px-4 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors font-mono ${
                   activeCategory === category
                     ? "bg-[#66BB6A] text-white border border-[#66BB6A]"
-                    : "bg-[#0F1110] text-[#D7D7D7] border border-[#2E3A33] hover:border-[#66BB6A]"
+                    : "bg-[#2F3437] text-[#D5DBD6] border border-[#626A6E] hover:border-[#66BB6A]"
                 }`}
               >
                 {category}
@@ -241,7 +241,7 @@ const Courses = () => {
         </div>
 
         {/* Results Counter */}
-        <div className="flex justify-between items-center mb-8 text-sm text-[#9CA3AF] font-mono">
+        <div className="flex justify-between items-center mb-8 text-sm text-[#AAB2AD] font-mono">
           <span>SHOWING {filteredCourses.length} PATHWAY TRACKS</span>
           <span className="text-[#66BB6A] font-bold">{enrolledCourses.length} ENROLLED</span>
         </div>
@@ -262,12 +262,12 @@ const Courses = () => {
                     <h3 className="text-2xl font-bebas text-white tracking-wide leading-snug">
                       {course.name}
                     </h3>
-                    <span className="text-xs font-mono uppercase px-2.5 py-1 bg-[#0F1110] border border-[#2E3A33] text-[#66BB6A] whitespace-nowrap">
+                    <span className="text-xs font-mono uppercase px-2.5 py-1 bg-[#2F3437] border border-[#626A6E] text-[#66BB6A] whitespace-nowrap">
                       {course.level}
                     </span>
                   </div>
 
-                  <p className="text-sm text-[#D7D7D7] mb-8 line-clamp-3 leading-relaxed font-outfit">
+                  <p className="text-sm text-[#D5DBD6] mb-8 line-clamp-3 leading-relaxed font-outfit">
                     {course.description}
                   </p>
                 </div>
@@ -275,11 +275,11 @@ const Courses = () => {
                 <div>
                   {enrolled && (
                     <div className="mb-6">
-                      <div className="flex justify-between text-xs font-mono text-[#D7D7D7] mb-1.5">
+                      <div className="flex justify-between text-xs font-mono text-[#D5DBD6] mb-1.5">
                         <span>Track Progress</span>
                         <span className="text-[#66BB6A] font-bold">{Math.round(progress)}%</span>
                       </div>
-                      <div className="w-full bg-[#0F1110] h-2 border border-[#2E3A33]">
+                      <div className="w-full bg-[#2F3437] h-2 border border-[#626A6E]">
                         <div
                           className="h-full bg-[#66BB6A]"
                           style={{ width: `${progress}%` }}
@@ -315,7 +315,7 @@ const Courses = () => {
         {filteredCourses.length === 0 && !loading && (
           <div className="bytecode-card p-16 text-center my-12">
             <h3 className="text-3xl font-bebas text-white tracking-wide mb-3">NO PATHWAYS MATCHED</h3>
-            <p className="text-sm text-[#9CA3AF] font-mono mb-6">Try clearing filters or search queries.</p>
+            <p className="text-sm text-[#AAB2AD] font-mono mb-6">Try clearing filters or search queries.</p>
             <button
               onClick={() => {
                 setSearchQuery("");

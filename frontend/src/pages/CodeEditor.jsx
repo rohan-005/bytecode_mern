@@ -52,7 +52,7 @@ console.log("Squares:", squares);`,
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #66BB6A 0%, #1B5E20 100%);
             margin: 0;
             padding: 40px;
             color: white;
@@ -107,7 +107,7 @@ console.log("Squares:", squares);`,
 
 body {
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  background: linear-gradient(45deg, #E53935, #A5D6A7, #A5D6A7, #A5D6A7);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
   min-height: 100vh;
@@ -134,7 +134,7 @@ body {
 
 .title {
   font-size: 3em;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background: linear-gradient(45deg, #E53935, #A5D6A7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -142,7 +142,7 @@ body {
 }
 
 .subtitle {
-  color: #666;
+  color: #737B7F;
   font-size: 1.2em;
   margin-bottom: 30px;
 }
@@ -290,18 +290,29 @@ useEffect(() => {
       base: 'vs-dark',
       inherit: true,
       rules: [
-        { token: 'comment', foreground: '9CA3AF', fontStyle: 'italic' },
-        { token: 'keyword', foreground: '66BB6A' },
-        { token: 'string', foreground: 'A5D6A7' },
-        { token: 'number', foreground: 'FBC02D' },
-        { token: 'function', foreground: 'E8F5E9' },
+        { token: 'comment',      foreground: 'AAB2AD', fontStyle: 'italic' },
+        { token: 'keyword',      foreground: '66BB6A', fontStyle: 'bold' },
+        { token: 'string',       foreground: 'A5D6A7' },
+        { token: 'number',       foreground: 'FBC02D' },
+        { token: 'function',     foreground: 'F5F7F5' },
+        { token: 'type',         foreground: 'A5D6A7' },
+        { token: 'delimiter',    foreground: 'D5DBD6' },
+        { token: 'operator',     foreground: '66BB6A' },
       ],
       colors: {
-        'editor.background': '#0F1110',
-        'editor.foreground': '#FFFFFF',
-        'editor.lineHighlightBackground': '#161A17',
-        'editor.selectionBackground': '#2E3A33',
-        'editor.inactiveSelectionBackground': '#161A17',
+        'editor.background':                 '#2F3437',
+        'editor.foreground':                 '#F5F7F5',
+        'editor.lineHighlightBackground':    '#3A4044',
+        'editor.selectionBackground':        '#51595D',
+        'editor.inactiveSelectionBackground':'#454C50',
+        'editorLineNumber.foreground':       '#626A6E',
+        'editorLineNumber.activeForeground': '#AAB2AD',
+        'editorCursor.foreground':           '#66BB6A',
+        'editorIndentGuide.background':      '#454C50',
+        'editorGutter.background':           '#2F3437',
+        'scrollbar.shadow':                  '#00000040',
+        'scrollbarSlider.background':        '#626A6E50',
+        'scrollbarSlider.hoverBackground':   '#66BB6A70',
       }
     });
     monaco.editor.setTheme('bytecode-elegant');
@@ -526,15 +537,15 @@ useEffect(() => {
             <style>
               body { 
                 background: #000000; 
-                color: #e2e8f0; 
+                color: #D5DBD6; 
                 font-family: 'JetBrains Mono', monospace; 
                 padding: 20px;
                 margin: 0;
                 line-height: 1.6;
               }
-              .log { color: #10b981; }
-              .error { color: #ef4444; }
-              .warn { color: #f59e0b; }
+              .log { color: #66BB6A; }
+              .error { color: #E53935; }
+              .warn { color: #FBC02D; }
             </style>
           </head>
           <body>
@@ -666,7 +677,7 @@ useEffect(() => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-[#0F1110] text-[#FFFFFF] overflow-hidden">
+    <div className="flex flex-col h-screen bg-[#2F3437] text-[#F5F7F5] overflow-hidden">
       {/* Floating Navbar */}
       <FloatingNavbar items={navItems} />
 
@@ -680,10 +691,10 @@ useEffect(() => {
             key={notif.id}
             className={`px-4 py-3 border-l-4 shadow-lg backdrop-blur-sm font-mono text-sm ${
               notif.type === 'success' 
-                ? 'bg-[#1D2420] border-[#66BB6A] text-[#A5D6A7]'
+                ? 'bg-[#454C50] border-[#66BB6A] text-[#A5D6A7]'
                 : notif.type === 'error'
-                ? 'bg-[#1D1414] border-[#E53935] text-[#FFCDD2]'
-                : 'bg-[#1D2420] border-[#2E3A33] text-[#D7D7D7]'
+                ? 'bg-[#3A2F2F] border-[#E53935] text-[#FFCDD2]'
+                : 'bg-[#454C50] border-[#626A6E] text-[#D5DBD6]'
             }`}
           >
             {notif.message}
@@ -692,12 +703,12 @@ useEffect(() => {
       </div>
 
       {/* Header */}
-      <div className="flex-shrink-0 px-8 py-3 border-b border-[#2E3A33] bg-[#0F1110] font-jetbrains relative">
+      <div className="flex-shrink-0 px-8 py-3 border-b border-[#626A6E] bg-[#2F3437] font-jetbrains relative">
         <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-4">
           {/* Left: Logo */}
           <div className="flex items-center gap-3 justify-center lg:justify-start">
             <img src={logo} alt="ByteCode Logo" className="w-9 h-9 object-contain filter drop-shadow-[0_0_10px_rgba(102,187,106,0.3)]" />
-            <h1 className="text-[#FFFFFF] text-2xl font-bebas tracking-wide">
+            <h1 className="text-[#F5F7F5] text-2xl font-bebas tracking-wide">
               BYTE COMPILER
             </h1>
           </div>
@@ -707,7 +718,7 @@ useEffect(() => {
             <select
               value={getActiveTab()?.language || "javascript"}
               onChange={(e) => handleLanguageChange(e.target.value)}
-              className="bytecode-input text-xs h-10 px-3 py-0 border-[#2E3A33]"
+              className="bytecode-input text-xs h-10 px-3 py-0 border-[#626A6E]"
             >
               <option value="javascript">JavaScript</option>
               <option value="html">HTML</option>
@@ -760,20 +771,20 @@ useEffect(() => {
           </div>
 
           {/* Right: Status Badge */}
-          <div className="hidden lg:flex items-center justify-end gap-3 text-xs text-[#9CA3AF] font-mono">
+          <div className="hidden lg:flex items-center justify-end gap-3 text-xs text-[#AAB2AD] font-mono">
             <span className="w-2 h-2 bg-[#66BB6A] animate-pulse"></span>
             <span>MONACO_ENGINE_READY</span>
           </div>
         </div>
       </div>
       {showDisclaimer && (
-        <div className="bg-[#161A17] border-b border-[#FBC02D]/30 px-4 py-3">
+        <div className="bg-[#3A4044] border-b border-[#FBC02D]/30 px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <IconAlertTriangle size={20} className="text-[#FBC02D]" />
               <div className="text-sm">
                 <strong className="text-[#FBC02D]">Warning:</strong> 
-                <span className="text-[#D7D7D7] ml-2">
+                <span className="text-[#D5DBD6] ml-2">
                   Your work will be lost if you reload or leave this page. 
                   For permanent storage and better performance, use a local development environment.
                 </span>
@@ -782,14 +793,14 @@ useEffect(() => {
             <div className="flex items-center gap-2">
               <button
                 onClick={downloadAllTabs}
-                className="bg-[#2E3A33] hover:bg-[#1D2420] border border-[#FBC02D]/50 px-3 py-1 text-xs font-medium text-[#D7D7D7] transition-colors flex items-center gap-1"
+                className="bg-[#626A6E] hover:bg-[#454C50] border border-[#FBC02D]/50 px-3 py-1 text-xs font-medium text-[#D5DBD6] transition-colors flex items-center gap-1"
               >
                 <IconDownload size={14} />
                 Download All
               </button>
               <button
                 onClick={handleDisclaimerClose}
-                className="text-[#9CA3AF] hover:text-[#D7D7D7] text-xs font-medium"
+                className="text-[#AAB2AD] hover:text-[#D5DBD6] text-xs font-medium"
               >
                 Dismiss
               </button>
@@ -799,12 +810,12 @@ useEffect(() => {
       )}
 
       {/* Browser-style Tab Bar */}
-      <div className="flex-shrink-0 bg-[#0F1110] border-b border-[#2E3A33]">
+      <div className="flex-shrink-0 bg-[#2F3437] border-b border-[#626A6E]">
         <div className="flex items-center">
           {/* New Tab Button */}
           <button
             onClick={() => addNewTab(getActiveTab()?.language || "javascript")}
-            className="px-3 py-2 text-[#9CA3AF] hover:text-[#D7D7D7] hover:bg-[#161A17] transition-colors border-r border-[#2E3A33]"
+            className="px-3 py-2 text-[#AAB2AD] hover:text-[#D5DBD6] hover:bg-[#3A4044] transition-colors border-r border-[#626A6E]"
           >
             <IconPlus size={16} />
           </button>
@@ -815,10 +826,10 @@ useEffect(() => {
               <div
                 key={tab.id}
                 onClick={() => setActiveTabId(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2 border-r border-[#2E3A33] transition-colors cursor-pointer group min-w-0 max-w-xs ${
+                className={`flex items-center gap-2 px-4 py-2 border-r border-[#626A6E] transition-colors cursor-pointer group min-w-0 max-w-xs ${
                   tab.id === activeTabId
-                    ? 'bg-[#1D2420] text-[#FFFFFF] border-t border-t-[#66BB6A]'
-                    : 'text-[#9CA3AF] hover:text-[#D7D7D7] hover:bg-[#161A17]'
+                    ? 'bg-[#454C50] text-[#F5F7F5] border-t border-t-[#66BB6A]'
+                    : 'text-[#AAB2AD] hover:text-[#D5DBD6] hover:bg-[#3A4044]'
                 }`}
               >
                 {/* File Icon */}
@@ -835,7 +846,7 @@ useEffect(() => {
                 {/* Close Button */}
                 <button
                   onClick={(e) => closeTab(tab.id, e)}
-                  className="opacity-0 group-hover:opacity-100 hover:bg-[#2E3A33] p-1 transition-all"
+                  className="opacity-0 group-hover:opacity-100 hover:bg-[#626A6E] p-1 transition-all"
                 >
                   <IconX size={14} />
                 </button>
@@ -844,7 +855,7 @@ useEffect(() => {
           </div>
 
           {/* Tab Counter */}
-          <div className="px-3 py-2 text-[#9CA3AF] text-xs border-l border-[#2E3A33]">
+          <div className="px-3 py-2 text-[#AAB2AD] text-xs border-l border-[#626A6E]">
             {tabs.length} {tabs.length === 1 ? 'tab' : 'tabs'}
           </div>
         </div>
@@ -852,13 +863,13 @@ useEffect(() => {
 
       {/* Persistent Warning for Unsaved Work */}
       {tabs.some(tab => tab.isDirty) && (
-        <div className="bg-[#161A17] border-b border-[#FBC02D]/30 px-4 py-2">
+        <div className="bg-[#3A4044] border-b border-[#FBC02D]/30 px-4 py-2">
           <div className="flex items-center justify-center gap-2 text-xs text-[#FBC02D]">
             <IconAlertTriangle size={14} />
             <span>You have unsaved work. Download your code to prevent data loss.</span>
             <button
               onClick={downloadAllTabs}
-              className="bg-[#2E3A33] hover:bg-[#1D2420] border border-[#FBC02D]/50 px-2 py-1 text-xs font-medium text-[#D7D7D7] transition-colors flex items-center gap-1 ml-2"
+              className="bg-[#626A6E] hover:bg-[#454C50] border border-[#FBC02D]/50 px-2 py-1 text-xs font-medium text-[#D5DBD6] transition-colors flex items-center gap-1 ml-2"
             >
               <IconDownload size={12} />
               Save All
@@ -871,23 +882,23 @@ useEffect(() => {
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
         {/* Editor Section */}
-        <div className="flex-1 flex flex-col border-r border-[#2E3A33]">
-          <div className="flex-shrink-0 bg-[#161A17]/90 px-4 py-3 border-b border-[#2E3A33] flex items-center justify-between">
+        <div className="flex-1 flex flex-col border-r border-[#626A6E]">
+          <div className="flex-shrink-0 bg-[#3A4044]/90 px-4 py-3 border-b border-[#626A6E] flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[#66BB6A] rounded-none"></div>
-                <span className="text-[#9CA3AF] text-sm font-mono">
+                <span className="text-[#AAB2AD] text-sm font-mono">
                   {getActiveTab()?.name || "script.js"}
                 </span>
                 {getActiveTab()?.isDirty && (
                   <span className="text-[#FBC02D] text-xs">• Modified</span>
                 )}
               </div>
-              <div className="text-[#9CA3AF] text-xs">
+              <div className="text-[#AAB2AD] text-xs">
                 {getLanguageStatus(getActiveTab()?.language)}
               </div>
             </div>
-            <div className="text-[#9CA3AF] text-xs">
+            <div className="text-[#AAB2AD] text-xs">
               {getActiveTab()?.code.split('\n').length} lines • {getActiveTab()?.code.length} chars
             </div>
           </div>
@@ -934,14 +945,14 @@ useEffect(() => {
 
         {/* Output Section */}
         <div className="flex-1 flex flex-col">
-          <div className="flex-shrink-0 bg-[#161A17]/90 px-4 py-3 border-b border-[#2E3A33]">
+          <div className="flex-shrink-0 bg-[#3A4044]/90 px-4 py-3 border-b border-[#626A6E]">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => handleTabViewChange("output")}
                 className={`px-4 py-2 rounded text-sm font-medium transition-colors flex items-center gap-2 ${
                   getActiveTab()?.activeView === "output" 
-                    ? "bg-[#1D2420] text-[#FFFFFF] border-t border-t-[#66BB6A]" 
-                    : "text-[#9CA3AF] hover:text-[#D7D7D7]"
+                    ? "bg-[#454C50] text-[#F5F7F5] border-t border-t-[#66BB6A]" 
+                    : "text-[#AAB2AD] hover:text-[#D5DBD6]"
                 }`}
               >
                 <span></span> Preview
@@ -950,8 +961,8 @@ useEffect(() => {
                 onClick={() => handleTabViewChange("console")}
                 className={`px-4 py-2 rounded text-sm font-medium transition-colors flex items-center gap-2 ${
                   getActiveTab()?.activeView === "console" 
-                    ? "bg-[#1D2420] text-[#FFFFFF] border-t border-t-[#66BB6A]" 
-                    : "text-[#9CA3AF] hover:text-[#D7D7D7]"
+                    ? "bg-[#454C50] text-[#F5F7F5] border-t border-t-[#66BB6A]" 
+                    : "text-[#AAB2AD] hover:text-[#D5DBD6]"
                 }`}
               >
                 <span></span> Console
@@ -959,7 +970,7 @@ useEffect(() => {
             </div>
           </div>
           
-          <div className="flex-1 bg-[#0F1110]">
+          <div className="flex-1 bg-[#2F3437]">
             {getActiveTab()?.activeView === "output" && (
               <iframe
                 ref={getIframeRef(activeTabId)}
@@ -972,7 +983,7 @@ useEffect(() => {
             
             {getActiveTab()?.activeView === "console" && (
               <div className="h-full p-4">
-                <pre className="font-mono text-sm text-[#D7D7D7] h-full overflow-auto whitespace-pre-wrap bg-[#0F1110] p-4 rounded-lg">
+                <pre className="font-mono text-sm text-[#D5DBD6] h-full overflow-auto whitespace-pre-wrap bg-[#2F3437] p-4 rounded-lg">
                   {getActiveTab()?.output || `// ${getConsoleMessage(getActiveTab()?.language)}\n// Run your code to see the output!`}
                 </pre>
               </div>

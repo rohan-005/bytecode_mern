@@ -2,31 +2,46 @@
 
 @layer base {
   :root {
-    --bg-dark: #daf3e7;
-    --bg-primary: #0F1110;
-    --bg-secondary: #161A17;
-    --bg-card: #1D2420;
-    --border-main: #2E3A33;
-    --accent-primary: #1B5E20;
-    --accent-secondary: #66BB6A;
-    --accent-light: #A5D6A7;
-    --accent-highlight: #E8F5E9;
-    --text-primary: #FFFFFF;
-    --text-secondary: #D7D7D7;
-    --text-muted: #9CA3AF;
+    /* ===== Graphite-Green Design System ===== */
+    /* Backgrounds — Layered depth */
+    --bg-primary:    #2F3437;   /* Page background */
+    --bg-secondary:  #3A4044;   /* Section background */
+    --bg-surface:    #454C50;   /* Card / panel */
+    --bg-elevated:   #51595D;   /* Elevated card, tooltip */
+
+    /* Accent — Green, used sparingly */
+    --accent-primary:    #1B5E20;
+    --accent-secondary:  #66BB6A;
+    --accent-light:      #A5D6A7;
+    --accent-highlight:  #E8F5E9;
+
+    /* Text */
+    --text-primary:   #F5F7F5;
+    --text-secondary: #D5DBD6;
+    --text-muted:     #AAB2AD;
+
+    /* Borders */
+    --border-main:    #626A6E;
+    --border-divider: #737B7F;
+
+    /* Semantic */
     --color-success: #66BB6A;
     --color-warning: #FBC02D;
-    --color-danger: #E53935;
+    --color-danger:  #E53935;
+
+    /* Legacy compat */
+    --bg-dark:  #E8F5E9;
+    --bg-card:  #454C50;
   }
 
-  /* Strict Sharp Edge Enforcement */
+  /* Sharp edge enforcement */
   *, ::before, ::after {
     border-radius: 0 !important;
   }
 
   body {
-    background-color: #0F1110;
-    color: #FFFFFF;
+    background-color: #2F3437;
+    color: #F5F7F5;
     font-family: 'Outfit', 'Inter', sans-serif;
     font-size: 17px;
     line-height: 1.6;
@@ -36,62 +51,64 @@
   }
 }
 
-/* Typography Classes */
-.font-bebas { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
-.font-anton { font-family: 'Anton', sans-serif; letter-spacing: 0.03em; }
-.font-teko { font-family: 'Teko', sans-serif; letter-spacing: 0.04em; }
-.font-oswald { font-family: 'Oswald', sans-serif; }
-.font-jetbrains { font-family: 'JetBrains Mono', monospace; }
-.font-ibm { font-family: 'IBM Plex Mono', monospace; }
-.font-fira { font-family: 'Fira Code', monospace; }
-.font-pixel { font-family: 'Press Start 2P', monospace; }
-.font-pixelify { font-family: 'Pixelify Sans', sans-serif; }
+/* ===== Typography Classes ===== */
+.font-bebas      { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
+.font-anton      { font-family: 'Anton', sans-serif; letter-spacing: 0.03em; }
+.font-teko       { font-family: 'Teko', sans-serif; letter-spacing: 0.04em; }
+.font-oswald     { font-family: 'Oswald', sans-serif; }
+.font-jetbrains  { font-family: 'JetBrains Mono', monospace; }
+.font-ibm        { font-family: 'IBM Plex Mono', monospace; }
+.font-fira       { font-family: 'Fira Code', monospace; }
+.font-pixel      { font-family: 'Press Start 2P', monospace; }
+.font-pixelify   { font-family: 'Pixelify Sans', sans-serif; }
 .font-geist-pixel { font-family: 'Geist Pixel', monospace; letter-spacing: 0.05em; }
-.font-tiny { font-family: 'Tiny5', sans-serif; }
-.font-cinzel { font-family: 'Cinzel', serif; letter-spacing: 0.03em; }
-.font-marcellus { font-family: 'Marcellus', serif; }
-.font-cormorant { font-family: 'Cormorant Garamond', serif; font-style: italic; }
-.font-outfit { font-family: 'Outfit', sans-serif; }
-.font-inter { font-family: 'Inter', sans-serif; }
-.font-manrope { font-family: 'Manrope', sans-serif; }
+.font-tiny       { font-family: 'Tiny5', sans-serif; }
+.font-cinzel     { font-family: 'Cinzel', serif; letter-spacing: 0.03em; }
+.font-marcellus  { font-family: 'Marcellus', serif; }
+.font-cormorant  { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.font-outfit     { font-family: 'Outfit', sans-serif; }
+.font-inter      { font-family: 'Inter', sans-serif; }
+.font-manrope    { font-family: 'Manrope', sans-serif; }
 
-/* Custom Scrollbar - Sharp Developer Aesthetic */
+/* ===== Scrollbar — Graphite ===== */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0F1110;
+  background: #2F3437;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2E3A33;
+  background: #626A6E;
   border-radius: 0 !important;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #66BB6A;
 }
 
-/* Developer Platform UI Utilities */
+/* ===== Cards ===== */
 .bytecode-card {
-  background-color: #161A17;
-  border: 1px solid #2E3A33;
+  background-color: #454C50;
+  border: 1px solid #626A6E;
   transition: all 0.2s ease-in-out;
 }
 
 .bytecode-card-hover {
-  background-color: #161A17;
-  border: 1px solid #2E3A33;
+  background-color: #454C50;
+  border: 1px solid #626A6E;
   transition: all 0.2s ease-in-out;
 }
 .bytecode-card-hover:hover {
+  background-color: #51595D;
   border-color: #66BB6A;
-  box-shadow: 0 4px 20px -2px rgba(102, 187, 106, 0.18);
+  box-shadow: 0 4px 16px -2px rgba(102, 187, 106, 0.14);
   transform: translateY(-2px);
 }
 
+/* ===== Primary Button — Green ===== */
 .bytecode-btn-primary {
   background-color: #1B5E20;
-  color: #FFFFFF;
+  color: #F5F7F5;
   border: 1px solid #2E7D32;
   font-family: 'JetBrains Mono', monospace;
   font-size: 15px;
@@ -110,7 +127,7 @@
 .bytecode-btn-primary:hover:not(:disabled) {
   background-color: #2E7D32;
   border-color: #66BB6A;
-  box-shadow: 0 0 16px rgba(102, 187, 106, 0.25);
+  box-shadow: 0 0 14px rgba(102, 187, 106, 0.22);
   transform: translateY(-1px);
 }
 .bytecode-btn-primary:active:not(:disabled) {
@@ -122,10 +139,11 @@
   cursor: not-allowed;
 }
 
+/* ===== Secondary Button — Graphite + Green border ===== */
 .bytecode-btn-secondary {
-  background-color: transparent;
-  color: #FFFFFF;
-  border: 1px solid #66BB6A;
+  background-color: #454C50;
+  color: #D5DBD6;
+  border: 1px solid #626A6E;
   font-family: 'JetBrains Mono', monospace;
   font-size: 15px;
   font-weight: 500;
@@ -141,23 +159,24 @@
   white-space: nowrap;
 }
 .bytecode-btn-secondary:hover:not(:disabled) {
-  background-color: rgba(102, 187, 106, 0.12);
+  background-color: #51595D;
   color: #66BB6A;
   border-color: #66BB6A;
-  box-shadow: 0 0 12px rgba(102, 187, 106, 0.2);
+  box-shadow: 0 0 10px rgba(102, 187, 106, 0.14);
   transform: translateY(-1px);
 }
 .bytecode-btn-secondary:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-  border-color: #2E3A33;
-  color: #9CA3AF;
+  border-color: #626A6E;
+  color: #AAB2AD;
 }
 
+/* ===== Input ===== */
 .bytecode-input {
-  background-color: #161A17;
-  border: 1px solid #2E3A33;
-  color: #FFFFFF;
+  background-color: #3A4044;
+  border: 1px solid #626A6E;
+  color: #F5F7F5;
   font-family: 'JetBrains Mono', monospace;
   font-size: 15px;
   height: 2.75rem;
@@ -171,12 +190,12 @@
   box-shadow: 0 0 0 1px #66BB6A !important;
 }
 
-/* Background Grids & Terminal Scanlines */
+/* ===== Background Utilities ===== */
 .grid-bg {
   background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(46, 58, 51, 0.25) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(46, 58, 51, 0.25) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(98, 106, 110, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(98, 106, 110, 0.15) 1px, transparent 1px);
 }
 
 .scanline {
@@ -187,29 +206,29 @@
   display: block;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(rgba(15, 17, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+  background: linear-gradient(rgba(47, 52, 55, 0) 50%, rgba(0, 0, 0, 0.12) 50%);
   background-size: 100% 4px;
   z-index: 2;
   pointer-events: none;
-  opacity: 0.3;
+  opacity: 0.2;
 }
 
-/* Accent Glow Animation */
+/* ===== Accent Glow ===== */
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px rgba(102, 187, 106, 0.2); }
-  50% { box-shadow: 0 0 16px rgba(102, 187, 106, 0.45); }
+  0%, 100% { box-shadow: 0 0 8px rgba(102, 187, 106, 0.15); }
+  50%       { box-shadow: 0 0 16px rgba(102, 187, 106, 0.35); }
 }
 .animate-glow {
   animation: pulse-glow 2.5s infinite ease-in-out;
 }
 
-/* Loading Shimmer for Skeletons */
+/* ===== Skeleton Shimmer ===== */
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
+  0%   { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
 .skeleton-box {
-  background: linear-gradient(90deg, #161A17 25%, #1D2420 50%, #161A17 75%);
+  background: linear-gradient(90deg, #3A4044 25%, #454C50 50%, #3A4044 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }

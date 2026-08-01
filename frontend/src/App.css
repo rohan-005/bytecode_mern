@@ -32,8 +32,8 @@
 }
 
 body {
-  background-color: #e6f5ed;
-  color: #FFFFFF;
+  background-color: #2F3437;
+  color: #F5F7F5;
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -53,6 +53,5 @@ body {
 }
 
 .code-editor-bg {
-  background: linear-gradient(45deg, #0F1110 25%, #0F1110 25%, #0F1110 50%, #0F1110 50%, #0F1110 75%, #0F1110 75%, #0F1110);
-  background-size: 24px 24px;
+  background: #2F3437;
 }

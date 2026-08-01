@@ -179,7 +179,7 @@ const CourseDetail = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0F1110] text-white font-outfit">
+      <div className="min-h-screen bg-[#2F3437] text-white font-outfit">
         <FloatingNavbar items={navItems} />
         <div className="max-w-[1800px] mx-auto px-8 py-20">
           <SkeletonCard className="h-72 mb-8" />
@@ -191,7 +191,7 @@ const CourseDetail = () => {
 
   if (!course) {
     return (
-      <div className="min-h-screen bg-[#0F1110] text-white font-outfit flex items-center justify-center">
+      <div className="min-h-screen bg-[#2F3437] text-white font-outfit flex items-center justify-center">
         <FloatingNavbar items={navItems} />
         <div className="bytecode-card p-10 text-center max-w-lg">
           <h1 className="text-3xl font-bebas text-white tracking-wide mb-4">COURSE NOT FOUND</h1>
@@ -207,12 +207,12 @@ const CourseDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0F1110] text-white font-outfit flex flex-col justify-between">
+    <div className="min-h-screen bg-[#2F3437] text-white font-outfit flex flex-col justify-between">
       <FloatingNavbar items={navItems} />
 
       <div className="w-full">
         {/* Header Block */}
-        <div className="bg-[#0F1110] border-b border-[#2E3A33] py-12">
+        <div className="bg-[#2F3437] border-b border-[#626A6E] py-12">
           <div className="max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-16">
             <button
               onClick={() => navigate('/courses')}
@@ -227,13 +227,13 @@ const CourseDetail = () => {
                 <img 
                   src={course.image || '/images/default-course.jpg'} 
                   alt={course.name}
-                  className="w-full h-72 object-cover border border-[#2E3A33]"
+                  className="w-full h-72 object-cover border border-[#626A6E]"
                 />
               </div>
 
               <div className="lg:col-span-2 space-y-6">
                 <div className="flex flex-wrap items-center gap-4">
-                  <span className="px-3 py-1 bg-[#0F1110] border border-[#66BB6A] text-[#66BB6A] text-xs font-mono font-bold uppercase">
+                  <span className="px-3 py-1 bg-[#2F3437] border border-[#66BB6A] text-[#66BB6A] text-xs font-mono font-bold uppercase">
                     {course.level}
                   </span>
                   <div className="flex items-center gap-1.5">
@@ -245,7 +245,7 @@ const CourseDetail = () => {
                         onMouseLeave={() => setHoverRating(0)}
                         disabled={ratingLoading}
                         className={`${
-                          star <= (hoverRating || userRating) ? 'text-[#FBC02D]' : 'text-[#9CA3AF]'
+                          star <= (hoverRating || userRating) ? 'text-[#FBC02D]' : 'text-[#AAB2AD]'
                         } transition-colors`}
                       >
                         <IconStar 
@@ -254,7 +254,7 @@ const CourseDetail = () => {
                         />
                       </button>
                     ))}
-                    <span className="text-[#9CA3AF] text-xs font-mono ml-2">
+                    <span className="text-[#AAB2AD] text-xs font-mono ml-2">
                       ({course.rating || 0}/5)
                     </span>
                   </div>
@@ -264,32 +264,32 @@ const CourseDetail = () => {
                   {course.name}
                 </h1>
                 
-                <p className="text-base text-[#D7D7D7] font-outfit leading-relaxed max-w-4xl">
+                <p className="text-base text-[#D5DBD6] font-outfit leading-relaxed max-w-4xl">
                   {course.description}
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
-                  <div className="p-4 bg-[#0F1110] border border-[#2E3A33]">
-                    <div className="text-xs text-[#9CA3AF] uppercase tracking-wider font-mono">Exercises</div>
+                  <div className="p-4 bg-[#2F3437] border border-[#626A6E]">
+                    <div className="text-xs text-[#AAB2AD] uppercase tracking-wider font-mono">Exercises</div>
                     <div className="text-xl font-bold text-white font-mono">{course.exercises?.length || 0}</div>
                   </div>
-                  <div className="p-4 bg-[#0F1110] border border-[#2E3A33]">
-                    <div className="text-xs text-[#9CA3AF] uppercase tracking-wider font-mono">Category</div>
+                  <div className="p-4 bg-[#2F3437] border border-[#626A6E]">
+                    <div className="text-xs text-[#AAB2AD] uppercase tracking-wider font-mono">Category</div>
                     <div className="text-xl font-bold text-[#66BB6A] font-mono truncate">{course.category || "Development"}</div>
                   </div>
-                  <div className="p-4 bg-[#0F1110] border border-[#2E3A33]">
-                    <div className="text-xs text-[#9CA3AF] uppercase tracking-wider font-mono">Difficulty</div>
+                  <div className="p-4 bg-[#2F3437] border border-[#626A6E]">
+                    <div className="text-xs text-[#AAB2AD] uppercase tracking-wider font-mono">Difficulty</div>
                     <div className="text-xl font-bold text-white font-mono">{course.level}</div>
                   </div>
                 </div>
 
                 {progress && (
-                  <div className="p-5 bg-[#0F1110] border border-[#66BB6A]">
+                  <div className="p-5 bg-[#2F3437] border border-[#66BB6A]">
                     <div className="flex justify-between text-sm font-mono mb-2">
-                      <span className="text-[#D7D7D7]">Course Progress</span>
+                      <span className="text-[#D5DBD6]">Course Progress</span>
                       <span className="text-[#66BB6A] font-bold">{Math.round(progress.progress)}%</span>
                     </div>
-                    <div className="w-full bg-[#0F1110] h-2.5 border border-[#2E3A33]">
+                    <div className="w-full bg-[#2F3437] h-2.5 border border-[#626A6E]">
                       <div 
                         className="h-full bg-[#66BB6A]"
                         style={{ width: `${progress.progress}%` }}
@@ -312,7 +312,7 @@ const CourseDetail = () => {
         </div>
 
         {/* Tabs Bar */}
-        <div className="bg-[#0F1110] border-b border-[#2E3A33] sticky top-0 z-20">
+        <div className="bg-[#2F3437] border-b border-[#626A6E] sticky top-0 z-20">
           <div className="max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-16 flex gap-8">
             {['overview', 'exercises', 'references'].map((tab) => (
               <button
@@ -320,7 +320,7 @@ const CourseDetail = () => {
                 className={`py-4 px-2 font-mono text-sm uppercase tracking-wider border-b-2 transition-colors ${
                   activeTab === tab
                     ? 'border-[#66BB6A] text-[#66BB6A] font-bold'
-                    : 'border-transparent text-[#9CA3AF] hover:text-[#D7D7D7]'
+                    : 'border-transparent text-[#AAB2AD] hover:text-[#D5DBD6]'
                 }`}
                 onClick={() => setActiveTab(tab)}
               >
@@ -337,12 +337,12 @@ const CourseDetail = () => {
           {activeTab === 'overview' && (
             <div className="space-y-8">
               <div className="bytecode-card p-8">
-                <h2 className="text-3xl font-cinzel text-white tracking-wide mb-6 pb-3 border-b border-[#2E3A33]">
+                <h2 className="text-3xl font-cinzel text-white tracking-wide mb-6 pb-3 border-b border-[#626A6E]">
                   WHAT YOU'LL LEARN
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {course.whatYouLearn?.map((item, index) => (
-                    <div key={index} className="flex items-center gap-3 text-base text-[#D7D7D7] font-outfit">
+                    <div key={index} className="flex items-center gap-3 text-base text-[#D5DBD6] font-outfit">
                       <IconCheck className="text-[#66BB6A] flex-shrink-0" size={20} />
                       <span>{item}</span>
                     </div>
@@ -352,10 +352,10 @@ const CourseDetail = () => {
 
               {course.prerequisites && course.prerequisites.length > 0 && (
                 <div className="bytecode-card p-8">
-                  <h2 className="text-3xl font-cinzel text-white tracking-wide mb-6 pb-3 border-b border-[#2E3A33]">
+                  <h2 className="text-3xl font-cinzel text-white tracking-wide mb-6 pb-3 border-b border-[#626A6E]">
                     PREREQUISITES
                   </h2>
-                  <div className="space-y-3 text-base text-[#D7D7D7] font-outfit">
+                  <div className="space-y-3 text-base text-[#D5DBD6] font-outfit">
                     {course.prerequisites.map((item, index) => (
                       <div key={index}>• {item}</div>
                     ))}
@@ -378,17 +378,17 @@ const CourseDetail = () => {
                     className="bytecode-card p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 hover:border-[#66BB6A] transition-colors"
                   >
                     <div className="flex items-start gap-5">
-                      <div className="w-12 h-12 bg-[#0F1110] border border-[#66BB6A] text-[#66BB6A] flex items-center justify-center font-bebas text-2xl flex-shrink-0">
+                      <div className="w-12 h-12 bg-[#2F3437] border border-[#66BB6A] text-[#66BB6A] flex items-center justify-center font-bebas text-2xl flex-shrink-0">
                         {index + 1}
                       </div>
 
                       <div>
                         <div className="flex flex-wrap items-center gap-3 mb-2">
                           <h3 className="text-lg font-bold text-white font-mono">{exercise.title}</h3>
-                          <span className="px-2.5 py-1 bg-[#0F1110] border border-[#2E3A33] text-xs font-mono text-[#66BB6A] uppercase">
+                          <span className="px-2.5 py-1 bg-[#2F3437] border border-[#626A6E] text-xs font-mono text-[#66BB6A] uppercase">
                             {exercise.difficulty}
                           </span>
-                          <span className="px-2.5 py-1 bg-[#0F1110] border border-[#2E3A33] text-xs font-mono text-[#66BB6A]">
+                          <span className="px-2.5 py-1 bg-[#2F3437] border border-[#626A6E] text-xs font-mono text-[#66BB6A]">
                             +{xpValue} XP
                           </span>
                           {completed && (
@@ -398,7 +398,7 @@ const CourseDetail = () => {
                             </span>
                           )}
                         </div>
-                        <p className="text-sm text-[#D7D7D7] font-outfit">{exercise.description}</p>
+                        <p className="text-sm text-[#D5DBD6] font-outfit">{exercise.description}</p>
                       </div>
                     </div>
 
@@ -437,7 +437,7 @@ const CourseDetail = () => {
                   >
                     <div>
                       <h3 className="text-base font-bold text-white font-mono mb-2">{reference.title}</h3>
-                      <p className="text-sm text-[#D7D7D7] font-outfit mb-6">{reference.description}</p>
+                      <p className="text-sm text-[#D5DBD6] font-outfit mb-6">{reference.description}</p>
                     </div>
 
                     <a 
