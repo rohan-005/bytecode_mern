@@ -427,13 +427,13 @@
     },
     {
       "id": "js3-ex20",
-      "title": "Capstone Project: JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Industry Application",
-      "description": "Practice and master Capstone Project: JavaScript III \u2014 Advanced ES6+, Async & OOP Engine Industry Application with interactive coding.",
+      "title": "Capstone Project: Interactive Expense Tracker App",
+      "description": "Build a complete production-grade Interactive Expense Tracker App integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "javascript",
-      "theory": "This capstone integrates all core modules learned in JavaScript III \u2014 Advanced ES6+, Async & OOP Engine into a complete project.",
-      "objective": "Build a full production capstone project for JavaScript III \u2014 Advanced ES6+, Async & OOP Engine.",
+      "theory": "This capstone project combines all curriculum concepts into a production Interactive Expense Tracker App.",
+      "objective": "Construct a complete Interactive Expense Tracker App application.",
       "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
       "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
       "requirements": [

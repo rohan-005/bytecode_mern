@@ -427,13 +427,13 @@
     },
     {
       "id": "css3-ex20",
-      "title": "Capstone Project: CSS III \u2014 Advanced Animations, Glassmorphism & Modern CSS Industry Application",
-      "description": "Practice and master Capstone Project: CSS III \u2014 Advanced Animations, Glassmorphism & Modern CSS Industry Application with interactive coding.",
+      "title": "Capstone Project: Dark SaaS Dashboard UI",
+      "description": "Build a complete production-grade Dark SaaS Dashboard UI integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "css",
-      "theory": "This capstone integrates all core modules learned in CSS III \u2014 Advanced Animations, Glassmorphism & Modern CSS into a complete project.",
-      "objective": "Build a full production capstone project for CSS III \u2014 Advanced Animations, Glassmorphism & Modern CSS.",
+      "theory": "This capstone project combines all curriculum concepts into a production Dark SaaS Dashboard UI.",
+      "objective": "Construct a complete Dark SaaS Dashboard UI application.",
       "initialCode": "/* Add CSS styles */\n.card {\n}",
       "solutionCode": ".card {\n    background: #1B1B1B;\n    color: #FFFFFF;\n    border-radius: 8px;\n}",
       "requirements": [

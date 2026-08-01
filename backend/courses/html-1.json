@@ -407,13 +407,13 @@
     },
     {
       "id": "html1-ex20",
-      "title": "Capstone Project: Developer Personal Portfolio Website",
-      "description": "Build a complete Personal Portfolio Website featuring header, bio, project lists, tables, and contact links.",
+      "title": "Capstone Project: Personal Portfolio Website",
+      "description": "Build a complete production-grade Personal Portfolio Website integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "html",
-      "theory": "Combines all HTML I fundamentals into a complete production developer portfolio.",
-      "objective": "Build complete developer portfolio page.",
+      "theory": "This capstone project combines all curriculum concepts into a production Personal Portfolio Website.",
+      "objective": "Construct a complete Personal Portfolio Website application.",
       "initialCode": "<!DOCTYPE html>\n<html><body></body></html>",
       "solutionCode": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Alex River - Portfolio</title>\n</head>\n<body>\n    <header>\n        <h1>Alex River</h1>\n        <p>Full Stack Software Engineer</p>\n    </header>\n    <main>\n        <section>\n            <h2>About Me</h2>\n            <p>Building <strong>scalable developer tools</strong> and web platforms.</p>\n        </section>\n        <section>\n            <h2>Projects</h2>\n            <ul>\n                <li><a href=\"https://bytecode.dev\" target=\"_blank\" rel=\"noopener\">ByteCode Engine</a></li>\n            </ul>\n        </section>\n    </main>\n    <footer>\n        <p>&copy; 2026 Alex River. All rights reserved.</p>\n    </footer>\n</body>\n</html>",
       "requirements": [

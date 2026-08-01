@@ -427,13 +427,13 @@
     },
     {
       "id": "js1-ex20",
-      "title": "Capstone Project: JavaScript I \u2014 Fundamentals & Control Flow Industry Application",
-      "description": "Practice and master Capstone Project: JavaScript I \u2014 Fundamentals & Control Flow Industry Application with interactive coding.",
+      "title": "Capstone Project: Interactive Calculator App",
+      "description": "Build a complete production-grade Interactive Calculator App integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "javascript",
-      "theory": "This capstone integrates all core modules learned in JavaScript I \u2014 Fundamentals & Control Flow into a complete project.",
-      "objective": "Build a full production capstone project for JavaScript I \u2014 Fundamentals & Control Flow.",
+      "theory": "This capstone project combines all curriculum concepts into a production Interactive Calculator App.",
+      "objective": "Construct a complete Interactive Calculator App application.",
       "initialCode": "// Write JavaScript code\nfunction execute() {\n}",
       "solutionCode": "const execute = () => {\n    console.log(\"ByteCode Execution Output\");\n};\nexecute();",
       "requirements": [

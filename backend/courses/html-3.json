@@ -427,13 +427,13 @@
     },
     {
       "id": "html3-ex20",
-      "title": "Capstone Project: HTML III \u2014 Advanced, Forms, ARIA & Web APIs Industry Application",
-      "description": "Practice and master Capstone Project: HTML III \u2014 Advanced, Forms, ARIA & Web APIs Industry Application with interactive coding.",
+      "title": "Capstone Project: High-Converting Landing Page",
+      "description": "Build a complete production-grade High-Converting Landing Page integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "html",
-      "theory": "This capstone integrates all core modules learned in HTML III \u2014 Advanced, Forms, ARIA & Web APIs into a complete project.",
-      "objective": "Build a full production capstone project for HTML III \u2014 Advanced, Forms, ARIA & Web APIs.",
+      "theory": "This capstone project combines all curriculum concepts into a production High-Converting Landing Page.",
+      "objective": "Construct a complete High-Converting Landing Page application.",
       "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
       "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
       "requirements": [

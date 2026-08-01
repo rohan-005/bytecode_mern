@@ -427,13 +427,13 @@
     },
     {
       "id": "html2-ex20",
-      "title": "Capstone Project: HTML II \u2014 Intermediate & Semantics Industry Application",
-      "description": "Practice and master Capstone Project: HTML II \u2014 Intermediate & Semantics Industry Application with interactive coding.",
+      "title": "Capstone Project: Restaurant Website",
+      "description": "Build a complete production-grade Restaurant Website integrating all track concepts.",
       "duration": "15 min",
       "difficulty": "Hard",
       "language": "html",
-      "theory": "This capstone integrates all core modules learned in HTML II \u2014 Intermediate & Semantics into a complete project.",
-      "objective": "Build a full production capstone project for HTML II \u2014 Intermediate & Semantics.",
+      "theory": "This capstone project combines all curriculum concepts into a production Restaurant Website.",
+      "objective": "Construct a complete Restaurant Website application.",
       "initialCode": "<body>\n    <!-- Practice code -->\n</body>",
       "solutionCode": "<body>\n    <section>\n        <h1>ByteCode Practice</h1>\n    </section>\n</body>",
       "requirements": [
