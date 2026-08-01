@@ -868,7 +868,7 @@ useEffect(() => {
           <div className="flex-shrink-0 bg-black/40 px-4 py-3 border-b border-gray-800 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-[#FF6A2A] rounded-none"></div>
                 <span className="text-slate-400 text-sm font-mono">
                   {getActiveTab()?.name || "script.js"}
                 </span>

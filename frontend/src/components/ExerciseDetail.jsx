@@ -499,9 +499,9 @@ const ExerciseDetail = () => {
           </h1>
           <button
             onClick={() => navigate(`/course/${courseId}`)}
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+            className="bytecode-btn-primary text-xs py-2.5 px-6"
           >
-            Back to Course
+            Back to Track
           </button>
         </div>
       </div>
@@ -659,7 +659,7 @@ const ExerciseDetail = () => {
           <div className="flex-1 overflow-y-auto p-6">
             {activeTheoryTab === "problem" && (
               <div className="space-y-6">
-                <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl p-6 border border-blue-500/20">
+                <div className="bytecode-card p-6">
                   <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
                     🎯 Challenge Description
                   </h2>
@@ -938,7 +938,7 @@ const ExerciseDetail = () => {
               <div className="flex-shrink-0 bg-gray-800/50 px-4 py-3 border-b border-gray-700 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-gradient-to-r from-green-400 to-blue-400 rounded-full animate-pulse"></div>
+                    <div className="w-2.5 h-2.5 bg-[#FF6A2A] animate-pulse"></div>
                     <span className="text-slate-200 text-sm font-mono font-semibold">
                       challenge.{getFileExtension(exercise.language)}
                     </span>
@@ -1051,7 +1051,7 @@ const ExerciseDetail = () => {
         <div className="fixed bottom-6 right-6 z-40 animate-bounce">
           <button
             onClick={goToNextExercise}
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-4 rounded-2xl font-bold text-lg shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center gap-3 group"
+            className="bytecode-btn-primary text-xs py-3 px-6 shadow-2xl uppercase tracking-wider font-mono flex items-center gap-2"
           >
             {nextExercise ? (
               <>
